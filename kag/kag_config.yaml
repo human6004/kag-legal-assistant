@@ -26,7 +26,12 @@ log:
   level: INFO
 
 project:
-  biz_scene: default
+  # Tiền tố tra prompt. init_prompt_with_fallback thử "{biz_scene}_{tên}" trước,
+  # lỗi mới rơi về "default_{tên}". Đây là đường DUY NHẤT để thay prompt sinh câu
+  # trả lời khi enable_ref: true, xem kag/solver/prompt/refer_generator.py.
+  # Đổi lại thành default là quay về prompt tiếng Anh của KAG, im lặng, không báo
+  # lỗi. Prompt nào chưa viết bản legal_ thì tự rơi về default, không gãy.
+  biz_scene: legal
   host_addr: http://127.0.0.1:8887
   id: ''
   language: en
@@ -208,9 +213,9 @@ kag_solver_pipeline:
     type: lf_kag_static_planner
     llm: *chat_llm
     plan_prompt:
-      type: default_lf_static_planning
+      type: legal_lf_static_planning
     rewrite_prompt:
-      type: default_rewrite_sub_task_query
+      type: legal_rewrite_sub_task_query
   executors:
     - *kag_hybrid_executor_conf
     - *py_code_based_math_executor_conf
@@ -219,8 +224,13 @@ kag_solver_pipeline:
   generator:
     type: llm_index_generator
     llm_client: *chat_llm
+    # Chỉ được đọc ở nhánh `if not self.enable_ref` (llm_index_generator.py:73).
+    # Đang bật enable_ref nên dòng này KHÔNG chạy: prompt thật lấy qua biz_scene
+    # thành legal_refer_generator_prompt / legal_without_refer_generator_prompt.
+    # Vẫn trỏ vào bản không-ref để lỡ tắt enable_ref thì còn tiếng Việt, và vì
+    # nhánh đó chỉ truyền content + query, không truyền ref.
     generated_prompt:
-      type: default_refer_generator_prompt
+      type: legal_without_refer_generator_prompt
     enable_ref: true
 
 #------------kag-solver configuration end----------------#
