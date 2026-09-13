@@ -1,25 +1,42 @@
 #------------project configuration start----------------#
+# Trich xuat thuc the / quan he tu van ban luat. ~2700 luot goi cho ca kho, nen
+# do tre moi luot quan trong hon chat luong tung cau tra loi. Do tren chunk that
+# 4000 ky tu: deepseek-v4.1-flash 12.4s, gemini/gemini-3.7-flash 7.0s,
+# cx/gpt-5.5 253.9s, cx/gpt-5.6-terra(max) 302.8s -> timeout.
+# Hai model cx bi gateway cat o 524, va llm_client.py invoke(with_except=False)
+# nuot loi im lang -> chunk mat sach thuc the ma van bao thanh cong.
+# Dung dat model thinking-max o day.
 openie_llm: &openie_llm
   type: maas
-  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
-  api_key: key
-  model: qwen2.5-7b-instruct-1m
+  base_url: https://hermesgate.app/v1
+  api_key: sk-8Ic0ZMDSAofRdBxGeHPk7g9LrhZJWRogRZDoxG8N2VySwVCV
+  model: deepseek-v4.1-flash
   enable_check: false
+  # Khong co dong nay thi OpenAIClient khong truyen timeout xuong, roi ve mac dinh
+  # 600s cua SDK -> mot request treo dung ca run 2700 luot. Do that 12.4s/luot nen
+  # 90s da rat rong; request chet thi bung ra ngay thay vi dung 10 phut.
+  timeout: 90
 
 chat_llm: &chat_llm
   type: maas
-  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
-  api_key: key
-  model: qwen2.5-72b-instruct
+  base_url: https://hermesgate.app/v1
+  api_key: sk-8Ic0ZMDSAofRdBxGeHPk7g9LrhZJWRogRZDoxG8N2VySwVCV
+  model: deepseek-v4.1-flash
   enable_check: false
+  # Rong hon openie vi cau tra loi dai hon nhieu.
+  timeout: 120
 
 vectorize_model: &vectorize_model
-  api_key: key
-  base_url: https://api.siliconflow.cn/v1
-  model: BAAI/bge-m3
+  api_key: sk-e3e919889952f476-b6ygfb-d5193aa0
+  base_url: https://rx7m9q2.abc-tunnel.us/v1
+  # Gateway dinh tuyen theo dang provider/model. Doi model thi phai doi ca
+  # vector_dimensions cho khop, va phai reset lai index cu trong OpenSPG.
+  model: gemini/gemini-embedding-001
   type: openai
-  vector_dimensions: 1024
+  vector_dimensions: 3072
   enable_check: false
+  # OpenAIVectorizeModel CO truyen timeout xuong client, nhung bo trong = vo han.
+  timeout: 60
 vectorizer: *vectorize_model
 
 log:
@@ -33,7 +50,7 @@ project:
   # lỗi. Prompt nào chưa viết bản legal_ thì tự rơi về default, không gãy.
   biz_scene: legal
   host_addr: http://127.0.0.1:8887
-  id: ''
+  id: '1'
   language: en
   namespace: Legal
 #------------project configuration end----------------#
@@ -105,8 +122,11 @@ kag_builder_pipeline:
       vectorize_model: *vectorize_model
     writer:
       type: kg_writer # kag.builder.component.writer.kg_writer.KGWriter
-  num_threads_per_chain: 50
-  num_chains: 16
+  # ponytail: 4x4 = 16 request song song, dat tay cho account ChatGPT OAuth chu
+  # khong do tu rate limit that. Cu 50x16 = 800 luong cua ban goc se dinh 429
+  # ngay voi model (max). Thay bang con so do provider tra ve neu sau nay do duoc.
+  num_threads_per_chain: 4
+  num_chains: 4
   scanner:
     type: dir_file_scanner # kag.builder.component.scanner.directory_scanner.DirectoryScanner
     file_suffix: md

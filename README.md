@@ -13,10 +13,12 @@ hybridRAG/  nền so sánh, chạy độc lập, không liên quan tới kag/
 ```
 
 Kho dữ liệu nằm một chỗ duy nhất và cả hai bên cùng đọc từ đó, nên không sợ lệch
-bản. 23 văn bản tiếng Việt đã làm sạch, cả hai engine đọc đúng bộ đó.
+bản. 23 văn bản tiếng Việt đã làm sạch nằm trong hai thư mục con
+`data/processed/vn_ai/` (8 văn bản) và `data/processed/vn_an_ninh_mang/` (15 văn
+bản), cả hai engine đọc đúng bộ đó.
 
 Đề tài chỉ trả lời về luật Việt Nam nên toàn bộ phần quốc tế đã bỏ khỏi repo:
-corpus tiếng Anh, 25 file metadata, và thư mục `data/raw/quoc_te_*`. Lý do: câu
+corpus tiếng Anh, phần metadata quốc tế, và thư mục `data/raw/quoc_te_*`. Lý do: câu
 hỏi là tiếng Việt và đáp án phải là điều khoản Việt Nam, trong khi nửa tiếng Anh
 từng chiếm 58% số ký tự mà không có một cạnh nào nối sang văn bản Việt — giữ lại
 chỉ làm nhiễu vector search chứ không trả lời thêm được câu nào. Cần lại thì lấy
@@ -24,27 +26,38 @@ từ lịch sử git.
 
 ```
 data/
-├── processed/     23 file .md luật Việt Nam, đây là thứ cả hai engine đọc
+├── processed/     23 file .md luật Việt Nam, chia theo thư mục con, đây là thứ cả hai engine đọc
 ├── graph/         nodes.json và edges.json sinh từ metadata, nạp thẳng vào đồ thị
 ├── raw/           bản gốc pdf, docx, html. Không đưa vào git vì nặng 47MB
-├── metadata/      25 file json mô tả từng văn bản
+├── metadata/      27 file json mô tả từng văn bản
 ├── README.md    quy tắc đặt tên và cấu trúc dữ liệu
 └── SOURCES.md   danh sách nguồn đã thẩm định
 ```
 
 **Mã nguồn KAG không nằm trong repo này.** Nó là thư viện Python cài riêng, xem
-bước 2 dưới đây. Thư mục `kag/` chỉ chứa cấu hình, schema và dữ liệu của dự án.
+bước 2 dưới đây. Thư mục `kag/` chỉ chứa cấu hình, schema, prompt và script của
+dự án — không chứa mã của chính KAG.
 
 ```
 kag/
-├── kag_config.yaml        khai API key, namespace, model
-├── schema/Legal.schema    khuôn node và cạnh, phải trùng tên namespace
+├── kag_config.yaml        khai API key, namespace, model, prompt
+├── schema/
+│   └── Legal.schema       khuôn node và cạnh, phải trùng tên namespace
 ├── builder/
-│   └── indexer.py         dựng đồ thị, đọc từ data/processed
+│   ├── indexer.py         dựng đồ thị, đọc từ data/processed
+│   ├── metadata_to_graph.py  sinh data/graph/*.json từ data/metadata
+│   ├── injection.py       nạp node/cạnh metadata thẳng vào đồ thị
+│   ├── external_graph.py  kag/builder/external_graph.py, lớp legal_external_graph
+│   ├── clean_corpus.py    làm sạch bản gốc trước khi đưa vào processed
+│   └── prompt/            prompt trích xuất: ner.py, std.py, triple.py
 └── solver/
     ├── eval.py            chạy hỏi đáp và ghi benchmark.txt
+    ├── prompt/            prompt suy luận và sinh câu trả lời, 8 file
     └── data/questions.json  bộ câu hỏi để chấm
 ```
+
+Prompt tiếng Việt là phần đáng chú ý nhất trong `kag/`: cả `builder/prompt/` lẫn
+`solver/prompt/` đều đăng ký tên `legal_*`, và `kag_config.yaml` trỏ vào chúng.
 
 ## Chạy
 
@@ -132,8 +145,10 @@ Kết quả ghi ra `benchmark.txt`.
 
 - `docker compose stop` để tắt mà giữ đồ thị. `down -v` là xóa sạch, mất luôn số
   tiền AI đã tiêu để dựng.
-- `kag_config.yaml` đang để `language: en` và dùng bộ prompt tiếng Anh mặc định.
-  Đây là chỗ đầu tiên đáng chỉnh khi muốn chất lượng trích xuất tốt hơn trên văn
-  bản tiếng Việt.
+- `kag_config.yaml` đang để `language: en`, nhưng prompt đang chạy là bộ tiếng Việt
+  tự viết trong `kag/builder/prompt/` và `kag/solver/prompt/`, chọn qua
+  `biz_scene: legal`. Đổi `biz_scene` về `default` là lặng lẽ quay về prompt tiếng
+  Anh của KAG, không báo lỗi. Đây là chỗ đầu tiên đáng chỉnh khi muốn chất lượng
+  trích xuất tốt hơn.
 - Đổi schema thì phải chạy lại `knext schema commit`. Đổi prompt hay đổi cách
   cắt văn bản thì không cần, server không hề hay biết.
