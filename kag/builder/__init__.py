@@ -13,35 +13,35 @@
 Builder Dir.
 """
 
-# --- Va loi: KAG bam nat ten thuc the tieng Viet ---------------------------
+# --- Vá lỗi: KAG băm nát tên thực thể tiếng Việt ---------------------------
 #
-# kag/common/utils.py:196 processing_phrases() thay MOI ky tu ngoai
-# [A-Za-z0-9 CJK] bang dau cach. schema_free_extractor.py:424 dung ket qua lam
-# CA id LAN name cua node, nen "Luật 116/2025/QH15" thanh "lu t 116 2025 qh15".
-# Phia solver khong goi ham nay (cau hoi giu dau) va node nap qua
-# external_graph cung khong, nen hai ben khong bao gio gop duoc voi nhau.
+# kag/common/utils.py:196 processing_phrases() thay MỌI ký tự ngoài
+# [A-Za-z0-9 CJK] bằng dấu cách. schema_free_extractor.py:424 dùng kết quả làm
+# CẢ id LẪN name của node, nên "Luật 116/2025/QH15" thành "lu t 116 2025 qh15".
+# Phía solver không gọi hàm này (câu hỏi giữ dấu) và node nạp qua
+# external_graph cũng không, nên hai bên không bao giờ gộp được với nhau.
 #
-# Vi sao gan de o CAP MODULE chu khong sua kag.common.utils: to_camel_case()
-# goi ban goc qua kag.common.utils va duoc dung o schema_free_extractor.py:358
-# de sinh edge_type. Edge type phai thuan ASCII cho server nuot duoc. Gan de
-# cap module giu nguyen duong do.
+# Vì sao gắn đè ở CẤP MODULE chứ không sửa kag.common.utils: to_camel_case()
+# gọi bản gốc qua kag.common.utils và được dùng ở schema_free_extractor.py:358
+# để sinh edge_type. Edge type phải thuần ASCII cho server nuốt được. Gắn đè
+# cấp module giữ nguyên đường đó.
 #
-# File nay CO chay: indexer.py va injection.py goi
-# import_modules_from_path(kag/builder), ham do (kag/common/registry/utils.py:31)
-# chen kag/ vao sys.path roi import_module("builder"), tuc chinh file nay,
-# duoi ten goi `builder`. Than ham resolve bien global luc goi nen thu tu
-# import khong quan trong.
+# File này CÓ chạy: indexer.py và injection.py gọi
+# import_modules_from_path(kag/builder), hàm đó (kag/common/registry/utils.py:31)
+# chèn kag/ vào sys.path rồi import_module("builder"), tức chính file này,
+# dưới tên gọi `builder`. Thân hàm resolve biến global lúc gọi nên thứ tự
+# import không quan trọng.
 #
-# Ghi chu: schema_constraint_extractor va knowledge_unit_extractor cung dung
-# processing_phrases, nhung kag_config.yaml dang chay schema_free_extractor
-# nen khong va tham o day.
+# Ghi chú: schema_constraint_extractor và knowledge_unit_extractor cũng dùng
+# processing_phrases, nhưng kag_config.yaml đang chạy schema_free_extractor
+# nên không va chạm ở đây.
 import re as _re
 
 from kag.builder.component.extractor import schema_free_extractor as _sfe
 
 
 def _processing_phrases_giu_dau(phrase):
-    r"""Nhu ban goc nhung giu chu co dau: \w trong che do Unicode."""
+    r"""Như bản gốc nhưng giữ chữ có dấu: \w trong chế độ Unicode."""
     return _re.sub(r"[^\w ]", " ", str(phrase).lower(), flags=_re.U).strip()
 
 

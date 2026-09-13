@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Loader do thi ngoai cho metadata van ban.
+"""Loader đồ thị ngoài cho metadata văn bản.
 
-Vi sao khong dung thang DefaultExternalGraphLoader: ham __init__ cua no kiem
-tra thuoc tinh bang `k not in self.schema[node.label]`, ma BaseSpgType khong
-dinh nghia __contains__ / __iter__ nen dong do nem TypeError ngay khi node co
-bat ky thuoc tinh nao. Vi du domain_kg cua KAG khong dinh vi loi nay vi moi
-node cua no deu co properties rong.
+Vì sao không dùng thẳng DefaultExternalGraphLoader: hàm __init__ của nó kiểm
+tra thuộc tính bằng `k not in self.schema[node.label]`, mà BaseSpgType không
+định nghĩa __contains__ / __iter__ nên dòng đó ném TypeError ngay khi node có
+bất kỳ thuộc tính nào. Ví dụ domain_kg của KAG không dính lỗi này vì mọi
+node của nó đều có properties rỗng.
 
-Cach xu ly: tam go properties ra truoc khi goi super(), roi tu kiem tra lai
-bang spg_type.properties (cai nay co that) va gan tra ve.
+Cách xử lý: tạm gỡ properties ra trước khi gọi super(), rồi tự kiểm tra lại
+bằng spg_type.properties (cái này có thật) và gán trả về.
 
-Loi thu hai: ner() ban goc tach tu bang jieba, xem override ben duoi.
+Lỗi thứ hai: ner() bản gốc tách từ bằng jieba, xem override bên dưới.
 """
 
 from typing import List
@@ -40,20 +40,20 @@ class LegalExternalGraphLoader(DefaultExternalGraphLoader):
             unknown = set(properties) - set(spg_type.properties)
             if unknown:
                 raise ValueError(
-                    f"Node {node.name} co thuoc tinh ngoai schema: {sorted(unknown)}"
+                    f"Node {node.name} có thuộc tính ngoài schema: {sorted(unknown)}"
                 )
             node.properties = properties
 
     def ner(self, content: str):
-        """Ban goc tach tu bang jieba, ma jieba bam tieng Viet ra tung ky tu.
+        """Bản gốc tách từ bằng jieba, mà jieba băm tiếng Việt ra từng ký tự.
 
-        Do that:
-            jieba.cut("Nghi dinh 330/2026/ND-CP")
-            -> ['Ngh', 'i', ' ', 'd', 'i', 'nh', ' ', '330', '/', ...]
-        nen khong ten van ban nao khop duoc voi vocabulary va ner() luon tra ve
-        rong, bat ke __init__ da jieba.add_word tung ten. Ten van ban la chuoi
-        co dinh nen quet chuoi con la du, va khong phu thuoc bo tach tu nao.
+        Do đó:
+            jieba.cut("Nghị định 330/2026/NĐ-CP")
+            -> ['Ngh', 'ị', ' ', 'đ', 'ị', 'nh', ' ', '330', '/', ...]
+        nên không tên văn bản nào khớp được với vocabulary và ner() luôn trả về
+        rỗng, bất kể __init__ đã jieba.add_word từng tên. Tên văn bản là chuỗi
+        cố định nên quét chuỗi con là đủ, và không phụ thuộc bộ tách từ nào.
 
-        30 node x ~1100 chunk. Cham thi moi doi sang Aho-Corasick.
+        30 node x ~1100 chunk. Chậm thì mới đổi sang Aho-Corasick.
         """
         return [node for name, node in self.vocabulary.items() if name in content]

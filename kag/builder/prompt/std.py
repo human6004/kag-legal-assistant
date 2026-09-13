@@ -121,7 +121,7 @@ class LegalEntityStandardizationPrompt(PromptABC):
         merged = []
         entities = kwargs.get("named_entities", [])
 
-        # dau vao khong thong nhat cau truc, xu ly ca hai dang
+        # đầu vào không thống nhất cấu trúc, xử lý cả hai dạng
         if "entities" in entities:
             entities = entities["entities"]
         if isinstance(entities, dict):
@@ -139,7 +139,7 @@ class LegalEntityStandardizationPrompt(PromptABC):
         for entity in standardized_entity:
             merged.append(entity)
             entities_with_offical_name.add(entity["name"])
-        # phong khi llm bo sot thuc the
+        # phòng khi llm bỏ sót thực thể
         for entity in entities:
             if "name" in entity and entity["name"] not in entities_with_offical_name:
                 entity["official_name"] = entity["name"]

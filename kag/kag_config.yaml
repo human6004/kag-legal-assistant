@@ -34,15 +34,15 @@ project:
 #------------project configuration end----------------#
 
 #------------metadata injection configuration start----------------#
-# Nap 25 file data/metadata vao do thi duoi dang node LegalDocument + canh
-# thay the / sua doi / huong dan thi hanh. Scanner cua builder chi nhan .md
-# nen day la duong duy nhat de ngay hieu luc va chuoi thay the vao duoc graph.
-# Sinh file truoc bang: python builder/metadata_to_graph.py (dung o thu muc kag/)
+# Nạp 25 file data/metadata vào đồ thị dưới dạng node LegalDocument + cạnh
+# thay thế / sửa đổi / hướng dẫn thi hành. Scanner của builder chỉ nhận .md
+# nên đây là đường duy nhất để ngày hiệu lực và chuỗi thay thế vào được graph.
+# Sinh file trước bằng: python builder/metadata_to_graph.py (đứng ở thư mục kag/)
 #
-# Duong dan tinh theo CWD chu khong theo vi tri file config, vi
-# DefaultExternalGraphLoader.from_json_file goi thang open(node_file_path).
-# Ca ba lenh metadata_to_graph / injection / indexer deu chay o kag/ nen ../data
-# la dung. Doi cho dung thi phai doi hai dong duoi.
+# Đường dẫn tính theo CWD chứ không theo vị trí file config, vì
+# DefaultExternalGraphLoader.from_json_file gọi thẳng open(node_file_path).
+# Cả ba lệnh metadata_to_graph / injection / indexer đều chạy ở kag/ nên ../data
+# là đúng. Đổi chỗ đứng thì phải đổi hai dòng dưới.
 external_graph_loader: &external_graph_loader
   type: legal_external_graph # kag/builder/external_graph.py
   node_file_path: ../data/graph/nodes.json
@@ -74,22 +74,22 @@ kag_builder_pipeline:
         type: legal_std # kag/builder/prompt/std.py
       triple_prompt:
         type: legal_triple # kag/builder/prompt/triple.py
-      # Cho extractor biet truoc danh sach van ban: schema_free_extractor.py:120
-      # goi external_graph.ner(passage) de vot thuc the LLM bo sot.
+      # Cho extractor biết trước danh sách văn bản: schema_free_extractor.py:120
+      # gọi external_graph.ner(passage) để vớt thực thể LLM bỏ sót.
       external_graph: *external_graph_loader
     reader:
       type: md_reader # kag.builder.component.reader.markdown_reader.MarkDownReader
-      # cat mot chunk = mot Dieu. Heading Dieu nam o muc h4 trong data/processed,
-      # mac dinh 3 se cat o muc Muc va gop nhieu Dieu vao chung mot chunk.
+      # cắt một chunk = một Điều. Heading Điều nằm ở mức h4 trong data/processed,
+      # mặc định 3 sẽ cắt ở mức Mục và gộp nhiều Điều vào chung một chunk.
       cut_depth: 4
     post_processor:
       type: kag_post_processor # kag.builder.component.postprocessor.kag_postprocessor.KAGPostProcessor
       external_graph: *external_graph_loader
-      # BAT BUOC phai co. kag_postprocessor.py:187 la
+      # BẮT BUỘC phải có. kag_postprocessor.py:187 là
       #     if self.similarity_threshold is not None:
-      # bao trum CA similarity_based_link LAN external_graph_based_link. Bo trong
-      # thi ca hai buoc noi thuc the deu bi bo qua, du da khai external_graph.
-      # Vi du domain_kg cua KAG cung thieu dong nay nen chinh no cung khong noi.
+      # bao trùm CẢ similarity_based_link LẪN external_graph_based_link. Bỏ trống
+      # thì cả hai bước nối thực thể đều bị bỏ qua, dù đã khai external_graph.
+      # Ví dụ domain_kg của KAG cũng thiếu dòng này nên chính nó cũng không nối.
       similarity_threshold: 0.9
     splitter:
       type: length_splitter # kag.builder.component.splitter.length_splitter.LengthSplitter

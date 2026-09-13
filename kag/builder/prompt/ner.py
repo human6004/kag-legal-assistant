@@ -112,7 +112,7 @@ class LegalNERPrompt(PromptABC):
         ).load()
         self.schema = []
         for name, value in project_schema.items():
-            # bo cac kieu index, chung khong phai nhan thuc the
+            # bỏ các kiểu index, chúng không phải nhãn thực thể
             if value.spg_type_enum != SpgTypeEnum.Index:
                 self.schema.append(name)
 

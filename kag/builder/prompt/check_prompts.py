@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Kiem tra ba prompt ma khong can cai kag hay chay server.
+"""Kiểm tra ba prompt mà không cần cài kag hay chạy server.
 
-Bat hai loi hay gap nhat: template khong phai JSON hop le (LLM se tra ve rac)
-va category trong vi du khong co trong Legal.schema (extractor day ve Others).
+Bắt hai lỗi hay gặp nhất: template không phải JSON hợp lệ (LLM sẽ trả về rác)
+và category trong ví dụ không có trong Legal.schema (extractor đẩy về Others).
 
-Chay: python kag/builder/prompt/check_prompts.py
+Chạy: python kag/builder/prompt/check_prompts.py
 """
 
 import json
@@ -13,12 +13,14 @@ import sys
 from pathlib import Path
 from string import Template
 
+sys.stdout.reconfigure(encoding="utf-8")  # console Windows mặc định cp1252, in chữ có dấu sẽ lỗi
+
 HERE = Path(__file__).resolve().parent
 SCHEMA_FILE = HERE.parent.parent / "schema" / "Legal.schema"
 
 DUMMY = {
     "schema": '["Article"]',
-    "input": "doan van mau",
+    "input": "đoạn văn mẫu",
     "named_entities": "[]",
     "entity_list": "[]",
 }
@@ -37,23 +39,23 @@ def extract_template(path):
 
 def main():
     types = schema_types()
-    assert "Article" in types, f"khong doc duoc schema tai {SCHEMA_FILE}"
+    assert "Article" in types, f"không đọc được schema tại {SCHEMA_FILE}"
     ok = True
     for name in ("ner.py", "std.py", "triple.py"):
         path = HERE / name
         try:
             data = json.loads(extract_template(path))
         except json.JSONDecodeError as exc:
-            print(f"[FAIL] {name}: template khong phai JSON hop le -> {exc}")
+            print(f"[FAIL] {name}: template không phải JSON hợp lệ -> {exc}")
             ok = False
             continue
         used = set(re.findall(r'"category":\s*"([^"]+)"', json.dumps(data)))
         bad = used - types
         if bad:
-            print(f"[FAIL] {name}: category khong co trong Legal.schema -> {sorted(bad)}")
+            print(f"[FAIL] {name}: category không có trong Legal.schema -> {sorted(bad)}")
             ok = False
         else:
-            print(f"[ok]   {name}: JSON hop le, {len(used)} category deu khop schema")
+            print(f"[ok]   {name}: JSON hợp lệ, {len(used)} category đều khớp schema")
     sys.exit(0 if ok else 1)
 
 

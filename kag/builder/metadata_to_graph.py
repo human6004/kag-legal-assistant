@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
-"""Sinh nodes.json / edges.json cho do thi tu cac file metadata trong data/metadata.
+"""Sinh nodes.json / edges.json cho đồ thị từ các file metadata trong data/metadata.
 
-Ly do: scanner cua KAG chi nhan .md nen moi thu trong metadata (ngay hieu luc,
-trang thai, chuoi thay the) khong bao gio vao do thi. Script nay nap thang
-chung vao graph qua co che external graph co san cua KAG.
+Lý do: scanner của KAG chỉ nhận .md nên mọi thứ trong metadata (ngày hiệu lực,
+trạng thái, chuỗi thay thế) không bao giờ vào đồ thị. Script này nạp thẳng
+chúng vào graph qua cơ chế external graph có sẵn của KAG.
 
-Chay trong thu muc kag/: python builder/metadata_to_graph.py
-Ket qua: data/graph/nodes.json, data/graph/edges.json
+Chạy trong thư mục kag/: python builder/metadata_to_graph.py
+Kết quả: data/graph/nodes.json, data/graph/edges.json
 """
 
 import json
 import re
 import sys
 from pathlib import Path
+
+sys.stdout.reconfigure(encoding="utf-8")  # console Windows mặc định cp1252, in chữ có dấu sẽ lỗi
 
 ROOT = Path(__file__).resolve().parents[2]
 META_DIR = ROOT / "data" / "metadata"
@@ -23,23 +25,23 @@ LABEL = "LegalDocument"
 
 
 def _norm_id(phrase):
-    """Chuan hoa id node cho trung voi id ma OpenIE sinh ra.
+    """Chuẩn hóa id node cho trùng với id mà OpenIE sinh ra.
 
-    schema_free_extractor.py:424 chay processing_phrases(name) roi lay ket qua
-    lam CA id LAN name cua node. kag/builder/__init__.py da va ham do de giu
-    dau tieng Viet. Ham nay lap lai dung quy tac ay.
+    schema_free_extractor.py:424 chạy processing_phrases(name) rồi lấy kết quả
+    làm CẢ id LẪN name của node. kag/builder/__init__.py đã vá hàm đó để giữ
+    dấu tiếng Việt. Hàm này lặp lại đúng quy tắc ấy.
 
-    Chi ap cho id. Truong `name` van giu nguyen van vi no la thu duoc hien thi
-    va duoc vector hoa de entity linking bam vao.
+    Chỉ áp cho id. Trường `name` vẫn giữ nguyên văn vì nó là thứ được hiển thị
+    và được vector hóa để entity linking bám vào.
 
-    Khong dung thi "Luat 116/2025/QH15" cua injection va "luat 116 2025 qh15"
-    cua OpenIE thanh hai node roi nhau: mot node giu status va chuoi thay the,
-    mot node giu canh ve chunk, khong truy van nao di duoc tu ben nay sang ben kia.
+    Không dùng thì "Luật 116/2025/QH15" của injection và "luật 116 2025 qh15"
+    của OpenIE thành hai node rời nhau: một node giữ status và chuỗi thay thế,
+    một node giữ cạnh về chunk, không truy vấn nào đi được từ bên này sang bên kia.
     """
     return re.sub(r"[^\w ]", " ", str(phrase).lower(), flags=re.U).strip()
 
 
-# metadata field -> ten thuoc tinh trong Legal.schema
+# metadata field -> tên thuộc tính trong Legal.schema
 PROP_MAP = {
     "doc_number": "docNumber",
     "doc_type": "docType",
@@ -51,7 +53,7 @@ PROP_MAP = {
     "source_url": "sourceUrl",
 }
 
-# field danh sach trong metadata -> (ten quan he, co dao chieu khong)
+# field danh sách trong metadata -> (tên quan hệ, có đảo chiều không)
 REL_MAP = {
     "supersedes": ("supersedes", False),
     "superseded_by": ("supersedes", True),
@@ -61,18 +63,18 @@ REL_MAP = {
     "implemented_by": ("implementsDoc", True),
 }
 
-# quan he nguoc, sinh them de truy van mot buoc chay duoc ca hai chieu
+# quan hệ ngược, sinh thêm để truy vấn một bước chạy được cả hai chiều
 INVERSE = {"supersedes": "supersededBy"}
 
 
 def schema_props(label):
-    """Doc truc tiep Legal.schema, khong can server, de bat sai ten thuoc tinh."""
+    """Đọc trực tiếp Legal.schema, không cần server, để bắt sai tên thuộc tính."""
     text = SCHEMA_FILE.read_text(encoding="utf-8")
     blocks = re.split(r"^(?=\S)", text, flags=re.M)
     for block in blocks:
         if block.startswith(f"{label}("):
             return set(re.findall(r"^\s{8}(\w+)\(", block, re.M))
-    raise SystemExit(f"khong tim thay type {label} trong {SCHEMA_FILE}")
+    raise SystemExit(f"không tìm thấy type {label} trong {SCHEMA_FILE}")
 
 
 def schema_rels(label):
@@ -88,7 +90,7 @@ def schema_rels(label):
 
 
 def node_name(meta):
-    """Ten node phai trung cach LLM goi van ban, xem prompt std (legal_std)."""
+    """Tên node phải trùng cách LLM gọi văn bản, xem prompt std (legal_std)."""
     number = (meta.get("doc_number") or "").strip()
     if not number:
         return meta["title"].strip()
@@ -109,7 +111,7 @@ def load_metadata():
             continue
         key = meta["doc_id"]
         if key in seen:
-            print(f"[bo qua] trung doc_id {key}: {path.name} (da co {seen[key]})")
+            print(f"[bỏ qua] trùng doc_id {key}: {path.name} (đã có {seen[key]})")
             continue
         seen[key] = path.name
         metas.append(meta)
@@ -139,7 +141,7 @@ def main():
 
         bad = set(props) - props_allowed
         if bad:
-            raise SystemExit(f"thuoc tinh khong co trong schema: {sorted(bad)}")
+            raise SystemExit(f"thuộc tính không có trong schema: {sorted(bad)}")
 
         nodes[name] = {
             "id": _norm_id(name),
@@ -152,7 +154,7 @@ def main():
             number_to_name[number] = name
         number_to_name[meta["doc_id"]] = name
 
-    # van ban duoc dan chieu nhung chua cao ve: tao node rong de khong dut chuoi
+    # văn bản được dẫn chiếu nhưng chưa cào về: tạo node rỗng để không đứt chuỗi
     stubs = set()
 
     def resolve(ref):
@@ -184,7 +186,7 @@ def main():
         name = node_name(meta)
         for field, (label, reverse) in REL_MAP.items():
             if label not in rels_allowed:
-                raise SystemExit(f"quan he {label} khong co trong schema {LABEL}")
+                raise SystemExit(f"quan hệ {label} không có trong schema {LABEL}")
             for ref in meta.get(field) or []:
                 other = resolve(ref)
                 if not other:
@@ -203,7 +205,7 @@ def main():
             "label": LABEL,
             "properties": {
                 "docNumber": ref,
-                "desc": f"{ref}. Van ban duoc dan chieu, chua co ban day du trong kho.",
+                "desc": f"{ref}. Văn bản được dẫn chiếu, chưa có bản đầy đủ trong kho.",
                 "semanticType": LABEL,
             },
         }
@@ -218,41 +220,41 @@ def main():
 
     full = len(nodes) - len(stubs)
     print(f"metadata doc: {len(metas)}")
-    print(f"nodes: {len(nodes)} ({full} co metadata day du, {len(stubs)} chi duoc dan chieu)")
+    print(f"nodes: {len(nodes)} ({full} có metadata đầy đủ, {len(stubs)} chỉ được dẫn chiếu)")
     print(f"edges: {len(edges)}")
     if stubs:
-        print("dan chieu chua co trong kho:", ", ".join(sorted(stubs)))
+        print("dẫn chiếu chưa có trong kho:", ", ".join(sorted(stubs)))
 
     self_check(nodes, edges)
 
 
 def self_check(nodes, edges):
-    """Truong hop that: Luat 116/2025 thay the Luat 24/2018 tu 01/7/2026.
+    """Trường hợp thật: Luật 116/2025 thay thế Luật 24/2018 từ 01/7/2026.
 
-    Day dung la cho ma bo du lieu cu bi sai, hai luat nam canh nhau ma khong
-    co gi phan biet con hieu luc hay khong.
+    Đây đúng là chỗ mà bộ dữ liệu cũ bị sai, hai luật nằm cạnh nhau mà không
+    có gì phân biệt còn hiệu lực hay không.
     """
     old = nodes.get("Luật 24/2018/QH14")
     new = nodes.get("Luật 116/2025/QH15")
     if not old or not new:
-        print("[bo qua self-check] khong thay hai luat an ninh mang trong metadata")
+        print("[bỏ qua self-check] không thấy hai luật an ninh mạng trong metadata")
         return
     assert old["properties"]["status"] == "hết hiệu lực", old["properties"]
     assert old["properties"]["dateExpired"] == "2026-07-01", old["properties"]
     assert "Luật 116/2025/QH15-supersedes-Luật 24/2018/QH14" in edges
     assert "Luật 24/2018/QH14-supersededBy-Luật 116/2025/QH15" in edges
     assert "Luật 24/2018/QH14-supersedes-Luật 116/2025/QH15" not in edges
-    print("[self-check ok] chuoi thay the 24/2018 -> 116/2025 dung chieu")
+    print("[self-check ok] chuỗi thay thế 24/2018 -> 116/2025 đúng chiều")
 
-    # id phai trung cai schema_free_extractor sinh ra, neu khong thi hai duong
-    # nap (metadata va OpenIE) tao ra hai node roi nhau cho cung mot van ban.
+    # id phải trùng cái schema_free_extractor sinh ra, nếu không thì hai đường
+    # nạp (metadata và OpenIE) tạo ra hai node rời nhau cho cùng một văn bản.
     key = "Luật 116/2025/QH15-supersedes-Luật 24/2018/QH14"
     assert new["id"] == "luật 116 2025 qh15", new["id"]
     assert old["id"] == "luật 24 2018 qh14", old["id"]
     assert new["name"] == "Luật 116/2025/QH15", new["name"]
     assert edges[key]["from"] == new["id"], edges[key]
     assert edges[key]["to"] == old["id"], edges[key]
-    print("[self-check ok] id node trung quy tac processing_phrases, name giu nguyen")
+    print("[self-check ok] id node trùng quy tắc processing_phrases, name giữ nguyên")
 
 
 if __name__ == "__main__":

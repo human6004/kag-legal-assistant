@@ -404,7 +404,7 @@
     "label": "LegalDocument",
     "properties": {
       "docNumber": "19/2023/QH15",
-      "desc": "19/2023/QH15. Van ban duoc dan chieu, chua co ban day du trong kho.",
+      "desc": "19/2023/QH15. Văn bản được dẫn chiếu, chưa có bản đầy đủ trong kho.",
       "semanticType": "LegalDocument"
     }
   },
@@ -414,7 +414,7 @@
     "label": "LegalDocument",
     "properties": {
       "docNumber": "33/2024/QH15",
-      "desc": "33/2024/QH15. Van ban duoc dan chieu, chua co ban day du trong kho.",
+      "desc": "33/2024/QH15. Văn bản được dẫn chiếu, chưa có bản đầy đủ trong kho.",
       "semanticType": "LegalDocument"
     }
   },
@@ -424,7 +424,7 @@
     "label": "LegalDocument",
     "properties": {
       "docNumber": "46/2019/QH14",
-      "desc": "46/2019/QH14. Van ban duoc dan chieu, chua co ban day du trong kho.",
+      "desc": "46/2019/QH14. Văn bản được dẫn chiếu, chưa có bản đầy đủ trong kho.",
       "semanticType": "LegalDocument"
     }
   },
@@ -434,7 +434,7 @@
     "label": "LegalDocument",
     "properties": {
       "docNumber": "67/2006/QH11",
-      "desc": "67/2006/QH11. Van ban duoc dan chieu, chua co ban day du trong kho.",
+      "desc": "67/2006/QH11. Văn bản được dẫn chiếu, chưa có bản đầy đủ trong kho.",
       "semanticType": "LegalDocument"
     }
   },
@@ -444,7 +444,7 @@
     "label": "LegalDocument",
     "properties": {
       "docNumber": "97/2015/QH13",
-      "desc": "97/2015/QH13. Van ban duoc dan chieu, chua co ban day du trong kho.",
+      "desc": "97/2015/QH13. Văn bản được dẫn chiếu, chưa có bản đầy đủ trong kho.",
       "semanticType": "LegalDocument"
     }
   }
