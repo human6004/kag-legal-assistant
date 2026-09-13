@@ -52,14 +52,6 @@ PSEUDO_HEADING = re.compile(
     re.M,
 )
 
-# Moc mo vung phu luc cua van ban EU, dang van ban thuong tren mot dong rieng.
-EN_ANNEX_MARK = re.compile(r"^[ \t]*ANNEX\s+[IVXLC]+[ \t]*$", re.M)
-
-# Heading "Article N" nam sau moc ANNEX. Phu luc cua mot directive khong chua
-# dieu khoan nao, nen moi heading Article sau moc ANNEX deu la o bang bi bo
-# chuyen doi nham thanh heading.
-EN_ARTICLE_HEADING = re.compile(r"^#{1,6}[ \t]+(Article\b[^\n]*)$", re.M)
-
 # Ten moc phu luc, dung chung cho ca ban van ban thuong va ban da la heading.
 # Duoi ":" la ten bieu mau, 142/2026 viet "Mẫu AI08a: Báo cáo tổng kết...";
 # phan duoi phai chay het dong nen mot cau van thuong khong khop.
@@ -112,15 +104,6 @@ def demote_pseudo_headings(text):
     return PSEUDO_HEADING.subn(lambda m: m.group(1), text)
 
 
-def demote_annex_article_headings(text):
-    m = EN_ANNEX_MARK.search(text)
-    if not m:
-        return text, 0
-    head, tail = text[: m.start()], text[m.start() :]
-    tail, n = EN_ARTICLE_HEADING.subn(lambda x: x.group(1), tail)
-    return head + tail, n
-
-
 def relevel_annex_headings(text):
     n = sum(1 for m in ANNEX_HEADING.finditer(text) if m.group(1) != ANNEX_LEVEL)
     return ANNEX_HEADING.sub(lambda m: f"{ANNEX_LEVEL} {m.group(2)}", text), n
@@ -145,7 +128,6 @@ def clean(text):
     text, n = strip_invisible(text)
     text, n["form"] = demote_form_headings(text)
     text, n["pseudo"] = demote_pseudo_headings(text)
-    text, n["article"] = demote_annex_article_headings(text)
     text, n["mark"] = promote_annex_marks(text)
     text, n["level"] = relevel_annex_headings(text)
     return text, n
@@ -186,7 +168,7 @@ def main():
             total[k] += v
         print(
             "%-44s BOM=%d NBSP=%d ZWSP=%d SHY=%d"
-            " | ha: bieu mau=%d gia=%d Article=%d | moc nang=%d cap sua=%d"
+            " | ha: bieu mau=%d gia=%d | moc nang=%d cap sua=%d"
             % (
                 path.name[:44],
                 n["BOM"],
@@ -195,7 +177,6 @@ def main():
                 n["SHY"],
                 n["form"],
                 n["pseudo"],
-                n["article"],
                 n["mark"],
                 n["level"],
             )
@@ -203,38 +184,35 @@ def main():
         # Ke toan heading: chi duoc mat dung so heading da co y ha xuong, va chu
         # cua heading bi ha phai con nguyen trong file.
         cho_doi = (
-            len(HEADING.findall(old)) - n["form"] - n["pseudo"] - n["article"] + n["mark"]
+            len(HEADING.findall(old)) - n["form"] - n["pseudo"] + n["mark"]
         )
         that = len(HEADING.findall(new))
         assert that == cho_doi, f"{path.name}: heading {that} != cho doi {cho_doi}"
-        for rx in (PSEUDO_HEADING, EN_ARTICLE_HEADING):
-            for txt in (m.group(1) for m in rx.finditer(old)):
-                assert txt in new, f"{path.name}: mat chu khi ha heading: {txt[:40]}"
+        for txt in (m.group(1) for m in PSEUDO_HEADING.finditer(old)):
+            assert txt in new, f"{path.name}: mat chu khi ha heading: {txt[:40]}"
 
     print(
         "\nfile sua: %d | BOM: %d | NBSP: %d | ZWSP: %d | SHY: %d"
         % (touched, total["BOM"], total["NBSP"], total["ZWSP"], total["SHY"])
     )
     print(
-        "heading ha: bieu mau %d, gia %d, Article trong phu luc %d"
+        "heading ha: bieu mau %d, gia %d"
         " | moc phu luc nang: %d | cap moc sua: %d"
         % (
             total["form"],
             total["pseudo"],
-            total["article"],
             total["mark"],
             total["level"],
         )
     )
     print(
-        "heading toan corpus: %d -> %d (= %d - %d - %d - %d + %d)"
+        "heading toan corpus: %d -> %d (= %d - %d - %d + %d)"
         % (
             h_before,
             h_after,
             h_before,
             total["form"],
             total["pseudo"],
-            total["article"],
             total["mark"],
         )
     )

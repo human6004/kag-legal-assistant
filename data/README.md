@@ -13,9 +13,7 @@ kag-legal-data/
 ├── data/
 │   ├── raw/                <- dữ liệu thô, giữ NGUYÊN VĂN, chưa chỉnh sửa/tóm tắt
 │   │   ├── vn_an_ninh_mang/   <- Luật An ninh mạng VN + văn bản hướng dẫn
-│   │   ├── quoc_te_an_ninh_mang/ <- Luật/công ước an ninh mạng quốc tế (UN, EU NIS2, Budapest, NIST CSF...)
-│   │   ├── vn_ai/             <- Luật/Nghị định/Chiến lược AI Việt Nam
-│   │   └── quoc_te_ai/        <- Luật/khung AI quốc tế (EU, Mỹ, OECD, UNESCO...)
+│   │   └── vn_ai/             <- Luật/Nghị định/Chiến lược AI Việt Nam
 │   ├── processed/          <- (dùng sau) bản đã làm sạch, chunk, chuẩn hoá cho pipeline KAG
 │   └── metadata/           <- file index mô tả từng văn bản (xem template bên dưới)
 ├── prompts/
@@ -44,7 +42,7 @@ còn hiệu lực là rủi ro lớn nhất. Vì vậy bắt buộc track các t
 - `status` (còn hiệu lực / hết hiệu lực / một phần hết hiệu lực) — **phải tự tra cập nhật**, đừng suy đoán
 - `amends` / `amended_by` / `superseded_by` (quan hệ với văn bản khác — rất quan trọng để dựng graph cho KAG)
 - `source_url`, `retrieved_date`
-- `jurisdiction` (VN / EU / US / quốc tế), `language`
+- `jurisdiction` (chỉ nhận `VN`, kho đã bỏ văn bản nước ngoài), `language`
 
 ## Quy tắc trả lời khi văn bản cũ và mới cùng tồn tại
 
@@ -58,7 +56,7 @@ thì ghi hết vào `status_conflict` và ghi căn cứ đã chọn vào `status
 
 ## Khi nào thì xong để đưa vào project
 
-Khi mỗi văn bản trong 4 nhóm (`vn_an_ninh_mang`, `quoc_te_an_ninh_mang`, `vn_ai`, `quoc_te_ai`) đều có:
+Khi mỗi văn bản trong 2 nhóm (`vn_an_ninh_mang`, `vn_ai`) đều có:
 1. File thô trong `data/raw/...`
 2. File metadata tương ứng trong `data/metadata/...`
 3. Trạng thái hiệu lực đã được xác minh (không để trống `status`)
@@ -81,7 +79,7 @@ không, căn cứ vào đâu":
 | `status_basis` | Điều khoản cụ thể làm căn cứ kết luận hiệu lực. Không được để trống với văn bản pháp luật. |
 | `status_source` | Nguồn đã tra để kết luận. |
 | `status_conflict` | Ghi lại khi các nguồn nhà nước mâu thuẫn nhau. Đây là trường quan trọng nhất khi soát tay. |
-| `date_applicable` | Ngày bắt đầu áp dụng, tách khỏi ngày có hiệu lực (EU hay tách hai mốc này). |
+| `date_applicable` | Ngày bắt đầu áp dụng, tách khỏi ngày có hiệu lực. Văn bản VN thường trùng hai mốc, để trống là bình thường. |
 | `supersedes` | Chiều ngược của `superseded_by`. |
 | `implements` / `implemented_by` | Quan hệ luật ↔ nghị định/thông tư hướng dẫn. |
 | `source_name` / `source_tier` | Tên nguồn và cấp độ tin cậy của nguồn. |

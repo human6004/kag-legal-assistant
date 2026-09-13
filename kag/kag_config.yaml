@@ -34,7 +34,7 @@ project:
 #------------project configuration end----------------#
 
 #------------metadata injection configuration start----------------#
-# Nap 50 file data/metadata vao do thi duoi dang node LegalDocument + canh
+# Nap 25 file data/metadata vao do thi duoi dang node LegalDocument + canh
 # thay the / sua doi / huong dan thi hanh. Scanner cua builder chi nhan .md
 # nen day la duong duy nhat de ngay hieu luc va chuoi thay the vao duoc graph.
 # Sinh file truoc bang: python builder/metadata_to_graph.py (dung o thu muc kag/)

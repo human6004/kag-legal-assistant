@@ -54,6 +54,6 @@ class LegalExternalGraphLoader(DefaultExternalGraphLoader):
         rong, bat ke __init__ da jieba.add_word tung ten. Ten van ban la chuoi
         co dinh nen quet chuoi con la du, va khong phu thuoc bo tach tu nao.
 
-        70 node x ~1100 chunk. Cham thi moi doi sang Aho-Corasick.
+        30 node x ~1100 chunk. Cham thi moi doi sang Aho-Corasick.
         """
         return [node for name, node in self.vocabulary.items() if name in content]

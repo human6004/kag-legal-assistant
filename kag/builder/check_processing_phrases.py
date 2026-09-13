@@ -67,7 +67,7 @@ def self_check():
     for goc, cho_doi in [
         ("Điều 3. Giải thích (từ ngữ)", "điều 3  giải thích  từ ngữ"),
         ("Luật 116/2025/QH15", "luật 116 2025 qh15"),
-        ("A-RES/79/243", "a res 79 243"),
+        ("Thông tư 05/2026/TT-BKHCN", "thông tư 05 2026 tt bkhcn"),
     ]:
         that = MOI(goc)
         print(f"  xoa ky tu: {goc!r} -> {that!r}")
