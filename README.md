@@ -85,25 +85,39 @@ trước khi cho đi tiếp.
 knext schema commit
 ```
 
-**5. Dựng đồ thị.** Chạy trong thư mục `kag/builder/`. Lệnh này đọc 23 văn bản
-tiếng Việt trong `data/processed/`.
-
-Chạy thử một file trước đã. Mỗi văn bản là một lần tốn tiền gọi AI, và 23 văn bản
-là hơn 1,7 triệu chữ. Cách rẻ nhất để thử: tạm đổi dòng cuối `indexer.py` trỏ vào
-một thư mục con chứa đúng một file, thấy node hiện trên giao diện web rồi mới trỏ
-lại `data/processed`.
-
-```bash
-python indexer.py
-```
-
-**6. Nạp metadata vào đồ thị.** Bước này đưa ngày hiệu lực, trạng thái còn hay hết
+**5. Nạp metadata vào đồ thị.** Bước này đưa ngày hiệu lực, trạng thái còn hay hết
 hiệu lực, và chuỗi thay thế giữa các văn bản vào đồ thị. Scanner chỉ nhận `.md` nên
-đây là đường duy nhất. Chạy từ thư mục gốc project.
+đây là đường duy nhất.
+
+Phải làm TRƯỚC bước dựng đồ thị. Post-processor ở bước 6 nối thực thể trích được
+với node văn bản bằng cách tìm trên search engine, node chưa nằm sẵn ở đó thì
+không có gì để nối. Ví dụ `domain_kg` của KAG cũng xếp đúng thứ tự này.
+
+Chạy trong thư mục `kag/`, không phải thư mục gốc: KAG dò `kag_config.yaml` bằng
+cách đi ngược lên cây thư mục từ chỗ đang đứng, đứng ở gốc thì không bao giờ thấy
+nó và config rỗng. Hai dòng `../data/graph/*.json` trong config cũng tính theo chỗ
+đứng này, nên cả ba lệnh dưới đây đều chạy ở `kag/`.
 
 ```bash
-python kag/builder/metadata_to_graph.py && python kag/builder/injection.py
+cd kag
+python builder/metadata_to_graph.py && python builder/injection.py
 ```
+
+**6. Dựng đồ thị.** Vẫn đứng ở `kag/`. Lệnh này đọc 23 văn bản tiếng Việt trong
+`data/processed/`.
+
+Chạy thử một file trước đã. Mỗi văn bản là một lần tốn tiền gọi AI: 23 văn bản là
+hơn 1,7 triệu chữ, cắt ra 1121 chunk, mỗi chunk 3 lượt gọi LLM. Cách rẻ nhất để
+thử: tạm đổi dòng cuối `indexer.py` trỏ vào một thư mục con chứa đúng một file,
+thấy node hiện trên giao diện web rồi mới trỏ lại `data/processed`.
+
+```bash
+python builder/indexer.py
+```
+
+Kiểm ngay trên giao diện web: văn bản vừa nạp phải là **một** node mang cả trạng
+thái hiệu lực lẫn cạnh về chunk. Thấy hai node rời nhau nghĩa là id chưa trùng,
+xem `_norm_id` trong `builder/metadata_to_graph.py`.
 
 **7. Hỏi.** Sửa `kag/solver/data/questions.json` theo bộ câu hỏi của bạn, rồi
 chạy trong thư mục `solver/`.

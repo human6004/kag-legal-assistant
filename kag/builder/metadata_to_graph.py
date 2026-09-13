@@ -5,7 +5,7 @@ Ly do: scanner cua KAG chi nhan .md nen moi thu trong metadata (ngay hieu luc,
 trang thai, chuoi thay the) khong bao gio vao do thi. Script nay nap thang
 chung vao graph qua co che external graph co san cua KAG.
 
-Chay: python kag/builder/metadata_to_graph.py
+Chay trong thu muc kag/: python builder/metadata_to_graph.py
 Ket qua: data/graph/nodes.json, data/graph/edges.json
 """
 
@@ -20,6 +20,24 @@ OUT_DIR = ROOT / "data" / "graph"
 SCHEMA_FILE = ROOT / "kag" / "schema" / "Legal.schema"
 
 LABEL = "LegalDocument"
+
+
+def _norm_id(phrase):
+    """Chuan hoa id node cho trung voi id ma OpenIE sinh ra.
+
+    schema_free_extractor.py:424 chay processing_phrases(name) roi lay ket qua
+    lam CA id LAN name cua node. kag/builder/__init__.py da va ham do de giu
+    dau tieng Viet. Ham nay lap lai dung quy tac ay.
+
+    Chi ap cho id. Truong `name` van giu nguyen van vi no la thu duoc hien thi
+    va duoc vector hoa de entity linking bam vao.
+
+    Khong dung thi "Luat 116/2025/QH15" cua injection va "luat 116 2025 qh15"
+    cua OpenIE thanh hai node roi nhau: mot node giu status va chuoi thay the,
+    mot node giu canh ve chunk, khong truy van nao di duoc tu ben nay sang ben kia.
+    """
+    return re.sub(r"[^\w ]", " ", str(phrase).lower(), flags=re.U).strip()
+
 
 # metadata field -> ten thuoc tinh trong Legal.schema
 PROP_MAP = {
@@ -123,7 +141,12 @@ def main():
         if bad:
             raise SystemExit(f"thuoc tinh khong co trong schema: {sorted(bad)}")
 
-        nodes[name] = {"id": name, "name": name, "label": LABEL, "properties": props}
+        nodes[name] = {
+            "id": _norm_id(name),
+            "name": name,
+            "label": LABEL,
+            "properties": props,
+        }
         number = (meta.get("doc_number") or "").strip()
         if number:
             number_to_name[number] = name
@@ -149,9 +172,9 @@ def main():
         key = f"{src}-{label}-{dst}"
         edges[key] = {
             "id": key,
-            "from": src,
+            "from": _norm_id(src),
             "fromType": LABEL,
-            "to": dst,
+            "to": _norm_id(dst),
             "toType": LABEL,
             "label": label,
             "properties": {},
@@ -175,7 +198,7 @@ def main():
         if ref in nodes:
             continue
         nodes[ref] = {
-            "id": ref,
+            "id": _norm_id(ref),
             "name": ref,
             "label": LABEL,
             "properties": {
@@ -220,6 +243,16 @@ def self_check(nodes, edges):
     assert "Luật 24/2018/QH14-supersededBy-Luật 116/2025/QH15" in edges
     assert "Luật 24/2018/QH14-supersedes-Luật 116/2025/QH15" not in edges
     print("[self-check ok] chuoi thay the 24/2018 -> 116/2025 dung chieu")
+
+    # id phai trung cai schema_free_extractor sinh ra, neu khong thi hai duong
+    # nap (metadata va OpenIE) tao ra hai node roi nhau cho cung mot van ban.
+    key = "Luật 116/2025/QH15-supersedes-Luật 24/2018/QH14"
+    assert new["id"] == "luật 116 2025 qh15", new["id"]
+    assert old["id"] == "luật 24 2018 qh14", old["id"]
+    assert new["name"] == "Luật 116/2025/QH15", new["name"]
+    assert edges[key]["from"] == new["id"], edges[key]
+    assert edges[key]["to"] == old["id"], edges[key]
+    print("[self-check ok] id node trung quy tac processing_phrases, name giu nguyen")
 
 
 if __name__ == "__main__":

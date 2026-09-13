@@ -37,11 +37,16 @@ project:
 # Nap 50 file data/metadata vao do thi duoi dang node LegalDocument + canh
 # thay the / sua doi / huong dan thi hanh. Scanner cua builder chi nhan .md
 # nen day la duong duy nhat de ngay hieu luc va chuoi thay the vao duoc graph.
-# Sinh file truoc bang: python kag/builder/metadata_to_graph.py
+# Sinh file truoc bang: python builder/metadata_to_graph.py (dung o thu muc kag/)
+#
+# Duong dan tinh theo CWD chu khong theo vi tri file config, vi
+# DefaultExternalGraphLoader.from_json_file goi thang open(node_file_path).
+# Ca ba lenh metadata_to_graph / injection / indexer deu chay o kag/ nen ../data
+# la dung. Doi cho dung thi phai doi hai dong duoi.
 external_graph_loader: &external_graph_loader
   type: legal_external_graph # kag/builder/external_graph.py
-  node_file_path: data/graph/nodes.json
-  edge_file_path: data/graph/edges.json
+  node_file_path: ../data/graph/nodes.json
+  edge_file_path: ../data/graph/edges.json
   match_config:
     k: 1
     threshold: 0.9
@@ -69,6 +74,9 @@ kag_builder_pipeline:
         type: legal_std # kag/builder/prompt/std.py
       triple_prompt:
         type: legal_triple # kag/builder/prompt/triple.py
+      # Cho extractor biet truoc danh sach van ban: schema_free_extractor.py:120
+      # goi external_graph.ner(passage) de vot thuc the LLM bo sot.
+      external_graph: *external_graph_loader
     reader:
       type: md_reader # kag.builder.component.reader.markdown_reader.MarkDownReader
       # cat mot chunk = mot Dieu. Heading Dieu nam o muc h4 trong data/processed,
@@ -76,6 +84,13 @@ kag_builder_pipeline:
       cut_depth: 4
     post_processor:
       type: kag_post_processor # kag.builder.component.postprocessor.kag_postprocessor.KAGPostProcessor
+      external_graph: *external_graph_loader
+      # BAT BUOC phai co. kag_postprocessor.py:187 la
+      #     if self.similarity_threshold is not None:
+      # bao trum CA similarity_based_link LAN external_graph_based_link. Bo trong
+      # thi ca hai buoc noi thuc the deu bi bo qua, du da khai external_graph.
+      # Vi du domain_kg cua KAG cung thieu dong nay nen chinh no cung khong noi.
+      similarity_threshold: 0.9
     splitter:
       type: length_splitter # kag.builder.component.splitter.length_splitter.LengthSplitter
       split_length: 4950

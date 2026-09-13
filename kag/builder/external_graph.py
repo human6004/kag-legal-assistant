@@ -9,6 +9,8 @@ node cua no deu co properties rong.
 
 Cach xu ly: tam go properties ra truoc khi goi super(), roi tu kiem tra lai
 bang spg_type.properties (cai nay co that) va gan tra ve.
+
+Loi thu hai: ner() ban goc tach tu bang jieba, xem override ben duoi.
 """
 
 from typing import List
@@ -41,3 +43,17 @@ class LegalExternalGraphLoader(DefaultExternalGraphLoader):
                     f"Node {node.name} co thuoc tinh ngoai schema: {sorted(unknown)}"
                 )
             node.properties = properties
+
+    def ner(self, content: str):
+        """Ban goc tach tu bang jieba, ma jieba bam tieng Viet ra tung ky tu.
+
+        Do that:
+            jieba.cut("Nghi dinh 330/2026/ND-CP")
+            -> ['Ngh', 'i', ' ', 'd', 'i', 'nh', ' ', '330', '/', ...]
+        nen khong ten van ban nao khop duoc voi vocabulary va ner() luon tra ve
+        rong, bat ke __init__ da jieba.add_word tung ten. Ten van ban la chuoi
+        co dinh nen quet chuoi con la du, va khong phu thuoc bo tach tu nao.
+
+        70 node x ~1100 chunk. Cham thi moi doi sang Aho-Corasick.
+        """
+        return [node for name, node in self.vocabulary.items() if name in content]

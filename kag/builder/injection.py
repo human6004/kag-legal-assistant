@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
-"""Nap metadata van ban (node + canh) thang vao do thi.
+"""Nạp metadata văn bản (node + cạnh) thẳng vào đồ thị.
 
-Chay tu THU MUC GOC project, sau khi da `knext schema commit`:
-    python kag/builder/metadata_to_graph.py
-    python kag/builder/injection.py
+Chạy trong thư mục kag/, KHÔNG phải thư mục gốc, sau khi đã `knext schema commit`:
+    cd kag
+    python builder/metadata_to_graph.py
+    python builder/injection.py
 
-Chay lai duoc nhieu lan: writer ghi de theo id node nen khong sinh ban sao.
+Vì sao phải đứng ở kag/: import kag gọi init_env, mà _closest_cfg (conf.py:94) đi
+NGƯỢC LÊN cây thư mục để tìm kag_config.yaml. Đứng ở gốc project thì file config
+là con chứ không phải tổ tiên, dò lên tận ổ đĩa vẫn không thấy, config rỗng và
+injection chết ở dòng KAG_CONFIG.all_config["metadata_inject_chain"].
+
+Chạy lại được nhiều lần: writer ghi đè theo id node nên không sinh bản sao.
 """
 
 import logging
@@ -24,7 +30,7 @@ def inject():
         KAG_CONFIG.all_config["metadata_inject_chain"]
     )
     chain.invoke(None)
-    logger.info("\n\nDa nap metadata van ban vao do thi\n\n")
+    logger.info("\n\nĐã nạp metadata văn bản vào đồ thị\n\n")
 
 
 if __name__ == "__main__":
