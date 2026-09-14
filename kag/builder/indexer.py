@@ -30,20 +30,71 @@ logger = logging.getLogger(__name__)
 # writer), nen chan ngay dau ham la bo hang doi rat nhanh.
 # Tra ve [] TRUOC khi _invoke chay, tuc la khong ghi checkpoint rong -> lan
 # chay lai van lam that, khong bi cache danh lua.
+# GIOI HAN: day la dung HOP TAC, khong phai ep chet. Chunk dang nam trong mot
+# request HTTP van chay het timeout cua no (90s LLM / 60s embedding). Va vi
+# luong chinh van thoat qua `with ThreadPoolExecutor`, khong co so lan bam
+# Ctrl+C nao ep chet duoc -> muon chet ngay thi taskkill, xem _kill_hint().
 _stop = threading.Event()
 _orig_invoke = BuilderComponent.invoke
 
+# --- Cau dao khi gateway chet -----------------------------------------------
+# default_chain.py bat exception cua tung chunk roi chay tiep, nen het quota /
+# sai key KHONG lam build dung: no bo trang toan bo chunk con lai roi bao
+# "0 failures". Va moi chunk hong ton ~120s cho retry long hai tang
+# (call_with_json_parse 3 lan 10s/20s, ben ngoai named_entity_recognition 3 lan
+# nua) -> ca kho la ~2,5 tieng quay khong tai.
+# Dem so lan hong LIEN TIEP: mot chunk chay duoc la reset ve 0, nen loi le te do
+# LLM tra JSON xau khong bao gio cham nguong. Chi su co he thong moi cham.
+_FAIL_LIMIT = 12
+_fail_lock = threading.Lock()
+_fail_streak = 0
+
 
 def _invoke_with_stop(self, input, **kwargs):
+    global _fail_streak
     if _stop.is_set():
         return []
-    return _orig_invoke(self, input, **kwargs)
+    try:
+        out = _orig_invoke(self, input, **kwargs)
+    except Exception:
+        with _fail_lock:
+            _fail_streak += 1
+            streak = _fail_streak
+        if streak >= _FAIL_LIMIT and not _stop.is_set():
+            _stop.set()
+            print("", flush=True)
+            print(
+                "[cau dao] %d chunk hong lien tiep -> nghi gateway/quota/key chet. "
+                "Dung build de khoi dot thoi gian." % streak,
+                flush=True,
+            )
+            print(
+                "[cau dao] Chunk da xong van nam trong ckpt. Sua xong chay lai "
+                "dung lenh cu, no chi lam phan con thieu.",
+                flush=True,
+            )
+        raise
+    with _fail_lock:
+        _fail_streak = 0
+    return out
+
+
+def _kill_hint():
+    # Ctrl+C KHONG ep chet duoc: du co ban va nay, luong chinh van thoat qua
+    # `with ThreadPoolExecutor(...)` -> shutdown(wait=True) -> cho het luong.
+    # Nen dua thang lenh giet kem PID that, khoi phai di tim.
+    return "taskkill /PID %d /T /F" % os.getpid()
 
 
 def _on_sigint(signum, frame):
     if _stop.is_set():
-        # Ctrl+C lan hai = thoi lich su, chet ngay.
-        raise KeyboardInterrupt
+        print(
+            "[dung] Da bat co roi, dang cho cac chunk dang chay. Ctrl+C them "
+            "KHONG ep chet duoc. Muon chet ngay thi mo cua so khac va chay:",
+            flush=True,
+        )
+        print("[dung]   " + _kill_hint(), flush=True)
+        return
     _stop.set()
     print("", flush=True)
     print(
@@ -51,10 +102,8 @@ def _on_sigint(signum, frame):
         "(toi da ~90s theo timeout). Phan da xong van nam trong Neo4j va kag/ckpt/.",
         flush=True,
     )
-    print(
-        "[dung] Chay lai dung lenh cu de tiep tuc. Ctrl+C lan nua de chet ngay.",
-        flush=True,
-    )
+    print("[dung] Chay lai dung lenh cu de tiep tuc.", flush=True)
+    print("[dung] Het kien nhan thi: " + _kill_hint(), flush=True)
 
 
 def install_stop_handler():

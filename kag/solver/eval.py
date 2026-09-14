@@ -57,6 +57,11 @@ def main():
 
     dir_path = os.path.dirname(os.path.abspath(__file__))
     import_modules_from_path(dir_path)
+    # legal_std nam ben builder/prompt; khong import thi PromptABC roi ve
+    # default_std (tieng Anh) im lang, chi log INFO "not in acceptable choices".
+    import_modules_from_path(
+        os.path.join(os.path.dirname(dir_path), "builder", "prompt")
+    )
 
     do_main(
         qa_file_path="",

@@ -10,6 +10,8 @@ kag/kag_config.yaml
 # artefact của KAG
 ckpt/
 kag/builder/ckpt/
+kag/ckpt.*/
+kag/solver/legal_ckpt/
 kag/solver/benchmark.txt
 kag/solver/legal_res_*.json
 kag/solver/legal_metrics_*.json

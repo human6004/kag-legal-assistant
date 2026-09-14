@@ -61,6 +61,23 @@ services:
       - NEO4J_server_memory_heap_initial__size=1G
       - NEO4J_server_memory_heap_max__size=4G
       - NEO4J_server_memory_pagecache_size=1G
+      # Chan plan cache. OpenSPG sinh Cypher kieu
+      #   CALL db.index.vector.queryNodes("<index>", 1, [3072 con so])
+      # tuc la nhet vector vao TEXT truy van chu khong dung tham so. Moi lan goi
+      # la mot text khac nhau -> khong bao gio trung cache -> Neo4j plan lai roi
+      # GIU cai plan do lai. Mac dinh 1000 cho, moi cho ghim mot mang 3072 so.
+      # Do that ngay 2026-09-14, cung mot luong viec index, 200 cau moi kieu:
+      #   tham so   :  2,55s | 12,8 ms/cau  | RAM sau: 1,664 GiB
+      #   noi chuoi : 36,65s | 183,3 ms/cau | RAM sau: 3,571 GiB
+      # Cham gap 14,4 lan va phinh 1,9 GiB chi trong 200 cau (~10 MB/cau).
+      # Build that goi 609 cau cho 17 chunk (~36 cau/chunk) nen heap 4G chet chac.
+      # Ha con 25 cho de phan giu lai co tran cung ~250 MB thay vi ~10 GB.
+      # KHONG dat luc dang chay duoc: image DozerDB nay thieu dbms.setConfigValue,
+      # SHOW PROCEDURES chi co dbms.listConfig.
+      # Da kiem sau khi tao lai container: SHOW SETTINGS bao dung 25.
+      # Dung them server.db.query_cache_size: ten cu, dat vao khong an gi ca,
+      # van tra ve 1000.
+      - NEO4J_server_memory_query__cache_per__db__cache__num__entries=25
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_apoc_import_file_enabled=true
       - NEO4J_dbms_security_procedures_unrestricted=*
