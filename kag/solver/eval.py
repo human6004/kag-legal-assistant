@@ -74,7 +74,15 @@ class LegalEvaluator(EvalQa):
 
 def main():
     import os
+    import sys
     from kag.common.registry import import_modules_from_path
+
+    # eval_qa.py:53 in nguyen van cau hoi ra stdout bang print() tran. Tren Windows
+    # console mac dinh la cp1252, gap chu co dau la UnicodeEncodeError -> cau hoi
+    # do "process sample failed" va processNum tut ve 0, du dap an da co trong
+    # legal_ckpt va khong he goi lai LLM. Ep UTF-8 ngay o day thay vi sua KAG.
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
     dir_path = os.path.dirname(os.path.abspath(__file__))
     import_modules_from_path(dir_path)
