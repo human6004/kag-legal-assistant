@@ -1,3 +1,8 @@
+# Mau cau hinh. Ban that la kag/kag_config.yaml, da bi .gitignore chan vi
+# chua khoa API that. Dung file nay nhu sau:
+#     cp kag/kag_config.example.yaml kag/kag_config.yaml
+# roi dien 3 cho api_key: hai cho hermesgate (openie_llm, chat_llm) va mot
+# cho vilao (vectorize_model). Sua file that, TUYET DOI khong dien vao day.
 #------------project configuration start----------------#
 # Trich xuat thuc the / quan he tu van ban luat. ~2700 luot goi cho ca kho, nen
 # do tre moi luot quan trong hon chat luong tung cau tra loi. Do tren chunk that
@@ -9,7 +14,7 @@
 openie_llm: &openie_llm
   type: maas
   base_url: https://hermesgate.app/v1
-  api_key: sk-8Ic0ZMDSAofRdBxGeHPk7g9LrhZJWRogRZDoxG8N2VySwVCV
+  api_key: ""
   model: deepseek-v4.1-flash
   enable_check: false
   # Khong co dong nay thi OpenAIClient khong truyen timeout xuong, roi ve mac dinh
@@ -20,18 +25,18 @@ openie_llm: &openie_llm
 chat_llm: &chat_llm
   type: maas
   base_url: https://hermesgate.app/v1
-  api_key: sk-8Ic0ZMDSAofRdBxGeHPk7g9LrhZJWRogRZDoxG8N2VySwVCV
+  api_key: ""
   model: deepseek-v4.1-flash
   enable_check: false
   # Rong hon openie vi cau tra loi dai hon nhieu.
   timeout: 120
 
 vectorize_model: &vectorize_model
-  api_key: sk-e3e919889952f476-b6ygfb-d5193aa0
-  base_url: https://rx7m9q2.abc-tunnel.us/v1
+  api_key: ""
+  base_url: https://api.vilao.ai/v1
   # Gateway dinh tuyen theo dang provider/model. Doi model thi phai doi ca
   # vector_dimensions cho khop, va phai reset lai index cu trong OpenSPG.
-  model: gemini/gemini-embedding-001
+  model: dg/text-embedding-3-large
   type: openai
   vector_dimensions: 3072
   enable_check: false
@@ -122,11 +127,34 @@ kag_builder_pipeline:
       vectorize_model: *vectorize_model
     writer:
       type: kg_writer # kag.builder.component.writer.kg_writer.KGWriter
-  # ponytail: 4x4 = 16 request song song, dat tay cho account ChatGPT OAuth chu
-  # khong do tu rate limit that. Cu 50x16 = 800 luong cua ban goc se dinh 429
-  # ngay voi model (max). Thay bang con so do provider tra ve neu sau nay do duoc.
-  num_threads_per_chain: 4
-  num_chains: 4
+  # ponytail: 2x2 = 4 request song song. Dat tay, khong do tu rate limit that.
+  # Ban goc de 50x16 = 800 luong.
+  #
+  # Da phai ha hai lan trong ngay 2026-09-14, hai nguyen nhan khac han nhau:
+  #
+  # 1. Sang: gateway EMBEDDING. gemini-embedding-001 free tier gioi han 100
+  #    request/phut (429 "embed_content_free_tier_requests, limit: 100"). Moi
+  #    chunk chia lo 32 text, tenacity thu lai 3 lan TUC THI vi
+  #    batch_vectorizer.py:399 khong co wait=, nen 16 chunk song song la vuot
+  #    chac chan. Khong va duoc bang max_rate/time_period trong vectorize_model:
+  #    bo gioi han toc do do chi nam trong avectorize (duong async), con duong
+  #    sync vectorize() ma builder dang dung KHONG co rate limit nao.
+  #    Hau qua: vectorize() tra None -> extend(None) -> TypeError -> ca FILE do
+  #    tinh la that bai, do thi thung lo ma khong bao loi gi.
+  #    => Da doi sang api.vilao.ai (key tra phi). LY DO NAY HET HIEU LUC.
+  #
+  # 2. Trua: NEO4J CHET HEAP. Ly do dang con hieu luc, dung nang lai 4x4.
+  #      java.lang.OutOfMemoryError: Java heap space   (/logs/debug.log)
+  #    heap max 4G + pagecache 1G, ma ca Docker VM chi co 7.62GiB. 16 luong
+  #    cung ghi vector 3072 chieu qua 36 index HNSW la day qua mep. Neo4j GC
+  #    quay 980% CPU roi ngung tra loi -> openspg-server cho vo han -> ca 16
+  #    luong builder treo o 127.0.0.1:8887. Nhin nhu dung im, khong loi gi.
+  #    Ctrl+C khong go duoc: luong ket trong HTTP call khong co timeout.
+  #
+  # Muon 4x4 thi phai cap them RAM cho Docker VM TRUOC, roi moi tang heap Neo4j.
+  # Tang heap khong thoi la container an exit 137 (bi OOM-kill).
+  num_threads_per_chain: 2
+  num_chains: 2
   scanner:
     type: dir_file_scanner # kag.builder.component.scanner.directory_scanner.DirectoryScanner
     file_suffix: md
