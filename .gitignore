@@ -11,10 +11,8 @@ kag/kag_config.yaml
 ckpt/
 kag/builder/ckpt/
 kag/ckpt.*/
-kag/solver/legal_ckpt/
-kag/solver/benchmark.txt
-kag/solver/legal_res_*.json
-kag/solver/legal_metrics_*.json
+# eval.py chdir vao day truoc khi chay: ckpt, benchmark.txt, *_res/*_metrics
+kag/solver/runs/
 
 # bản gốc pdf/docx/html, 59MB, tải lại được nên không đưa vào git
 data/raw/

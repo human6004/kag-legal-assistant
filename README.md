@@ -81,9 +81,16 @@ py -3.10 -m venv .venv
 .venv/Scripts/pip install -e D:/study/học/KAG
 ```
 
-**3. Điền hai API key** trong `kag/kag_config.yaml`. `openie_llm` và `chat_llm`
-là model sinh chữ, `vectorize_model` là model nhúng vector. Cả ba đang để
-`api_key: key`, là chỗ điền tạm. Thiếu key vector thì bước 4 dừng ngay.
+**3. Điền API key** trong `kag/kag_config.yaml`. Ba khối, hai khoá: `openie_llm`
+và `chat_llm` là model sinh chữ và dùng chung một khoá, `vectorize_model` là model
+nhúng vector và phải là khoá của gateway khác — gateway LLM thường trả 403 cho
+endpoint embedding. Cả ba đang để `api_key: key`, là chỗ điền tạm. Thiếu key vector
+thì bước 4 dừng ngay.
+
+`base_url` của cả ba khối **phải có đuôi `/v1`**. SDK của OpenAI nối thẳng
+`base_url` với `/chat/completions`, nên thiếu `/v1` là `404` — và nó nổ ở bước 7
+chứ không nổ ở bước 6, vì hai bước dùng hai khối khác nhau. Viết đúng `openie_llm`
+là đủ để tin nhầm rằng `chat_llm` cũng đúng.
 
 **4. Đăng ký dự án lên server.** Chạy trong thư mục `kag/`.
 
@@ -102,9 +109,19 @@ knext schema commit
 hiệu lực, và chuỗi thay thế giữa các văn bản vào đồ thị. Scanner chỉ nhận `.md` nên
 đây là đường duy nhất.
 
-Phải làm TRƯỚC bước dựng đồ thị. Post-processor ở bước 6 nối thực thể trích được
-với node văn bản bằng cách tìm trên search engine, node chưa nằm sẵn ở đó thì
-không có gì để nối. Ví dụ `domain_kg` của KAG cũng xếp đúng thứ tự này.
+Phải làm TRƯỚC bước dựng đồ thị, vì hai lý do khác nhau cho hai lệnh:
+
+- `metadata_to_graph.py` sinh ra `data/graph/nodes.json`. Cả `extractor` lẫn
+  `post_processor` trong `kag_builder_pipeline` đều trỏ vào `external_graph_loader`,
+  mà loader gọi `open()` trần lên hai đường dẫn đó
+  (`kag/builder/component/external_graph/external_graph.py:206`). Thiếu file thì
+  `indexer.py` nổ `FileNotFoundError` ngay lúc dựng pipeline.
+- `injection.py` đẩy 30 node văn bản lên server. Post-processor nối thực thể trích
+  được với node văn bản bằng cách tìm trên search engine, node chưa nằm sẵn ở đó
+  thì không có gì để nối. Cái này **không** nổ: build vẫn xong, vẫn báo thành công,
+  chỉ là mất sạch liên kết về văn bản gốc.
+
+Ví dụ `domain_kg` của KAG cũng xếp đúng thứ tự này.
 
 Chạy trong thư mục `kag/`, không phải thư mục gốc: KAG dò `kag_config.yaml` bằng
 cách đi ngược lên cây thư mục từ chỗ đang đứng, đứng ở gốc thì không bao giờ thấy
@@ -139,7 +156,21 @@ chạy trong thư mục `solver/`.
 python eval.py
 ```
 
-Kết quả ghi ra `benchmark.txt`.
+Ba file ra, trong thư mục `solver/`:
+
+| File | Có gì |
+| --- | --- |
+| `legal_res_<timestamp>.json` | **Câu trả lời thật**, ở trường `prediction`, kèm `traceLog` cho biết lấy chunk nào ra để trả lời |
+| `benchmark.txt` | Một dòng metric tổng, mở ở chế độ nối thêm nên mỗi lần chạy đẻ thêm một dòng. `processNum` là **số câu qua được**, không phải điểm — bằng `0` nghĩa là hỏng |
+| `legal_ckpt/` | Sổ nhớ, khoá là nguyên văn câu hỏi. Hỏi lại y hệt thì trả bài cũ, không gọi mô hình. Muốn hỏi lại thật thì xoá thư mục này |
+
+`main()` đang để `upper_limit=5`, tức chỉ chạy 5 câu đầu trong `questions.json`, và
+`thread_num=20`.
+
+`answers` trong `questions.json` là **danh sách các mốc phải xuất hiện trong câu trả
+lời** (số tiền, số điều). `do_metrics_eval` so khớp bằng substring sau khi bỏ dấu chấm
+và khoảng trắng, rồi trả `hit_rate` cùng `hit_all` vào `benchmark.txt`. Để nguyên chuỗi
+placeholder `<...>` thì nó bị lọc bỏ và không có điểm nào được tính.
 
 ## Ghi chú
 

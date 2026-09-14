@@ -48,7 +48,28 @@ class LegalEvaluator(EvalQa):
     def do_metrics_eval(
         self, questionList: List[str], predictions: List[str], golds: List[str]
     ):
-        return {}
+        # hit3/hit5/hitall trong ket qua KHONG doc cho nay: chung den tu
+        # do_recall_eval cua lop cha, ma lop cha tra {"recall": None} -> luon 0.
+        # Muon chung chay thi questions.json phai co san id chunk dung, chua co.
+        # Day la duong duy nhat hien gio de "answers" co tac dung.
+        #
+        # golds[0] la list cac moc phai xuat hien trong cau tra loi (so tien, so
+        # dieu). So khop bang substring, bo dau cham/khoang trang cho "30.000.000"
+        # va "30 000 000" deu trung.
+        gold = golds[0] if golds else []
+        if isinstance(gold, str):
+            gold = [gold]
+        # bo placeholder "<dien dap an dung...>" de khong tao diem gia
+        gold = [g for g in gold if g and not g.startswith("<")]
+        if not gold:
+            return {}
+
+        def norm(s):
+            return "".join(s.split()).replace(".", "").replace(",", "").lower()
+
+        pred = norm(predictions[0] or "")
+        hit = sum(1 for g in gold if norm(g) in pred)
+        return {"hit_rate": hit / len(gold), "hit_all": float(hit == len(gold))}
 
 
 def main():
@@ -62,6 +83,14 @@ def main():
     import_modules_from_path(
         os.path.join(os.path.dirname(dir_path), "builder", "prompt")
     )
+
+    # eval_qa.py dat ten file ket qua bang duong dan TUONG DOI (eval_main:232-233
+    # va ckpt_dir o parallel_qa_and_evaluate), nen moi lan chay lai vut them
+    # legal_metrics_*.json + legal_res_*.json (~370KB/lan) ngay canh eval.py.
+    # Doi cwd truoc khi goi do_main la du de gom het vao runs/, khong phai dung
+    # den KAG. load_data van chay dung vi no dung duong dan tuyet doi tu __file__.
+    os.makedirs(os.path.join(dir_path, "runs"), exist_ok=True)
+    os.chdir(os.path.join(dir_path, "runs"))
 
     do_main(
         qa_file_path="",
