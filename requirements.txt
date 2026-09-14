@@ -1,0 +1,9 @@
+# KAG là thư viện ngoài, không nằm trong repo này (151 MB mã nguồn).
+# Ghim đúng commit đã dựng được đồ thị 12625 node, không dùng `latest`:
+# nhánh master của OpenSPG/KAG đổi liên tục và không hứa tương thích ngược.
+#
+# Ba lỗi của bản 0.8.0 từng phải sửa thẳng trong mã nguồn KAG. Giờ chúng nằm ở
+# kag/builder/extractor.py và kag/builder/chain.py dưới dạng lớp con, nên KAG
+# cài từ đây để nguyên, không cần vá. Kiểm bằng:
+#     cd kag; ..\.venv\Scripts\python.exe builder\test_builder_fixes.py
+openspg-kag @ git+https://github.com/OpenSPG/KAG.git@fdab15b3

@@ -48,6 +48,9 @@ kag/
 │   ├── metadata_to_graph.py  sinh data/graph/*.json từ data/metadata
 │   ├── injection.py       nạp node/cạnh metadata thẳng vào đồ thị
 │   ├── external_graph.py  kag/builder/external_graph.py, lớp legal_external_graph
+│   ├── extractor.py       vá 3 lỗi extractor của KAG 0.8.0 bằng lớp con
+│   ├── chain.py           một chunk hỏng không kéo cả văn bản theo
+│   ├── test_builder_fixes.py  kiểm 4 bản vá trên, không gọi LLM
 │   ├── clean_corpus.py    làm sạch bản gốc trước khi đưa vào processed
 │   └── prompt/            prompt trích xuất: ner.py, std.py, triple.py
 └── solver/
@@ -78,7 +81,16 @@ py -3.10 -m venv .venv
 ```
 
 ```bash
-.venv/Scripts/pip install -e D:/study/học/KAG
+.venv/Scripts/pip install -r requirements.txt
+```
+
+`requirements.txt` ghim KAG theo đúng commit trên GitHub, không trỏ vào thư mục
+nào trên máy ai cả. Ba lỗi của KAG 0.8.0 từng phải sửa thẳng trong mã nguồn thư
+viện — nay nằm trong `kag/builder/extractor.py` và `kag/builder/chain.py` dưới
+dạng lớp con, nên KAG cài về để nguyên. Kiểm một câu, không tốn tiền LLM:
+
+```bash
+cd kag; ..\.venv\Scripts\python.exe builder\test_builder_fixes.py
 ```
 
 **3. Điền API key** trong `kag/kag_config.yaml`. Ba khối, hai khoá: `openie_llm`
@@ -91,6 +103,14 @@ thì bước 4 dừng ngay.
 `base_url` với `/chat/completions`, nên thiếu `/v1` là `404` — và nó nổ ở bước 7
 chứ không nổ ở bước 6, vì hai bước dùng hai khối khác nhau. Viết đúng `openie_llm`
 là đủ để tin nhầm rằng `chat_llm` cũng đúng.
+
+Comment trong hai file config viết tiếng Việt **không dấu**, cố ý, đừng bỏ dấu
+vào lại. `kag/common/conf.py` và `knext/common/env.py` của KAG đọc file này bằng
+`open()` trần, tức là theo codepage của máy — trên Windows tiếng Việt là cp1252,
+gặp ký tự có dấu là `UnicodeDecodeError` ngay ở bước 4. Giữ config thuần ASCII
+rẻ hơn bắt cả nhóm nhớ đặt `PYTHONUTF8=1`. Mọi file khác cứ có dấu thoải mái:
+`.py` thì Python đọc UTF-8 mặc định, còn `.md` và `.json` thì KAG mở có khai
+`encoding="utf-8"` đàng hoàng.
 
 **4. Đăng ký dự án lên server.** Chạy trong thư mục `kag/`.
 

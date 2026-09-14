@@ -48,11 +48,11 @@ log:
   level: INFO
 
 project:
-  # Tiền tố tra prompt. init_prompt_with_fallback thử "{biz_scene}_{tên}" trước,
-  # lỗi mới rơi về "default_{tên}". Đây là đường DUY NHẤT để thay prompt sinh câu
-  # trả lời khi enable_ref: true, xem kag/solver/prompt/refer_generator.py.
-  # Đổi lại thành default là quay về prompt tiếng Anh của KAG, im lặng, không báo
-  # lỗi. Prompt nào chưa viết bản legal_ thì tự rơi về default, không gãy.
+  # Tien to tra prompt. init_prompt_with_fallback thu "{biz_scene}_{ten}" truoc,
+  # loi moi roi ve "default_{ten}". Day la duong DUY NHAT de thay prompt sinh cau
+  # tra loi khi enable_ref: true, xem kag/solver/prompt/refer_generator.py.
+  # Doi lai thanh default la quay ve prompt tieng Anh cua KAG, im lang, khong bao
+  # loi. Prompt nao chua viet ban legal_ thi tu roi ve default, khong gay.
   biz_scene: legal
   host_addr: http://127.0.0.1:8887
   id: '1'
@@ -61,15 +61,15 @@ project:
 #------------project configuration end----------------#
 
 #------------metadata injection configuration start----------------#
-# Nạp 25 file data/metadata vào đồ thị dưới dạng node LegalDocument + cạnh
-# thay thế / sửa đổi / hướng dẫn thi hành. Scanner của builder chỉ nhận .md
-# nên đây là đường duy nhất để ngày hiệu lực và chuỗi thay thế vào được graph.
-# Sinh file trước bằng: python builder/metadata_to_graph.py (đứng ở thư mục kag/)
+# Nap 25 file data/metadata vao do thi duoi dang node LegalDocument + canh
+# thay the / sua doi / huong dan thi hanh. Scanner cua builder chi nhan .md
+# nen day la duong duy nhat de ngay hieu luc va chuoi thay the vao duoc graph.
+# Sinh file truoc bang: python builder/metadata_to_graph.py (dung o thu muc kag/)
 #
-# Đường dẫn tính theo CWD chứ không theo vị trí file config, vì
-# DefaultExternalGraphLoader.from_json_file gọi thẳng open(node_file_path).
-# Cả ba lệnh metadata_to_graph / injection / indexer đều chạy ở kag/ nên ../data
-# là đúng. Đổi chỗ đứng thì phải đổi hai dòng dưới.
+# Duong dan tinh theo CWD chu khong theo vi tri file config, vi
+# DefaultExternalGraphLoader.from_json_file goi thang open(node_file_path).
+# Ca ba lenh metadata_to_graph / injection / indexer deu chay o kag/ nen ../data
+# la dung. Doi cho dung thi phai doi hai dong duoi.
 external_graph_loader: &external_graph_loader
   type: legal_external_graph # kag/builder/external_graph.py
   node_file_path: ../data/graph/nodes.json
@@ -91,9 +91,9 @@ metadata_inject_chain:
 #------------kag-builder configuration start----------------#
 kag_builder_pipeline:
   chain:
-    type: unstructured_builder_chain # kag.builder.default_chain.DefaultUnstructuredBuilderChain
+    type: legal_unstructured_builder_chain # kag/builder/chain.py
     extractor:
-      type: schema_free_extractor # kag.builder.component.extractor.schema_free_extractor.SchemaFreeExtractor
+      type: legal_schema_free_extractor # kag/builder/extractor.py
       llm: *openie_llm
       ner_prompt:
         type: legal_ner # kag/builder/prompt/ner.py
@@ -101,22 +101,22 @@ kag_builder_pipeline:
         type: legal_std # kag/builder/prompt/std.py
       triple_prompt:
         type: legal_triple # kag/builder/prompt/triple.py
-      # Cho extractor biết trước danh sách văn bản: schema_free_extractor.py:120
-      # gọi external_graph.ner(passage) để vớt thực thể LLM bỏ sót.
+      # Cho extractor biet truoc danh sach van ban: schema_free_extractor.py:120
+      # goi external_graph.ner(passage) de vot thuc the LLM bo sot.
       external_graph: *external_graph_loader
     reader:
       type: md_reader # kag.builder.component.reader.markdown_reader.MarkDownReader
-      # cắt một chunk = một Điều. Heading Điều nằm ở mức h4 trong data/processed,
-      # mặc định 3 sẽ cắt ở mức Mục và gộp nhiều Điều vào chung một chunk.
+      # cat mot chunk = mot Dieu. Heading Dieu nam o muc h4 trong data/processed,
+      # mac dinh 3 se cat o muc Muc va gop nhieu Dieu vao chung mot chunk.
       cut_depth: 4
     post_processor:
       type: kag_post_processor # kag.builder.component.postprocessor.kag_postprocessor.KAGPostProcessor
       external_graph: *external_graph_loader
-      # BẮT BUỘC phải có. kag_postprocessor.py:187 là
+      # BAT BUOC phai co. kag_postprocessor.py:187 la
       #     if self.similarity_threshold is not None:
-      # bao trùm CẢ similarity_based_link LẪN external_graph_based_link. Bỏ trống
-      # thì cả hai bước nối thực thể đều bị bỏ qua, dù đã khai external_graph.
-      # Ví dụ domain_kg của KAG cũng thiếu dòng này nên chính nó cũng không nối.
+      # bao trum CA similarity_based_link LAN external_graph_based_link. Bo trong
+      # thi ca hai buoc noi thuc the deu bi bo qua, du da khai external_graph.
+      # Vi du domain_kg cua KAG cung thieu dong nay nen chinh no cung khong noi.
       similarity_threshold: 0.9
     splitter:
       type: length_splitter # kag.builder.component.splitter.length_splitter.LengthSplitter
@@ -272,11 +272,11 @@ kag_solver_pipeline:
   generator:
     type: llm_index_generator
     llm_client: *chat_llm
-    # Chỉ được đọc ở nhánh `if not self.enable_ref` (llm_index_generator.py:73).
-    # Đang bật enable_ref nên dòng này KHÔNG chạy: prompt thật lấy qua biz_scene
-    # thành legal_refer_generator_prompt / legal_without_refer_generator_prompt.
-    # Vẫn trỏ vào bản không-ref để lỡ tắt enable_ref thì còn tiếng Việt, và vì
-    # nhánh đó chỉ truyền content + query, không truyền ref.
+    # Chi duoc doc o nhanh `if not self.enable_ref` (llm_index_generator.py:73).
+    # Dang bat enable_ref nen dong nay KHONG chay: prompt that lay qua biz_scene
+    # thanh legal_refer_generator_prompt / legal_without_refer_generator_prompt.
+    # Van tro vao ban khong-ref de lo tat enable_ref thi con tieng Viet, va vi
+    # nhanh do chi truyen content + query, khong truyen ref.
     generated_prompt:
       type: legal_without_refer_generator_prompt
     enable_ref: true
