@@ -85,6 +85,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - $HOME/dozerdb/logs:/logs
+      # Do thi song o day. Thieu dong nay thi du lieu nam trong lop ghi cua
+      # container, va 'docker compose down' xoa sach du khong co -v.
+      - neo4j-data:/data
 
   minio:
     image: spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-minio:latest
@@ -100,3 +103,8 @@ services:
       - 9001:9001
     volumes:
       - /etc/localtime:/etc/localtime:ro
+
+volumes:
+  neo4j-data:
+    # Ten co dinh de lenh restore khong phu thuoc ten thu muc compose.
+    name: kag-legal-neo4j-data
