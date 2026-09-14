@@ -84,9 +84,10 @@ services:
       - NEO4J_dbms_security_procedures_allowlist=*
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - $HOME/dozerdb/logs:/logs
-      # Do thi song o day. Thieu dong nay thi du lieu nam trong lop ghi cua
-      # container, va 'docker compose down' xoa sach du khong co -v.
+      # Do thi song o day. Thieu dong nay Neo4j van khong mat du lieu ngay: image
+      # co khai VOLUME /data nen Docker tu tao mot volume AN DANH. Van de la no
+      # khong co ten - tao lai container la thanh volume mo coi, va
+      # 'docker volume prune' hay 'compose down -v' xoa duoc no luc nao khong hay.
       - neo4j-data:/data
 
   minio:

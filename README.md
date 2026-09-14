@@ -28,7 +28,7 @@ từ lịch sử git.
 data/
 ├── processed/     23 file .md luật Việt Nam, chia theo thư mục con, đây là thứ cả hai engine đọc
 ├── graph/         nodes.json và edges.json sinh từ metadata, nạp thẳng vào đồ thị
-├── raw/           bản gốc pdf, docx, html. Không đưa vào git vì nặng 47MB
+├── raw/           bản gốc pdf, docx, html, 47MB, có trong git để dựng lại processed
 ├── metadata/      27 file json mô tả từng văn bản
 ├── README.md    quy tắc đặt tên và cấu trúc dữ liệu
 └── SOURCES.md   danh sách nguồn đã thẩm định
@@ -73,11 +73,12 @@ docker compose -f docker/docker-compose-west.yml up -d
 Mở `http://127.0.0.1:8887`, đăng nhập `openspg` / `openspg@kag`. Thấy giao diện
 là xong bước này. Giao diện sẽ trống, đúng như vậy.
 
-**2. Cài KAG.** Cần Python 3.10, vì `requirements.txt` của KAG ghim
-`protobuf==3.20.1` và bản đó không có sẵn cho Python mới hơn.
+**2. Cài KAG.** Python 3.10 trở lên. KAG ghim `protobuf==3.20.1`, nghe như phải
+dùng đúng 3.10, nhưng không: `.venv` của dự án đang chạy Python 3.12.10 với đúng
+protobuf 3.20.1, cài sạch không cần cờ gì thêm.
 
 ```bash
-py -3.10 -m venv .venv
+py -m venv .venv
 ```
 
 ```bash

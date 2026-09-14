@@ -20,7 +20,7 @@ Neo4j không cho dump khi database đang chạy, và bản DozerDB này không c
 dump ngoại tuyến bằng một container tạm.
 
 ```powershell
-$dist = "D:\study\HoiThao\kag-legal-assistant\dist"
+$dist = "$PWD\dist"   # dung o goc repo
 $img  = "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j:latest"
 mkdir $dist -Force
 
@@ -34,9 +34,7 @@ docker run --rm -v "${dist}\neo4j-data:/data" -v "${dist}:/dump" $img `
 
 Xong thì xoá thư mục tạm `dist\neo4j-data` (4,3 GB), chỉ giữ lại `legal.dump`.
 
-`docker stop` chứ tuyệt đối không `docker compose down`. Container neo4j tạo
-trước tháng 9/2026 không có volume, `down` xoá sạch đồ thị kể cả khi không có
-cờ `-v`.
+`docker stop` chứ đừng `docker compose down`. Xem mục cuối để biết vì sao.
 
 Gửi `legal.dump` qua Drive. File to, Git không nhận (`/dist` đã nằm trong
 `.gitignore`).
@@ -86,10 +84,30 @@ tự điền khoá của mình theo `kag_config.example.yaml`. Đồ thị đã 
 chỉ còn cần khoá `chat_llm` để trả lời; khoá `vectorize_model` vẫn phải có vì
 mỗi câu hỏi đều phải nhúng thành vector trước khi tìm.
 
-## Container cũ chưa có volume
+## Container cũ nằm trên volume ẩn danh
 
-`docker-compose-west.yml` giờ đã khai `neo4j-data:/data`, nên máy dựng mới sẽ
-an toàn với `down`. Máy nào đang chạy container tạo từ trước thay đổi đó thì dữ
-liệu vẫn nằm trong container: `docker compose up -d` lần tới sẽ tạo lại
-container và đồ thị trong đó mất. Cách chuyển sang volume: tạo dump theo phần
-trên, `up -d` cho compose dựng lại container kèm volume, rồi nạp dump vào.
+Chỉ liên quan tới máy đã chạy dự án từ trước khi `docker-compose-west.yml` khai
+`neo4j-data:/data`. Máy dựng mới bỏ qua mục này.
+
+Compose cũ không khai volume nào cho `/data`, nhưng image Neo4j có dòng
+`VOLUME /data` trong Dockerfile, nên Docker tự tạo một volume **ẩn danh** — tên
+là một chuỗi hex 64 ký tự. Đồ thị nằm trong đó, không nằm trong lớp ghi của
+container. Xem tên thật bằng:
+
+```powershell
+docker inspect release-openspg-neo4j --format "{{range .Mounts}}{{.Name}} -> {{.Destination}}{{println}}{{end}}"
+```
+
+Hệ quả, theo thứ tự đáng lo dần:
+
+- `docker compose up -d` tạo lại container và gắn vào volume **có tên** đang
+  rỗng. Đồ thị không mất, nhưng volume ẩn danh thành mồ côi — vẫn còn trên đĩa,
+  chỉ là không container nào dùng nữa.
+- `docker volume prune` xoá mọi volume không ai dùng. Sau bước trên, volume mồ
+  côi đó nằm đúng tầm ngắm. Đây mới là lệnh làm mất đồ thị thật sự.
+- `docker compose down -v` xoá luôn cả volume ẩn danh đang gắn. `down` không có
+  `-v` thì không xoá, chỉ bỏ container lại và để volume mồ côi.
+
+Nên trước khi đụng bất cứ lệnh nào ở trên: tạo dump theo phần đầu tài liệu này.
+Có dump rồi thì `up -d` để compose dựng container kèm volume có tên, nạp dump
+vào, xong mới dọn volume cũ.
