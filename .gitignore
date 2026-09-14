@@ -14,8 +14,6 @@ kag/ckpt.*/
 # eval.py chdir vao day truoc khi chay: ckpt, benchmark.txt, *_res/*_metrics
 kag/solver/runs/
 
-# bản gốc pdf/docx/html, 59MB, tải lại được nên không đưa vào git
-data/raw/
 
 # build
 /*.whl
