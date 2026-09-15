@@ -373,7 +373,7 @@
     }
   },
   {
-    "id": "bộ công an   cơ sở dữ liệu văn bản  trang tra cứu của cơ quan chủ quản an ninh mạng",
+    "id": "bộ công an cơ sở dữ liệu văn bản trang tra cứu của cơ quan chủ quản an ninh mạng",
     "name": "Bộ Công an - Cơ sở dữ liệu văn bản (trang tra cứu của cơ quan chủ quản an ninh mạng)",
     "label": "LegalDocument",
     "properties": {
@@ -386,7 +386,7 @@
     }
   },
   {
-    "id": "bộ khoa học và công nghệ   cổng thông tin điện tử  cơ quan chủ quản về ai",
+    "id": "bộ khoa học và công nghệ cổng thông tin điện tử cơ quan chủ quản về ai",
     "name": "Bộ Khoa học và Công nghệ - Cổng thông tin điện tử (cơ quan chủ quản về AI)",
     "label": "LegalDocument",
     "properties": {

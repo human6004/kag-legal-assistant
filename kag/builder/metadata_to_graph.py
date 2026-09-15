@@ -14,6 +14,8 @@ import re
 import sys
 from pathlib import Path
 
+import canon_id  # cùng thư mục; kag/builder nằm trên sys.path khi chạy file này
+
 sys.stdout.reconfigure(encoding="utf-8")  # console Windows mặc định cp1252, in chữ có dấu sẽ lỗi
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -27,18 +29,17 @@ LABEL = "LegalDocument"
 def _norm_id(phrase):
     """Chuẩn hóa id node cho trùng với id mà OpenIE sinh ra.
 
-    schema_free_extractor.py:424 chạy processing_phrases(name) rồi lấy kết quả
-    làm CẢ id LẪN name của node. kag/builder/__init__.py đã vá hàm đó để giữ
-    dấu tiếng Việt. Hàm này lặp lại đúng quy tắc ấy.
+    Quy tắc nằm ở kag/builder/canon_id.py, dùng chung với bản vá
+    SubGraph.add_node trong kag/builder/__init__.py. Trước đây hai bên chép tay
+    cùng một regex nên lệch nhau: metadata sinh "nghị định 329 2026 nđ cp" còn
+    OpenIE sinh "luật an ninh mạng số 116 2025 qh15", thành hai node rời nhau —
+    một node giữ status và chuỗi thay thế, một node giữ cạnh về chunk, không
+    truy vấn nào đi được từ bên này sang bên kia.
 
     Chỉ áp cho id. Trường `name` vẫn giữ nguyên văn vì nó là thứ được hiển thị
     và được vector hóa để entity linking bám vào.
-
-    Không dùng thì "Luật 116/2025/QH15" của injection và "luật 116 2025 qh15"
-    của OpenIE thành hai node rời nhau: một node giữ status và chuỗi thay thế,
-    một node giữ cạnh về chunk, không truy vấn nào đi được từ bên này sang bên kia.
     """
-    return re.sub(r"[^\w ]", " ", str(phrase).lower(), flags=re.U).strip()
+    return canon_id.canon_id(phrase)
 
 
 # metadata field -> tên thuộc tính trong Legal.schema
