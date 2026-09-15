@@ -25,6 +25,9 @@ kag/solver/runs/
 *.log
 *.out
 
+# bao cao ra soat sinh tu dong, khong thuoc ve repo
+/_AUDIT*.md
+
 # editor
 .idea/
 *.vscode/
