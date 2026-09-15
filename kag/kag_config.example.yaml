@@ -1,21 +1,21 @@
 # Mau cau hinh. Ban that la kag/kag_config.yaml, da bi .gitignore chan vi
 # chua khoa API that. Dung file nay nhu sau:
 #     cp kag/kag_config.example.yaml kag/kag_config.yaml
-# roi dien 3 cho api_key: hai cho hermesgate (openie_llm, chat_llm) va mot
-# cho vilao (vectorize_model). Sua file that, TUYET DOI khong dien vao day.
+# roi dien 3 cho api_key va 3 cho base_url: hai cho LLM (openie_llm, chat_llm)
+# va mot cho vectorize_model. Sua file that, TUYET DOI khong dien vao day.
 #------------project configuration start----------------#
 # Trich xuat thuc the / quan he tu van ban luat. ~2700 luot goi cho ca kho, nen
 # do tre moi luot quan trong hon chat luong tung cau tra loi. Do tren chunk that
-# 4000 ky tu: deepseek-v4.1-flash 12.4s, gemini/gemini-3.7-flash 7.0s,
-# cx/gpt-5.5 253.9s, cx/gpt-5.6-terra(max) 302.8s -> timeout.
-# Hai model cx bi gateway cat o 524, va llm_client.py invoke(with_except=False)
+# 4000 ky tu: model nhanh 12.4s, model vua 7.0s, con model thinking-max 253.9s
+# va 302.8s -> vuot timeout.
+# Model thinking-max bi gateway cat o 524, va llm_client.py invoke(with_except=False)
 # nuot loi im lang -> chunk mat sach thuc the ma van bao thanh cong.
 # Dung dat model thinking-max o day.
 openie_llm: &openie_llm
   type: maas
-  base_url: https://hermesgate.app/v1
+  base_url: <URL_GATEWAY_LLM>/v1
   api_key: ""
-  model: deepseek-v4.1-flash
+  model: <TEN_MODEL_LLM>
   enable_check: false
   # Khong co dong nay thi OpenAIClient khong truyen timeout xuong, roi ve mac dinh
   # 600s cua SDK -> mot request treo dung ca run 2700 luot. Do that 12.4s/luot nen
@@ -24,19 +24,19 @@ openie_llm: &openie_llm
 
 chat_llm: &chat_llm
   type: maas
-  base_url: https://hermesgate.app/v1
+  base_url: <URL_GATEWAY_LLM>/v1
   api_key: ""
-  model: deepseek-v4.1-flash
+  model: <TEN_MODEL_LLM>
   enable_check: false
   # Rong hon openie vi cau tra loi dai hon nhieu.
   timeout: 120
 
 vectorize_model: &vectorize_model
   api_key: ""
-  base_url: https://api.vilao.ai/v1
+  base_url: <URL_DICH_VU_EMBEDDING>/v1
   # Gateway dinh tuyen theo dang provider/model. Doi model thi phai doi ca
   # vector_dimensions cho khop, va phai reset lai index cu trong OpenSPG.
-  model: dg/text-embedding-3-large
+  model: <TEN_MODEL_EMBEDDING>
   type: openai
   vector_dimensions: 3072
   enable_check: false
@@ -112,12 +112,26 @@ kag_builder_pipeline:
     post_processor:
       type: kag_post_processor # kag.builder.component.postprocessor.kag_postprocessor.KAGPostProcessor
       external_graph: *external_graph_loader
-      # BAT BUOC phai co. kag_postprocessor.py:187 la
+      # CO Y BO TRONG similarity_threshold, khong phai quen.
+      #
+      # kag_postprocessor.py:187 la
       #     if self.similarity_threshold is not None:
-      # bao trum CA similarity_based_link LAN external_graph_based_link. Bo trong
-      # thi ca hai buoc noi thuc the deu bi bo qua, du da khai external_graph.
-      # Vi du domain_kg cua KAG cung thieu dong nay nen chinh no cung khong noi.
-      similarity_threshold: 0.9
+      # bao trum CA similarity_based_link LAN external_graph_based_link, nen bo
+      # trong la tat ca hai buoc noi mo. filter_invalid_data van chay.
+      #
+      # Do tren do thi thu 121 chunk ngay 2026-09-15: 514 canh `similar`, chia ra
+      #   108  Chunk -> Chunk          ten chunk cung van ban giong nhau
+      #    58  Article -> Article      "dieu 2" ~ "dieu 1", khac han ve nghia
+      #    13  LegalDocument -> LegalDocument KHAC van ban (328 -> 329)
+      #    26  cap tho/slug cua cung mot thuc the (nay da gop bang canon_id)
+      # Nguong 0.9 do tren vector `name` hop voi ten thuc the ngan kieu domain_kg,
+      # khong hop voi ten phap ly tieng Viet: "Dieu 1" va "Dieu 2" chi khac mot
+      # chu so nhung khac han nghia, ma cosine van tren 0.9.
+      #
+      # Sau khi canon_id gop id, viec noi thuc the cung ten nam o cac chunk khac
+      # nhau da xay ra ngay luc ghi: cung mot id thi la cung mot node. Muon noi
+      # mem lai thi dien lai dong similarity_threshold, nhung do lai so canh sai
+      # truoc da.
     splitter:
       type: length_splitter # kag.builder.component.splitter.length_splitter.LengthSplitter
       split_length: 4950
@@ -132,7 +146,7 @@ kag_builder_pipeline:
   #
   # Da phai ha hai lan trong ngay 2026-09-14, hai nguyen nhan khac han nhau:
   #
-  # 1. Sang: gateway EMBEDDING. gemini-embedding-001 free tier gioi han 100
+  # 1. Sang: gateway EMBEDDING. dich vu embedding mien phi gioi han 100
   #    request/phut (429 "embed_content_free_tier_requests, limit: 100"). Moi
   #    chunk chia lo 32 text, tenacity thu lai 3 lan TUC THI vi
   #    batch_vectorizer.py:399 khong co wait=, nen 16 chunk song song la vuot
@@ -141,7 +155,7 @@ kag_builder_pipeline:
   #    sync vectorize() ma builder dang dung KHONG co rate limit nao.
   #    Hau qua: vectorize() tra None -> extend(None) -> TypeError -> ca FILE do
   #    tinh la that bai, do thi thung lo ma khong bao loi gi.
-  #    => Da doi sang api.vilao.ai (key tra phi). LY DO NAY HET HIEU LUC.
+  #    => Da doi sang dich vu embedding tra phi. LY DO NAY HET HIEU LUC.
   #
   # 2. Trua: NEO4J CHET HEAP. Ly do dang con hieu luc, dung nang lai 4x4.
   #      java.lang.OutOfMemoryError: Java heap space   (/logs/debug.log)

@@ -57,7 +57,8 @@ kag/
 │   ├── external_graph.py  kag/builder/external_graph.py, lớp legal_external_graph
 │   ├── extractor.py       vá 3 lỗi extractor của KAG 0.8.0 bằng lớp con
 │   ├── chain.py           một chunk hỏng không kéo cả văn bản theo
-│   ├── test_builder_fixes.py  kiểm 4 bản vá, in 5 dòng OK, không gọi LLM
+│   ├── canon_id.py        quy tắc id node, dùng chung cho cả hai đường nạp
+│   ├── test_builder_fixes.py  kiểm 5 bản vá, in 10 dòng OK, không gọi LLM
 │   ├── clean_corpus.py    làm sạch bản gốc trước khi đưa vào processed
 │   └── prompt/            prompt trích xuất: ner.py, std.py, triple.py
 └── solver/
@@ -129,7 +130,8 @@ Hai dòng đó là thứ cho phép `kag_config.yaml` viết tiếng Việt có d
 Kiểm một câu, không tốn tiền LLM — cần hạ tầng ở bước 1 đã chạy:
 
 ```bash
-cd kag; ..\.venv\Scripts\python.exe builder\test_builder_fixes.py
+cd kag;
+ ..\.venv\Scripts\python.exe builder\test_builder_fixes.py
 ```
 
 Bản KAG trong `.venv` là bản **thực sự được import**, `vendor/KAG` chỉ là nguồn
@@ -227,30 +229,143 @@ python builder/indexer.py
 
 Kiểm ngay trên giao diện web: văn bản vừa nạp phải là **một** node mang cả trạng
 thái hiệu lực lẫn cạnh về chunk. Thấy hai node rời nhau nghĩa là id chưa trùng,
-xem `_norm_id` trong `builder/metadata_to_graph.py`.
+xem `canon_id.py` — hàm `canon_id` là quy tắc id duy nhất, `metadata_to_graph.py`
+và bản vá `SubGraph.add_node` trong `builder/__init__.py` cùng gọi nó.
 
-**7. Hỏi.** Sửa `kag/solver/data/questions.json` theo bộ câu hỏi của bạn, rồi
-chạy trong thư mục `solver/`.
+**7. Hỏi.** Bộ câu hỏi nằm ở `kag/solver/data/questions_mo_rong.json` (166 câu).
+`eval.py` trỏ vào file đó ở hàm `load_data`. Chạy trong thư mục `solver/`.
 
 ```bash
 python eval.py
 ```
 
-Ba file ra, trong thư mục `solver/`:
+Bốn file ra, trong thư mục `runs/`:
 
 | File | Có gì |
 | --- | --- |
 | `legal_res_<timestamp>.json` | **Câu trả lời thật**, ở trường `prediction`, kèm `traceLog` cho biết lấy chunk nào ra để trả lời |
 | `benchmark.txt` | Một dòng metric tổng, mở ở chế độ nối thêm nên mỗi lần chạy đẻ thêm một dòng. `processNum` là **số câu qua được**, không phải điểm — bằng `0` nghĩa là hỏng |
+| `legal_metrics_<timestamp>.json` | Cùng nội dung `benchmark.txt` nhưng ở dạng JSON |
 | `legal_ckpt/` | Sổ nhớ, khoá là nguyên văn câu hỏi. Hỏi lại y hệt thì trả bài cũ, không gọi mô hình. Muốn hỏi lại thật thì xoá thư mục này |
 
-`main()` đang để `upper_limit=5`, tức chỉ chạy 5 câu đầu trong `questions.json`, và
-`thread_num=20`.
+`main()` đang để `thread_num=8`. `upper_limit=5` nên chỉ chạy 5 câu đầu — đổi thành
+`upper_limit=166` khi muốn chạy hết.
 
-`answers` trong `questions.json` là **danh sách các mốc phải xuất hiện trong câu trả
-lời** (số tiền, số điều). `do_metrics_eval` so khớp bằng substring sau khi bỏ dấu chấm
-và khoảng trắng, rồi trả `hit_rate` cùng `hit_all` vào `benchmark.txt`. Để nguyên chuỗi
-placeholder `<...>` thì nó bị lọc bỏ và không có điểm nào được tính.
+`answers` là **danh sách các mốc phải xuất hiện trong câu trả lời** (số tiền, số
+điều). `do_metrics_eval` so khớp bằng substring rồi trả `hit_rate` cùng `hit_all`.
+Để nguyên chuỗi placeholder `<...>` thì nó bị lọc bỏ và không có điểm nào được tính.
+
+Hàm `norm_text` ở đầu `eval.py` chuẩn hoá trước khi so khớp, làm ba việc: đưa về
+NFC (tiếng Việt có hai cách mã hoá cùng một chữ), bỏ ký tự markdown, bỏ dấu chấm và
+khoảng trắng. **Bỏ ký tự markdown là bắt buộc**: mô hình in đậm `**chậm nhất là 24
+giờ**` và ranh giới `**` rơi vào giữa mốc, không bỏ thì mốc trượt oan dù câu trả lời
+đúng hoàn toàn. Đã dính thật một lần, làm `hit_all` tụt từ 1,0 xuống 0,8.
+
+**8. Đo truy xuất và trích dẫn.** Hai script, **không gọi LLM, không tốn tiền**,
+chạy lại bao nhiêu lần cũng được. Đứng ở `solver/`:
+
+```bash
+python gold_chunks.py     # sinh tập chunk vàng, chạy một lần sau mỗi lần build
+python recall_report.py   # đọc runs/legal_res_*.json mới nhất rồi in báo cáo
+```
+
+`gold_chunks.py` đọc chunk đã cắt từ `kag/ckpt/LengthSplitter` (1.121 chunk — nguồn
+chân lý, không phải đoán lại thuật toán cắt), rồi tra ngược từng mốc trong `answers`
+ra chunk chứa nó. Ghi ra hai file:
+
+| File | Nghĩa |
+| --- | --- |
+| `data/gold_chunks.json` | Mọi chunk chứa bất kỳ mốc nào. Dùng cho `recall` |
+| `data/gold_chunks_hep.json` | Tối đa 3 chunk/câu, lấy từ mốc **đặc trưng nhất**. Dùng cho `hit@k` và trích dẫn |
+
+Bản hẹp cần thiết vì mốc là **cụm từ**, không phải định danh chunk: mốc `đánh giá sự
+phù hợp` xuất hiện ở 25 chunk, gộp hết lại thì mẫu số phồng lên và mọi chỉ số bị đo
+thấp giả tạo. Script tự bỏ mốc quá ngắn (tên mục lục như `Điều 45`) và quá chung
+(`Chính phủ` ở 310 chunk).
+
+`recall_report.py` in ra `hit@1/3/5/10/20`, `recall`, `MRR`, `nDCG@10`, và
+`citation precision` / `citation recall` — tức trong các nguồn câu trả lời dẫn ra,
+bao nhiêu thật sự chứa đáp án. Đây là chỗ làm sống lại `hit3`/`hit5`/`hitall` trong
+`benchmark.txt`: ba chỉ số đó luôn bằng 0 vì lớp cha `do_recall_eval` trả
+`{"recall": None}`, chứ không phải vì hệ thống hỏng.
+
+**9. Bẫy trùng tên gói `prompt` (đã sửa).** `import_modules_from_path` trong
+`vendor/KAG/kag/common/registry/utils.py:44` lấy **tên thư mục cuối** làm tên module.
+`kag/solver/prompt` và `kag/builder/prompt` cùng tên `prompt`, nên lần gọi thứ hai bị
+`sys.modules["prompt"]` chặn và trả về module cũ: `legal_std`, `legal_ner`,
+`legal_triple` **không bao giờ được đăng ký**, `PromptABC` lặng lẽ rơi về bản tiếng Anh
+`default_std` và chỉ ghi một dòng log INFO rất khó thấy.
+
+`eval.py` vì vậy **không** dùng `import_modules_from_path` cho thư mục đó nữa, mà gọi
+`_nap_prompt_theo_duong_dan()` — nạp thẳng từng file bằng
+`importlib.util.spec_from_file_location` dưới tên riêng, không đụng
+`sys.modules["prompt"]`. Đã đo lại: `std` → `LegalEntityStandardizationPrompt`,
+`triple` → `LegalTriplePrompt`, `question_ner` → `LegalQuestionNERPrompt`.
+
+**10. Prompt NER cho câu hỏi (đã viết, nhưng đang TẮT — xem mục 11).**
+`kag/solver/prompt/question_ner.py` đăng ký `legal_question_ner_tat` — bản đối ứng
+tiếng Việt của `default_question_ner` (bản gốc chỉ có ví dụ về tạp chí Mỹ). Khác với
+`kag/builder/prompt/ner.py` chạy lúc build và đọc cả đoạn văn luật, file này chỉ nhận
+**một câu hỏi ngắn** và rút ra vài cái tên làm điểm xuất phát cho PageRank.
+
+Hậu tố `_tat` là cố ý: `init_prompt_with_fallback` tìm `legal_question_ner` không
+thấy nên rơi về bản tiếng Anh. Muốn bật lại thì bỏ `_tat`.
+
+Hai điều rút ra từ chính mã nguồn đang chạy, đừng sửa nhầm:
+
+- **`category` không dùng để tra đồ thị.** `ppr_chunk_retriever.py:227-244` tìm node
+  bằng **vector trên `entity_name`**, rồi dòng 242 ghi đè `type` bằng nhãn thật đọc từ
+  `__labels__` của Neo4j. Nên thứ quyết định kết quả là `name`, không phải `category`.
+- **Schema phải lấy qua `ReasonerClient.get_reason_schema()`**, không phải
+  `SchemaClient.load()` như bên builder. Tên trả về có tiền tố (`Legal.Article`) nên
+  phải cắt tiền tố trước khi nhúng vào template.
+- Ở đường này `with_semantic` mặc định `False` (`ppr_chunk_retriever.py:63` không
+  truyền), nên `std_prompt` **không được gọi**. Nó vẫn được nạp cho đúng, nhưng đừng
+  trông vào nó để thấy khác biệt khi chạy eval.
+
+**11. Đã đo tác động của prompt NER tiếng Việt (5 câu, ba lần chạy).** Kết quả
+**ngược với dự đoán ban đầu**, ghi lại để lần sau khỏi suy diễn lại:
+
+| Chỉ số (gold hẹp) | Prompt Anh | Việt, tối đa 6 | Việt, bỏ giới hạn |
+| --- | --- | --- | --- |
+| `hit@1` | **0.600** | 0.200 | 0.200 |
+| `hit@3` | **0.800** | 0.600 | 0.600 |
+| `MRR` | **0.711** | 0.461 | 0.461 |
+| `hit@20` | 1.000 | 1.000 | 1.000 |
+| `citation precision` (đầy đủ) | 0.581 | **0.686** | 0.567 |
+| `nDCG@10` (đầy đủ) | **0.514** | 0.411 | 0.412 |
+
+Ba điều đọc ra được:
+
+1. `hit@20` luôn 1.000 ở cả ba lần — chunk đúng **chưa bao giờ mất**, chỉ bị đẩy
+   xuống hạng thấp hơn. `hit_rate` cuối cùng cũng luôn 1.0, nên nhìn `benchmark.txt`
+   sẽ không thấy khác biệt gì.
+2. Bản tiếng Việt xếp hạng **kém hơn** nhưng dẫn nguồn **chính xác hơn**. Đây là
+   đánh đổi thật, không phải nhiễu.
+3. Bỏ giới hạn "tối đa 6 thực thể" **không cải thiện gì** — mọi chỉ số giữ nguyên
+   (số thực thể có tăng, có câu lên 10, nhưng thứ hạng không đổi). Nguyên nhân nằm
+   chỗ khác, không phải ở số lượng.
+
+Chi phí ba lần gần như bằng nhau (51/53/53 request, 647.680/633.599/646.791 token),
+nên prompt tiếng Việt **không đắt hơn**. Giới hạn 6 thực thể ban đầu là một suy luận
+sai của người viết: cái làm loãng PageRank là thực thể **chung chung** khớp hàng trăm
+node, chứ không phải **số lượng** thực thể.
+
+**Quyết định (đã chốt): tắt prompt NER tiếng Việt, dùng lại bản tiếng Anh.** Vì
+`hit@k` và `MRR` là chỉ số chính của bước truy hồi, mà bản Anh thắng ở cả ba.
+
+Cách tắt: `@PromptABC.register("legal_question_ner_tat")` — thêm hậu tố `_tat` để
+`init_prompt_with_fallback` không tìm thấy tên `legal_question_ner` nữa và rơi về
+`default_question_ner`. **Không xoá file**: code còn nguyên, muốn bật lại chỉ cần bỏ
+hậu tố `_tat` khỏi chuỗi đăng ký.
+
+Lưu ý `legal_std` và `legal_triple` **vẫn đang bật** — chúng chạy lúc build nên
+không ảnh hưởng gì tới eval (đường eval có `with_semantic=False`, xem mục 10).
+
+Nhắc lại cho người đọc sau: **5 câu là mẫu quá nhỏ**. Chênh lệch `hit@1` 0,6 so với
+0,2 chỉ là **2 câu trên 5**. Kết luận trên đủ để chọn mặc định, **không** đủ để nói
+bản Việt kém thật. Muốn chắc phải chạy 40-50 câu (~430 request, ~1 giờ).
+
 
 ## Ghi chú
 
