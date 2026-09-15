@@ -1,9 +1,34 @@
-# KAG là thư viện ngoài, không nằm trong repo này (151 MB mã nguồn).
-# Ghim đúng commit đã dựng được đồ thị 12625 node, không dùng `latest`:
-# nhánh master của OpenSPG/KAG đổi liên tục và không hứa tương thích ngược.
+# KAG nằm ngay trong repo, ở ./vendor/KAG, không còn tải từ GitHub.
+# Đây là mã nguồn OpenSPG/KAG ghim đúng commit fdab15b3 — bản đã dựng được đồ
+# thị 12625 node. Nhánh master của OpenSPG/KAG đổi liên tục và không hứa tương
+# thích ngược, nên không dùng `latest`.
 #
-# Ba lỗi của bản 0.8.0 từng phải sửa thẳng trong mã nguồn KAG. Giờ chúng nằm ở
-# kag/builder/extractor.py và kag/builder/chain.py dưới dạng lớp con, nên KAG
-# cài từ đây để nguyên, không cần vá. Kiểm bằng:
+# vendor/KAG đã bị gỡ .git (187 MB) trước khi commit. Bản gốc kèm .git nặng
+# 360 MB; ở đây chỉ còn cây mã nguồn 1211 file / 170 MB.
+#
+# vendor/KAG có ĐÚNG HAI dòng sửa so với bản upstream fdab15b3, cả hai đều là
+# encoding="utf-8" cho lời gọi open() đọc file cấu hình:
+#     vendor/KAG/kag/common/conf.py
+#     vendor/KAG/knext/common/env.py
+# Không có hai dòng đó thì open() trần dùng cp1252 trên Windows và
+# kag_config.yaml viết tiếng Việt có dấu sẽ nổ UnicodeDecodeError. Bản vá
+# 36 dòng ở schema_free_extractor.py và 9 dòng ở default_chain.py KHÔNG chép
+# vào vendor, vì đã có lớp con thay thế trong repo:
+#     kag/builder/extractor.py  -> legal_schema_free_extractor
+#     kag/builder/chain.py      -> legal_unstructured_builder_chain
+# Kiểm bằng:
 #     cd kag; ..\.venv\Scripts\python.exe builder\test_builder_fixes.py
-openspg-kag @ git+https://github.com/OpenSPG/KAG.git@fdab15b3
+#
+# Không dùng -e (editable). Lý do: pip cài editable bằng _editable_impl_*.pth
+# trỏ thẳng tới <repo>\vendor\KAG. File .pth đó nằm trong site-packages chứ
+# không nằm trong repo, nên nó ghi cứng đường dẫn tuyệt đối của máy này. Người
+# clone repo về máy khác mà không cài lại sẽ thấy .pth trỏ sai chỗ. Cài thường
+# thì site-packages tự chứa mã nguồn, đi theo .venv, không phụ thuộc đường dẫn
+# repo. Đánh đổi: sửa vendor/KAG xong phải cài lại, không tự ăn ngay.
+#
+# Đừng viết lại dòng dưới thành "openspg-kag @ ./vendor/KAG": pip 25.0.1 đọc
+# "./vendor/KAG" là URL chứ không phải đường dẫn nên báo
+# "Invalid URL ... No scheme supplied". Dạng trần mới là đường dẫn nội bộ, và
+# nó tương đối theo thư mục chứa requirements.txt nên vẫn chạy đúng khi
+# `pip install -r requirements.txt` được gọi từ gốc repo.
+./vendor/KAG

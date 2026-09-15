@@ -9,6 +9,7 @@ Trợ lý hỏi đáp luật an ninh mạng và truyền thông Việt Nam, dự
 data/       kho văn bản luật, dùng chung cho cả hai bên
 docker/     hạ tầng: file compose dựng OpenSPG server, Neo4j, MySQL, MinIO
 kag/        dự án KAG, namespace Legal
+vendor/KAG/ mã nguồn thư viện KAG, ghim commit fdab15b3
 hybridRAG/  nền so sánh, chạy độc lập, không liên quan tới kag/
 ```
 
@@ -34,9 +35,15 @@ data/
 └── SOURCES.md   danh sách nguồn đã thẩm định
 ```
 
-**Mã nguồn KAG không nằm trong repo này.** Nó là thư viện Python cài riêng, xem
-bước 2 dưới đây. Thư mục `kag/` chỉ chứa cấu hình, schema, prompt và script của
-dự án — không chứa mã của chính KAG.
+**Mã nguồn KAG nằm trong repo này, ở `vendor/KAG/`**, ghim đúng commit `fdab15b3`
+của OpenSPG/KAG. Thư mục `kag/` chỉ chứa cấu hình, schema, prompt và script của
+dự án, không chứa mã của chính thư viện.
+
+`vendor/KAG/` là cây mã nguồn trần: 1211 file, 170 MB, **đã gỡ `.git`**. Bản gốc
+kèm lịch sử git nặng 360 MB; phần lịch sử 187 MB đó không cần thiết vì repo này
+ghim cứng một commit duy nhất. Đừng `git add` một thư mục `vendor/KAG/` có `.git`
+bên trong — git sẽ tạo gitlink rỗng, người clone về thấy thư mục trống mà git
+không báo lỗi gì.
 
 ```
 kag/
@@ -50,7 +57,7 @@ kag/
 │   ├── external_graph.py  kag/builder/external_graph.py, lớp legal_external_graph
 │   ├── extractor.py       vá 3 lỗi extractor của KAG 0.8.0 bằng lớp con
 │   ├── chain.py           một chunk hỏng không kéo cả văn bản theo
-│   ├── test_builder_fixes.py  kiểm 4 bản vá trên, không gọi LLM
+│   ├── test_builder_fixes.py  kiểm 4 bản vá, in 5 dòng OK, không gọi LLM
 │   ├── clean_corpus.py    làm sạch bản gốc trước khi đưa vào processed
 │   └── prompt/            prompt trích xuất: ner.py, std.py, triple.py
 └── solver/
@@ -64,11 +71,28 @@ Prompt tiếng Việt là phần đáng chú ý nhất trong `kag/`: cả `build
 
 ## Chạy
 
-**1. Dựng hạ tầng.** Cần Docker Desktop đang chạy.
+**1. Dựng hạ tầng.** Cần Docker Desktop đang chạy. Máy mới, chưa từng dựng:
 
-```bash
+```
 docker compose -f docker/docker-compose-west.yml up -d
 ```
+
+⚠️ **Lệnh trên chỉ dùng cho máy chưa có container `release-openspg-*` nào.** Máy
+đang giữ đồ thị 12625 node trong một volume **ẩn danh**, trong khi compose khai
+volume có tên `kag-legal-neo4j-data` đang rỗng. `docker compose up -d` sẽ tạo lại
+container gắn vào volume rỗng và bỏ rơi volume ẩn danh — chạy lệnh đó trên máy
+này là mất đồ thị.
+
+Muốn dựng lại đồ thị từ đầu thì nạp `dist/legal.dump`, đừng compose lại.
+
+Đồ thị đang chạy thì bật lại bằng:
+
+```
+docker start release-openspg-neo4j release-openspg-server release-openspg-mysql release-openspg-minio
+```
+
+Tuyệt đối **không** `docker compose up -d`, không `docker compose down`, không
+`docker volume prune` trên máy này.
 
 Mở `http://127.0.0.1:8887`, đăng nhập `openspg` / `openspg@kag`. Thấy giao diện
 là xong bước này. Giao diện sẽ trống, đúng như vậy.
@@ -77,22 +101,42 @@ là xong bước này. Giao diện sẽ trống, đúng như vậy.
 dùng đúng 3.10, nhưng không: `.venv` của dự án đang chạy Python 3.12.10 với đúng
 protobuf 3.20.1, cài sạch không cần cờ gì thêm.
 
-```bash
+```
 py -m venv .venv
 ```
 
-```bash
+```
 .venv/Scripts/pip install -r requirements.txt
 ```
 
-`requirements.txt` ghim KAG theo đúng commit trên GitHub, không trỏ vào thư mục
-nào trên máy ai cả. Ba lỗi của KAG 0.8.0 từng phải sửa thẳng trong mã nguồn thư
-viện — nay nằm trong `kag/builder/extractor.py` và `kag/builder/chain.py` dưới
-dạng lớp con, nên KAG cài về để nguyên. Kiểm một câu, không tốn tiền LLM:
+`requirements.txt` cài KAG thẳng từ `vendor/KAG` trong repo, không tải gì từ
+GitHub, không trỏ vào thư mục nào trên máy ai cả. Nhờ vậy clone xong là cài được
+dù máy không có mạng ra GitHub.
+
+Ba lỗi của KAG 0.8.0 từng phải sửa thẳng trong mã nguồn thư viện — nay nằm trong
+`kag/builder/extractor.py` và `kag/builder/chain.py` dưới dạng lớp con, nên
+`vendor/KAG` **không** chứa bản vá đó. Đổi lại, `vendor/KAG` có đúng hai dòng sửa
+so với upstream `fdab15b3`, cả hai chỉ thêm `encoding="utf-8"` vào lời gọi
+`open()` đọc file cấu hình:
+
+```
+vendor/KAG/kag/common/conf.py
+vendor/KAG/knext/common/env.py
+```
+
+Hai dòng đó là thứ cho phép `kag_config.yaml` viết tiếng Việt có dấu (xem bước 3).
+
+Kiểm một câu, không tốn tiền LLM — cần hạ tầng ở bước 1 đã chạy:
 
 ```bash
 cd kag; ..\.venv\Scripts\python.exe builder\test_builder_fixes.py
 ```
+
+Bản KAG trong `.venv` là bản **thực sự được import**, `vendor/KAG` chỉ là nguồn
+cài. Sửa `vendor/KAG` xong phải cài lại (`pip install -r requirements.txt`) thì
+thay đổi mới có tác dụng; `pip install ./vendor/KAG` cũng được nhưng đừng viết
+`openspg-kag @ ./vendor/KAG` — pip 25.0.1 hiểu `./vendor/KAG` là URL và báo
+`Invalid URL ... No scheme supplied`.
 
 **3. Điền API key** trong `kag/kag_config.yaml`. Ba khối, hai khoá: `openie_llm`
 và `chat_llm` là model sinh chữ và dùng chung một khoá, `vectorize_model` là model
@@ -105,13 +149,22 @@ thì bước 4 dừng ngay.
 chứ không nổ ở bước 6, vì hai bước dùng hai khối khác nhau. Viết đúng `openie_llm`
 là đủ để tin nhầm rằng `chat_llm` cũng đúng.
 
-Comment trong hai file config viết tiếng Việt **không dấu**, cố ý, đừng bỏ dấu
-vào lại. `kag/common/conf.py` và `knext/common/env.py` của KAG đọc file này bằng
-`open()` trần, tức là theo codepage của máy — trên Windows tiếng Việt là cp1252,
-gặp ký tự có dấu là `UnicodeDecodeError` ngay ở bước 4. Giữ config thuần ASCII
-rẻ hơn bắt cả nhóm nhớ đặt `PYTHONUTF8=1`. Mọi file khác cứ có dấu thoải mái:
-`.py` thì Python đọc UTF-8 mặc định, còn `.md` và `.json` thì KAG mở có khai
-`encoding="utf-8"` đàng hoàng.
+`vendor/KAG/kag/common/conf.py` và `vendor/KAG/knext/common/env.py` đã được vá
+thêm `encoding="utf-8"`, nên config **viết tiếng Việt có dấu được**. Đây là chỗ
+khác trước: hồi KAG còn cài từ GitHub thì hai file đó là file pip quản lý, sửa
+vào là mất ở lần cài sau, nên config buộc phải thuần ASCII. Giờ chúng nằm trong
+repo và đi theo repo, nên ràng buộc đó hết.
+
+Vẫn nên giữ config thuần ASCII nếu định chạy trên máy chưa cài lại `vendor/KAG`,
+vì bản KAG trong `.venv` mới là bản thực sự được import. Mọi file khác cứ có dấu
+thoải mái: `.py` thì Python đọc UTF-8 mặc định, còn `.md` và `.json` thì KAG mở
+có khai `encoding="utf-8"` đàng hoàng.
+
+`kag/kag_config.yaml` bị `.gitignore` chặn nên người clone mới không có file đó,
+phải tự tạo từ `kag/kag_config.example.yaml`. File mẫu để thuần ASCII, nhưng từ
+giờ **không bắt buộc** nữa: cứ mở `kag_config.yaml` lên và gõ dấu tiếng Việt bình
+thường, miễn là file được lưu ở UTF-8 (mọi trình soạn thảo hiện đại đều mặc định
+như vậy). Không cần chạy lệnh chuyển mã nào cả.
 
 **4. Đăng ký dự án lên server.** Chạy trong thư mục `kag/`.
 
@@ -162,7 +215,13 @@ hơn 1,7 triệu chữ, cắt ra 1121 chunk, mỗi chunk 3 lượt gọi LLM. C�
 thử: tạm đổi dòng cuối `indexer.py` trỏ vào một thư mục con chứa đúng một file,
 thấy node hiện trên giao diện web rồi mới trỏ lại `data/processed`.
 
-```bash
+⚠️ **Không chạy lệnh này để dựng lại đồ thị.** Nó tốn khoảng 4 tiếng và tiền gọi
+LLM cho 1121 chunk, trong khi đồ thị 12625 node đã dựng xong rồi. Chỉ chạy khi
+thực sự muốn dựng mới từ `data/processed/`, và nhớ `kag/ckpt/` là sổ nhớ 1121
+chunk đã dựng — xoá nó là mất hết, phải trả tiền lại từ đầu.
+
+```
+cd kag
 python builder/indexer.py
 ```
 
