@@ -164,7 +164,7 @@ def main():
     do_main(
         qa_file_path="",
         thread_num=8,
-        upper_limit=5,
+        upper_limit=166,
         collect_file="benchmark.txt",
         eval_obj=LegalEvaluator(),
     )

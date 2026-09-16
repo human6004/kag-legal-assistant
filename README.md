@@ -79,12 +79,14 @@ docker compose -f docker/docker-compose-west.yml up -d
 ```
 
 ⚠️ **Lệnh trên chỉ dùng cho máy chưa có container `release-openspg-*` nào.** Máy
-đang giữ đồ thị 12625 node trong một volume **ẩn danh**, trong khi compose khai
-volume có tên `kag-legal-neo4j-data` đang rỗng. `docker compose up -d` sẽ tạo lại
-container gắn vào volume rỗng và bỏ rơi volume ẩn danh — chạy lệnh đó trên máy
-này là mất đồ thị.
+đang giữ đồ thị trong một volume **ẩn danh**, trong khi compose khai volume có tên
+`kag-legal-neo4j-data` đang rỗng. `docker compose up -d` sẽ tạo lại container gắn
+vào volume rỗng và bỏ rơi volume ẩn danh — chạy lệnh đó trên máy này là mất đồ thị.
 
-Muốn dựng lại đồ thị từ đầu thì nạp `dist/legal.dump`, đừng compose lại.
+**Máy dựng mới thì không phải dựng lại đồ thị.** Đồ thị đã đóng gói thành
+`dist/legal.dump`. Xin file đó, làm bước 1-4 như thường, rồi nạp theo
+`docker/RESTORE-GRAPH.md` và kiểm bằng `docker/kiem-chung-do-thi.ps1`. Bỏ qua bước
+5 và 6. Đừng chạy `indexer.py`.
 
 Đồ thị đang chạy thì bật lại bằng:
 
@@ -217,10 +219,11 @@ hơn 1,7 triệu chữ, cắt ra 1121 chunk, mỗi chunk 3 lượt gọi LLM. C�
 thử: tạm đổi dòng cuối `indexer.py` trỏ vào một thư mục con chứa đúng một file,
 thấy node hiện trên giao diện web rồi mới trỏ lại `data/processed`.
 
-⚠️ **Không chạy lệnh này để dựng lại đồ thị.** Nó tốn khoảng 4 tiếng và tiền gọi
-LLM cho 1121 chunk, trong khi đồ thị 12625 node đã dựng xong rồi. Chỉ chạy khi
-thực sự muốn dựng mới từ `data/processed/`, và nhớ `kag/ckpt/` là sổ nhớ 1121
-chunk đã dựng — xoá nó là mất hết, phải trả tiền lại từ đầu.
+⚠️ **Không chạy lệnh này để dựng lại đồ thị.** Nó tốn khoảng 2 tiếng và tiền gọi
+LLM cho 1121 chunk, trong khi đồ thị đã dựng xong rồi và đã đóng gói thành
+`dist/legal.dump`. Chỉ chạy khi thực sự muốn dựng mới từ `data/processed/`, và nhớ
+`kag/ckpt/` là sổ nhớ 1121 chunk đã dựng — xoá nó là mất hết, phải trả tiền lại
+từ đầu.
 
 ```
 cd kag
