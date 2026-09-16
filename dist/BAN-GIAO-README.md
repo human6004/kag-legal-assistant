@@ -33,7 +33,7 @@ giờ đúng. Đừng dùng nó làm tiêu chí kiểm tra.
 3. **`RESTORE_EVIDENCE.txt`** — bằng chứng nạp thử trên volume trắng, gồm cả
    việc chứng minh cách làm sai thật sự hỏng.
 4. **`PROVENANCE_REPORT.txt`** — truy vết và các vấn đề đã biết của đồ thị.
-5. **`CLEAN_ENV_TEST.txt`** — chứng minh MySQL/MinIO trắng là đủ.
+5. **`CLEAN_ENV_TEST.txt`** — chứng minh MySQL/MinIO trắng là đủ cho phục hồi Neo4j graph.
 
 ## Ba bẫy phải tránh
 
@@ -61,16 +61,19 @@ rỗng**. Quên `-d legal` sẽ thấy `0` và tưởng nạp hỏng.
 khoá riêng theo `kag/kag_config.example.yaml`. Đồ thị đã dựng xong nên chỉ cần
 `chat_llm` và `vectorize_model`; **không** cần `openie_llm`.
 
-`vectorize_model` bắt buộc phải trả vector **3.072 chiều**. Đổi model khác số
-chiều thì 36 vector index hỏng và truy vấn sai âm thầm, không báo lỗi.
+`vectorize_model` bắt buộc phải dùng **đúng model `dg/text-embedding-3-large` (3.072 chiều)**.
+Tương thích embedding đòi hỏi **đúng model**, không chỉ đơn thuần là cùng số chiều vector.
+Đổi sang model khác (dù cùng 3.072 chiều) sẽ làm lệch hoàn toàn không gian biểu diễn ngữ nghĩa,
+khiến 36 vector index tìm kiếm sai âm thầm mà không có cảnh báo lỗi.
 
-## Chưa đo được
+## Chưa đo được / Chưa kiểm chứng
 
-Ghi `UNVERIFIED`, không phải đã đo ra 0:
+Ghi `UNVERIFIED` hoặc `NOT YET VERIFIED`:
 
-- Tỷ lệ truy vết đầy đủ `fact → chunk → doc_id → Điều/Khoản/Điểm`
-- Tỷ lệ chunk lỗi / bị bỏ qua khi build
-- Danh sách văn bản stub thiếu full text
+- **Phục hồi toàn diện OpenSPG/KAG trên môi trường mới** (`knext project restore`, `knext schema commit` và KAG retrieval): **NOT YET VERIFIED** (hiện chỉ mới kiểm chứng phục hồi dữ liệu đồ thị Neo4j trên volume trắng và truy vấn Cypher).
+- Tỷ lệ truy vết đầy đủ `fact → chunk → doc_id → Điều/Khoản/Điểm`: **UNVERIFIED**
+- Tỷ lệ chunk lỗi / bị bỏ qua khi build: **UNVERIFIED**
+- Danh sách văn bản stub thiếu full text: **UNVERIFIED**
 
 Đã đo được: **1.121/1.121 chunk (100%) nối tới văn bản** qua quan hệ `source`.
 

@@ -1,7 +1,28 @@
 {
-  "_doc": "Manifest ban giao do thi KAG. Moi so lieu do truc tiep tu moi truong dang chay bang tao_manifest.py, khong go tay.",
+  "_doc": "Manifest ban giao do thi KAG. So lieu do truc tiep tu do thi va bang chung kiem chung, khong dung so gia hay hardcode.",
+  "proven_build_snapshot_identity": {
+    "dump_file": "legal.dump",
+    "dump_sha256": "bb43903bad89f2902f23406918dbf1e97331a302ccd8af17086c8e74fa87e9e1",
+    "dump_size_bytes": 997653620,
+    "dump_size_gib": 0.929,
+    "node_count": 7624,
+    "relationship_count": 26029,
+    "vector_index_count": 36,
+    "legal_chunk_count": 1121,
+    "legal_document_count": 246,
+    "pinned_neo4j_image_digest": "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9",
+    "provenance_nature": "PROVEN_BY_HASH_AND_INVARIANTS",
+    "note": "Danh tinh chuan cua snapshot do thi duoc chung minh boi SHA-256 cua legal.dump, digest image Docker va cac bat bien cau truc do thi (7624 node, 26029 canh, 36 vector index, 1121 chunk). Ban than Neo4j dump khong chua commit git."
+  },
+  "build_code_commit": {
+    "inferred_commit": "cb25997",
+    "inferred_commit_full": "cb25997630395591043bfeb75f47d233a7d1517e",
+    "inferred_commit_subject": "fix: gop node trung lap bang canon_id, va metadata vao graph",
+    "provenance_nature": "INFERRED_FROM_REPO_HISTORY",
+    "note": "Commit cb25997 la commit cuoi cung sua doi code builder (kag/builder) va data/graph trong lich su git truoc ban giao. Day la suy luan ngu canh tu git, khong phai danh tinh mat ma ben trong dump."
+  },
   "snapshot": {
-    "created_at_utc": "2026-09-16T12:52:45.186386+00:00",
+    "created_at_utc": "2026-09-16T15:48:48.133295+00:00",
     "database": "legal",
     "node_count": 7624,
     "relationship_count": 26029,
@@ -56,26 +77,25 @@
     "size_bytes": 997653620,
     "size_gib": 0.929,
     "verified_by_restore": true,
-    "note": "Da restore thu vao volume TRANG va kiem chung khop node/edge/index. Xem docker/kiem-chung-do-thi.ps1."
+    "verification_evidence_file": "dist/RESTORE_EVIDENCE.txt",
+    "verification_details": "Xac nhan boi dist/RESTORE_EVIDENCE.txt: restore tren volume trang khop 7624 node, 26029 canh, 36 vector index online (0 offline).",
+    "note": "Da restore thu vao volume TRANG va kiem chung khop node/edge/index theo dist/RESTORE_EVIDENCE.txt."
   },
   "git": {
     "commit_build_graph": "cb25997",
     "commit_build_graph_full": "cb25997630395591043bfeb75f47d233a7d1517e",
     "commit_build_graph_subject": "fix: gop node trung lap bang canon_id, va metadata vao graph",
-    "commit_current": "205b77e98627cec5a47dc6aa38f02b8b9c34d6f4",
-    "commit_current_short": "2707798",
+    "base_repo_commit": "014782390dcfe18bd58ddd337652a1b5f8be93f1",
     "branch": "master",
-    "note": "commit_build_graph la commit CUOI CUNG cham vao kag/builder va data/graph, tuc la trang thai ma indexer.py nhin thay khi dung do thi. Cac commit sau no chi sua kag/solver, README va docker/, KHONG anh huong do thi.",
-    "commits_after_build_touching_graph": []
+    "note": "commit_build_graph la commit cuoi cham vao builder code trong lich su git; base_repo_commit la commit goc tren upstream master ma ban giao nay dua tren. Manifest khong tu chua commit SHA cua chinh commit tao ra no (tranh nghich ly tu quy chieu trong Git)."
   },
   "neo4j": {
-    "image_ref": "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j:latest",
+    "image_ref": "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9",
     "image_digest": "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9",
-    "image_id_local": "sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9",
     "kernel_version": "5.25.1",
     "edition": "enterprise",
     "dozerdb": "co (Enhanced By DozerDB Plugin, thay trong log khoi dong)",
-    "note_image": "Dung digest, KHONG dung tag 'latest' - tag co the tro sang ban khac theo thoi gian."
+    "note_image": "BAT BUOC dung image digest da ghim, KHONG dung tag 'latest'."
   },
   "embedding": {
     "model": "dg/text-embedding-3-large",
@@ -84,7 +104,7 @@
     "similarity_function": "COSINE",
     "model_revision": "UNKNOWN",
     "note_revision": "Gateway khong tra ve revision. Ghi UNKNOWN thay vi doan.",
-    "note_constraint": "Moi truong restore BAT BUOC dung model tra vector 3072 chieu. Doi model khac so chieu thi 36 vector index hong va truy van sai AM THAM, khong bao loi."
+    "note_constraint": "Moi truong restore va truy van BAT BUOC dung DUNG model da dung de build (dg/text-embedding-3-large, 3072 chieu). Tuong thich embedding doi hoi DUNG MODEL, khong chi don thuan la cung so chieu vector. Doi sang model khac (du cung 3072 chieu) se lam lech hoan toan khong gian bieu dien ngu nghia, khien 36 vector index truy van sai am tham ma khong bao loi."
   },
   "vector_indexes": {
     "count": 36,
@@ -95,226 +115,347 @@
       "index_provider": "vector-2.0",
       "hnsw_m": 16,
       "hnsw_ef_construction": 100,
-      "quantization_enabled": true
+      "quantization_enabled": true,
+      "measurement_note": "Cau hinh chuan mau cua index vector. Options tung index duoc ghi nhan trong danh sach chi tiet hoac danh dau UNKNOWN neu chua do duoc tung ban ghi."
     },
     "indexes": [
       {
         "name": "_entity_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Entity",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_entity_name_vector_index",
         "state": "ONLINE",
         "node_label": "Entity",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_article_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Article",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_article_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Article",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_atomic_query_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.AtomicQuery",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_atomic_query_title_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.AtomicQuery",
-        "property": "_title_vector"
+        "property": "_title_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_authority_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Authority",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_authority_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Authority",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_chunk_content_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Chunk",
-        "property": "_content_vector"
+        "property": "_content_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_chunk_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Chunk",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_knowledge_unit_content_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.KnowledgeUnit",
-        "property": "_content_vector"
+        "property": "_content_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_knowledge_unit_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.KnowledgeUnit",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_knowledge_unit_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.KnowledgeUnit",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_knowledge_unit_structed_content_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.KnowledgeUnit",
-        "property": "_structed_content_vector"
+        "property": "_structed_content_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_legal_document_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.LegalDocument",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_legal_document_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.LegalDocument",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_legal_term_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.LegalTerm",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_legal_term_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.LegalTerm",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_obligation_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Obligation",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_obligation_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Obligation",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_others_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Others",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_others_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Others",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_outline_content_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Outline",
-        "property": "_content_vector"
+        "property": "_content_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_outline_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Outline",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_prohibited_act_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.ProhibitedAct",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_prohibited_act_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.ProhibitedAct",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_regulated_entity_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.RegulatedEntity",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_regulated_entity_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.RegulatedEntity",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_sanction_desc_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Sanction",
-        "property": "_desc_vector"
+        "property": "_desc_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_sanction_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Sanction",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_summary_content_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Summary",
-        "property": "_content_vector"
+        "property": "_content_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_summary_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Summary",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_table_after_text_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Table",
-        "property": "_after_text_vector"
+        "property": "_after_text_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_table_before_text_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Table",
-        "property": "_before_text_vector"
+        "property": "_before_text_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_table_content_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Table",
-        "property": "_content_vector"
+        "property": "_content_vector",
+        "options": "UNKNOWN"
       },
       {
         "name": "_legal_table_name_vector_index",
         "state": "ONLINE",
         "node_label": "Legal.Table",
-        "property": "_name_vector"
+        "property": "_name_vector",
+        "options": "UNKNOWN"
       }
     ]
+  },
+  "hashes": {
+    "schema": {
+      "kag/schema/Legal.schema": "ca019ce287c153a9aa37c9476469eec8f3dbdb4b174b6e787193838ee285af6e"
+    },
+    "configs": {
+      "kag/kag_config.example.yaml": "ffb1b091d7b82502ffd635c467df469c0c7a4bb27acdf3ed2b396953ebb1e6a7",
+      "docker/docker-compose-west.yml": "21cfe3381b278309d11aaa8aebb26c4c3b1ac6e7a15b680657dc8bd698019868",
+      "data/graph/nodes.json": "375693412f2ff3b876f3c8ea63ec3ee9ddb45f16c68aa04799395806df419f6d"
+    },
+    "corpus": {
+      "root": "data/processed",
+      "file_count": 23,
+      "composite_sha256": "a5e43e0774b11023911de8d9a2d2577eee2aa5639c242e09d354762e02bd6f5f",
+      "files": {
+        "data/processed/vn_ai/05-2026-TT-BKHCN_khung-dao-duc-tri-tue-nhan-tao-quoc-gia.md": "66b6bb7d042b5ae0b7bf06e6f1a29a8d55b30db2a94ca4c22c1be6c90a04fc7f",
+        "data/processed/vn_ai/127-QD-TTg_chien-luoc-quoc-gia-tri-tue-nhan-tao-den-2030.md": "8cd2ee875e5e9008f596604e2dd44203e2b353aac0dc09fc812edd9688b55ed1",
+        "data/processed/vn_ai/134-2025-QH15_luat-tri-tue-nhan-tao.md": "06c2c5ef32d8eb60932f9f40b8da1b3dac1f416121c301ab42e6656f0bbfd6d9",
+        "data/processed/vn_ai/142-2026-ND-CP_quy-dinh-chi-tiet-luat-tri-tue-nhan-tao.md": "af9b01486c844aec2718129846d6b31978c78f9f12338a2b3dacd03273ee2403",
+        "data/processed/vn_ai/1528-QD-TTg_chuong-trinh-quoc-gia-phat-trien-nhan-luc-ai.md": "a45a6d441ab7cb33902f2e440d28149cc13855c05f67225e1f80d16853994511",
+        "data/processed/vn_ai/1671-QD-TTg_chien-luoc-quoc-gia-tri-tue-nhan-tao-2030-tam-nhin-2045.md": "a9ccb9979ac20654e43cce491e6a33fd6369376d41fcca9cd87b611e66c0aaba",
+        "data/processed/vn_ai/367-QD-TTg_ke-hoach-trien-khai-thi-hanh-luat-tri-tue-nhan-tao.md": "c8893bec72aca18302d3dceaba50dcd71e2fb267cb548bdd1e87b60c260fb0dd",
+        "data/processed/vn_ai/71-2025-QH15_luat-cong-nghiep-cong-nghe-so.md": "0598c3a070ce5d2353b5daabeb6bdddfb5bb0c6c0b5015f21c9aa27bacd4b81a",
+        "data/processed/vn_an_ninh_mang/116-2025-QH15_luat-an-ninh-mang-2025.md": "8e2f662d1a49cc6a3ac1c63c42ced6e21aa7c4eba83f28a5f7d3dd4e9193a83e",
+        "data/processed/vn_an_ninh_mang/13-2023-ND-CP_bao-ve-du-lieu-ca-nhan.md": "b77b247053bf5562369015f739de44a37e37c7d82b75458e0b23e56ede0bef5d",
+        "data/processed/vn_an_ninh_mang/24-2018-QH14_luat-an-ninh-mang.md": "aaafbfe48a48656e53a28abb7acefb209e4f446890091dd89c4cbd823510102b",
+        "data/processed/vn_an_ninh_mang/328-2026-ND-CP_phong-chong-tin-gia-tin-sai-su-that.md": "48775fa11a05cbefaa898f35f1d64d5c43a50e06fbe24353944db953459aad27",
+        "data/processed/vn_an_ninh_mang/329-2026-ND-CP_luc-luong-bao-ve-an-ninh-mang.md": "656598909d8abe0ba887b4aa895978a19c4aca416b510028f44e25f530812dd2",
+        "data/processed/vn_an_ninh_mang/330-2026-ND-CP_xu-phat-vi-pham-hanh-chinh-linh-vuc-an-ninh-mang.md": "dd59e1c6a95d65dc5241cabe1fd2e2e2b1c83adb91f417abd0daa3eb7f8f3b93",
+        "data/processed/vn_an_ninh_mang/331-2026-ND-CP_bao-ve-an-ninh-mang-doi-voi-he-thong-thong-tin.md": "3623165539bf1efacbc026e1cb7bc297edfdd51a37f34629da38b9900f185d73",
+        "data/processed/vn_an_ninh_mang/332-2026-ND-CP_kinh-doanh-san-pham-dich-vu-an-ninh-mang.md": "0c11db363382d94174f58670b065aafd0d428afd8fc34d956785e8de56118135",
+        "data/processed/vn_an_ninh_mang/333-2026-ND-CP_quy-dinh-chi-tiet-bien-phap-thi-hanh-luat-an-ninh-mang.md": "86c77e0c4fb9fa6efcd040377be988aa8fdf59e776f504731b5ad08f9cb42f4d",
+        "data/processed/vn_an_ninh_mang/341-2026-ND-CP_mat-ma-dan-su.md": "785e11d52094e8dbf756387364e24cdd82fa700db3a86dc20c8cccafe7668a2b",
+        "data/processed/vn_an_ninh_mang/35-2018-QH14_sua-doi-37-luat-lien-quan-quy-hoach.md": "93c518b21c54924f56c436ad499346cef1227eeb0cc375c4ba4f6c9e7641ee2c",
+        "data/processed/vn_an_ninh_mang/356-2025-ND-CP_quy-dinh-chi-tiet-luat-bao-ve-du-lieu-ca-nhan.md": "13d9216507c0c61502902a73ef14997bc9c1d4a9e91ce9adf8e50f31afacd376",
+        "data/processed/vn_an_ninh_mang/53-2022-ND-CP_quy-dinh-chi-tiet-luat-an-ninh-mang.md": "989ea0f2d6f1744e0f573d54a7c09ee22f338d204c52c1c47cb8764025fc7543",
+        "data/processed/vn_an_ninh_mang/86-2015-QH13_luat-an-toan-thong-tin-mang.md": "f199fe4e36afc198842c195cd7d3dee62b83c6e7a284036e3e0de685ad8d1c8c",
+        "data/processed/vn_an_ninh_mang/91-2025-QH15_luat-bao-ve-du-lieu-ca-nhan.md": "ae7e675f791b9342a1960ee70b77029b490d59b7dea43601a0e5b67e20fba0df"
+      }
+    },
+    "metadata": {
+      "root": "data/metadata",
+      "file_count": 37,
+      "composite_sha256": "fc99ef0296f62a17432cb143dea2c1ddf608a03f4d43457be1ecd6b70163e9a6",
+      "files": {
+        "data/metadata/05-2026-TT-BKHCN.json": "339caa02572234d9dc25dfe34f3121b5631e3e0930ed25ce967ae2caabb4b639",
+        "data/metadata/116-2025-QH15.json": "479ef5385a611a8b04feb2303b1982560241a754962211414cd3ffbc31046003",
+        "data/metadata/127-QD-TTg.json": "748fa119208ff370b2d5b6bf00e92b020c8fe3d7caa28e372e8dbf987ec26f2b",
+        "data/metadata/13-2023-ND-CP.json": "bb39d272f4798781a345630d8936045a2d1f8407aa673a982aecdbf1c92f39ea",
+        "data/metadata/134-2025-QH15.json": "14558bd45407568dc466af08230edef0829e35e92f53fd4de3132e388bcaf141",
+        "data/metadata/142-2026-ND-CP.json": "f50794665860d8a4bbb6b5cb5000aebcdbf110d8853d8b4732457e84893d02cb",
+        "data/metadata/1528-QD-TTg.json": "0c1b042c227e2301ded4f581387e9c347fac1efd9742eb174bed97821619aae4",
+        "data/metadata/1671-QD-TTg.json": "00b576865f201f66719a8ddcf440840b1d93cec6875ef6a2cb2048ffc99c4104",
+        "data/metadata/24-2018-QH14.json": "f7432d2a83afe42919a75aeadce6a3c4c96af13cb8418090a3bd26a31db63c5b",
+        "data/metadata/328-2026-ND-CP.json": "abb4f65017dfbc7f0f4713d62443a49d517accbdb164b55ab248c5800b01be61",
+        "data/metadata/329-2026-ND-CP.json": "76cb1c504d3a6287d50765089e8f6908ccb25f958659026fb382e98ba88fcfdd",
+        "data/metadata/330-2026-ND-CP.json": "3cdf7d5daa64b20fa059f8b9df3235e39ccd0cc050403880ac6cd526fc90fed1",
+        "data/metadata/331-2026-ND-CP.json": "ffa3d23c9a02cfa3e90862787e9704c76ed04f6a57727846c2ee134812a6531c",
+        "data/metadata/332-2026-ND-CP.json": "58962b0c9207d46684d61ab5383d8c8e3c6b43b0273f57a58e376487df6ea352",
+        "data/metadata/333-2026-ND-CP.json": "d09c0245382974be7eb763a338c3f7b4aa71c100244f7752e87c9caa1b139ec2",
+        "data/metadata/341-2026-ND-CP.json": "c42bf746c24f1ddd2313cfd46ec2cfc6a441bcb6e00ea1e999c84dd1c13f57b6",
+        "data/metadata/35-2018-QH14.json": "700a3a0938ec5e5f8cd36ce4f1323dede0dbfdc7644870c4d2b2e78841be24dc",
+        "data/metadata/356-2025-ND-CP.json": "2212dd3376f8aaa89051f3fcc270536e0d7d72aacc41f807e3829c4e61c56bea",
+        "data/metadata/367-QD-TTg.json": "0724338ebe028891f20877481d75d3b3c378b2a5eb9985dcfdd81197488ee123",
+        "data/metadata/53-2022-ND-CP.json": "e258b0c9897904f6dd579fde2419c0beb690f0c63d31ceefdc83dc80f85a2a67",
+        "data/metadata/71-2025-QH15.json": "2c425c6bad94fd48305aeb675c88e9275143e908b1a6354110ea1e59fc898ab6",
+        "data/metadata/86-2015-QH13.json": "d3f0a6e07bec6dcde1811ac80bd472f4eedafebdeda75372280c7785d254d50c",
+        "data/metadata/91-2025-QH15.json": "bc27ad7090aa8c5fbbfc314d75c182fe558bfacc38dbbf4ae03c1eb2d95eceaf",
+        "data/metadata/_index.json": "ae75d2b51c744f5d8e2c86f3717b6794840a2dbbb6314d5f466a840b73ada762",
+        "data/metadata/_template.json": "aa07d73223a6b7b012209bf24f82196b0af3d6e259d4aed2a804daf1e1486613",
+        "data/metadata/bo-cong-an-csdl-van-ban.json": "eea26052f942850635f2c1cd229e7c503dccba1a1c0e9f27362b7c59f0548817",
+        "data/metadata/mst-gov-vn.json": "9da655191a39903215c93a876570684a2afe0a26c3bf2eab0d26218433ae9ca2",
+        "data/metadata/_source_api/116-2025-QH15.api.json": "fe967bd25898d8f069b4e9ee1b247fa4588f70aadffaa3f833f89a240d244023",
+        "data/metadata/_source_api/13-2023-ND-CP.api.json": "b2a761d6488f6d56a3c1dae77846b8303c87f11eb37983a03522c50c9f782d1d",
+        "data/metadata/_source_api/134-2025-QH15.api.json": "cda02e699c4835741fa86f2bd7da1e515919c38eb002dd314ccdc1f07381403f",
+        "data/metadata/_source_api/24-2018-QH14.api.json": "964cadc4d696071bea9a6bf968be2c9cbce1cbb81fd18a256900448b2cfba20b",
+        "data/metadata/_source_api/35-2018-QH14.api.json": "7262c46f395c6251efb4678fcbc5caae3a84480ba5aa514f1c0a9866e2b45590",
+        "data/metadata/_source_api/356-2025-ND-CP.api.json": "eeb530baf6ec7334280314651e9794451c851be8ecb603dd8f721b2ce058c1be",
+        "data/metadata/_source_api/53-2022-ND-CP.api.json": "1dc3ecd707c3ab32ddb5086aff77267b5159a7eb63263b586f5efe8bd0b60fa4",
+        "data/metadata/_source_api/71-2025-QH15.api.json": "f20a689cc6a0808762a62bc36e87c3364ada1a4c0b2f140b5b81f016b8512c50",
+        "data/metadata/_source_api/86-2015-QH13.api.json": "e688ecfc8cda21ef8965e4ab31a94999a5547e80d1233eb313771bfc115abc33",
+        "data/metadata/_source_api/91-2025-QH15.api.json": "d6a8d5ae8c427b7c9c476e38cdca9c1fdcacfd0a8bc1db250e4e2f58464ca8f7"
+      }
+    }
   },
   "kag": {
     "package": "openspg-kag",
@@ -333,21 +474,21 @@
       "vn_ai": 8,
       "vn_an_ninh_mang": 15
     },
-    "note": "23 van ban luat Viet Nam dang .md da lam sach. Toan bo phan quoc te da bo khoi repo."
+    "composite_sha256": "a5e43e0774b11023911de8d9a2d2577eee2aa5639c242e09d354762e02bd6f5f",
+    "note": "23 van ban luat Viet Nam dang .md da lam sach."
   },
   "restore": {
     "required_steps": [
       "docker start release-openspg-neo4j",
       "docker exec release-openspg-neo4j cypher-shell -u neo4j -p '<pw>' \"CREATE DATABASE legal\"",
       "docker stop release-openspg-neo4j",
-      "docker run --rm -v <VOLUME_THAT>:/data -v <THU_MUC_DUMP>:/dump <IMAGE> neo4j-admin database load legal --from-path=/dump --overwrite-destination=true",
+      "docker run --rm -v <VOLUME_THAT>:/data -v <THU_MUC_DUMP>:/dump:ro spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9 neo4j-admin database load legal --from-path=/dump --overwrite-destination=true",
       "docker start release-openspg-neo4j"
     ],
     "critical_notes": [
-      "CREATE DATABASE legal la BAT BUOC. neo4j-admin load bao 'Done ... 100.0%' nhung KHONG tu tao database. Bo buoc nay thi SHOW DATABASES khong co 'legal' va moi truy van bao 'Unable to get a routing table for database legal because this database does not exist'.",
-      "Ten volume KHONG doan duoc. Phai chay: docker inspect release-openspg-neo4j --format '{{json .Mounts}}' roi tim phan tu co Destination /data. May dung truoc khi compose khai volume thi do thi nam o volume AN DANH ten hex.",
-      "Nap sai volume KHONG bao loi - Neo4j van chay, chi la database rong.",
-      "Moi truy van phai co -d legal. Database mac dinh 'neo4j' luon rong; quen -d legal se thay 0 va tuong nap hong."
+      "CREATE DATABASE legal la BAT BUOC. neo4j-admin load bao 'Done ... 100.0%' nhung KHONG tu tao database. Bo buoc nay thi SHOW DATABASES khong co 'legal' va moi truy van bao loi khong tim thay database.",
+      "Ten volume KHONG doan duoc. Phai chay: docker inspect release-openspg-neo4j --format '{{json .Mounts}}' roi tim phan tu co Destination /data.",
+      "Moi truy van phai co -d legal. Database mac dinh 'neo4j' luon rong."
     ]
   },
   "expected_after_restore": {
@@ -361,14 +502,17 @@
   },
   "dependencies": {
     "neo4j_dump_alone_is_sufficient_for_graph": true,
-    "verified_on_clean_env": true,
-    "how_verified": "Dung stack moi hoan toan (MySQL trang + MinIO trang + Neo4j moi) roi nap dump va chay truy van that. Xem kag/solver/thu_moi_truong_sach.py va dist/CLEAN_ENV_TEST.txt.",
+    "clean_environment_verification": {
+      "neo4j_graph_restoration": "VERIFIED",
+      "full_openspg_kag_restoration": "NOT YET VERIFIED",
+      "how_verified": "Da chung minh phuc hoi Neo4j graph tren MySQL/MinIO trang theo dist/CLEAN_ENV_TEST.txt. Phuc hoi toan dien OpenSPG/KAG (knext project restore + knext schema commit + KAG retrieval) duoc danh dau ro rang la NOT YET VERIFIED cho den khi thuc hien thanh cong chu trinh tich hop day du."
+    },
     "mysql": {
       "needs_old_data": false,
       "holds": "metadata du an (kg_project_info) + schema ontology (kg_ontology_entity, 26 ban ghi). KHONG chua do thi.",
       "rebuild_by": "knext project restore + knext schema commit",
       "contains_api_key": false,
-      "note": "Da kiem: cot params trong kg_model_detail la NULL. Do NOT gui MySQL dump di - khong can thiet va tranh rui ro lo thong tin dich vu."
+      "note": "Cot params trong kg_model_detail la NULL. Khong gui MySQL dump di de tranh rui ro lo thong tin dich vu."
     },
     "minio": {
       "needs_old_data": false,
@@ -382,10 +526,10 @@
       "4. CREATE DATABASE legal, roi nap legal.dump (xem docker/RESTORE-GRAPH.md)",
       "5. Dien API key rieng vao kag/kag_config.yaml",
       "BO QUA metadata_to_graph.py, injection.py, indexer.py"
-    ],
-    "why_steps_2_3_cannot_be_skipped": "Dump khong chua database 'system' cua Neo4j, cung khong chua metadata du an trong MySQL. Phai dung lai tu repo."
+    ]
   },
   "unverified": {
+    "full_openspg_kag_restoration": "NOT YET VERIFIED - knext project restore, schema commit va KAG retrieval chua chay tren stack sach moi hoan toan",
     "provenance_ratio": "UNVERIFIED - da do duoc ty le chunk -> van ban (1121/1121 = 100%) nhung CHUA do ty le day du fact -> chunk -> doc_id -> Dieu/Khoan/Diem",
     "build_completeness": "UNVERIFIED - chua do ty le chunk loi/bo qua, chua co danh sach van ban stub thieu full text",
     "note": "Nhung muc nay khong anh huong viec restore dump. Xem dist/PROVENANCE_REPORT.txt muc 4."

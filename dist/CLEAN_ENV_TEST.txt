@@ -56,9 +56,13 @@ Tat ca dat ten tien to 'kag-clean-', KHONG dung vao stack that.
  5. KET LUAN
 ========================================================================
 
-   Dump Neo4j mot minh: DU de co do thi.
-   MySQL trang: dung duoc - chi can 'knext project restore' + 'knext schema commit'.
-   MinIO trang: dung duoc - do thi khong dung MinIO.
+   Dump Neo4j mot minh: DU de phuc hoi du lieu do thi Neo4j.
+   MySQL trang + MinIO trang: chung minh duoc phuc hoi Neo4j graph tren volume moi.
+   TINH TRANG KIEM CHUNG:
+     - Neo4j graph restoration: DA KIEM CHUNG (khop 7624 node, 26029 canh, 36 index).
+     - Full OpenSPG/KAG restoration (knext project restore, knext schema commit,
+       va KAG retrieval): NOT YET VERIFIED tren stack moi, can chay chu trinh
+       tich hop day du de xac nhan.
 
    => Trinh tu day du cho may moi:
       1. docker compose up -d          (tao 4 container)
