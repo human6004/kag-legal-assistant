@@ -251,8 +251,28 @@ Bốn file ra, trong thư mục `runs/`:
 | `legal_metrics_<timestamp>.json` | Cùng nội dung `benchmark.txt` nhưng ở dạng JSON |
 | `legal_ckpt/` | Sổ nhớ, khoá là nguyên văn câu hỏi. Hỏi lại y hệt thì trả bài cũ, không gọi mô hình. Muốn hỏi lại thật thì xoá thư mục này |
 
-`main()` đang để `thread_num=8`. `upper_limit=5` nên chỉ chạy 5 câu đầu — đổi thành
-`upper_limit=166` khi muốn chạy hết.
+`main()` đang để `thread_num=8` và `upper_limit=5`, nên mặc định chỉ chạy 5 câu đầu.
+Đổi `upper_limit` thành `166` khi muốn chạy hết — **166 câu mất khoảng 45 phút**, số
+đo thật ở mục 12.
+
+Khi chạy, PowerShell sẽ báo `[exit code: 1]` ở cuối. **Đây là bình thường, không phải
+lỗi**: KAG in log INFO ra `stderr` và PowerShell hiểu nhầm thành lỗi. Kiểm kết quả bằng
+`processNum` trong `benchmark.txt`, đừng nhìn exit code.
+
+Muốn có log để xem lại thì dùng `Tee-Object` (chạy trần thì không có file log nào):
+
+```powershell
+..\..\.venv\Scripts\python.exe -u eval.py 2>&1 | Tee-Object -FilePath ..\..\runs.log
+```
+
+**Nếu hai câu bị loại khỏi kết quả** (`processNum` ra 164 thay vì 166) thì đó là
+timeout của `kg_fr_retriever`, không phải bug — câu hỏi về hiệu lực văn bản có thể
+mất hơn 150 giây cho PageRank. Cứ chạy lại, hai câu đó không nằm trong cache nên sẽ
+được thử lại. Chi tiết ở mục 12.
+
+**Lưu ý về cache:** `legal_ckpt` chỉ chặn được lời gọi sinh chữ, **không** chặn
+embedding. Chạy lại khi cache đã đầy vẫn tốn tiền, chỉ ít hơn. Xem mục 12.
+
 
 `answers` là **danh sách các mốc phải xuất hiện trong câu trả lời** (số tiền, số
 điều). `do_metrics_eval` so khớp bằng substring rồi trả `hit_rate` cùng `hit_all`.
@@ -291,6 +311,12 @@ thấp giả tạo. Script tự bỏ mốc quá ngắn (tên mục lục như `�
 bao nhiêu thật sự chứa đáp án. Đây là chỗ làm sống lại `hit3`/`hit5`/`hitall` trong
 `benchmark.txt`: ba chỉ số đó luôn bằng 0 vì lớp cha `do_recall_eval` trả
 `{"recall": None}`, chứ không phải vì hệ thống hỏng.
+
+Nó còn in hai danh sách đáng đọc: **12 câu khó nhất** (chunk vàng hoàn toàn không
+được lấy về) và **12 câu dẫn sai nhiều nhất**. Mỗi dòng có nhãn nhóm câu hỏi
+(`A-che-tai`, `F-thuat-ngu`, `B-dieu-van-ban`, `GOC`) — nhìn nhãn sẽ thấy hệ thống
+hỏng **có hệ thống theo nhóm**, yếu ở câu hỏi định nghĩa và chế tài. Chi tiết ở mục 12.
+
 
 **9. Bẫy trùng tên gói `prompt` (đã sửa).** `import_modules_from_path` trong
 `vendor/KAG/kag/common/registry/utils.py:44` lấy **tên thư mục cuối** làm tên module.
@@ -365,9 +391,87 @@ hậu tố `_tat` khỏi chuỗi đăng ký.
 Lưu ý `legal_std` và `legal_triple` **vẫn đang bật** — chúng chạy lúc build nên
 không ảnh hưởng gì tới eval (đường eval có `with_semantic=False`, xem mục 10).
 
-Nhắc lại cho người đọc sau: **5 câu là mẫu quá nhỏ**. Chênh lệch `hit@1` 0,6 so với
-0,2 chỉ là **2 câu trên 5**. Kết luận trên đủ để chọn mặc định, **không** đủ để nói
-bản Việt kém thật. Muốn chắc phải chạy 40-50 câu (~430 request, ~1 giờ).
+⚠️ **Ba kết luận trên đo trên 5 câu, và mục 12 cho thấy chúng không đứng vững ở
+mẫu lớn.** Đọc mục 12 trước khi trích dẫn bất cứ con số nào ở mục này. Riêng quyết
+định tắt prompt tiếng Việt thì vẫn giữ, nhưng lý do không còn là "bản Anh thắng" —
+xem mục 12.
+
+**12. Chạy trọn 166 câu (số liệu thật, dùng cho báo cáo).** Mục 11 đo trên 5 câu vì
+`eval.py` để `upper_limit=5`. Đổi thành `166` rồi chạy hết, mất **45 phút**, và kết
+quả khác hẳn:
+
+| Chỉ số | 5 câu (mục 11) | **166 câu** |
+| --- | --- | --- |
+| `hit@1` (hẹp) | 0.600 | **0.295** |
+| `hit@3` | 0.800 | **0.530** |
+| `hit@5` | 1.000 | **0.620** |
+| `hit@10` | 1.000 | **0.735** |
+| `hit@20` | 1.000 | **0.861** |
+| `MRR` (hẹp) | 0.711 | **0.448** |
+| `nDCG@10` (đầy đủ) | 0.514 | **0.426** |
+| `recall` (đầy đủ) | 0.499 | **0.693** |
+| `citation precision` (hẹp) | 0.395 | **0.520** |
+| `hit_rate` | 1.000 | **0.781** |
+| `hit_all` | 1.000 | **0.578** |
+
+Ba điều phải sửa lại so với mục 11:
+
+1. **`hit@20` KHÔNG phải 1.000.** Ở mẫu lớn là **0.861**, tức **13,9% số câu mất
+   chunk vàng hoàn toàn** — không phải "chỉ bị xếp thấp hơn" như mục 11 viết. Kết
+   luận đó sai vì 5 câu quá ít để lộ ra ca trượt hẳn.
+2. **`hit_all` rơi từ 1.0 xuống 0.578.** 5 câu đầu tình cờ dễ. Mọi con số ở mục 11
+   đều lạc quan hơn thực tế.
+3. **`citation precision` lại TĂNG** (0.395 → 0.520). Xu hướng ngược với `hit@k`:
+   hệ thống dẫn nguồn chính xác hơn nhưng xếp hạng kém hơn.
+
+**Quyết định tắt prompt NER tiếng Việt (mục 11) vẫn giữ, nhưng đổi lý do.** Lý do cũ
+là "bản Anh thắng ở cả ba chỉ số" — đo trên 5 câu, không đủ tin. Lý do đúng để giữ
+nguyên trạng: **166 câu đã chạy xong bằng bản tiếng Anh, và đó là bộ số liệu dùng cho
+báo cáo.** Đổi prompt bây giờ thì phải chạy lại 166 câu (45 phút, tốn tiền) mới so
+sánh được, mà lợi ích chưa chứng minh. Muốn đổi thì chạy lại trọn bộ rồi so.
+
+**Phân loại câu hỏi — chỗ này mới là phát hiện đáng dùng.** `recall_report.py` in ra
+câu hỏi có nhãn nhóm, và mô hình **hỏng có hệ thống theo nhóm**, không ngẫu nhiên:
+
+| Nhóm | Nghĩa | Tình trạng |
+| --- | --- | --- |
+| `F-thuat-ngu` | Hỏi định nghĩa thuật ngữ | **Hỏng nặng nhất** — có câu `gold 1 | lấy 30 | dẫn 0 đúng` |
+| `A-che-tai` | Hỏi chế tài, mức phạt | **Hỏng nặng** — `gold 3 | lấy 31 | dẫn 0 đúng` |
+| `B-dieu-van-ban` | Hỏi kết cấu điều văn bản | Trung bình |
+| `GOC` | 4 câu gốc | Câu AI rủi ro cao: `gold 25`, dẫn 6 nguồn chỉ 3 đúng |
+
+Đọc được thành một câu cho báo cáo: **hệ thống yếu ở câu hỏi định nghĩa và chế tài,
+mạnh ở câu hỏi tra điều khoản cụ thể.** Đây là hạn chế có thể đo và giải thích, hơn
+là một con số tổng.
+
+**Hai câu bị hỏng lần chạy đầu (164/166) — nguyên nhân là timeout, không phải bug.**
+Câu [10] (hiệu lực Luật ANM 2018) và [11] (thời hạn gỡ bỏ thông tin) bị loại khỏi kết
+quả. Log lần chạy lại cho thấy:
+
+```
+Retriever kg_fr_retriever executed in 158.28 seconds
+```
+
+Câu hỏi về **hiệu lực văn bản** kéo PageRank trên node `LegalDocument`, nơi tập trung
+nhiều cạnh nhất, nên vượt giới hạn thời gian. Chạy lại thì qua và trả lời đúng hoàn
+toàn. **Không cần sửa gì**, nhưng đây là hành vi không tất định — chạy lại 166 câu vẫn
+có thể hỏng lại đúng hai câu đó.
+
+**Về chi phí — cache KHÔNG miễn phí hoàn toàn.** Điều này dễ hiểu nhầm:
+
+- `legal_ckpt` chỉ cache **câu trả lời cuối** (khoá là nguyên văn câu hỏi), tức chỉ
+  chặn được lời gọi `chat/completions`.
+- Phần **embedding không có cache**, chạy đủ mỗi lần. Log cho thấy tỉ lệ thật khoảng
+  **10 lần `/v1/embeddings` : 1 lần `/v1/chat/completions`** — có câu hỏi gọi hơn 40
+  lần embedding trong 52 giây.
+- Nên chạy lại khi cache đã đầy vẫn **tốn tiền**, chỉ là tốn ít hơn. Muốn biết tốn bao
+  nhiêu thì nhìn bảng "Lịch sử sử dụng LLM" của gateway: dòng `Embeddings` là phần
+  không tránh được.
+
+Chạy lại để lấy đủ 166 câu (sau khi 164 câu đã có cache) chỉ mất **3 phút 48 giây** vì
+164 câu kia không chạy lại PageRank — chênh lệch 45 phút so với 3,8 phút là toàn bộ
+chi phí truy hồi, không phải chi phí sinh chữ.
+
 
 
 ## Ghi chú

@@ -1,0 +1,367 @@
+{
+  "_doc": "Manifest ban giao do thi KAG. Moi so lieu do truc tiep tu moi truong dang chay bang tao_manifest.py, khong go tay.",
+  "snapshot": {
+    "created_at_utc": "2026-09-16T12:28:38.029561+00:00",
+    "database": "legal",
+    "node_count": 7624,
+    "relationship_count": 26029,
+    "labels": [
+      {
+        "label": "Legal.Article",
+        "count": 1055
+      },
+      {
+        "label": "Legal.Authority",
+        "count": 343
+      },
+      {
+        "label": "Legal.Chunk",
+        "count": 1121
+      },
+      {
+        "label": "Legal.LegalDocument",
+        "count": 246
+      },
+      {
+        "label": "Legal.LegalTerm",
+        "count": 654
+      },
+      {
+        "label": "Legal.Obligation",
+        "count": 2263
+      },
+      {
+        "label": "Legal.Others",
+        "count": 133
+      },
+      {
+        "label": "Legal.ProhibitedAct",
+        "count": 892
+      },
+      {
+        "label": "Legal.RegulatedEntity",
+        "count": 611
+      },
+      {
+        "label": "Legal.Sanction",
+        "count": 306
+      }
+    ],
+    "note_database": "Database 'legal' la database PHU. Database mac dinh 'neo4j' LUON RONG. Moi truy van phai co -d legal.",
+    "wrong_numbers_warning": "Tai lieu cu tung ghi 12625 node / 42452 canh. DO LA SO SAI, chua bao gio dung voi do thi nay. Dung lay so do lam tieu chi integrity check."
+  },
+  "dump": {
+    "file": "legal.dump",
+    "sha256": "bb43903bad89f2902f23406918dbf1e97331a302ccd8af17086c8e74fa87e9e1",
+    "size_bytes": 997653620,
+    "size_gib": 0.929,
+    "verified_by_restore": true,
+    "note": "Da restore thu vao volume TRANG va kiem chung khop node/edge/index. Xem docker/kiem-chung-do-thi.ps1."
+  },
+  "git": {
+    "commit_build_graph": "cb25997",
+    "commit_build_graph_full": "cb25997630395591043bfeb75f47d233a7d1517e",
+    "commit_build_graph_subject": "fix: gop node trung lap bang canon_id, va metadata vao graph",
+    "commit_current": "2707798603e1173ddc251d5c479bf6017d3bf08f",
+    "commit_current_short": "2707798",
+    "branch": "master",
+    "note": "commit_build_graph la commit CUOI CUNG cham vao kag/builder va data/graph, tuc la trang thai ma indexer.py nhin thay khi dung do thi. Cac commit sau no chi sua kag/solver, README va docker/, KHONG anh huong do thi.",
+    "commits_after_build_touching_graph": []
+  },
+  "neo4j": {
+    "image_ref": "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j:latest",
+    "image_digest": "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9",
+    "image_id_local": "sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9",
+    "kernel_version": " [\"5.25.1",
+    "edition": " \"enterprise\"",
+    "dozerdb": "co (Enhanced By DozerDB Plugin, thay trong log khoi dong)",
+    "note_image": "Dung digest, KHONG dung tag 'latest' - tag co the tro sang ban khac theo thoi gian."
+  },
+  "embedding": {
+    "model": "dg/text-embedding-3-large",
+    "gateway": "https://api.vilao.ai/v1",
+    "dimensions": 3072,
+    "similarity_function": "COSINE",
+    "model_revision": "UNKNOWN",
+    "note_revision": "Gateway khong tra ve revision. Ghi UNKNOWN thay vi doan.",
+    "note_constraint": "Moi truong restore BAT BUOC dung model tra vector 3072 chieu. Doi model khac so chieu thi 36 vector index hong va truy van sai AM THAM, khong bao loi."
+  },
+  "vector_indexes": {
+    "count": 36,
+    "all_online": false,
+    "config": {
+      "dimensions": 3072,
+      "similarity_function": "COSINE",
+      "index_provider": "vector-2.0",
+      "hnsw_m": 16,
+      "hnsw_ef_construction": 100,
+      "quantization_enabled": true
+    },
+    "indexes": [
+      {
+        "name": "_entity_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Entity\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_entity_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Entity\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_article_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Article\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_article_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Article\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_atomic_query_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.AtomicQuery\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_atomic_query_title_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.AtomicQuery\"",
+        "property": " [\"_title_vector\""
+      },
+      {
+        "name": "_legal_authority_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Authority\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_authority_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Authority\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_chunk_content_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Chunk\"",
+        "property": " [\"_content_vector\""
+      },
+      {
+        "name": "_legal_chunk_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Chunk\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_knowledge_unit_content_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.KnowledgeUnit\"",
+        "property": " [\"_content_vector\""
+      },
+      {
+        "name": "_legal_knowledge_unit_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.KnowledgeUnit\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_knowledge_unit_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.KnowledgeUnit\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_knowledge_unit_structed_content_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.KnowledgeUnit\"",
+        "property": " [\"_structed_content_vector\""
+      },
+      {
+        "name": "_legal_legal_document_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.LegalDocument\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_legal_document_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.LegalDocument\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_legal_term_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.LegalTerm\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_legal_term_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.LegalTerm\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_obligation_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Obligation\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_obligation_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Obligation\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_others_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Others\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_others_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Others\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_outline_content_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Outline\"",
+        "property": " [\"_content_vector\""
+      },
+      {
+        "name": "_legal_outline_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Outline\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_prohibited_act_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.ProhibitedAct\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_prohibited_act_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.ProhibitedAct\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_regulated_entity_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.RegulatedEntity\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_regulated_entity_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.RegulatedEntity\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_sanction_desc_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Sanction\"",
+        "property": " [\"_desc_vector\""
+      },
+      {
+        "name": "_legal_sanction_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Sanction\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_summary_content_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Summary\"",
+        "property": " [\"_content_vector\""
+      },
+      {
+        "name": "_legal_summary_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Summary\"",
+        "property": " [\"_name_vector\""
+      },
+      {
+        "name": "_legal_table_after_text_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Table\"",
+        "property": " [\"_after_text_vector\""
+      },
+      {
+        "name": "_legal_table_before_text_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Table\"",
+        "property": " [\"_before_text_vector\""
+      },
+      {
+        "name": "_legal_table_content_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Table\"",
+        "property": " [\"_content_vector\""
+      },
+      {
+        "name": "_legal_table_name_vector_index",
+        "state": " \"ONLINE\"",
+        "node_label": " [\"Legal.Table\"",
+        "property": " [\"_name_vector\""
+      }
+    ]
+  },
+  "kag": {
+    "package": "openspg-kag",
+    "version": "0.8.0",
+    "vendored_at": "vendor/KAG",
+    "pinned_upstream_commit": "fdab15b3",
+    "namespace": "Legal",
+    "biz_scene": "legal",
+    "language_in_config": "en",
+    "note_language": "language: en nhung prompt chay la bo tieng Viet tu viet trong kag/builder/prompt va kag/solver/prompt, chon qua biz_scene: legal."
+  },
+  "corpus": {
+    "root": "data/processed",
+    "document_count": 23,
+    "by_directory": {
+      "vn_ai": 8,
+      "vn_an_ninh_mang": 15
+    },
+    "note": "23 van ban luat Viet Nam dang .md da lam sach. Toan bo phan quoc te da bo khoi repo."
+  },
+  "restore": {
+    "required_steps": [
+      "docker start release-openspg-neo4j",
+      "docker exec release-openspg-neo4j cypher-shell -u neo4j -p '<pw>' \"CREATE DATABASE legal\"",
+      "docker stop release-openspg-neo4j",
+      "docker run --rm -v <VOLUME_THAT>:/data -v <THU_MUC_DUMP>:/dump <IMAGE> neo4j-admin database load legal --from-path=/dump --overwrite-destination=true",
+      "docker start release-openspg-neo4j"
+    ],
+    "critical_notes": [
+      "CREATE DATABASE legal la BAT BUOC. neo4j-admin load bao 'Done ... 100.0%' nhung KHONG tu tao database. Bo buoc nay thi SHOW DATABASES khong co 'legal' va moi truy van bao 'Unable to get a routing table for database legal because this database does not exist'.",
+      "Ten volume KHONG doan duoc. Phai chay: docker inspect release-openspg-neo4j --format '{{json .Mounts}}' roi tim phan tu co Destination /data. May dung truoc khi compose khai volume thi do thi nam o volume AN DANH ten hex.",
+      "Nap sai volume KHONG bao loi - Neo4j van chay, chi la database rong.",
+      "Moi truy van phai co -d legal. Database mac dinh 'neo4j' luon rong; quen -d legal se thay 0 va tuong nap hong."
+    ]
+  },
+  "expected_after_restore": {
+    "node_count": 7624,
+    "relationship_count": 26029,
+    "vector_index_count": 36,
+    "vector_all_online": true,
+    "legal_chunk_count": 1121,
+    "legal_document_count": 246,
+    "note": "Doi chieu bang docker/kiem-chung-do-thi.ps1, phai ra 7/7 OK."
+  },
+  "unverified": {
+    "provenance_ratio": "UNVERIFIED - chua do ty le truy nguoc fact/relationship -> chunk -> doc_id",
+    "build_completeness": "UNVERIFIED - chua do ty le chunk loi/bo qua",
+    "mysql_minio_fresh_env": "xem muc 'dependencies' khi da chay xong"
+  }
+}
