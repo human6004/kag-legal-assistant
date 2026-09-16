@@ -16,15 +16,36 @@ máy đang chạy:
 | nhãn `Legal.*` | 10 |
 | `Legal.Chunk` | 1.121 |
 | dung lượng `/data` | 2,9 GB (riêng DB `legal`: 940 MB) |
-| `legal.dump` | 0,93 GB |
+| `legal.dump` | 0,93 GB — **997.653.620 bytes** |
+
+**SHA-256 của `legal.dump`:**
+
+```
+BB43903BAD89F2902F23406918DBF1E97331A302CCD8AF17086C8E74FA87E9E1
+```
+
+Tính lại sau khi tải về rồi mới nạp:
+
+```powershell
+Get-FileHash legal.dump -Algorithm SHA256
+```
 
 Dump đã được **nạp thử lại vào một volume trắng** để kiểm chứng, không phải chỉ
 tin vào dòng `Done` của `neo4j-admin`: ra đúng 7.624 node / 26.029 cạnh / 36
-vector index.
+vector index, và vector index thật sự trả kết quả (truy vấn
+`db.index.vector.queryNodes` cho score 0,9997). Bằng chứng đầy đủ ở
+`dist/RESTORE_EVIDENCE.txt`; tái lập bằng `docker/bang-chung-restore.ps1`.
 
-MySQL và MinIO **không** đóng gói. MySQL chỉ giữ metadata dự án, dựng lại bằng
-`knext project restore` mất một phút — và quan trọng hơn, bản dump MySQL sẽ
-chứa API key đã lưu trên server. Đừng gửi nó đi.
+Số liệu đầy đủ để đối chiếu: `HANDOFF_MANIFEST.json`.
+
+⚠️ Tài liệu cũ từng ghi **12.625 node / 42.452 cạnh**. Đó là **số sai**, chưa bao
+giờ đúng với đồ thị này. Dùng nó làm tiêu chí kiểm tra sẽ kết luận nhầm là restore
+hỏng.
+
+MySQL và MinIO **không** đóng gói. MySQL chỉ giữ metadata dự án và schema
+ontology, dựng lại bằng `knext project restore` + `knext schema commit`. Đã kiểm
+cột `params` trong `kg_model_detail` là `NULL`, tức **không có API key** — nhưng
+vẫn đừng gửi dump MySQL, nó không cần thiết.
 
 ## Bên gửi: tạo dump
 
@@ -55,6 +76,33 @@ và `knext schema commit`.
 
 Bỏ qua bước 5 và 6 (`metadata_to_graph.py`, `injection.py`, `indexer.py`).
 Đó chính là phần mà dump thay thế.
+
+### Trình tự đầy đủ — đã chạy thử trên stack mới hoàn toàn
+
+Phần này **đã được kiểm chứng bằng đo**, không phải suy luận: dựng MySQL trắng +
+MinIO trắng + Neo4j mới, nạp dump, chạy truy vấn thật. Kết quả đầy đủ ở
+`dist/CLEAN_ENV_TEST.txt`, script tái lập ở `kag/solver/thu_moi_truong_sach.py`.
+
+| Bước | Việc | Có bắt buộc không |
+| --- | --- | --- |
+| 1 | `docker compose up -d` | **Có** |
+| 2 | `knext project restore` | **Có** — dump không chứa metadata dự án |
+| 3 | `knext schema commit` | **Có** — dump không chứa schema ontology |
+| 4 | `CREATE DATABASE legal` + nạp dump | **Có** — xem mục dưới |
+| 5 | Điền API key vào `kag/kag_config.yaml` | **Có** — dump không chứa key |
+| — | `metadata_to_graph.py`, `injection.py`, `indexer.py` | **Bỏ qua** |
+
+**MySQL và MinIO đều không cần dữ liệu cũ.** Đã đo:
+
+- **MySQL trắng** dùng được. Nó chỉ giữ metadata dự án (`kg_project_info`) và
+  schema ontology (`kg_ontology_entity`, 26 bản ghi), dựng lại bằng bước 2-3.
+  34 bảng có sẵn trong image là **schema rỗng**, không phải dữ liệu.
+  Đã kiểm: cột `params` trong `kg_model_detail` là `NULL` — **không có API key**.
+- **MinIO trắng** dùng được. `/data` chỉ có `.minio.sys`, không một bucket người
+  dùng nào. Đồ thị không dùng MinIO.
+
+Hai bước 2-3 **không thể bỏ qua** kể cả khi đã có dump: dump không chứa database
+`system` của Neo4j, cũng không chứa metadata dự án trong MySQL.
 
 ### Nạp vào ĐÚNG volume đang được gắn
 

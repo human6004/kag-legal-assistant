@@ -311,11 +311,49 @@ def main():
             "note": "Doi chieu bang docker/kiem-chung-do-thi.ps1, phai ra 7/7 OK.",
         },
 
+        "dependencies": {
+            "neo4j_dump_alone_is_sufficient_for_graph": True,
+            "verified_on_clean_env": True,
+            "how_verified": "Dung stack moi hoan toan (MySQL trang + MinIO trang + "
+                            "Neo4j moi) roi nap dump va chay truy van that. "
+                            "Xem kag/solver/thu_moi_truong_sach.py va "
+                            "dist/CLEAN_ENV_TEST.txt.",
+            "mysql": {
+                "needs_old_data": False,
+                "holds": "metadata du an (kg_project_info) + schema ontology "
+                         "(kg_ontology_entity, 26 ban ghi). KHONG chua do thi.",
+                "rebuild_by": "knext project restore + knext schema commit",
+                "contains_api_key": False,
+                "note": "Da kiem: cot params trong kg_model_detail la NULL. "
+                        "Do NOT gui MySQL dump di - khong can thiet va tranh "
+                        "rui ro lo thong tin dich vu.",
+            },
+            "minio": {
+                "needs_old_data": False,
+                "holds": "RONG. Chi co .minio.sys, khong co bucket nguoi dung nao.",
+                "note": "Do thi khong dung MinIO.",
+            },
+            "required_order_on_new_machine": [
+                "1. docker compose -f docker/docker-compose-west.yml up -d",
+                "2. knext project restore --host_addr http://127.0.0.1:8887 --proj_path .",
+                "3. knext schema commit",
+                "4. CREATE DATABASE legal, roi nap legal.dump (xem docker/RESTORE-GRAPH.md)",
+                "5. Dien API key rieng vao kag/kag_config.yaml",
+                "BO QUA metadata_to_graph.py, injection.py, indexer.py",
+            ],
+            "why_steps_2_3_cannot_be_skipped": "Dump khong chua database 'system' "
+                "cua Neo4j, cung khong chua metadata du an trong MySQL. Phai "
+                "dung lai tu repo.",
+        },
+
         "unverified": {
-            "provenance_ratio": "UNVERIFIED - chua do ty le truy nguoc "
-                                "fact/relationship -> chunk -> doc_id",
-            "build_completeness": "UNVERIFIED - chua do ty le chunk loi/bo qua",
-            "mysql_minio_fresh_env": "xem muc 'dependencies' khi da chay xong",
+            "provenance_ratio": "UNVERIFIED - da do duoc ty le chunk -> van ban "
+                                "(1121/1121 = 100%) nhung CHUA do ty le day du "
+                                "fact -> chunk -> doc_id -> Dieu/Khoan/Diem",
+            "build_completeness": "UNVERIFIED - chua do ty le chunk loi/bo qua, "
+                                  "chua co danh sach van ban stub thieu full text",
+            "note": "Nhung muc nay khong anh huong viec restore dump. Xem "
+                    "dist/PROVENANCE_REPORT.txt muc 4.",
         },
     }
 

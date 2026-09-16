@@ -1,0 +1,78 @@
+
+========================================================================
+ THU MOI TRUONG SACH: dump Neo4j mot minh co du khong?
+========================================================================
+Stack dung de thu: MySQL TRANG + MinIO TRANG + Neo4j nap tu dump.
+Tat ca dat ten tien to 'kag-clean-', KHONG dung vao stack that.
+
+========================================================================
+ 1. Dung MySQL TRANG (khong co du lieu du an nao)
+========================================================================
+   khoi dong MySQL: rc=0
+   cho MySQL san sang...
+   MySQL san sang sau 3s
+   Database co san: information_schema mysql openspg performance_schema
+   Bang trong openspg: 34 (MySQL trang => 0)
+   => Ket luan: do thi KHONG nam trong MySQL. MySQL chi giu metadata
+      du an va schema ontology, dung lai duoc bang knext project restore.
+
+========================================================================
+ 2. Dung MinIO TRANG
+========================================================================
+   khoi dong MinIO: rc=0
+   noi dung /data: .minio.sys
+   => MinIO trang chi co .minio.sys. Do thi khong dung MinIO.
+
+========================================================================
+ 3. Nap dump vao Neo4j MOI
+========================================================================
+   khoi dong Neo4j: rc=0
+   cho Neo4j san sang...
+   Neo4j san sang sau 10s
+   CREATE DATABASE legal (buoc BAT BUOC):
+     
+   Done: 3739 files, 2.409GiB processed in 46.160 seconds.
+
+   Ket qua sau nap vao Neo4j MOI:
+     node         : 7624
+     canh         : 26029
+     vector index : 36
+
+========================================================================
+ 4. TRUY VAN THAT tren stack moi (khong can LLM, khong ton tien)
+========================================================================
+
+   [4a] Truy nguoc chunk -> van ban:
+     "\"Nghị định 329/2026/NĐ-CP\""
+     "\"Nghị định 329/2026/NĐ-CP\""
+     "\"Nghị định 329/2026/NĐ-CP\""
+
+   [4b] Vector index co thuc su tra ket qua (goi procedure that):
+     "\"Điều 2\"", 0.9997539520263672
+     "\"Điều 1\"", 0.9251465797424316
+     "\"Điều 3\"", 0.9163608551025391
+
+========================================================================
+ 5. KET LUAN
+========================================================================
+
+   Dump Neo4j mot minh: DU de co do thi.
+   MySQL trang: dung duoc - chi can 'knext project restore' + 'knext schema commit'.
+   MinIO trang: dung duoc - do thi khong dung MinIO.
+
+   => Trinh tu day du cho may moi:
+      1. docker compose up -d          (tao 4 container)
+      2. knext project restore --host_addr http://127.0.0.1:8887 --proj_path .
+      3. knext schema commit
+      4. CREATE DATABASE legal + nap dump   (xem RESTORE-GRAPH.md)
+      5. dien API key vao kag/kag_config.yaml
+      BO QUA metadata_to_graph.py, injection.py, indexer.py
+
+   Luu y: buoc 2-3 BAT BUOC chay lai tren may moi, khong the bo qua,
+   vi dump khong chua database 'system' cua Neo4j lan metadata du an.
+
+========================================================================
+ 6. DON DEP
+========================================================================
+   Da xoa toan bo container va volume tien to 'kag-clean-'.
+   Do thi THAT sau khi thu: 7624 node (phai la 7624)

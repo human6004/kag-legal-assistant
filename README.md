@@ -88,6 +88,16 @@ vào volume rỗng và bỏ rơi volume ẩn danh — chạy lệnh đó trên m
 `docker/RESTORE-GRAPH.md` và kiểm bằng `docker/kiem-chung-do-thi.ps1`. Bỏ qua bước
 5 và 6. Đừng chạy `indexer.py`.
 
+Bộ bàn giao đầy đủ nằm trong `dist/`: `BAN-GIAO-README.md` (đọc trước),
+`HANDOFF_MANIFEST.json` (mọi số liệu + SHA-256 + image digest),
+`RESTORE_EVIDENCE.txt` (bằng chứng nạp thử vào volume trắng),
+`PROVENANCE_REPORT.txt` (truy vết và các vấn đề đã biết của đồ thị),
+`CLEAN_ENV_TEST.txt` (chứng minh MySQL/MinIO trắng là đủ).
+
+Ba script sinh lại các báo cáo đó, chạy ở gốc repo, **chỉ đọc**:
+`kag/solver/tao_manifest.py`, `kag/solver/bao_cao_provenance.py`,
+`kag/solver/thu_moi_truong_sach.py`.
+
 Đồ thị đang chạy thì bật lại bằng:
 
 ```

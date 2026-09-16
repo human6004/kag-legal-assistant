@@ -1,7 +1,7 @@
 {
   "_doc": "Manifest ban giao do thi KAG. Moi so lieu do truc tiep tu moi truong dang chay bang tao_manifest.py, khong go tay.",
   "snapshot": {
-    "created_at_utc": "2026-09-16T12:28:38.029561+00:00",
+    "created_at_utc": "2026-09-16T12:52:45.186386+00:00",
     "database": "legal",
     "node_count": 7624,
     "relationship_count": 26029,
@@ -62,7 +62,7 @@
     "commit_build_graph": "cb25997",
     "commit_build_graph_full": "cb25997630395591043bfeb75f47d233a7d1517e",
     "commit_build_graph_subject": "fix: gop node trung lap bang canon_id, va metadata vao graph",
-    "commit_current": "2707798603e1173ddc251d5c479bf6017d3bf08f",
+    "commit_current": "205b77e98627cec5a47dc6aa38f02b8b9c34d6f4",
     "commit_current_short": "2707798",
     "branch": "master",
     "note": "commit_build_graph la commit CUOI CUNG cham vao kag/builder va data/graph, tuc la trang thai ma indexer.py nhin thay khi dung do thi. Cac commit sau no chi sua kag/solver, README va docker/, KHONG anh huong do thi.",
@@ -72,8 +72,8 @@
     "image_ref": "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j:latest",
     "image_digest": "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9",
     "image_id_local": "sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9",
-    "kernel_version": " [\"5.25.1",
-    "edition": " \"enterprise\"",
+    "kernel_version": "5.25.1",
+    "edition": "enterprise",
     "dozerdb": "co (Enhanced By DozerDB Plugin, thay trong log khoi dong)",
     "note_image": "Dung digest, KHONG dung tag 'latest' - tag co the tro sang ban khac theo thoi gian."
   },
@@ -88,7 +88,7 @@
   },
   "vector_indexes": {
     "count": 36,
-    "all_online": false,
+    "all_online": true,
     "config": {
       "dimensions": 3072,
       "similarity_function": "COSINE",
@@ -100,219 +100,219 @@
     "indexes": [
       {
         "name": "_entity_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Entity\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Entity",
+        "property": "_desc_vector"
       },
       {
         "name": "_entity_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Entity\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Entity",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_article_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Article\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Article",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_article_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Article\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Article",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_atomic_query_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.AtomicQuery\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.AtomicQuery",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_atomic_query_title_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.AtomicQuery\"",
-        "property": " [\"_title_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.AtomicQuery",
+        "property": "_title_vector"
       },
       {
         "name": "_legal_authority_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Authority\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Authority",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_authority_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Authority\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Authority",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_chunk_content_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Chunk\"",
-        "property": " [\"_content_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Chunk",
+        "property": "_content_vector"
       },
       {
         "name": "_legal_chunk_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Chunk\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Chunk",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_knowledge_unit_content_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.KnowledgeUnit\"",
-        "property": " [\"_content_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.KnowledgeUnit",
+        "property": "_content_vector"
       },
       {
         "name": "_legal_knowledge_unit_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.KnowledgeUnit\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.KnowledgeUnit",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_knowledge_unit_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.KnowledgeUnit\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.KnowledgeUnit",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_knowledge_unit_structed_content_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.KnowledgeUnit\"",
-        "property": " [\"_structed_content_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.KnowledgeUnit",
+        "property": "_structed_content_vector"
       },
       {
         "name": "_legal_legal_document_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.LegalDocument\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.LegalDocument",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_legal_document_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.LegalDocument\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.LegalDocument",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_legal_term_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.LegalTerm\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.LegalTerm",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_legal_term_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.LegalTerm\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.LegalTerm",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_obligation_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Obligation\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Obligation",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_obligation_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Obligation\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Obligation",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_others_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Others\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Others",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_others_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Others\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Others",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_outline_content_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Outline\"",
-        "property": " [\"_content_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Outline",
+        "property": "_content_vector"
       },
       {
         "name": "_legal_outline_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Outline\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Outline",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_prohibited_act_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.ProhibitedAct\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.ProhibitedAct",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_prohibited_act_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.ProhibitedAct\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.ProhibitedAct",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_regulated_entity_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.RegulatedEntity\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.RegulatedEntity",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_regulated_entity_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.RegulatedEntity\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.RegulatedEntity",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_sanction_desc_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Sanction\"",
-        "property": " [\"_desc_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Sanction",
+        "property": "_desc_vector"
       },
       {
         "name": "_legal_sanction_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Sanction\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Sanction",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_summary_content_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Summary\"",
-        "property": " [\"_content_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Summary",
+        "property": "_content_vector"
       },
       {
         "name": "_legal_summary_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Summary\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Summary",
+        "property": "_name_vector"
       },
       {
         "name": "_legal_table_after_text_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Table\"",
-        "property": " [\"_after_text_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Table",
+        "property": "_after_text_vector"
       },
       {
         "name": "_legal_table_before_text_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Table\"",
-        "property": " [\"_before_text_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Table",
+        "property": "_before_text_vector"
       },
       {
         "name": "_legal_table_content_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Table\"",
-        "property": " [\"_content_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Table",
+        "property": "_content_vector"
       },
       {
         "name": "_legal_table_name_vector_index",
-        "state": " \"ONLINE\"",
-        "node_label": " [\"Legal.Table\"",
-        "property": " [\"_name_vector\""
+        "state": "ONLINE",
+        "node_label": "Legal.Table",
+        "property": "_name_vector"
       }
     ]
   },
@@ -359,9 +359,35 @@
     "legal_document_count": 246,
     "note": "Doi chieu bang docker/kiem-chung-do-thi.ps1, phai ra 7/7 OK."
   },
+  "dependencies": {
+    "neo4j_dump_alone_is_sufficient_for_graph": true,
+    "verified_on_clean_env": true,
+    "how_verified": "Dung stack moi hoan toan (MySQL trang + MinIO trang + Neo4j moi) roi nap dump va chay truy van that. Xem kag/solver/thu_moi_truong_sach.py va dist/CLEAN_ENV_TEST.txt.",
+    "mysql": {
+      "needs_old_data": false,
+      "holds": "metadata du an (kg_project_info) + schema ontology (kg_ontology_entity, 26 ban ghi). KHONG chua do thi.",
+      "rebuild_by": "knext project restore + knext schema commit",
+      "contains_api_key": false,
+      "note": "Da kiem: cot params trong kg_model_detail la NULL. Do NOT gui MySQL dump di - khong can thiet va tranh rui ro lo thong tin dich vu."
+    },
+    "minio": {
+      "needs_old_data": false,
+      "holds": "RONG. Chi co .minio.sys, khong co bucket nguoi dung nao.",
+      "note": "Do thi khong dung MinIO."
+    },
+    "required_order_on_new_machine": [
+      "1. docker compose -f docker/docker-compose-west.yml up -d",
+      "2. knext project restore --host_addr http://127.0.0.1:8887 --proj_path .",
+      "3. knext schema commit",
+      "4. CREATE DATABASE legal, roi nap legal.dump (xem docker/RESTORE-GRAPH.md)",
+      "5. Dien API key rieng vao kag/kag_config.yaml",
+      "BO QUA metadata_to_graph.py, injection.py, indexer.py"
+    ],
+    "why_steps_2_3_cannot_be_skipped": "Dump khong chua database 'system' cua Neo4j, cung khong chua metadata du an trong MySQL. Phai dung lai tu repo."
+  },
   "unverified": {
-    "provenance_ratio": "UNVERIFIED - chua do ty le truy nguoc fact/relationship -> chunk -> doc_id",
-    "build_completeness": "UNVERIFIED - chua do ty le chunk loi/bo qua",
-    "mysql_minio_fresh_env": "xem muc 'dependencies' khi da chay xong"
+    "provenance_ratio": "UNVERIFIED - da do duoc ty le chunk -> van ban (1121/1121 = 100%) nhung CHUA do ty le day du fact -> chunk -> doc_id -> Dieu/Khoan/Diem",
+    "build_completeness": "UNVERIFIED - chua do ty le chunk loi/bo qua, chua co danh sach van ban stub thieu full text",
+    "note": "Nhung muc nay khong anh huong viec restore dump. Xem dist/PROVENANCE_REPORT.txt muc 4."
   }
 }
