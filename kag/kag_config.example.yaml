@@ -133,9 +133,13 @@ kag_builder_pipeline:
       # mem lai thi dien lai dong similarity_threshold, nhung do lai so canh sai
       # truoc da.
     splitter:
-      type: length_splitter # kag.builder.component.splitter.length_splitter.LengthSplitter
+      # kag/builder/splitter.py — chia theo Dieu -> Khoan -> Diem, fallback do dai
+      # la buoc cuoi. split_length la so KY TU Unicode, khong phai token.
+      # window_length: 0 — chunk cau truc khong overlap; ngu canh giu bang heading
+      # prefix chu khong sao lai than cua chunk truoc.
+      type: legal_structural_splitter
       split_length: 4950
-      window_length: 100
+      window_length: 0
     vectorizer:
       type: batch_vectorizer # kag.builder.component.vectorizer.batch_vectorizer.BatchVectorizer
       vectorize_model: *vectorize_model
