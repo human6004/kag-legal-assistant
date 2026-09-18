@@ -19,17 +19,8 @@ kag/solver/runs/
 /*.whl
 /*.egg-info/
 /build/
-# dist/ chua legal.dump 0,93 GB - Git khong nhan. Nhung bao cao ban giao thi nho,
-# va nguoi clone can co chung thi moi doi chieu duoc voi dump tai ve.
-#
-# Ghi la '/dist/*' chu KHONG phai '/dist': Git khong the mo lai mot file nam
-# trong thu muc da bi loai tru, nen '/dist' + '!/dist/<file>' se KHONG chay.
-# Phai loai tru noi dung thu muc, roi mo lai tung file.
-/dist/*
-!/dist/BAN-GIAO-README.md
-!/dist/RESTORE_EVIDENCE.txt
-!/dist/PROVENANCE_REPORT.txt
-!/dist/CLEAN_ENV_TEST.txt
+dist/
+
 *.pyc
 *__pycache__/
 *.log

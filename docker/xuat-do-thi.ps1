@@ -5,7 +5,7 @@
 #
 # Script nay CHI DOC do thi. No khong xoa database, khong dung compose.
 # Buoc duy nhat cham vao container dang chay la `docker stop` roi `docker start`
-# lai ngay - dung nhu RESTORE-GRAPH.md van noi.
+# lai ngay.
 #
 # Vi sao phai stop: Neo4j khong cho dump khi database dang mo. Ban DozerDB nay
 # thieu `STOP DATABASE`, nen phai dung ca container roi dump ngoai tuyen.
@@ -17,7 +17,7 @@ $ErrorActionPreference = 'Stop'
 
 $goc  = Split-Path -Parent $PSScriptRoot
 $dist = Join-Path $goc 'dist'
-# Ghim digest theo HANDOFF_MANIFEST.json, khong dung tag :latest
+# Ghim digest cu the, khong dung tag :latest
 $img  = 'spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9'
 $ct   = 'release-openspg-neo4j'
 $uId  = [System.Guid]::NewGuid().ToString('N').Substring(0, 8)
@@ -53,8 +53,7 @@ $n = (docker exec $ct cypher-shell -u neo4j -p 'neo4j@openspg' -d legal `
         'MATCH (n) RETURN count(n)' 2>$null | Select-Object -Last 1).Trim()
 Write-Host "Node trong DB legal: $n"
 if ($n -ne '7624') {
-    Write-Host "  CANH BAO: mong doi 7624. Do thi da doi - cap nhat so trong" -ForegroundColor Yellow
-    Write-Host "  docker/RESTORE-GRAPH.md va docker/kiem-chung-do-thi.ps1." -ForegroundColor Yellow
+    Write-Host "  CANH BAO: mong doi 7624. Do thi da doi." -ForegroundColor Yellow
 }
 
 # --- 1. Kiem tra dich den va chuan bi thu muc tam duy nhat --------------------
@@ -116,5 +115,4 @@ $gb = (Get-Item $dump).Length / 1GB
 Write-Host ''
 Write-Host ("XONG. dist\legal.dump = {0:N2} GB" -f $gb) -ForegroundColor Green
 Write-Host ''
-Write-Host 'Doi chieu voi con so trong docker\RESTORE-GRAPH.md truoc khi gui.'
 Write-Host 'Gui qua Drive - /dist nam trong .gitignore nen Git khong nhan.'
