@@ -77,19 +77,23 @@ và `knext schema commit`.
 Bỏ qua bước 5 và 6 (`metadata_to_graph.py`, `injection.py`, `indexer.py`).
 Đó chính là phần mà dump thay thế.
 
-### Trình tự đầy đủ — đã chạy thử trên stack mới hoàn toàn
+### Trình tự đầy đủ — mức độ kiểm chứng thực tế
 
-Phần này **đã được kiểm chứng bằng đo**, không phải suy luận: dựng MySQL trắng +
-MinIO trắng + Neo4j mới, nạp dump, chạy truy vấn thật. Kết quả đầy đủ ở
-`dist/CLEAN_ENV_TEST.txt`, script tái lập ở `kag/solver/thu_moi_truong_sach.py`.
+Bằng chứng hiện tại (`dist/CLEAN_ENV_TEST.txt`, `kag/solver/thu_moi_truong_sach.py`)
+chứng minh: nạp dump vào Neo4j trên môi trường mới (MySQL trắng + MinIO trắng)
+thành công và các truy vấn Cypher/vector trực tiếp trên Neo4j trả về đúng dữ liệu.
 
-| Bước | Việc | Có bắt buộc không |
+Tuy nhiên, **phục hồi toàn diện OpenSPG/KAG (gồm `knext project restore`, `knext schema commit` và KAG retrieval)**
+được **đánh dấu rõ ràng là CHƯA ĐƯỢC KIỂM CHỨNG (NOT YET VERIFIED)** cho đến khi toàn bộ
+chu trình từ khôi phục dự án, commit schema đến KAG retrieval được chạy thực tế.
+
+| Bước | Việc | Tình trạng kiểm chứng |
 | --- | --- | --- |
-| 1 | `docker compose up -d` | **Có** |
-| 2 | `knext project restore` | **Có** — dump không chứa metadata dự án |
-| 3 | `knext schema commit` | **Có** — dump không chứa schema ontology |
-| 4 | `CREATE DATABASE legal` + nạp dump | **Có** — xem mục dưới |
-| 5 | Điền API key vào `kag/kag_config.yaml` | **Có** — dump không chứa key |
+| 1 | `docker compose up -d` | Cần thiết |
+| 2 | `knext project restore` | Cần thiết (NOT YET VERIFIED trên stack sạch) |
+| 3 | `knext schema commit` | Cần thiết (NOT YET VERIFIED trên stack sạch) |
+| 4 | `CREATE DATABASE legal` + nạp dump | **ĐÃ KIỂM CHỨNG** (Neo4j restore khớp 100%) |
+| 5 | Điền API key vào `kag/kag_config.yaml` | Cần thiết |
 | — | `metadata_to_graph.py`, `injection.py`, `indexer.py` | **Bỏ qua** |
 
 **MySQL và MinIO đều không cần dữ liệu cũ.** Đã đo:
@@ -120,7 +124,7 @@ Tìm phần tử có `"Destination":"/data"`, lấy `Name` của nó. **Dùng đ
 lệnh dưới, đừng chép nguyên `kag-legal-neo4j-data`:
 
 ```powershell
-$img = "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j:latest"
+$img = "spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9"
 $vol = "<Name vừa tìm được>"
 
 # 1. Neo4j phải chạy để tạo database, rồi mới tắt đi mà nạp.
@@ -191,6 +195,9 @@ cd kag\solver
 tự điền khoá của mình theo `kag_config.example.yaml`. Đồ thị đã dựng xong nên
 chỉ còn cần khoá `chat_llm` để trả lời; khoá `vectorize_model` vẫn phải có vì
 mỗi câu hỏi đều phải nhúng thành vector trước khi tìm.
+
+Lưu ý quan trọng: tương thích embedding đòi hỏi **đúng model `dg/text-embedding-3-large` (3.072 chiều)**,
+không chỉ đơn thuần là cùng số chiều vector. Đổi model khác sẽ làm lệch không gian vector và kết quả tìm kiếm.
 
 ## Container cũ nằm trên volume ẩn danh
 

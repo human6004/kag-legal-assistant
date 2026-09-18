@@ -17,9 +17,12 @@ $ErrorActionPreference = 'Stop'
 
 $goc  = Split-Path -Parent $PSScriptRoot
 $dist = Join-Path $goc 'dist'
-$img  = 'spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j:latest'
+# Ghim digest theo HANDOFF_MANIFEST.json, khong dung tag :latest
+$img  = 'spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9'
 $ct   = 'release-openspg-neo4j'
-$tam  = Join-Path $dist 'neo4j-data'
+$uId  = [System.Guid]::NewGuid().ToString('N').Substring(0, 8)
+$tam  = Join-Path $dist "neo4j-data-tmp-$uId"
+$dumpTamDir = Join-Path $dist "dump-tmp-$uId"
 $dump = Join-Path $dist 'legal.dump'
 
 function Buoc($t) { Write-Host "`n=== $t ===" -ForegroundColor Cyan }
@@ -54,42 +57,58 @@ if ($n -ne '7624') {
     Write-Host "  docker/RESTORE-GRAPH.md va docker/kiem-chung-do-thi.ps1." -ForegroundColor Yellow
 }
 
-# --- 1. Don ban cu -----------------------------------------------------------
-Buoc '1. Don lan chay truoc'
+# --- 1. Kiem tra dich den va chuan bi thu muc tam duy nhat --------------------
+Buoc '1. Kiem tra dich den (khong ghi de pha huy)'
 
-if (Test-Path $tam) { Remove-Item $tam -Recurse -Force; Write-Host "Da xoa thu muc tam cu" }
-if (Test-Path $dump) {
+if ((Test-Path $dump) -and ((Get-Item $dump).Length -gt 0)) {
     $cu = (Get-Item $dump).Length / 1GB
-    Remove-Item $dump -Force
-    Write-Host ("Da xoa legal.dump cu ({0:N2} GB)" -f $cu)
+    throw ("Dich den '$dump' da ton tai va khong rong ({0:N2} GB). Tu choi ghi de de bao ve dump cu. Hay sao luu hoac doi ten truoc khi xuat." -f $cu)
 }
+
 New-Item -ItemType Directory -Path $dist -Force | Out-Null
+New-Item -ItemType Directory -Path $dumpTamDir -Force | Out-Null
 
-# --- 2. Chep thu muc du lieu ra ngoai ---------------------------------------
-Buoc '2. Chep /data ra ngoai (2,9 GB, vai phut)'
-
-docker stop $ct | Out-Null
 try {
-    docker cp "${ct}:/data" $tam
-    if ($LASTEXITCODE -ne 0) { throw "docker cp that bai" }
+    # --- 2. Chep thu muc du lieu ra ngoai ---------------------------------------
+    Buoc '2. Chep /data ra thu muc tam (2,9 GB, vai phut)'
+
+    docker stop $ct | Out-Null
+    try {
+        docker cp "${ct}:/data" $tam
+        if ($LASTEXITCODE -ne 0) { throw "docker cp that bai" }
+    } finally {
+        # Bat lai du thanh cong hay loi - khong de nguoi dung quen.
+        docker start $ct | Out-Null
+        Write-Host "Da bat lai $ct"
+    }
+
+    # --- 3. Dump ngoai tuyen vao thu muc tam rieng ------------------------------
+    Buoc '3. Dump ngoai tuyen vao thu muc tam'
+
+    docker run --rm -v "${tam}:/data" -v "${dumpTamDir}:/dump" $img `
+        neo4j-admin database dump legal --to-path=/dump --overwrite-destination=true
+    if ($LASTEXITCODE -ne 0) { throw "neo4j-admin dump that bai" }
+
+    $tamDumpFile = Join-Path $dumpTamDir 'legal.dump'
+    if ((-not (Test-Path $tamDumpFile)) -or ((Get-Item $tamDumpFile).Length -le 0)) {
+        throw "Dump that bai: file tam $tamDumpFile khong ton tai hoac rong."
+    }
+
+    # Chi khi dump moi da xong hoan toan va khong rong moi chuyen ve dich den cuoi
+    Move-Item -Path $tamDumpFile -Destination $dump -Force
+    Write-Host "Da di chuyen dump moi thanh cong vao: $dump"
 } finally {
-    # Bat lai du thanh cong hay loi - khong de nguoi dung quen.
-    docker start $ct | Out-Null
-    Write-Host "Da bat lai $ct"
+    # --- 4. Don dep chi tai nguyen do lan chay nay tao ra ----------------------
+    Buoc '4. Don dep tai nguyen tam cua lan chay nay'
+    if (Test-Path $tam) {
+        Remove-Item $tam -Recurse -Force
+        Write-Host "Da xoa thu muc tam: $tam"
+    }
+    if (Test-Path $dumpTamDir) {
+        Remove-Item $dumpTamDir -Recurse -Force
+        Write-Host "Da xoa thu muc tam: $dumpTamDir"
+    }
 }
-
-# --- 3. Dump ngoai tuyen -----------------------------------------------------
-Buoc '3. Dump ngoai tuyen'
-
-docker run --rm -v "${tam}:/data" -v "${dist}:/dump" $img `
-    neo4j-admin database dump legal --to-path=/dump --overwrite-destination=true
-if ($LASTEXITCODE -ne 0) { throw "neo4j-admin dump that bai" }
-
-# --- 4. Don thu muc tam ------------------------------------------------------
-Buoc '4. Don thu muc tam'
-
-Remove-Item $tam -Recurse -Force
-Write-Host "Da xoa thu muc tam"
 
 if (-not (Test-Path $dump)) { throw "Khong thay $dump sau khi dump." }
 $gb = (Get-Item $dump).Length / 1GB

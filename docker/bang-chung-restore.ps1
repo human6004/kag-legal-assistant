@@ -15,11 +15,13 @@ $ErrorActionPreference = 'Continue'
 
 $goc  = Split-Path -Parent $PSScriptRoot
 $dump = Join-Path $goc 'dist\legal.dump'
-$img  = 'spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j:latest'
+# Ghim digest theo HANDOFF_MANIFEST.json, khong dung tag :latest
+$img  = 'spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9'
 $ra   = Join-Path $goc 'dist\RESTORE_EVIDENCE.txt'
 
-$volTest = 'kag-handoff-tmp'
-$ctTest  = 'kag-handoff-verify'
+$uId     = [System.Guid]::NewGuid().ToString('N').Substring(0, 8)
+$volTest = "kag-handoff-tmp-$uId"
+$ctTest  = "kag-handoff-verify-$uId"
 
 # Mat khau test. KHONG phai mat khau that cua he thong, chi dung cho container
 # tam thoi bi xoa ngay sau khi do xong. Khong co secret nao khac trong file nay.
@@ -29,9 +31,7 @@ $dong = New-Object System.Collections.Generic.List[string]
 function Ghi($s) { $dong.Add($s); Write-Host $s }
 
 function DonDep {
-    # Volume/container co the chua ton tai o lan chay dau - do la chuyen binh
-    # thuong, khong phai loi. Phai tat ErrorActionPreference quanh hai lenh nay,
-    # khong thi docker nem loi vao stderr va script chet ngay.
+    # Don dep chi cac tai nguyen tao ra boi lan chay nay (dua tren ten duy nhat $uId)
     $ErrorActionPreference = 'Continue'
     docker rm -f $ctTest 2>&1 | Out-Null
     docker volume rm $volTest 2>&1 | Out-Null
@@ -78,7 +78,7 @@ Ghi ""
 # --- 3. Thu nap KHONG tao database (de chung minh loi nay that) --------------
 Ghi "--- 3. THU NAP SAI: nap truoc, khong tao database ---"
 Ghi "   Day la cach lam SAI, chay de chung minh no that su hong."
-docker run --rm -v "${volTest}:/data" -v "$(Split-Path $dump):/dump" $img `
+docker run --rm -v "${volTest}:/data" -v "$(Split-Path $dump):/dump:ro" $img `
     neo4j-admin database load legal --from-path=/dump --overwrite-destination=true 2>&1 |
     Select-String -Pattern "^Done:" | ForEach-Object { Ghi "   $($_.Line.Trim())" }
 
@@ -121,7 +121,7 @@ docker exec $ctTest cypher-shell -u neo4j -p $mkTest "SHOW DATABASES YIELD name,
 
 docker stop $ctTest 2>&1 | Out-Null
 Ghi "   Da stop container. Nap dump:"
-docker run --rm -v "${volTest}:/data" -v "$(Split-Path $dump):/dump" $img `
+docker run --rm -v "${volTest}:/data" -v "$(Split-Path $dump):/dump:ro" $img `
     neo4j-admin database load legal --from-path=/dump --overwrite-destination=true 2>&1 |
     Select-String -Pattern "^Done:" | ForEach-Object { Ghi "   $($_.Line.Trim())" }
 

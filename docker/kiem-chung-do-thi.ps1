@@ -8,7 +8,8 @@
 $ErrorActionPreference = 'Stop'
 
 $ct  = 'release-openspg-neo4j'
-$img = 'spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j:latest'
+# Ghim digest theo HANDOFF_MANIFEST.json, khong dung tag :latest
+$img = 'spg-registry.us-west-1.cr.aliyuncs.com/spg/openspg-neo4j@sha256:4bc5b7f6b83d333b1d2c8f60ac145c068d77d50bca65b3a07c927f9e2a541eb9'
 
 # So chuan lay tu lan do that tren may dung do thi 2026-09.
 # Doi so o day thi phai doi ca README.md va RESTORE-GRAPH.md.
