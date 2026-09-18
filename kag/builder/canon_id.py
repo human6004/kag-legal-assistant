@@ -39,8 +39,11 @@ Chạy self-check: python builder/canon_id.py
 """
 
 import re
+import json
+from functools import lru_cache
+from pathlib import Path
 
-__all__ = ["slug", "canon_id", "KEEP_ID"]
+__all__ = ["slug", "canon_id", "source_document_id", "article_identity", "KEEP_ID"]
 
 # Nhãn giữ nguyên id gốc. Đây là các node do tầng reader/splitter sinh ra, id là
 # băm chứ không phải tên, đổi đi là mất liên hệ với chunk và với chỉ mục vector.
@@ -76,6 +79,7 @@ _DOC_CODE = r"(?:[a-zđ]{1,3}\d{1,3}|[a-zđ]{1,4} [a-zđ]{2,6})"
 
 # Số hiệu, tìm trên chuỗi ĐÃ slug: "116/2025/QH15" -> "116 2025 qh15".
 _DOC_NUMBER = re.compile(rf"\b(\d{{1,5}}) (\d{{4}}) ({_DOC_CODE})")
+_NO_YEAR_DECISION = re.compile(r"^quyết định (?:số )?(\d{1,5}) qđ ttg(?:$| )")
 
 _SPACES = re.compile(r"\s+")
 
@@ -94,6 +98,12 @@ def canon_id(phrase):
     """id chuẩn của một thực thể. Không đổi gì nếu không nhận ra số hiệu văn bản."""
     s = _SPACES.sub(" ", slug(phrase))
 
+    # Quyết định dạng <số>/QĐ-TTg trong corpus không chứa năm. Chỉ nhận
+    # mã QĐ-TTg đủ cụ thể, không rút gọn câu thường có chữ "quyết định".
+    no_year = _NO_YEAR_DECISION.match(s)
+    if no_year:
+        return f"quyết định {no_year.group(1)} qđ ttg"
+
     m = _DOC_NUMBER.search(s)
     if not m:
         return s
@@ -106,6 +116,66 @@ def canon_id(phrase):
         return s
 
     return f"{kind} {m.group(1)} {m.group(2)} {m.group(3)}"
+
+
+@lru_cache(maxsize=None)
+def source_document_id(source_path):
+    """Map đường dẫn Reader portable vào doc_id; chỉ nhận file đã có metadata."""
+    path = Path(str(source_path).replace("\\", "/"))
+    parts = str(source_path).replace("\\", "/").split("/")
+    if len(parts) != 4 or parts[:2] != ["data", "processed"] or path.suffix != ".md":
+        return None
+    doc_id, sep, _ = path.stem.partition("_")
+    if not sep or not re.fullmatch(r"[A-Za-z0-9-]+", doc_id):
+        return None
+    meta_path = Path(__file__).resolve().parents[2] / "data" / "metadata" / f"{doc_id}.json"
+    if not meta_path.is_file():
+        return None
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    raw_paths = [meta.get("raw_file", ""), *(meta.get("raw_files") or [])]
+    if meta.get("doc_id") != doc_id or not any(
+        Path(raw).stem == path.stem and Path(raw).parent.name == parts[2]
+        for raw in raw_paths if raw
+    ):
+        return None
+    return doc_id
+
+
+def article_identity(doc_id, article_no):
+    """Danh tính Điều đã được xác định nguồn; độc lập tên hiển thị/chunk."""
+    if not isinstance(doc_id, str) or not re.fullmatch(r"[A-Za-z0-9-]+", doc_id) or not str(article_no).isdigit():
+        raise ValueError("Article cần doc_id và article_no hợp lệ")
+    number = int(article_no)
+    if number < 1:
+        raise ValueError("article_no phải dương")
+    return f"article:{doc_id}:{number}"
+
+
+@lru_cache(maxsize=None)
+def source_article_headings(source_path):
+    """Điều nguồn theo dãy số liên tiếp; heading chen ngang là trích dẫn chưa rõ đích."""
+    # ponytail: 23 văn bản hiện có đánh số Điều nguồn 1..N; tài liệu nhảy số
+    # sẽ để unresolved. Chỉ mở rộng parser khi có case thật cần phân giải.
+    if not source_document_id(source_path):
+        return frozenset()
+    path = Path(__file__).resolve().parents[2] / source_path
+    headings = {}
+    source, next_number = set(), 1
+    for line in path.read_text(encoding="utf-8").splitlines():
+        match = re.match(r"^(#{1,6})\s+(.+)", line)
+        if not match:
+            continue
+        level, title = len(match.group(1)), match.group(2).strip()
+        headings = {k: v for k, v in headings.items() if k < level}
+        if not any(re.match(r"^(?:Phụ lục|Mẫu|Biểu mẫu)\b", h, re.I) for h in headings.values()):
+            article = re.match(r"^Điều\s+(\d{1,3})\b", title)
+            if article:
+                number = int(article.group(1))
+                if number == next_number:
+                    source.add((number, title))
+                    next_number += 1
+        headings[level] = title
+    return frozenset(source)
 
 
 def _self_check():

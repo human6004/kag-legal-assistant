@@ -38,11 +38,15 @@ dòng.
 """
 
 import logging
+import re
 from typing import Dict, List
 
 from kag.interface import ExtractorABC
 from kag.builder.component.extractor.schema_free_extractor import SchemaFreeExtractor
 from kag.builder.model.sub_graph import SubGraph
+from kag.common.utils import generate_hash_id
+
+from .canon_id import article_identity, canon_id, source_article_headings, source_document_id
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +56,57 @@ PREDICATE_MAPPING_VERSION = "camel_case_v1"
 
 # Quan hệ do hệ thống sinh, không phải LLM trả. Không gắn original_predicate.
 _SYSTEM_PREDICATES = {"source", "OfficialName"}
+_ARTICLE_NO = re.compile(r"^Điều\s+(\d{1,3})\b", re.IGNORECASE)
+
+
+def _unresolved_article(chunk_id, name):
+    # Runtime-scoped: không gộp tên mơ hồ xuyên chunk/document.
+    return "article-unresolved:" + generate_hash_id(f"{chunk_id}|{canon_id(name)}")
+
+
+def _article_ids(chunk, entities):
+    """Một map duy nhất cho Article node và hai đầu semantic edge."""
+    meta = chunk.kwargs
+    doc_id = source_document_id(meta.get("source_path", ""))
+    number = meta.get("article_no")
+    heading = (meta.get("heading_path") or [chunk.name])[-1]
+    source_id = (
+        article_identity(doc_id, number)
+        if doc_id and number and (int(number), heading) in source_article_headings(meta["source_path"])
+        else None
+    )
+    ids = {}
+    for entity in entities:
+        if entity.get("category") != "Article":
+            continue
+        name = entity["name"]
+        match = _ARTICLE_NO.match(name)
+        same_number = source_id and match and int(match.group(1)) == int(number)
+        qualifier = re.search(
+            r"\b(?:Bộ luật|Luật|Nghị định|Thông tư|Quyết định)\s+.+$",
+            name, re.IGNORECASE,
+        )
+        source_doc_name = (meta.get("heading_path") or [""])[0].split(" — ", 1)[0]
+        qualified_source = bool(
+            qualifier and source_doc_name
+            and canon_id(qualifier.group()) == canon_id(source_doc_name)
+        )
+        # Nếu thân nhắc lại cùng số Điều, raw "Điều N" có thể là nguồn hoặc
+        # dẫn chiếu. Triple không có vị trí mention nên giữ unresolved.
+        cross_reference = bool(
+            same_number and (
+                re.search(rf"\bĐiều\s+{number}\b", chunk.content or "", re.IGNORECASE)
+                or (qualifier and not qualified_source)
+            )
+        )
+        source_heading = name.strip() == heading.strip()
+        target = source_id if same_number and (source_heading or qualified_source or not cross_reference) else _unresolved_article(chunk.id, name)
+        key = canon_id(name)
+        # Hai tên chuẩn hóa như nhau nhưng suy ra hai đích khác nhau: giữ mơ hồ.
+        if key in ids and ids[key] != target:
+            target = _unresolved_article(chunk.id, key)
+        ids[key] = target
+    return source_id, heading, ids
 
 
 @ExtractorABC.register("legal_schema_free_extractor")
@@ -79,13 +134,69 @@ class LegalSchemaFreeExtractor(SchemaFreeExtractor):
         for item in ner_result:
             if not isinstance(item, dict) or not item.get("name"):
                 continue
-            item.setdefault("category", "Others")
+            item["category"] = item.get("category") or "Others"
             cleaned.append(item)
-        return super()._named_entity_recognition_process(passage, cleaned)
+
+        def category(value):
+            return value if isinstance(value, str) and self.schema.get(value) is not None else "Others"
+
+        output, seen = [], set()
+        external = self.external_graph.ner(passage) if self.external_graph else []
+        for node in external:
+            label = category(node.label)
+            key = (node.name, label)
+            if key not in seen:
+                seen.add(key)
+                output.append({
+                    "name": node.name,
+                    "category": label,
+                    "type": node.properties.get("semanticType", label),
+                    "description": node.properties.get("desc", ""),
+                })
+        for item in cleaned:
+            label = category(item["category"])
+            key = (item["name"], label)
+            if key not in seen:
+                seen.add(key)
+                item["category"] = label
+                output.append(item)
+        return output
+
+    def assemble_sub_graph_with_spg_records(self, entities):
+        # Vendor dựng raw Article quá sớm, trước khi chunk context được dùng.
+        graph, _ = super().assemble_sub_graph_with_spg_records(
+            [entity for entity in entities if entity.get("category") != "Article"]
+        )
+        return graph, entities
+
+    def assemble_sub_graph(self, sub_graph, chunk, entities, triples):
+        source_id, heading, article_ids = _article_ids(chunk, entities)
+        self.assemble_sub_graph_with_entities(
+            sub_graph, [entity for entity in entities if entity.get("category") != "Article"]
+        )
+        for entity in entities:
+            if entity.get("category") != "Article":
+                continue
+            node_id = article_ids[canon_id(entity["name"])]
+            properties = {
+                "desc": entity.get("description", ""),
+                "semanticType": entity.get("type", ""),
+            }
+            if node_id == source_id:
+                properties["articleNumber"] = str(chunk.kwargs["article_no"])
+            sub_graph.add_node(node_id, entity["name"], "Article", properties)
+        if source_id:
+            sub_graph.add_node(source_id, heading, "Article", {
+                "articleNumber": str(chunk.kwargs["article_no"]),
+            })
+        self.assemble_sub_graph_with_triples(sub_graph, entities, triples, article_ids, chunk.id)
+        self.assemble_sub_graph_with_chunk(sub_graph, chunk)
+        return sub_graph
 
     @staticmethod
     def assemble_sub_graph_with_triples(
-        sub_graph: SubGraph, entities: List[Dict], triples: List[list]
+        sub_graph: SubGraph, entities: List[Dict], triples: List[list],
+        article_ids=None, chunk_id=None,
     ):
         """Lọc triple trước khi lớp cha dựng cạnh.
 
@@ -118,6 +229,18 @@ class LegalSchemaFreeExtractor(SchemaFreeExtractor):
             sub_graph, entities, cleaned
         )
         _attach_original_predicates(sub_graph, before, snapshot, entities)
+        if article_ids is not None:
+            for edge in sub_graph.edges[before:]:
+                for side in ("from", "to"):
+                    label = getattr(edge, f"{side}_type").split(".")[-1]
+                    if label != "Article":
+                        continue
+                    key = getattr(edge, f"{side}_id")
+                    node_id = article_ids.get(key)
+                    if node_id is None:
+                        node_id = _unresolved_article(chunk_id, key)
+                        sub_graph.add_node(node_id, key, "Article")
+                    setattr(edge, f"{side}_id", node_id)
         return result
 
 

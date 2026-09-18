@@ -67,7 +67,8 @@ _sfe.processing_phrases = _processing_phrases_giu_dau
 
 def _id_chuan(node_id, label):
     """id do tầng reader sinh ra (băm) thì giữ nguyên, còn lại quy về id chuẩn."""
-    if str(label).split(".")[-1] in _KEEP_ID:
+    label = str(label).split(".")[-1]
+    if label in _KEEP_ID or (label == "Article" and str(node_id).startswith(("article:", "article-unresolved:"))):
         return node_id
     return _canon_id(node_id)
 
