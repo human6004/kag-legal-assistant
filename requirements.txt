@@ -31,4 +31,9 @@
 # "Invalid URL ... No scheme supplied". Dạng trần mới là đường dẫn nội bộ, và
 # nó tương đối theo thư mục chứa requirements.txt nên vẫn chạy đúng khi
 # `pip install -r requirements.txt` được gọi từ gốc repo.
+
+# KAG 0.8.0 from vendor/KAG (upstream commit fdab15b3)
+# requires protobuf 3.20.1.
+protobuf==3.20.1
+
 ./vendor/KAG

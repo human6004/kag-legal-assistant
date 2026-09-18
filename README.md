@@ -179,17 +179,16 @@ phải báo nguyên trạng; không sửa thuật toán hoặc dữ liệu để
 Kết quả kiểm tra bước A (2026-09-18): reader 64/64, predicate 27/27,
 stop-handler, builder-fixes, canon ID, ba prompt và schema 10 kiểu đều đạt.
 Secret scan không phát hiện khóa; cú pháp năm file chuyển vị trí hợp lệ.
-`.venv` hiện có protobuf 7.36.2, import KAG mặc định lỗi
-`TypeError: Descriptors cannot be created directly.`
-Các test cần KAG đã chạy với `PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`
-chỉ trong tiến trình con, không cài lại dependency. Có thể tái hiện cho từng test:
+*Trạng thái lịch sử lúc review A:* `.venv` khi đó có protobuf 7.36.2, `import kag`
+nổ `TypeError: Descriptors cannot be created directly.`, nên các test cần KAG
+phải chạy kèm `PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`. Đó là workaround,
+không phải xác nhận môi trường.
 
-```powershell
-.venv/Scripts/python.exe -X utf8 -c "import os,runpy; os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION']='python'; runpy.run_path('tests/builder/test_reader_fixes.py', run_name='__main__')"
-```
-
-Thay đường dẫn bằng test cần chạy. Đây là workaround kiểm tra, chưa phải xác nhận
-môi trường mặc định chạy tốt. Không chạy build/eval/export trong bước A.
+*Trạng thái sau A8:* nguyên nhân quan sát được là phiên bản protobuf trong môi
+trường bị lệch so với `protobuf==3.20.1` mà KAG 0.8.0 yêu cầu, không phải cách
+chạy test. `requirements.txt` ghim `protobuf==3.20.1` nên `import kag` chạy thẳng,
+không cần biến môi trường nào. Xem mục Cài KAG. Không chạy build/eval/export
+trong bước A.
 
 ## Chạy
 
@@ -224,11 +223,15 @@ bind mount tại `/data`; không chạy export trong bước kiểm tra source.
 Mở `http://127.0.0.1:8887`, đăng nhập `openspg` / `openspg@kag`. Thấy giao diện
 để kiểm tra dịch vụ; dữ liệu hiển thị phụ thuộc project/database hiện có.
 
-**2. Cài KAG.** Python 3.10 trở lên. Cài dependency theo requirements của vendor.
-Không suy phiên bản đang cài từ file yêu cầu: xem lưu ý protobuf ở mục kiểm tra source.
+**2. Cài KAG.** Dùng virtualenv sạch. Environment verified on Python 3.12.10.
+Project uses KAG 0.8.0 from vendor/KAG (upstream commit fdab15b3). protobuf is
+pinned to 3.20.1 to match the vendor KAG dependency.
+
+`vendor/KAG/setup.py` khai `python_requires=">=3.8"`, nhưng project chỉ kiểm chứng
+trên 3.12.10; các version khác chưa chạy thử nên đừng coi là đã bảo đảm.
 
 ```
-py -m venv .venv
+py -3.12 -m venv .venv
 ```
 
 ```
