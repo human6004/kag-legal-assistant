@@ -8,10 +8,12 @@ Nguyên tắc kiểm: đủ chứng cứ xác định -> canonical; không đủ
 Một id ``*-unresolved:`` KHÔNG phải bằng chứng rằng chỉ có một occurrence.
 """
 
+import subprocess
 import sys
 import unittest
+from functools import lru_cache
 from pathlib import Path
-from types import SimpleNamespace
+from types import ModuleType, SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "kag"))
@@ -20,6 +22,9 @@ from builder.canon_id import (  # noqa: E402
     canon_id,
     normalize_source_phrase,
     semantic_identity,
+    source_article_headings,
+    source_article_units,
+    source_occurrence,
     source_phrase_count,
     unresolved_identity,
 )
@@ -38,6 +43,54 @@ OBLIGATION = (
     "Điều 12 của Luật này"
 )
 TERM = "An ninh mạng"
+
+# Ca thật cho bất biến câu chữ NER (§E): dòng nguồn NĐ 330 Điều 9 khoản 2 là
+# "2. Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng đối với các hành vi sau
+# đây mà chưa đến mức truy cứu trách nhiệm hình sự:". FINE và FINE_LONG là hai
+# span dài ngắn khác nhau của CHÍNH dòng đó, không phải văn bản tự bịa.
+FINE_LONG = FINE + " đối với các hành vi sau đây"
+
+# Cùng câu chữ nghĩa vụ, hai Điều khác nhau của Luật 116/2025 (Điều 11 và 31).
+OBLIGATION_SHARED = (
+    "Chủ quản hệ thống thông tin quan trọng về an ninh quốc gia có trách nhiệm "
+    "sau đây"
+)
+
+
+def source_path_of(doc_id):
+    """Đường dẫn portable như Reader cấp, KHÔNG phải path tuyệt đối."""
+    path = next((ROOT / "data/processed").rglob(f"{doc_id}_*.md"))
+    return path.relative_to(ROOT).as_posix()
+
+
+def article_title(doc_id, article_no):
+    """Tiêu đề Điều đọc từ file nguồn; B2.1 đòi heading khớp tiêu đề nguồn."""
+    titles = [t for n, t in source_article_headings(source_path_of(doc_id))
+              if n == article_no]
+    assert len(titles) == 1, (doc_id, article_no, titles)
+    return titles[0]
+
+
+# Bản B2.2 core đã review trên GitHub. Hai test bất biến dưới đây phải FAIL với
+# bản này, nên nạp thẳng source của nó từ git làm đối chứng phủ định — không
+# chép tay lại công thức cũ.
+LEGACY_COMMIT = "c159aba"
+
+
+@lru_cache(maxsize=None)
+def legacy_canon_id():
+    """`canon_id.py` tại `c159aba`, nạp trong bộ nhớ, không ghi file nào."""
+    show = subprocess.run(
+        ["git", "show", f"{LEGACY_COMMIT}:kag/builder/canon_id.py"],
+        cwd=str(ROOT), capture_output=True, text=True, encoding="utf-8",
+    )
+    if show.returncode != 0:
+        raise unittest.SkipTest(f"không đọc được {LEGACY_COMMIT}: {show.stderr.strip()}")
+    module = ModuleType("canon_id_legacy")
+    # __file__ trỏ đúng chỗ cũ vì bản cũ dùng parents[2] để tìm gốc repo.
+    module.__file__ = str(ROOT / "kag" / "builder" / "canon_id.py")
+    exec(compile(show.stdout, f"{LEGACY_COMMIT}:canon_id.py", "exec"), module.__dict__)
+    return module
 
 _LABELS = (
     "Article", "LegalDocument", "Authority", "Sanction", "Obligation",
@@ -148,14 +201,18 @@ class ATestSanctionOccurrence(unittest.TestCase):
     def test_money_amount_never_normalized_away(self):
         self.assertIn("10.000.000", normalize_source_phrase(f"2. {FINE}"))
         self.assertEqual(normalize_source_phrase(f"2. {FINE}"), normalize_source_phrase(FINE))
-        other = FINE.replace("20.000.000", "30.000.000")
-        chunk = chunk_with("330-2026-ND-CP", 9, FINE)
-        self.assertNotEqual(
-            semantic_identity("Sanction", FINE, doc_id="330-2026-ND-CP",
-                              article_no=9, content=chunk.content).id,
-            semantic_identity("Sanction", other, doc_id="330-2026-ND-CP",
-                              article_no=9, content=f"{chunk.content}\n{other}").id,
-        )
+        # Ca thật: NĐ 330 Điều 9 có khoản 1 mức 5-10 triệu và khoản 2 mức 10-20
+        # triệu. Hai chế tài khác nhau trong CÙNG một Điều -> hai id.
+        source = source_path_of("330-2026-ND-CP")
+        lower = "Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng"
+        ids = [
+            semantic_identity("Sanction", name, source_path=source, article_no=9)
+            for name in (lower, FINE)
+        ]
+        self.assertTrue(all(i.id for i in ids), ids)
+        self.assertNotEqual(ids[0].id, ids[1].id)
+        for amount, identity in (("5.000.000", ids[0]), ("20.000.000", ids[1])):
+            self.assertIn(amount, identity.material[-1], identity)
 
 
 class BTestObligationAmbiguous(unittest.TestCase):
@@ -167,8 +224,8 @@ class BTestObligationAmbiguous(unittest.TestCase):
         for subject in ("Nhà cung cấp", "Bên triển khai"):
             self.assertIn(subject.casefold(), chunk.content.casefold())
         identity = semantic_identity(
-            "Obligation", OBLIGATION, doc_id="134-2025-QH15", article_no=14,
-            content=chunk.content, clause_no=chunk.kwargs.get("clause_no"),
+            "Obligation", OBLIGATION, source_path=source_path_of("134-2025-QH15"),
+            article_no=14, clause_no=chunk.kwargs.get("clause_no"),
             point_no=chunk.kwargs.get("point_no"))
         self.assertIsNone(identity.id, identity)
         graph = graph_for(chunk, [{"name": OBLIGATION, "category": "Obligation"}])
@@ -178,14 +235,18 @@ class BTestObligationAmbiguous(unittest.TestCase):
         # Một placeholder KHÔNG chứng minh chỉ có một nghĩa vụ: văn bản có 2 lần.
 
     def test_same_wording_different_article_different_id(self):
-        content = f"1. {OBLIGATION}."
+        # Ca thật: câu "Chủ quản hệ thống thông tin quan trọng về an ninh quốc
+        # gia có trách nhiệm sau đây" nằm ở Điều 11 và Điều 31 Luật 116/2025.
+        source = source_path_of("116-2025-QH15")
         ids = {
-            semantic_identity("Obligation", OBLIGATION, doc_id="134-2025-QH15",
-                              article_no=no, content=content).id
-            for no in (11, 12)
+            no: semantic_identity("Obligation", OBLIGATION_SHARED,
+                                  source_path=source, article_no=no).id
+            for no in (11, 31)
         }
-        self.assertEqual(len(ids), 2, ids)
-        self.assertNotIn(None, ids)
+        self.assertNotIn(None, ids.values(), ids)
+        self.assertEqual(len(set(ids.values())), 2, ids)
+        for no, identity in ids.items():
+            self.assertTrue(identity.startswith(f"obligation:116-2025-QH15:{no}:"), identity)
 
 
 class CTestProhibitedActByBasis(unittest.TestCase):
@@ -291,25 +352,25 @@ class FTestRegulatedEntityScope(unittest.TestCase):
         self.assertFalse(any(i.startswith("regulatedentity:") for i in ids), ids)
 
     def test_scope_article_resolves_but_ambiguous_name_does_not(self):
-        chunk = article_chunks("134-2025-QH15", 2)[0]
-        heading = " / ".join(chunk.kwargs.get("heading_path") or [])
-        self.assertIn("đối tượng áp dụng", heading.casefold())
+        # Scope đọc từ TIÊU ĐỀ Điều nguồn ("Điều 2. Đối tượng áp dụng"), không
+        # lấy heading_path của chunk.
+        source = source_path_of("134-2025-QH15")
         resolved = semantic_identity(
             "RegulatedEntity", "cơ quan, tổ chức, cá nhân Việt Nam",
-            doc_id="134-2025-QH15", article_no=2, heading=heading, content=chunk.content)
+            source_path=source, article_no=2)
         self.assertTrue(str(resolved.id).startswith("regulatedentity:134-2025-QH15:2:"),
                         resolved)
+        # "tổ chức, cá nhân" xuất hiện 2 lần trong chính dòng nguồn đó -> mơ hồ.
         ambiguous = semantic_identity(
-            "RegulatedEntity", "tổ chức, cá nhân", doc_id="134-2025-QH15",
-            article_no=2, heading=heading, content=chunk.content)
+            "RegulatedEntity", "tổ chức, cá nhân", source_path=source, article_no=2)
         self.assertIsNone(ambiguous.id, ambiguous)
 
     def test_roles_do_not_merge_on_lexical_overlap(self):
         chunk = chunk_with("134-2025-QH15", 14, OBLIGATION)
         ids = {
-            name: semantic_identity("RegulatedEntity", name, doc_id="134-2025-QH15",
-                                    article_no=14, heading="Điều 14. Quản lý",
-                                    content=chunk.content).id
+            name: semantic_identity("RegulatedEntity", name,
+                                    source_path=source_path_of("134-2025-QH15"),
+                                    article_no=14).id
             for name in ("nhà cung cấp", "bên triển khai", "tổ chức, cá nhân")
         }
         self.assertEqual(set(ids.values()), {None}, ids)
@@ -407,20 +468,135 @@ class ITestStableIdentity(unittest.TestCase):
         self.assertNotIn("/", sanction_id)
 
     def test_identity_material_is_inspectable_and_hash_free(self):
-        chunk = chunk_with("330-2026-ND-CP", 9, FINE)
-        identity = semantic_identity("Sanction", FINE, doc_id="330-2026-ND-CP",
-                                     article_no=9, content=chunk.content)
-        self.assertEqual(identity.material[:3], ("Sanction", "330-2026-ND-CP", "9"))
-        self.assertEqual(identity.material[-1], normalize_source_phrase(FINE))
+        source = source_path_of("330-2026-ND-CP")
+        identity = semantic_identity("Sanction", FINE, source_path=source, article_no=9)
+        # Material là ĐƠN VỊ NGUỒN, không phải câu chữ NER: dài hơn tên NER.
+        self.assertEqual(identity.material[:4], ("Sanction", "330-2026-ND-CP", "9", "k2"))
+        unit = identity.material[-1]
+        self.assertTrue(unit.startswith(normalize_source_phrase(FINE)), unit)
+        self.assertGreater(len(unit), len(normalize_source_phrase(FINE)))
+        self.assertEqual(unit, source_occurrence(FINE, source, 9).unit)
         prefix, _, digest = identity.id.rpartition(":")
-        self.assertEqual(prefix, "sanction:330-2026-ND-CP:9")
+        self.assertEqual(prefix, "sanction:330-2026-ND-CP:9:k2")
         self.assertEqual(len(digest), 16)
         self.assertTrue(all(ch in "0123456789abcdef" for ch in digest), digest)
-        # Chữ liệu tái lập được id: hash không che mất vật liệu để debug.
+        # Dấu đánh mục không phải vật liệu: "2. <tên>" cho cùng id.
         self.assertEqual(
             identity.id,
-            semantic_identity("Sanction", f"2. {FINE}", doc_id="330-2026-ND-CP",
-                              article_no=9, content=chunk.content).id)
+            semantic_identity("Sanction", f"2. {FINE}", source_path=source,
+                              article_no=9).id)
+
+
+class KTestChunkingInvariance(unittest.TestCase):
+    """K — id canonical không đổi khi cấu hình cắt chunk đổi (§A).
+
+    Điểm neo Khoản/Điểm quét từ file nguồn, nên `clause_no`/`point_no` của
+    splitter chỉ là hint đối chiếu. Đối chứng: cùng ca này với implementation
+    `c159aba` cho HAI id khác nhau.
+    """
+
+    def test_clause_metadata_is_a_hint_not_canonical_truth(self):
+        source = source_path_of("330-2026-ND-CP")
+        loose = semantic_identity("Sanction", FINE, source_path=source, article_no=9,
+                                  clause_no=None, point_no=None)
+        tight = semantic_identity("Sanction", FINE, source_path=source, article_no=9,
+                                  clause_no=2, point_no=None)
+        self.assertIsNotNone(loose.id, loose)
+        self.assertEqual(loose.id, tight.id)
+        # Neo k2 do đọc nguồn, KHÔNG do chunk cấp: splitter để clause_no = None.
+        self.assertTrue(loose.id.startswith("sanction:330-2026-ND-CP:9:k2:"), loose.id)
+        chunk = chunk_with("330-2026-ND-CP", 9, FINE)
+        self.assertIsNone(chunk.kwargs.get("clause_no"), chunk.kwargs)
+
+    def test_hint_mismatch_is_reported_not_baked_into_id(self):
+        source = source_path_of("330-2026-ND-CP")
+        wrong = semantic_identity("Sanction", FINE, source_path=source, article_no=9,
+                                  clause_no=7)
+        right = semantic_identity("Sanction", FINE, source_path=source, article_no=9)
+        self.assertEqual(wrong.id, right.id)
+        self.assertIn("lệch nguồn 2", wrong.reason)
+
+    def test_chunk_content_and_id_do_not_change_canonical_id(self):
+        """Chunk hẹp (một khoản) và chunk rộng (cả Điều) cho cùng một id."""
+        units = source_article_units(source_path_of("330-2026-ND-CP"), 9)
+        narrow = "\n".join(f"2. {u.text}" for u in units if u.clause_no == 2 and not u.point_no)
+        wide = "\n".join(u.text for u in units)
+        title = article_title("330-2026-ND-CP", 9)
+        ids = set()
+        for index, content in enumerate((narrow, wide)):
+            chunk = fixture_chunk("330-2026-ND-CP", 9, content,
+                                  chunk_id=f"chunk-{index}", heading=title)
+            chunk.kwargs["clause_no"] = 2 if index == 0 else None
+            graph = graph_for(chunk, [{"name": FINE, "category": "Sanction"}])
+            ids.update(ids_of(graph, "Sanction"))
+        self.assertEqual(len(ids), 1, ids)
+        self.assertTrue(next(iter(ids)).startswith("sanction:330-2026-ND-CP:9:k2:"), ids)
+
+    def test_negative_control_legacy_implementation_fails_this(self):
+        legacy = legacy_canon_id()
+        chunk = chunk_with("330-2026-ND-CP", 9, FINE)
+        loose = legacy.semantic_identity("Sanction", FINE, doc_id="330-2026-ND-CP",
+                                        article_no=9, content=chunk.content)
+        tight = legacy.semantic_identity("Sanction", FINE, doc_id="330-2026-ND-CP",
+                                        article_no=9, content=chunk.content, clause_no=2)
+        self.assertIsNotNone(loose.id, loose)
+        self.assertNotEqual(loose.id, tight.id)
+
+
+class LTestNerWordingInvariance(unittest.TestCase):
+    """L — hai span NER của cùng một đơn vị nguồn cho cùng id (§B).
+
+    Ca thật, không synthetic: dòng nguồn NĐ 330 Điều 9 khoản 2 chứa cả FINE và
+    FINE_LONG. Đối chứng: `c159aba` băm câu chữ NER nên cho hai id.
+    """
+
+    def test_two_real_spans_of_one_source_unit_share_one_id(self):
+        source = source_path_of("330-2026-ND-CP")
+        short = semantic_identity("Sanction", FINE, source_path=source, article_no=9)
+        long = semantic_identity("Sanction", FINE_LONG, source_path=source, article_no=9)
+        self.assertIsNotNone(short.id, short)
+        self.assertNotEqual(normalize_source_phrase(FINE), normalize_source_phrase(FINE_LONG))
+        self.assertEqual(short.id, long.id)
+        self.assertEqual(short.material, long.material)
+
+    def test_both_spans_point_at_the_same_source_unit(self):
+        source = source_path_of("330-2026-ND-CP")
+        units = {source_occurrence(name, source, 9).unit for name in (FINE, FINE_LONG)}
+        self.assertEqual(len(units), 1, units)
+        unit = next(iter(units))
+        for span in (FINE, FINE_LONG):
+            self.assertIn(normalize_source_phrase(span), unit)
+
+    def test_ner_paraphrase_that_is_not_in_source_stays_unresolved(self):
+        """Diễn giải lại thì KHÔNG map được: unresolved, không đoán."""
+        source = source_path_of("330-2026-ND-CP")
+        for paraphrase in ("Phạt tiền 10-20 triệu đồng", "Mức phạt tại khoản 2"):
+            identity = semantic_identity("Sanction", paraphrase, source_path=source,
+                                         article_no=9)
+            self.assertIsNone(identity.id, (paraphrase, identity))
+            self.assertIn("cần đúng 1", identity.reason)
+
+    def test_source_occurrence_key_exposes_only_source_facts(self):
+        source = source_path_of("330-2026-ND-CP")
+        occurrence = source_occurrence(FINE, source, 9)
+        self.assertEqual(
+            (occurrence.doc_id, occurrence.article_no, occurrence.clause_no,
+             occurrence.point_no),
+            ("330-2026-ND-CP", 9, 2, None))
+        joined = "\x1f".join(str(part) for part in occurrence)
+        for leak in ("data/processed", ".md", str(ROOT), "chunk-", "split_index"):
+            self.assertNotIn(leak, joined, leak)
+
+    def test_negative_control_legacy_implementation_fails_this(self):
+        legacy = legacy_canon_id()
+        chunk = chunk_with("330-2026-ND-CP", 9, FINE)
+        ids = [
+            legacy.semantic_identity("Sanction", name, doc_id="330-2026-ND-CP",
+                                     article_no=9, content=chunk.content).id
+            for name in (FINE, FINE_LONG)
+        ]
+        self.assertNotIn(None, ids, ids)
+        self.assertNotEqual(ids[0], ids[1])
 
 
 class JTestUnresolvedContract(unittest.TestCase):

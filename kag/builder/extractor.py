@@ -134,16 +134,17 @@ def _endpoint_ids(chunk, entities):
     source_id, heading, article_ids = _article_ids(chunk, entities)
     ids = {("Article", key): target for key, target in article_ids.items()}
     meta = chunk.kwargs
-    doc_id = source_document_id(meta.get("source_path", ""))
     # Chỉ cấp occurrence khi Điều nguồn của chunk ĐÃ phân giải. Không có căn cứ
     # thì mọi thực thể phụ thuộc ngữ cảnh trong chunk đều unresolved.
+    #
+    # `clause_no`/`point_no` của splitter chỉ đi kèm làm hint đối chiếu. Resolver
+    # tự quét Khoản/Điểm từ file nguồn, nên id canonical không đổi khi cấu hình
+    # cắt chunk đổi. `chunk.id` chỉ dùng cho nhánh unresolved.
     anchor = {
-        "doc_id": doc_id if source_id else None,
+        "source_path": meta.get("source_path", "") if source_id else "",
         "article_no": meta.get("article_no") if source_id else None,
         "clause_no": meta.get("clause_no"),
         "point_no": meta.get("point_no"),
-        "heading": heading,
-        "content": chunk.content or "",
     }
     reasons = {}
     for entity in entities:

@@ -222,10 +222,24 @@ def source_article_headings(source_path):
 #
 # Bằng chứng nào được tính. Pipeline hiện KHÔNG có character offset / mention
 # span: triple chỉ mang tên hai đầu mút. Nên bằng chứng duy nhất kiểm được bằng
-# code là "tên thực thể khớp DUY NHẤT MỘT lần vào văn bản nguồn của chunk". Khớp
+# code là "tên thực thể khớp DUY NHẤT MỘT lần vào VĂN BẢN NGUỒN của Điều". Khớp
 # 0 lần nghĩa là LLM diễn giải lại, khớp nhiều lần nghĩa là không biết lần nào —
 # cả hai đều ra unresolved. Đây là chỗ cố tình không dùng fuzzy match: một phép
 # khớp gần đúng sẽ sinh id canonical cho thứ không chứng minh được.
+#
+# Hai tính bất biến BẮT BUỘC của id canonical:
+#
+# 1. Bất biến với cấu hình chunk. Điểm neo Khoản/Điểm được quét TỪ FILE NGUỒN
+#    (`source_article_units`), không lấy `chunk.kwargs["clause_no"]`. Đổi
+#    cut_depth/ngưỡng của splitter không đổi id. `chunk.id`, `split_index`,
+#    đường dẫn tuyệt đối không bao giờ vào material canonical.
+# 2. Bất biến với cách LLM cắt chữ. Tên NER chỉ dùng để ĐỊNH VỊ duy nhất một
+#    đơn vị văn bản nguồn; material canonical là chính đơn vị nguồn đó. Hai span
+#    dài ngắn khác nhau của cùng một dòng nguồn cho cùng một id.
+#
+# Giá của (2): hai occurrence cùng nhãn nằm cùng một dòng nguồn sẽ gộp về một
+# id. Không phân biệt được với "hai span của một occurrence" khi thiếu mention
+# span, nên chọn gộp — xem Hạn chế trong report.
 #
 # Chuẩn hóa được phép mất: hoa/thường, khoảng trắng, dấu nháy, dấu đánh mục đầu
 # dòng ("1. ", "a) ") — hợp đồng NER đã bỏ các dấu này. KHÔNG được mất: số tiền,
@@ -262,6 +276,10 @@ _QUOTES = dict.fromkeys(map(ord, "\"'“”‘’«»"), None)
 # Dấu đánh mục đầu dòng. PHẢI có khoảng trắng sau dấu chấm, nếu không thì
 # "10.000.000 đồng đến 20.000.000 đồng" bị cắt mất chữ số hàng triệu.
 _STRUCTURAL_MARKER = re.compile(r"^(?:\d{1,3}\.|[a-zđ]\)|[-–•])\s+")
+
+# Dấu Khoản/Điểm đọc từ file nguồn. Cùng ràng buộc khoảng trắng như trên.
+_SOURCE_CLAUSE = re.compile(r"^(\d{1,3})\.\s+")
+_SOURCE_POINT = re.compile(r"^([a-zđ])\)\s+")
 
 # Chức danh: người/vai, không phải tổ chức. Phải xét TRƯỚC loại tổ chức vì
 # "bộ trưởng bộ công an" cũng mở đầu bằng "bộ ".
@@ -324,19 +342,134 @@ def source_phrase_count(name, content):
     return _norm_text(content).count(needle)
 
 
-def _definition_hits(term, content):
-    """Số dòng mở đầu bằng "<thuật ngữ> là ", tức dòng ĐỊNH NGHĨA.
+class SourceUnit(NamedTuple):
+    """Một đơn vị văn bản trong Điều nguồn, kèm điểm neo pháp lý của nó."""
 
-    Không dùng `"<term> là" in content`: câu "bảo vệ an ninh mạng là trách
-    nhiệm của..." cũng chứa "an ninh mạng là" mà không định nghĩa gì.
+    clause_no: Optional[int]
+    point_no: Optional[str]
+    text: str
+
+
+@lru_cache(maxsize=None)
+def source_article_units(source_path, article_no):
+    """Các đơn vị văn bản của một Điều, đọc TRỰC TIẾP từ file nguồn.
+
+    Khoản/Điểm suy ra từ dấu đánh mục trong chính file nguồn, nên không phụ
+    thuộc splitter đang cắt tới cấp nào. Trả `()` khi không chứng minh được
+    thân Điều: chưa có metadata, Điều không nằm trong dãy số liên tiếp, hoặc
+    tài liệu có nhiều heading cùng số Điều (trích dẫn sửa đổi) — lúc đó không
+    biết thân nào là thân thật nên để tầng trên ra unresolved.
     """
-    needle = normalize_source_phrase(term)
+    if not source_document_id(source_path) or not str(article_no or "").isdigit():
+        return ()
+    titles = [t for n, t in source_article_headings(source_path) if n == int(article_no)]
+    if len(titles) != 1:
+        return ()
+    path = Path(__file__).resolve().parents[2] / source_path
+    blocks, body = [], None
+    for line in path.read_text(encoding="utf-8").splitlines():
+        heading = re.match(r"^#{1,6}\s+(.+)", line)
+        if heading:
+            if body is not None:
+                blocks.append(body)
+            body = [] if heading.group(1).strip() == titles[0] else None
+            continue
+        if body is not None:
+            body.append(line)
+    if body is not None:
+        blocks.append(body)
+    if len(blocks) != 1:
+        return ()
+
+    body_lines = blocks[0]
+    if not any(_norm_text(line) for line in body_lines):
+        # 6 Điều trong corpus có toàn văn nằm ngay trên dòng heading (QĐ-TTg
+        # một Điều, Luật 71/2025 Điều 46). Lấy chính phần sau "Điều N." làm
+        # đơn vị duy nhất: vẫn là văn bản nguồn, không đoán chỗ cắt tiêu đề.
+        body_lines = [re.sub(r"^Điều\s+\d{1,3}\.\s*", "", titles[0])]
+
+    units, clause, point = [], None, None
+    for line in body_lines:
+        text = normalize_source_phrase(line)
+        if not text:
+            continue
+        marker = _norm_text(line)
+        clause_mark = _SOURCE_CLAUSE.match(marker)
+        if clause_mark:
+            # Sang Khoản mới thì Điểm của Khoản cũ hết hiệu lực.
+            clause, point = int(clause_mark.group(1)), None
+        else:
+            point_mark = _SOURCE_POINT.match(marker)
+            if point_mark:
+                point = point_mark.group(1)
+        units.append(SourceUnit(clause, point, text))
+    return tuple(units)
+
+
+class SourceOccurrence(NamedTuple):
+    """Khóa occurrence nguồn. Soi được bằng mắt TRƯỚC khi băm.
+
+    Chỉ chứa thứ suy được từ văn bản nguồn: `doc_id`, số Điều, điểm neo
+    Khoản/Điểm nếu chứng minh được, và đơn vị văn bản nguồn. KHÔNG chứa
+    `chunk.id`, `split_index`, đường dẫn tuyệt đối, `official_name` của LLM,
+    hay cách diễn giải lại của NER. `unit` rỗng nghĩa là chưa phân giải.
+    """
+
+    doc_id: Optional[str]
+    article_no: Optional[int]
+    clause_no: Optional[int]
+    point_no: Optional[str]
+    unit: str
+    reason: str
+
+
+def source_occurrence(name, source_path, article_no, *, definition=False):
+    """Tên NER -> đúng MỘT đơn vị văn bản nguồn, hoặc không gì cả.
+
+    Tên chỉ để định vị. Không fuzzy match: khớp 0 lần, khớp nhiều dòng, hay
+    khớp nhiều lần trong cùng một dòng đều trả `unit` rỗng. Thất bại bảo toàn
+    được chấp nhận — đoán thì sinh id canonical cho thứ không chứng minh được.
+    """
+    doc_id = source_document_id(source_path)
+    empty = SourceOccurrence(doc_id, None, None, None, "", "")
+    if not doc_id or not str(article_no or "").isdigit():
+        return empty._replace(reason="chưa phân giải được căn cứ pháp lý")
+    number = int(article_no)
+    units = source_article_units(source_path, number)
+    if not units:
+        return empty._replace(article_no=number, reason="không xác định được thân Điều nguồn")
+    needle = normalize_source_phrase(name)
     if not needle:
-        return 0
-    return sum(
-        1
-        for line in str(content).splitlines()
-        if normalize_source_phrase(line).startswith(needle + " là ")
+        return empty._replace(article_no=number, reason="tên rỗng")
+
+    if definition:
+        # Dòng ĐỊNH NGHĨA, không phải lần nhắc. Không dùng `"<term> là" in text`:
+        # câu "bảo vệ an ninh mạng là trách nhiệm của..." cũng chứa "an ninh
+        # mạng là" mà không định nghĩa gì.
+        hits = [u for u in units if u.text.startswith(needle + " là ")]
+        total, label = len(hits), "dòng định nghĩa nguồn"
+    else:
+        hits = [u for u in units if needle in u.text]
+        total = sum(u.text.count(needle) for u in units)
+        label = "khớp văn bản nguồn"
+    if total != 1 or len(hits) != 1:
+        return empty._replace(
+            article_no=number, reason=f"{label} {total} lần, cần đúng 1"
+        )
+    unit = hits[0]
+    return SourceOccurrence(
+        doc_id, number, unit.clause_no, unit.point_no, unit.text, "phân giải theo đơn vị nguồn"
+    )
+
+
+def _scope_article(source_path, article_no):
+    """Điều nguồn có tiêu đề xác định phạm vi/đối tượng áp dụng hay không."""
+    titles = [
+        t for n, t in source_article_headings(source_path)
+        if str(article_no or "").isdigit() and n == int(article_no)
+    ]
+    return len(titles) == 1 and any(
+        key in _norm_text(titles[0]) for key in _SCOPE_HEADINGS
     )
 
 
@@ -371,10 +504,8 @@ def semantic_identity(
     category,
     name,
     *,
-    doc_id=None,
+    source_path="",
     article_no=None,
-    heading="",
-    content="",
     clause_no=None,
     point_no=None,
 ):
@@ -383,43 +514,44 @@ def semantic_identity(
     Trả về `Identity`. `id is None` nghĩa là bằng chứng không đủ; tầng gọi phải
     dùng `unresolved_identity()`, KHÔNG được tự bịa số thứ tự occurrence.
 
-    `clause_no`/`point_no` chỉ được truyền vào khi chunk THỰC SỰ là Khoản/Điểm
-    nguồn (splitter chỉ gắn hai khóa này khi `article_no` xác định được). Chúng
-    là điểm neo pháp lý, không phải id runtime — `chunk.id` và `split_index`
-    không bao giờ vào material canonical.
+    Material canonical lấy từ VĂN BẢN NGUỒN (`source_occurrence`), không lấy tên
+    NER và không lấy metadata của splitter. `clause_no`/`point_no` của B1 chỉ là
+    hint để đối chiếu, ghi vào `reason`; chúng KHÔNG vào material nên đổi cấu
+    hình cắt chunk không đổi id.
     """
     if category == "Authority":
         return _authority_identity(name)
     if category not in CONTEXTUAL_CATEGORIES:
         return Identity(None, (), "nhãn không do resolver này cấp id")
-    if not doc_id or not str(article_no or "").isdigit():
-        # Chưa biết văn bản/Điều nguồn thì không có căn cứ để cấp occurrence.
-        return Identity(None, (), "chưa phân giải được căn cứ pháp lý")
 
-    if category == "LegalTerm":
-        hits = _definition_hits(name, content)
-        if hits != 1:
-            # Lần nhắc không phải lần định nghĩa. Không ép thuật ngữ thuộc Điều
-            # đang đọc chỉ vì nó được nhắc ở đó.
-            return Identity(None, (), f"không có ngữ cảnh định nghĩa (khớp {hits})")
-    else:
-        if category == "RegulatedEntity" and not any(
-            key in _norm_text(heading) for key in _SCOPE_HEADINGS
-        ):
-            return Identity(None, (), "chưa chứng minh được scope của đối tượng")
-        matches = source_phrase_count(name, content)
-        if matches != 1:
-            return Identity(None, (), f"khớp văn bản nguồn {matches} lần, cần đúng 1")
+    occurrence = source_occurrence(
+        name, source_path, article_no, definition=(category == "LegalTerm")
+    )
+    if not occurrence.unit:
+        return Identity(None, (), occurrence.reason)
+    if category == "RegulatedEntity" and not _scope_article(source_path, article_no):
+        # Ở Điều khác, "tổ chức, cá nhân" chỉ là lần nhắc, chưa chứng minh scope.
+        return Identity(None, (), "chưa chứng minh được scope của đối tượng")
 
-    phrase = normalize_source_phrase(name)
-    anchor = [str(doc_id), str(int(article_no))]
-    if clause_no is not None:
-        anchor.append(f"k{clause_no}")
-    if point_no is not None:
-        anchor.append(f"p{point_no}")
-    material = (category, *anchor, phrase)
+    anchor = [occurrence.doc_id, str(occurrence.article_no)]
+    if occurrence.clause_no is not None:
+        anchor.append(f"k{occurrence.clause_no}")
+    if occurrence.point_no is not None:
+        anchor.append(f"p{occurrence.point_no}")
+    material = (category, *anchor, occurrence.unit)
     head = ":".join([IDENTITY_PREFIXES[category], *anchor])
-    return Identity(f"{head}:{_digest(*material)}", material, "phân giải theo căn cứ")
+
+    reason = occurrence.reason
+    hints = (("khoản", clause_no, occurrence.clause_no), ("điểm", point_no, occurrence.point_no))
+    lech = [
+        f"{ten} B1 {b1} lệch nguồn {nguon}"
+        for ten, b1, nguon in hints
+        if b1 is not None and str(b1) != str(nguon)
+    ]
+    if lech:
+        # Không để hint quyết định id, chỉ báo để soi lại splitter.
+        reason = f"{reason}; {', '.join(lech)}"
+    return Identity(f"{head}:{_digest(*material)}", material, reason)
 
 
 def unresolved_identity(category, chunk_id, name):
@@ -494,10 +626,14 @@ def _self_check():
         print(f"  không gộp bừa      : {goc!r} -> {got!r}")
 
     # B2.2 — thực thể phụ thuộc căn cứ. Cùng câu chữ, khác Điều -> khác id.
+    # Đọc TRỰC TIẾP file nguồn trong corpus, không dựng content giả.
+    nd330 = next(
+        (Path(__file__).resolve().parents[2] / "data" / "processed").rglob("330-2026-ND-CP_*.md")
+    )
+    nguon = "data/processed/" + nd330.parent.name + "/" + nd330.name
     fine = "Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng"
     occurrences = [
-        semantic_identity("Sanction", fine, doc_id="330-2026-ND-CP",
-                          article_no=number, content=f"2. {fine} đối với hành vi X.")
+        semantic_identity("Sanction", fine, source_path=nguon, article_no=number)
         for number in (9, 10, 11)
     ]
     assert all(o.id for o in occurrences), occurrences
@@ -508,19 +644,30 @@ def _self_check():
     # ăn mất chữ số: marker chỉ khớp khi có khoảng trắng sau dấu chấm.
     assert normalize_source_phrase(f"2. {fine}") == normalize_source_phrase(fine)
     assert "10.000.000" in normalize_source_phrase(fine)
-    khac = semantic_identity("Sanction", "Phạt tiền từ 10.000.000 đồng đến 30.000.000 đồng",
-                             doc_id="330-2026-ND-CP", article_no=9,
-                             content="2. Phạt tiền từ 10.000.000 đồng đến 30.000.000 đồng.")
+    khac = semantic_identity("Sanction", "Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng",
+                             source_path=nguon, article_no=9)
     assert khac.id and khac.id != occurrences[0].id
-    print("  số tiền giữ nguyên  : 20 triệu và 30 triệu không cùng id")
+    print("  số tiền giữ nguyên  : khoản 1 (5-10tr) và khoản 2 (10-20tr) khác id")
 
-    # Khớp 0 lần (LLM diễn giải lại) và khớp nhiều lần (không rõ lần nào) đều
-    # KHÔNG được cấp id canonical.
-    for content, ten in ((f"Nội dung khác.", "khớp 0 lần"), (f"{fine}. {fine}.", "khớp 2 lần")):
-        mo_ho = semantic_identity("Sanction", fine, doc_id="330-2026-ND-CP",
-                                  article_no=9, content=content)
-        assert mo_ho.id is None, (ten, mo_ho)
-        print(f"  {ten:<20}: {mo_ho.reason}")
+    # Bất biến cấu hình chunk: hint khoản của splitter không vào material.
+    assert semantic_identity("Sanction", fine, source_path=nguon, article_no=9,
+                             clause_no=2).id == occurrences[0].id
+    assert occurrences[0].id.startswith("sanction:330-2026-ND-CP:9:k2:"), occurrences[0]
+    print("  bất biến chunk      : clause_no None/2 -> cùng id, neo k2 đọc từ nguồn")
+
+    # Bất biến câu chữ NER: hai span của cùng một dòng nguồn -> cùng id.
+    dai = semantic_identity("Sanction", fine + " đối với các hành vi sau đây",
+                            source_path=nguon, article_no=9)
+    assert dai.id == occurrences[0].id, (dai, occurrences[0])
+    print("  bất biến câu chữ NER: span dài/ngắn cùng dòng nguồn -> cùng id")
+
+    # Diễn giải lại (khớp 0 lần) và tên mơ hồ (khớp nhiều lần) đều KHÔNG được
+    # cấp id canonical.
+    for ten, ten_goi in (("Phạt tiền 10-20 triệu đồng", "khớp 0 lần"),
+                         ("Phạt tiền từ", "khớp nhiều lần")):
+        mo_ho = semantic_identity("Sanction", ten, source_path=nguon, article_no=9)
+        assert mo_ho.id is None, (ten_goi, mo_ho)
+        print(f"  {ten_goi:<20}: {mo_ho.reason}")
 
     # Authority toàn cục, nhưng chức danh và đơn vị trực thuộc thì KHÔNG gộp.
     bca = semantic_identity("Authority", "Bộ Công an")
