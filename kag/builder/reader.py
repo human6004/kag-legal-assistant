@@ -40,6 +40,23 @@ _HEADINGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 _BLOCK_TAGS = {"p", "ol", "ul", "table", "pre", "blockquote", *_HEADINGS}
 
 
+class _LexicalTable(pd.DataFrame):
+    """DataFrame bảng: chặn tabulate parse lại chuỗi số khi render markdown.
+
+    ``to_markdown`` mặc định để tabulate tự suy kiểu; cột toàn chuỗi số sẽ bị đọc
+    thành float nên "1.100" in ra "1.1". Giá trị ô đã đúng ở tầng đọc, chỉ cần giữ
+    nguyên lúc render, nên bật ``disable_numparse``.
+    """
+
+    @property
+    def _constructor(self):
+        return _LexicalTable
+
+    def to_markdown(self, *args, **kwargs):
+        kwargs.setdefault("disable_numparse", True)
+        return super().to_markdown(*args, **kwargs)
+
+
 class _SourceNumberList(SaneOListProcessor):
     """Retain each source ordinal before Markdown discards it (including resets)."""
 
@@ -149,7 +166,17 @@ class LegalMarkdownReader(MarkDownReader):
         def _process_table(element: Tag) -> Optional[dict]:
             """Chuyển thẻ table thành dữ liệu bảng có cấu trúc."""
             try:
-                df = pd.read_html(io.StringIO(str(element)), header=0)[0].astype(str)
+                # pandas suy dtype trước khi ép sang str: dấu nghìn tiếng Việt bị
+                # đọc là dấu thập phân ("5.000" -> 5.0), số nguyên thành 10.0, và
+                # NA inference biến literal "NA"/"N/A" thành missing. Lượt đọc đầu
+                # chỉ để lấy số cột, rồi đọc lại với converters=str giữ nguyên text.
+                probe = pd.read_html(io.StringIO(str(element)), header=0)[0]
+                df = pd.read_html(
+                    io.StringIO(str(element)),
+                    header=0,
+                    converters={idx: str for idx in range(probe.shape[1])},
+                    keep_default_na=False,
+                )[0]
                 for col in df.columns:
                     df[col] = df[col].map(
                         lambda x: str(x).strip('"\\"') if isinstance(x, str) else x
@@ -159,6 +186,7 @@ class LegalMarkdownReader(MarkDownReader):
                     for col in df.columns
                 ]
                 headers = df.columns.tolist()
+                df = _LexicalTable(df)
                 context = self._extract_table_context(
                     element, self._process_text_with_links
                 )
