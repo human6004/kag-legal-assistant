@@ -89,6 +89,32 @@ def count_lines(text):
     return [ln.strip() for ln in text.splitlines() if ln.strip()]
 
 
+def table_rows(text):
+    """Các dòng bảng pipe, đã bỏ dòng phân cách, tách sẵn thành từng ô."""
+    rows = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not (line.startswith("|") and line.endswith("|")):
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        if re.fullmatch(r"[\s:\-]*", "".join(cells)):
+            continue
+        rows.append(cells)
+    return rows
+
+
+def row_by_label(text, label):
+    """Dòng bảng duy nhất chứa ``label``, trả về list ô; None nếu không xác định.
+
+    So khớp ở mức DÒNG BẢNG rồi so sánh TỪNG Ô, không dùng substring trên cả
+    văn bản: một test kiểu ``"5.000" in out`` vẫn pass khi ô sai nằm ở dòng
+    khác, còn phép này thì không. Bảng có thể được render ở nhiều chunk cha
+    nên gộp các dòng giống hệt nhau trước khi đòi tính duy nhất.
+    """
+    hits = {tuple(r) for r in table_rows(text) if any(label in c for c in r)}
+    return list(hits.pop()) if len(hits) == 1 else None
+
+
 def split_order(chunks):
     """Ghép chunk sau khi bỏ phần đầu trùng đuôi chunk trước (overlap)."""
     out = []
@@ -319,6 +345,67 @@ def main():
           len(matches_1671), 2)
     check("QĐ 1671: một lần là Điểm a) và một lần là mục 1.",
           sorted([m.split()[0] for m in matches_1671]), ["1.", "a)"])
+
+    # ----------------------------------------------------------------- 16
+    print("\n16. QD 1528: gia tri lexical cua o bang khong bi pandas/tabulate doi")
+    p_1528 = next(ROOT.glob("data/processed/**/1528-QD-TTg*.md"))
+    text_1528 = p_1528.read_text(encoding="utf-8")
+    out_1528 = run(pat, text_1528)
+
+    # Nguồn .md là ground truth: dòng render phải trùng từng ô với dòng nguồn.
+    for label in [
+        "Nhân lực trí tuệ nhân tạo trình độ cao, chuyên sâu",          # 2.500 5.000 7.500 10.000
+        "Chuyên gia được cử đào tạo ngắn hạn",                          # 1.300 1.800
+        "Giảng viên, nhà khoa học được đào tạo, thực tập tại nước ngoài",  # 1.200
+        "Chuyên gia doanh nghiệp, chuyên gia quốc tế",                   # 1.100 1.500 (Phụ lục III)
+        "Học sinh phổ thông được học trí tuệ nhân tạo",                  # 10 30 50 65 80
+        "Người lao động được bồi dưỡng kỹ năng trí tuệ nhân tạo",        # 0.5 thật, không phải dấu nghìn
+    ]:
+        src_row = row_by_label(text_1528, label)
+        out_row = row_by_label(out_1528, label)
+        check(f"QĐ 1528: dòng '{label[:34]}' render trùng từng ô với nguồn",
+              out_row, src_row)
+
+    # Bốn giá trị trong mandate, khoá ở đúng vị trí ô của chúng.
+    r_cao = row_by_label(out_1528, "Nhân lực trí tuệ nhân tạo trình độ cao, chuyên sâu")
+    check("QĐ 1528: '5.000' còn nguyên (ô Năm 2028 của Khoản 'trình độ cao')",
+          r_cao[-3] if r_cao else None, "5.000")
+    check("QĐ 1528: '2.500' còn nguyên, không thành '2.5'",
+          r_cao[-4] if r_cao else None, "2.500")
+    r_ngan = row_by_label(out_1528, "Chuyên gia được cử đào tạo ngắn hạn")
+    check("QĐ 1528: '1.300' còn nguyên, không thành '1.3'",
+          r_ngan[-2] if r_ngan else None, "1.300")
+    r_chuyengia = row_by_label(out_1528, "Chuyên gia doanh nghiệp, chuyên gia quốc tế")
+    check("QĐ 1528: '1.100' còn nguyên, không thành '1.1'",
+          r_chuyengia[-2] if r_chuyengia else None, "1.100")
+    r_hs = row_by_label(out_1528, "Học sinh phổ thông được học trí tuệ nhân tạo")
+    check("QĐ 1528: '10' không bị render thành '10.0' (ô Năm 2026)",
+          r_hs[-5] if r_hs else None, "10")
+    r_ld = row_by_label(out_1528, "Người lao động được bồi dưỡng kỹ năng trí tuệ nhân tạo")
+    check("QĐ 1528: '0.5' thật vẫn là '0.5', không bị ép thành dấu nghìn",
+          r_ld[-5] if r_ld else None, "0.5")
+
+    # Quét toàn bộ ô bảng của QĐ 1528: không còn dạng số bị pandas/tabulate đổi.
+    cells_1528 = [c for row in table_rows(out_1528) for c in row]
+    check("QĐ 1528: không ô nào còn dạng 'N.0'",
+          [c for c in cells_1528 if re.fullmatch(r"\d+\.0", c)], [])
+    check("QĐ 1528: không ô nào là 'nan'", [c for c in cells_1528 if c == "nan"], [])
+    check("QĐ 1528: vẫn còn đủ 19 ô dạng dấu nghìn như nguồn",
+          len([c for c in cells_1528 if re.fullmatch(r"\d{1,3}(\.\d{3})+", c)]),
+          len([c for row in table_rows(text_1528) for c in row
+               if re.fullmatch(r"\d{1,3}(\.\d{3})+", c)]))
+
+    # Guard cho API pandas, KHÔNG phải defect đã thấy trong corpus: 45 bảng thật
+    # hiện có 0 ô 'NA'/'N/A'/'001'. Chốt ở đây để nếu sau này bỏ
+    # keep_default_na=False / converters thì test đổ ngay, trước khi corpus có case.
+    md_api = ("#### Điều A.\n\n"
+              "| Mã | Trạng thái | Số |\n| --- | --- | --- |\n"
+              "| 001 | NA | 1.100 |\n| 01 | N/A | 10 |\n")
+    out_api = run(pat, md_api)
+    check("API guard: mã '001' không thành '1.0'",
+          row_by_label(out_api, "001"), ["001", "NA", "1.100"])
+    check("API guard: literal 'N/A' không thành rỗng hay 'nan'",
+          row_by_label(out_api, "N/A"), ["01", "N/A", "10"])
 
     print(f"\n{len(PASS)} OK, {len(FAIL)} FAIL")
     if FAIL:
