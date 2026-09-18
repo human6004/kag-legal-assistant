@@ -2,19 +2,23 @@
 """Kiểm 5 lỗi của KAG 0.8.0 mà repo này tự vá bằng lớp con.
 
 Chạy (đứng ở thư mục gốc repo):
-    cd kag; ..\\.venv\\Scripts\\python.exe builder\\test_builder_fixes.py
+    .venv/Scripts/python.exe -X utf8 tests/builder/test_builder_fixes.py
 
-Không gọi LLM, không đụng Neo4j. Chạy được nghĩa là bản KAG đang cài chưa bị
-sửa tay mà dự án vẫn đúng.
+Không gọi LLM hay ghi graph; đọc schema từ OpenSPG khi dựng runner.
+Các assertion kiểm bản vá project trên KAG đang cài, không xác minh toàn bộ thư viện.
 
-Mọi thứ nằm trong __main__ vì indexer.py gọi import_modules_from_path lên cả
-thư mục này — assert ở mức module sẽ chạy mỗi lần dựng đồ thị.
+Test nằm ngoài thư mục builder được runtime quét. Cần config local và server
+đã đăng ký schema để dựng runner; không gọi runner.invoke.
 """
 
 if __name__ == "__main__":
     import os
+    import sys
+    from pathlib import Path
 
-    os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    ROOT = Path(__file__).resolve().parents[2]
+    os.chdir(ROOT / "kag")
+    sys.path.insert(0, str(ROOT / "kag"))
 
     from kag.common.conf import init_env, KAG_CONFIG
     from kag.common.registry import import_modules_from_path

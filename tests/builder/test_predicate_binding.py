@@ -9,13 +9,14 @@ nghịch, sai ở đây là sai vĩnh viễn trong graph.
 Test gọi thẳng `assemble_sub_graph_with_triples` — cùng đường mà pipeline dùng.
 Không gọi LLM, không đụng Neo4j, không ghi file.
 
-Chạy: rtk proxy .venv/Scripts/python.exe -X utf8 kag/builder/test_predicate_binding.py
+Chạy: rtk proxy .venv/Scripts/python.exe -X utf8 tests/builder/test_predicate_binding.py
 """
 
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "kag"))
 
 from builder.extractor import LegalSchemaFreeExtractor  # noqa: E402
 from kag.builder.model.sub_graph import SubGraph  # noqa: E402

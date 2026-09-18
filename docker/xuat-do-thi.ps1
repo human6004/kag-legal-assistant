@@ -52,9 +52,6 @@ if ($vol -eq 'kag-legal-neo4j-data') {
 $n = (docker exec $ct cypher-shell -u neo4j -p 'neo4j@openspg' -d legal `
         'MATCH (n) RETURN count(n)' 2>$null | Select-Object -Last 1).Trim()
 Write-Host "Node trong DB legal: $n"
-if ($n -ne '7624') {
-    Write-Host "  CANH BAO: mong doi 7624. Do thi da doi." -ForegroundColor Yellow
-}
 
 # --- 1. Kiem tra dich den va chuan bi thu muc tam duy nhat --------------------
 Buoc '1. Kiem tra dich den (khong ghi de pha huy)'

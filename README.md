@@ -11,6 +11,8 @@ docker/     hạ tầng: file compose dựng OpenSPG server, Neo4j, MySQL, MinIO
 kag/        dự án KAG, namespace Legal
 vendor/KAG/ mã nguồn thư viện KAG, ghim commit fdab15b3
 hybridRAG/  nền so sánh, chạy độc lập, không liên quan tới kag/
+tests/builder/  bốn regression test và check_prompts.py, ngoài vùng runtime import
+scripts/    secret_scan.py kiểm tra bí mật trong repo
 ```
 
 Kho dữ liệu nằm một chỗ duy nhất và cả hai bên cùng đọc từ đó, nên không sợ lệch
@@ -29,14 +31,15 @@ từ lịch sử git.
 data/
 ├── processed/     23 file .md luật Việt Nam, chia theo thư mục con, đây là thứ cả hai engine đọc
 ├── graph/         nodes.json và edges.json sinh từ metadata, nạp thẳng vào đồ thị
-├── raw/           bản gốc pdf, docx, html, 47MB, có trong git để dựng lại processed
-├── metadata/      27 file json mô tả từng văn bản
+├── raw/           bản gốc pdf, docx, html để đối chiếu; chưa có pipeline tái sinh
+├── metadata/      JSON từng văn bản và file tổng hợp/template
+├── trial/         bốn Markdown dùng thử
 ├── README.md    quy tắc đặt tên và cấu trúc dữ liệu
 └── SOURCES.md   danh sách nguồn đã thẩm định
 ```
 
-**Mã nguồn KAG nằm trong repo này, ở `vendor/KAG/`**, ghim đúng commit `fdab15b3`
-của OpenSPG/KAG. Thư mục `kag/` chỉ chứa cấu hình, schema, prompt và script của
+**Mã nguồn KAG nằm trong repo này, ở `vendor/KAG/`**, ghi nhận commit `fdab15b3`
+của OpenSPG/KAG (phạm vi đã đối chiếu ở mục Pipeline). Thư mục `kag/` chỉ chứa cấu hình, schema, prompt và script của
 dự án, không chứa mã của chính thư viện.
 
 `vendor/KAG/` là cây mã nguồn trần: 1211 file, 170 MB, **đã gỡ `.git`**. Bản gốc
@@ -47,28 +50,146 @@ không báo lỗi gì.
 
 ```
 kag/
-├── kag_config.yaml        khai API key, namespace, model, prompt
+├── kag_config.example.yaml  cấu hình mẫu được track
+├── kag_config.yaml        cấu hình local, bị ignore, chứa khóa riêng
 ├── schema/
-│   └── Legal.schema       khuôn node và cạnh, phải trùng tên namespace
+│   ├── Legal.schema       khuôn node và cạnh, phải trùng tên namespace
+│   └── check_schema.py    kiểm tra cú pháp offline
 ├── builder/
 │   ├── indexer.py         dựng đồ thị, đọc từ data/processed
 │   ├── metadata_to_graph.py  sinh data/graph/*.json từ data/metadata
 │   ├── injection.py       nạp node/cạnh metadata thẳng vào đồ thị
 │   ├── external_graph.py  kag/builder/external_graph.py, lớp legal_external_graph
-│   ├── extractor.py       vá 3 lỗi extractor của KAG 0.8.0 bằng lớp con
+│   ├── extractor.py       vá extractor KAG và lưu vị ngữ gốc
 │   ├── chain.py           một chunk hỏng không kéo cả văn bản theo
 │   ├── canon_id.py        quy tắc id node, dùng chung cho cả hai đường nạp
-│   ├── test_builder_fixes.py  kiểm 5 bản vá, in 10 dòng OK, không gọi LLM
-│   ├── clean_corpus.py    làm sạch bản gốc trước khi đưa vào processed
+│   ├── __init__.py        bản vá áp dụng khi import builder
+│   ├── reader.py          giữ số Khoản/Điểm và thứ tự Markdown
 │   └── prompt/            prompt trích xuất: ner.py, std.py, triple.py
 └── solver/
     ├── eval.py            chạy hỏi đáp và ghi benchmark.txt
-    ├── prompt/            prompt suy luận và sinh câu trả lời, 8 file
-    └── data/questions.json  bộ câu hỏi để chấm
+    ├── gold_chunks.py     tạo tập chunk vàng từ checkpoint
+    ├── recall_report.py   đánh giá truy xuất từ kết quả đã lưu
+    ├── prompt/            prompt suy luận và sinh câu trả lời
+    └── data/              questions.json, questions_mo_rong.json và gold_chunks*.json
 ```
 
 Prompt tiếng Việt là phần đáng chú ý nhất trong `kag/`: cả `builder/prompt/` lẫn
 `solver/prompt/` đều đăng ký tên `legal_*`, và `kag_config.yaml` trỏ vào chúng.
+
+## Pipeline và đường gọi thực tế
+
+```text
+raw ──[chưa xác minh công cụ chuyển đổi/OCR]──> processed (đầu vào có sẵn)
+processed/*.md (đệ quy)
+  → indexer.py → BuilderChainRunner → dir_file_scanner
+  → legal_md_reader → length_splitter → legal_schema_free_extractor
+  → batch_vectorizer → kag_post_processor → kg_writer → graph
+
+metadata/*.json → metadata_to_graph.py → data/graph/{nodes,edges}.json
+  ├→ legal_external_graph.ner → bổ sung NER trong extractor
+  └→ injection.py → domain_kg_inject_chain
+       → legal_external_graph.dump → batch_vectorizer → kg_writer → graph
+```
+
+`raw → processed` không nằm trong pipeline đang chạy. `clean_corpus.py` cũ chỉ
+hậu xử lý Markdown, đã bị xóa; chưa tìm được `build_processed.py` trong lịch sử
+Git khả dụng. Lần cập nhật corpus `2d9ea1c` không kèm công cụ tái sinh. Xem
+[data/README.md](data/README.md) để biết giới hạn xác minh; không tự khôi phục
+script cũ hoặc ghi lại dữ liệu.
+
+`indexer.py` và `injection.py` quét thư mục builder bằng
+`import_modules_from_path`. Hàm upstream thêm thư mục cha vào `sys.path`, import
+package theo tên cuối (`builder`, rồi các module con), đi đệ quy bằng `pkgutil`.
+Do đó `builder/__init__.py` chạy và decorator `register(...)` đăng ký các type;
+`from_config` chọn constructor theo `type` trong YAML. Không có import trực tiếp
+từ entrypoint không có nghĩa module mồ côi. Test và `check_prompts.py` đã được
+đưa sang `tests/builder/` vì trình quét cũng import chúng, kể cả mã cấp module.
+
+- **CLI:** `indexer.py` gọi runner; `metadata_to_graph.py` sinh JSON (có ghi file);
+  `injection.py` gọi chain nạp metadata. Runner, scanner, checkpoint và chain
+  unstructured/domain injection kế thừa KAG; `indexer.py` bổ sung cờ dừng, cầu dao
+  và đối số thư mục.
+- **Custom luật qua registry/config:** `reader.py` (`legal_md_reader`) giữ thứ tự
+  và số Khoản/Điểm; splitter `length_splitter` vẫn của KAG (4950/100 trong mẫu).
+  `extractor.py` (`legal_schema_free_extractor`) kế thừa SchemaFreeExtractor,
+  xử lý NER lỗi/tuple triple/rác và lưu vị ngữ gốc trên cạnh.
+  `external_graph.py` (`legal_external_graph`) sửa kiểm tra properties của loader
+  upstream và thay NER jieba bằng khớp chuỗi tên văn bản tiếng Việt.
+- **Bản vá khi import:** `builder/__init__.py` thay `processing_phrases` tại module
+  extractor và bọc `SubGraph.add_node/add_edge`. `canon_id.py` chứa quy tắc ID
+  dùng tại đây, trong `metadata_to_graph.py` và khớp vị ngữ ở extractor; giữ ID
+  của Chunk/Table và các nhãn trong `KEEP_ID`. Đây là code runtime cần giữ.
+- **Bản vá chain qua registry:** `chain.py` (`legal_unstructured_builder_chain`)
+  kế thừa `DefaultUnstructuredBuilderChain`, bọc extractor/vectorizer/
+  post-processor/writer để bỏ chunk lỗi. Reader/splitter không được bọc ở đây.
+  Không dùng log thành công của runner làm bằng chứng graph đầy đủ.
+- **Ba prompt:** `ner.py` đăng ký `legal_ner` nhận diện thực thể theo schema;
+  `std.py` đăng ký `legal_std` chuẩn hóa tên thực thể;
+  `triple.py` đăng ký `legal_triple` trích xuất bộ ba. Config truyền cả ba cho
+  extractor; không thay nội dung prompt trong bước A.
+- **Công cụ kiểm tra/đánh giá:** `tests/builder/*`, `schema/check_schema.py`,
+  `solver/eval.py`, `gold_chunks.py`, `recall_report.py`, `scripts/secret_scan.py`
+  đều giữ lại. Chúng được chạy bằng CLI; eval gọi model/server, gold_chunks ghi
+  tập vàng, recall_report đọc kết quả cũ. Không chạy chúng như ingestion.
+
+Config mẫu `kag/kag_config.example.yaml` được track; config local
+`kag/kag_config.yaml` bị ignore, không phải mặc định cho máy khác. Đối chiếu local
+ở bước A: builder cùng type/prompt/đường graph, nhưng số chain × thread là `4×4`
+so với mẫu `2×2`; khóa, endpoint và model không công bố. Cả hai bỏ
+`similarity_threshold`, nên post-processor chỉ lọc invalid data, không chạy hai
+nhánh nối mờ. Metadata chỉ ánh xạ các trường trong `PROP_MAP`/`REL_MAP`, thêm
+`desc`, `semanticType` và node tham chiếu còn thiếu; không tự mang mọi trường
+JSON (ví dụ `in_force`) sang graph.
+
+**Đối chiếu upstream:** GitHub API đã xác minh `fdab15b3` thành
+[`fdab15b3929d2ee40dfcdd388f90233096a6afc9`](https://github.com/OpenSPG/KAG/commit/fdab15b3929d2ee40dfcdd388f90233096a6afc9).
+Đã so nội dung, bỏ khác biệt xuống dòng: `kag/common/registry/{utils,registrable}.py`,
+`kag/builder/{runner,default_chain}.py`, external graph loader, KAG post-processor,
+`examples/domain_kg/kag_config.yaml` và hai entrypoint builder của example khớp
+vendor. Example dùng cấu trúc project domain gồm config/builder/schema/solver;
+project này mở rộng bằng các type luật nêu trên, không cần ép giống toàn bộ example.
+Hai file `kag/common/conf.py`, `knext/common/env.py` trong vendor khác ở bản vá
+đọc config UTF-8 và chú thích. Chưa so toàn bộ cây vendor nên không khẳng định
+chỉ có hai khác biệt trên toàn repo.
+
+`requirements.txt` cài `./vendor/KAG` không editable; runtime thực tế trong `.venv`
+là `site-packages/kag`. Đã so bản cài với vendor ở registry utils, runner, default
+chain, Markdown reader, SchemaFreeExtractor, external loader và post-processor:
+khớp nội dung. Không nâng phiên bản hay sửa vendor trong bước A.
+
+## Kiểm tra source (từ gốc repo)
+
+```powershell
+.venv/Scripts/python.exe -X utf8 tests/builder/check_prompts.py
+.venv/Scripts/python.exe -X utf8 kag/schema/check_schema.py
+.venv/Scripts/python.exe -X utf8 tests/builder/test_reader_fixes.py
+.venv/Scripts/python.exe -X utf8 tests/builder/test_predicate_binding.py
+.venv/Scripts/python.exe -X utf8 tests/builder/test_stop_handler.py
+.venv/Scripts/python.exe -X utf8 kag/builder/canon_id.py
+.venv/Scripts/python.exe -X utf8 tests/builder/test_builder_fixes.py
+```
+
+Hai check prompt/schema chỉ cần stdlib. Reader dùng dữ liệu `processed` hiện có;
+reader/predicate/stop cần KAG đã cài. `test_builder_fixes` dựng runner từ config
+local, cần OpenSPG có schema và JSON graph; không gọi `runner.invoke` hoặc model.
+Chạy mỗi test bằng tiến trình riêng vì chúng import/bọc module runtime. Lỗi test
+phải báo nguyên trạng; không sửa thuật toán hoặc dữ liệu để làm xanh trong bước A.
+
+Kết quả kiểm tra bước A (2026-09-18): reader 64/64, predicate 27/27,
+stop-handler, builder-fixes, canon ID, ba prompt và schema 10 kiểu đều đạt.
+Secret scan không phát hiện khóa; cú pháp năm file chuyển vị trí hợp lệ.
+`.venv` hiện có protobuf 7.36.2, import KAG mặc định lỗi
+`TypeError: Descriptors cannot be created directly.`
+Các test cần KAG đã chạy với `PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`
+chỉ trong tiến trình con, không cài lại dependency. Có thể tái hiện cho từng test:
+
+```powershell
+.venv/Scripts/python.exe -X utf8 -c "import os,runpy; os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION']='python'; runpy.run_path('tests/builder/test_reader_fixes.py', run_name='__main__')"
+```
+
+Thay đường dẫn bằng test cần chạy. Đây là workaround kiểm tra, chưa phải xác nhận
+môi trường mặc định chạy tốt. Không chạy build/eval/export trong bước A.
 
 ## Chạy
 
@@ -78,26 +199,33 @@ Prompt tiếng Việt là phần đáng chú ý nhất trong `kag/`: cả `build
 docker compose -f docker/docker-compose-west.yml up -d
 ```
 
-⚠️ **Lệnh trên chỉ dùng cho máy chưa có container `release-openspg-*` nào.** Máy
-đang giữ đồ thị trong một volume **ẩn danh**, trong khi compose khai volume có tên
-`kag-legal-neo4j-data` đang rỗng. `docker compose up -d` sẽ tạo lại container gắn
-vào volume rỗng và bỏ rơi volume ẩn danh — chạy lệnh đó trên máy này là mất đồ thị.
+**Máy đã có dữ liệu:** kiểm tra container và mount trước khi dùng compose:
 
-Đồ thị đang chạy thì bật lại bằng:
+```powershell
+docker ps -a --filter name=release-openspg
+docker inspect release-openspg-neo4j --format '{{json .Mounts}}'
+docker compose -f docker/docker-compose-west.yml config --volumes
+```
+
+Đối chiếu mount có `Destination=/data` (Type, Name, Source) với compose.
+Volume có thể có tên, ẩn danh hoặc là bind mount; không suy từ trạng thái máy khác.
+Nếu container cũ còn giữ đúng dữ liệu, bật lại bằng:
 
 ```
 docker start release-openspg-neo4j release-openspg-server release-openspg-mysql release-openspg-minio
 ```
 
-Tuyệt đối **không** `docker compose up -d`, không `docker compose down`, không
-`docker volume prune` trên máy này.
+Sao lưu trước khi thay container/mount. Không chạy `down -v`, `volume prune`
+hoặc tạo lại container khi chưa xác định nơi chứa dữ liệu.
+`docker/xuat-do-thi.ps1` xuất `dist/legal.dump` (đã ignore), từ volume thực tế,
+tạm dừng/bật lại Neo4j và từ chối ghi đè dump không rỗng. Script không hỗ trợ
+bind mount tại `/data`; không chạy export trong bước kiểm tra source.
 
 Mở `http://127.0.0.1:8887`, đăng nhập `openspg` / `openspg@kag`. Thấy giao diện
-là xong bước này. Giao diện sẽ trống, đúng như vậy.
+để kiểm tra dịch vụ; dữ liệu hiển thị phụ thuộc project/database hiện có.
 
-**2. Cài KAG.** Python 3.10 trở lên. KAG ghim `protobuf==3.20.1`, nghe như phải
-dùng đúng 3.10, nhưng không: `.venv` của dự án đang chạy Python 3.12.10 với đúng
-protobuf 3.20.1, cài sạch không cần cờ gì thêm.
+**2. Cài KAG.** Python 3.10 trở lên. Cài dependency theo requirements của vendor.
+Không suy phiên bản đang cài từ file yêu cầu: xem lưu ý protobuf ở mục kiểm tra source.
 
 ```
 py -m venv .venv
@@ -113,8 +241,8 @@ dù máy không có mạng ra GitHub.
 
 Ba lỗi của KAG 0.8.0 từng phải sửa thẳng trong mã nguồn thư viện — nay nằm trong
 `kag/builder/extractor.py` và `kag/builder/chain.py` dưới dạng lớp con, nên
-`vendor/KAG` **không** chứa bản vá đó. Đổi lại, `vendor/KAG` có đúng hai dòng sửa
-so với upstream `fdab15b3`, cả hai chỉ thêm `encoding="utf-8"` vào lời gọi
+`vendor/KAG` **không** chứa bản vá đó. Trong hai file cấu hình đã đối chiếu với upstream `fdab15b3`, vendor thêm
+chú thích và `encoding="utf-8"` vào lời gọi
 `open()` đọc file cấu hình:
 
 ```
@@ -127,8 +255,7 @@ Hai dòng đó là thứ cho phép `kag_config.yaml` viết tiếng Việt có d
 Kiểm một câu, không tốn tiền LLM — cần hạ tầng ở bước 1 đã chạy:
 
 ```bash
-cd kag;
- ..\.venv\Scripts\python.exe builder\test_builder_fixes.py
+.venv/Scripts/python.exe -X utf8 tests/builder/test_builder_fixes.py
 ```
 
 Bản KAG trong `.venv` là bản **thực sự được import**, `vendor/KAG` chỉ là nguồn
@@ -137,16 +264,14 @@ thay đổi mới có tác dụng; `pip install ./vendor/KAG` cũng được nh�
 `openspg-kag @ ./vendor/KAG` — pip 25.0.1 hiểu `./vendor/KAG` là URL và báo
 `Invalid URL ... No scheme supplied`.
 
-**3. Điền API key** trong `kag/kag_config.yaml`. Ba khối, hai khoá: `openie_llm`
-và `chat_llm` là model sinh chữ và dùng chung một khoá, `vectorize_model` là model
-nhúng vector và phải là khoá của gateway khác — gateway LLM thường trả 403 cho
-endpoint embedding. Cả ba đang để `api_key: key`, là chỗ điền tạm. Thiếu key vector
-thì bước 4 dừng ngay.
+**3. Điền API key** trong `kag/kag_config.yaml`. `openie_llm` và `chat_llm`
+là model sinh chữ; `vectorize_model` là model embedding. Điền khóa và endpoint
+theo dịch vụ thực tế; không mặc định gateway LLM hỗ trợ embedding. File mẫu để
+khóa rỗng và URL/model placeholder; config local có thể khác.
+Không in hoặc commit khóa thật. Restore có thể kiểm tra dịch vụ model.
 
-`base_url` của cả ba khối **phải có đuôi `/v1`**. SDK của OpenAI nối thẳng
-`base_url` với `/chat/completions`, nên thiếu `/v1` là `404` — và nó nổ ở bước 7
-chứ không nổ ở bước 6, vì hai bước dùng hai khối khác nhau. Viết đúng `openie_llm`
-là đủ để tin nhầm rằng `chat_llm` cũng đúng.
+Mẫu dùng endpoint OpenAI-compatible có đuôi `/v1`; xác nhận URL gốc theo dịch vụ
+và kiểm tra riêng cả ba khối, không suy từ việc một khối đã hoạt động.
 
 `vendor/KAG/kag/common/conf.py` và `vendor/KAG/knext/common/env.py` đã được vá
 thêm `encoding="utf-8"`, nên config **viết tiếng Việt có dấu được**. Đây là chỗ
@@ -182,19 +307,13 @@ knext schema commit
 hiệu lực, và chuỗi thay thế giữa các văn bản vào đồ thị. Scanner chỉ nhận `.md` nên
 đây là đường duy nhất.
 
-Phải làm TRƯỚC bước dựng đồ thị, vì hai lý do khác nhau cho hai lệnh:
-
-- `metadata_to_graph.py` sinh ra `data/graph/nodes.json`. Cả `extractor` lẫn
-  `post_processor` trong `kag_builder_pipeline` đều trỏ vào `external_graph_loader`,
-  mà loader gọi `open()` trần lên hai đường dẫn đó
-  (`kag/builder/component/external_graph/external_graph.py:206`). Thiếu file thì
-  `indexer.py` nổ `FileNotFoundError` ngay lúc dựng pipeline.
-- `injection.py` đẩy 30 node văn bản lên server. Post-processor nối thực thể trích
-  được với node văn bản bằng cách tìm trên search engine, node chưa nằm sẵn ở đó
-  thì không có gì để nối. Cái này **không** nổ: build vẫn xong, vẫn báo thành công,
-  chỉ là mất sạch liên kết về văn bản gốc.
-
-Ví dụ `domain_kg` của KAG cũng xếp đúng thứ tự này.
+Chuẩn bị JSON graph trước indexer: extractor và post-processor đều khởi tạo
+`legal_external_graph` từ `data/graph/nodes.json`, `edges.json`; thiếu file sẽ lỗi.
+Injection nạp thuộc tính và quan hệ metadata qua vectorizer/writer; nên nạp trước
+ingestion theo cách dùng `domain_kg` upstream. Với config mẫu hiện tại,
+`similarity_threshold` không đặt nên post-processor **không chạy** similarity linking
+hay external-graph linking; vẫn lọc dữ liệu không hợp lệ. Hai nhánh dùng chung
+`canon_id` để gặp nhau khi ghi node, không dựa vào nối mờ.
 
 Chạy trong thư mục `kag/`, không phải thư mục gốc: KAG dò `kag_config.yaml` bằng
 cách đi ngược lên cây thư mục từ chỗ đang đứng, đứng ở gốc thì không bao giờ thấy
@@ -203,26 +322,33 @@ nó và config rỗng. Hai dòng `../data/graph/*.json` trong config cũng tính
 
 ```bash
 cd kag
-python builder/metadata_to_graph.py && python builder/injection.py
+python builder/metadata_to_graph.py
+# Chỉ tiếp tục nếu lệnh trên thành công.
+python builder/injection.py
 ```
 
 **6. Dựng đồ thị.** Vẫn đứng ở `kag/`. Lệnh này đọc 23 văn bản tiếng Việt trong
 `data/processed/`.
 
-Chạy thử một file trước đã. Mỗi văn bản là một lần tốn tiền gọi AI: 23 văn bản là
-hơn 1,7 triệu chữ, cắt ra 1121 chunk, mỗi chunk 3 lượt gọi LLM. Cách rẻ nhất để
-thử: tạm đổi dòng cuối `indexer.py` trỏ vào một thư mục con chứa đúng một file,
-thấy node hiện trên giao diện web rồi mới trỏ lại `data/processed`.
+Indexer nhận **thư mục** qua đối số đầu tiên; không cần sửa source.
+`data/trial/` hiện có bốn Markdown. Muốn thử đúng một file, chuẩn bị một thư mục
+riêng chứa bản sao file đó, rồi truyền đường dẫn thư mục:
 
-⚠️ **Không chạy lệnh này để dựng lại đồ thị.** Nó tốn khoảng 2 tiếng và tiền gọi
-LLM cho 1121 chunk, trong khi đồ thị đã dựng xong rồi. Chỉ chạy khi thực sự muốn dựng mới từ `data/processed/`, và nhớ
-`kag/ckpt/` là sổ nhớ 1121 chunk đã dựng — xoá nó là mất hết, phải trả tiền lại
-từ đầu.
-
-```
-cd kag
+```powershell
+# Đứng ở kag/, đã kích hoạt .venv
+python builder/indexer.py ../data/trial
+# Hoặc thư mục thử do bạn chuẩn bị:
+python builder/indexer.py <thu-muc-chua-mot-file-md>
+# Toàn bộ corpus, chỉ chạy khi chủ động muốn ingestion:
 python builder/indexer.py
 ```
+
+Các lệnh này gọi LLM/embedding và ghi graph. Không chạy để kiểm tra source.
+Giữ `kag/ckpt/`: xóa checkpoint có thể khiến chạy lại và phát sinh chi phí.
+Checkpoint cũ không chứng minh graph khớp corpus/prompt hiện tại; sao lưu và đánh giá
+trước khi tái sử dụng hoặc rebuild. Ctrl+C dừng hợp tác; request đang chạy cần
+kết thúc/timeout, không bảo đảm dừng ngay. Log thành công không bảo đảm mọi chunk
+được ghi vì chain có thể bỏ chunk lỗi.
 
 Kiểm ngay trên giao diện web: văn bản vừa nạp phải là **một** node mang cả trạng
 thái hiệu lực lẫn cạnh về chunk. Thấy hai node rời nhau nghĩa là id chưa trùng,
@@ -245,13 +371,11 @@ Bốn file ra, trong thư mục `runs/`:
 | `legal_metrics_<timestamp>.json` | Cùng nội dung `benchmark.txt` nhưng ở dạng JSON |
 | `legal_ckpt/` | Sổ nhớ, khoá là nguyên văn câu hỏi. Hỏi lại y hệt thì trả bài cũ, không gọi mô hình. Muốn hỏi lại thật thì xoá thư mục này |
 
-`main()` đang để `thread_num=8` và `upper_limit=5`, nên mặc định chỉ chạy 5 câu đầu.
-Đổi `upper_limit` thành `166` khi muốn chạy hết — **166 câu mất khoảng 45 phút**, số
-đo thật ở mục 12.
+`main()` hiện để `thread_num=8` và `upper_limit=166`, mặc định chạy cả bộ.
+Mốc 45 phút ở mục 12 là snapshot lịch sử, không phải thời gian bảo đảm.
 
-Khi chạy, PowerShell sẽ báo `[exit code: 1]` ở cuối. **Đây là bình thường, không phải
-lỗi**: KAG in log INFO ra `stderr` và PowerShell hiểu nhầm thành lỗi. Kiểm kết quả bằng
-`processNum` trong `benchmark.txt`, đừng nhìn exit code.
+Log INFO trên stderr không tự làm tiến trình thất bại. Nếu exit code khác 0,
+kiểm tra exception/log và đối chiếu `processNum`; không mặc định coi là thành công.
 
 Muốn có log để xem lại thì dùng `Tee-Object` (chạy trần thì không có file log nào):
 
@@ -286,8 +410,8 @@ python gold_chunks.py     # sinh tập chunk vàng, chạy một lần sau mỗi
 python recall_report.py   # đọc runs/legal_res_*.json mới nhất rồi in báo cáo
 ```
 
-`gold_chunks.py` đọc chunk đã cắt từ `kag/ckpt/LengthSplitter` (1.121 chunk — nguồn
-chân lý, không phải đoán lại thuật toán cắt), rồi tra ngược từng mốc trong `answers`
+`gold_chunks.py` đọc chunk đã cắt từ `kag/ckpt/LengthSplitter` (1.121 chunk trong snapshot lịch sử;
+không phải số đo lại trên corpus hiện tại), rồi tra ngược từng mốc trong `answers`
 ra chunk chứa nó. Ghi ra hai file:
 
 | File | Nghĩa |
@@ -346,7 +470,7 @@ Hai điều rút ra từ chính mã nguồn đang chạy, đừng sửa nhầm:
   truyền), nên `std_prompt` **không được gọi**. Nó vẫn được nạp cho đúng, nhưng đừng
   trông vào nó để thấy khác biệt khi chạy eval.
 
-**11. Đã đo tác động của prompt NER tiếng Việt (5 câu, ba lần chạy).** Kết quả
+**11. Snapshot lịch sử — đã đo tác động của prompt NER tiếng Việt (5 câu, ba lần chạy).** Kết quả
 **ngược với dự đoán ban đầu**, ghi lại để lần sau khỏi suy diễn lại:
 
 | Chỉ số (gold hẹp) | Prompt Anh | Việt, tối đa 6 | Việt, bỏ giới hạn |
@@ -390,7 +514,8 @@ mẫu lớn.** Đọc mục 12 trước khi trích dẫn bất cứ con số nà
 định tắt prompt tiếng Việt thì vẫn giữ, nhưng lý do không còn là "bản Anh thắng" —
 xem mục 12.
 
-**12. Chạy trọn 166 câu (số liệu thật, dùng cho báo cáo).** Mục 11 đo trên 5 câu vì
+**12. Snapshot lịch sử — chạy trọn 166 câu.**
+Các số dưới đây không được đo lại trên source/corpus hiện tại trong bước A. Mục 11 đo trên 5 câu vì
 `eval.py` để `upper_limit=5`. Đổi thành `166` rồi chạy hết, mất **45 phút**, và kết
 quả khác hẳn:
 

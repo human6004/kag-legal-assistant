@@ -1,24 +1,19 @@
 # Data — KAG Chatbot Tư vấn Luật (An ninh mạng & AI)
 
-Thư mục này chứa dữ liệu thô phục vụ xây dựng knowledge base cho chatbot tư vấn luật
-theo kiến trúc KAG (Knowledge-Augmented Generation / Graph). Khi cào xong, copy nguyên
-cụm `data/` này vào project chính.
+Dữ liệu dùng chung của project KAG và HybridRAG. `processed/` là đầu vào
+Markdown đã chuẩn bị sẵn; repo hiện không có pipeline tái tạo từ `raw/`.
 
-## Cấu trúc
+## Cấu trúc hiện tại
 
 ```
-kag-legal-data/
-├── README.md              <- file này
-├── SOURCES.md              <- danh sách nguồn đã thẩm định độ uy tín (đọc trước khi cào)
-├── data/
-│   ├── raw/                <- dữ liệu thô, giữ NGUYÊN VĂN, chưa chỉnh sửa/tóm tắt
-│   │   ├── vn_an_ninh_mang/   <- Luật An ninh mạng VN + văn bản hướng dẫn
-│   │   └── vn_ai/             <- Luật/Nghị định/Chiến lược AI Việt Nam
-│   ├── processed/          <- (dùng sau) bản đã làm sạch, chunk, chuẩn hoá cho pipeline KAG
-│   └── metadata/           <- file index mô tả từng văn bản (xem template bên dưới)
-├── prompts/
-│   └── scrape_prompt_vi.md <- bản prompt đã viết lại rõ ràng, đưa cho AI đi cào là hiểu ngay
-└── scripts/                 <- script cào, sinh metadata, dựng processed/exports
+data/
+├── raw/          bản gốc PDF/DOCX/HTML, giữ nguyên để đối chiếu
+├── processed/    Markdown trong vn_ai/ và vn_an_ninh_mang/, chưa phải checkpoint chunk
+├── metadata/     JSON từng văn bản, _template.json và _index.json
+├── graph/        nodes.json, edges.json cho external graph
+├── trial/        bốn Markdown dùng thử ingestion
+├── SOURCES.md    nguồn dữ liệu
+└── README.md
 ```
 
 ## Quy tắc đặt tên file thô (trong `data/raw/<nhóm>/`)
@@ -61,7 +56,8 @@ Khi mỗi văn bản trong 2 nhóm (`vn_an_ninh_mang`, `vn_ai`) đều có:
 2. File metadata tương ứng trong `data/metadata/...`
 3. Trạng thái hiệu lực đã được xác minh (không để trống `status`)
 
-Sau đó copy cả `data/` vào project là dùng được ngay cho bước chunk/embed/build graph.
+Cần Markdown đã chuẩn bị trong `data/processed/` và JSON graph từ metadata trước
+khi ingestion. Chỉ có raw/metadata chưa đủ; xem luồng chạy trong README gốc.
 
 ---
 
@@ -86,8 +82,8 @@ không, căn cứ vào đâu":
 | `raw_files` | Danh sách file thô (một văn bản có thể có cả bản HTML để chunk và bản PDF ký số để đối chiếu). `raw_file` giữ lại là file chính. |
 | `text_extractable` | `false` nghĩa là file là ảnh scan, cần OCR trước khi chunk. |
 
-`data/metadata/_index.json` là bảng tổng hợp toàn bộ, sinh tự động, dùng để lọc nhanh
-trong pipeline.
+`data/metadata/_index.json` là bảng tổng hợp được lưu sẵn. Công cụ sinh chưa xác định;
+`metadata_to_graph.py` bỏ qua file có tên bắt đầu bằng `_`, không dùng bảng này để lọc.
 
 ## Cách xử lý văn bản "luật mới bao hàm luật cũ nhưng luật cũ chưa được ghi hết hiệu lực"
 
@@ -114,26 +110,30 @@ ghi Luật 24/2018/QH14 là "Còn hiệu lực". Quy tắc đã áp dụng cho t
 3. PDF ký số (`datafiles.chinhphu.vn`, `congbaocdn.chinhphu.vn`) — chỉ dùng khi không có
    hai loại trên; đánh dấu `text_extractable: false` nếu là ảnh scan.
 
-## Script
+## Công cụ hiện có và lịch sử chuẩn hóa
 
-| Script | Việc |
-|---|---|
-| `scripts/fetch_vbpl.py` | Tải toàn văn + metadata từ API CSDL quốc gia về pháp luật. |
-| `scripts/fetch_congbao.py` | Tải PDF ký số từ Công báo / hệ thống văn bản Chính phủ. **Chưa viết lại.** |
-| `scripts/fetch_congbao_docx.py` | Tải bản DOCX của Công báo (text sạch, dùng để chunk). |
-| `scripts/docx_text.py` | Rút text từ DOCX, tra nhanh điều khoản hiệu lực. **Chưa viết lại.** |
-| `scripts/gen_metadata.py` | Sinh lại toàn bộ metadata + `_index.json`. |
-| `scripts/check_dataset.py` | Kiểm tra tính đầy đủ, đối xứng quan hệ, và in danh sách cần soát tay. |
-| `scripts/build_processed.py` | Sinh `data/processed/**/*.md` và `docs/exports/*.docx` từ raw (docx/html/pdf), không sửa raw/metadata. |
-| `scripts/test_build_processed.py` | Self-check của `build_processed.py` (quy tắc tiêu đề, chốt chặn mất chữ, danh sách bỏ qua). |
+Công cụ đang có: `kag/builder/metadata_to_graph.py` đọc JSON metadata, sinh
+`data/graph/nodes.json` và `edges.json`; `injection.py` nạp graph đó lên server.
+Đây không phải công cụ chuyển raw thành Markdown.
 
-`build_processed.py` chạy tăng dần: chỉ dựng lại `.md` khi thiếu hoặc raw mới hơn,
-dùng `--force` để dựng lại toàn bộ. Văn bản có `status: "không áp dụng"` (trang web
-điều hướng, không phải văn bản pháp luật) và văn bản có `text_extractable: false`
-đều bị bỏ qua, và mọi `.md`/`.docx` không còn nằm trong danh sách kỳ vọng sẽ bị xoá.
+Các tên từng ghi trong tài liệu nhưng **không có trong repo hiện tại**:
+`scripts/fetch_vbpl.py`, `fetch_congbao.py`, `fetch_congbao_docx.py`,
+`docx_text.py`, `gen_metadata.py`, `check_dataset.py`,
+`build_processed.py`, `test_build_processed.py`. Không có lệnh chạy hợp lệ
+cho các script này; lịch sử Git khả dụng (`git log --all -- scripts`) cũng
+không chứa chúng.
 
-Bốn PDF ký số dạng ảnh scan (`127/QĐ-TTg`, `367/QĐ-TTg`, `1671/QĐ-TTg`,
-`341/2026/NĐ-CP`) không có lớp text: mọi trình rút chữ chỉ đọc được vài trăm ký tự
-của chữ ký số. Toàn văn trong `data/processed` của bốn văn bản này đến từ bước OCR
-trước đó. `build_processed.py` có chốt chặn `SHRINK_FLOOR`: nếu bản rút mới ngắn hơn
-hẳn bản `.md` đang có thì giữ nguyên file cũ và báo cảnh báo, không ghi đè.
+`kag/builder/clean_corpus.py` từng có từ `0ec9c40`, bị xóa ở `df241d3`.
+Bản cuối đọc Markdown qua `fix_h1.all_md`, sửa heading/phụ lục/ký tự vô hình;
+`--write` ghi lại corpus. Nó chỉ hậu xử lý Markdown, không chuyển raw/OCR và
+phụ thuộc `fix_h1.py` cũng đã bị xóa. Chưa chứng minh phù hợp corpus mới,
+nên không khôi phục hay chạy lại.
+
+Markdown đã được đưa vào Git từ `0e5599e`, tiếp tục sửa ở nhiều commit; lần
+cập nhật gần nhất trước bước A là `2d9ea1c` (11 file). Commit đó không cung cấp
+công cụ tái sinh. Tài liệu cũ ghi bốn PDF scan (127/QĐ-TTg, 367/QĐ-TTg,
+1671/QĐ-TTg, 341/2026/NĐ-CP) có Markdown từ OCR trước đó, nhưng chưa xác minh
+được công cụ, phiên bản hay quy trình OCR. Không khẳng định tái tạo được toàn
+bộ `processed` từ raw bằng code hiện có.
+
+Bước A chỉ làm rõ nguồn vào; không chuẩn hóa lại hoặc sửa dữ liệu.

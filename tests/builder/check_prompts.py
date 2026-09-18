@@ -4,7 +4,7 @@
 Bắt hai lỗi hay gặp nhất: template không phải JSON hợp lệ (LLM sẽ trả về rác)
 và category trong ví dụ không có trong Legal.schema (extractor đẩy về Others).
 
-Chạy: python kag/builder/prompt/check_prompts.py
+Chạy từ gốc repo: python tests/builder/check_prompts.py
 """
 
 import json
@@ -15,8 +15,9 @@ from string import Template
 
 sys.stdout.reconfigure(encoding="utf-8")  # console Windows mặc định cp1252, in chữ có dấu sẽ lỗi
 
-HERE = Path(__file__).resolve().parent
-SCHEMA_FILE = HERE.parent.parent / "schema" / "Legal.schema"
+ROOT = Path(__file__).resolve().parents[2]
+HERE = ROOT / "kag" / "builder" / "prompt"
+SCHEMA_FILE = ROOT / "kag" / "schema" / "Legal.schema"
 
 DUMMY = {
     "schema": '["Article"]',

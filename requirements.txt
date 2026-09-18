@@ -1,13 +1,13 @@
 # KAG nằm ngay trong repo, ở ./vendor/KAG, không còn tải từ GitHub.
 # Đây là mã nguồn OpenSPG/KAG ghim đúng commit fdab15b3 — bản đã dựng được đồ
-# thị 12625 node. Nhánh master của OpenSPG/KAG đổi liên tục và không hứa tương
+# thị 12625 node trong snapshot lịch sử. Nhánh master của OpenSPG/KAG đổi liên tục và không hứa tương
 # thích ngược, nên không dùng `latest`.
 #
 # vendor/KAG đã bị gỡ .git (187 MB) trước khi commit. Bản gốc kèm .git nặng
 # 360 MB; ở đây chỉ còn cây mã nguồn 1211 file / 170 MB.
 #
-# vendor/KAG có ĐÚNG HAI dòng sửa so với bản upstream fdab15b3, cả hai đều là
-# encoding="utf-8" cho lời gọi open() đọc file cấu hình:
+# Hai file cấu hình đã đối chiếu với upstream fdab15b3 có bản vá
+# encoding="utf-8" và chú thích cho lời gọi open() đọc file cấu hình:
 #     vendor/KAG/kag/common/conf.py
 #     vendor/KAG/knext/common/env.py
 # Không có hai dòng đó thì open() trần dùng cp1252 trên Windows và
@@ -17,7 +17,7 @@
 #     kag/builder/extractor.py  -> legal_schema_free_extractor
 #     kag/builder/chain.py      -> legal_unstructured_builder_chain
 # Kiểm bằng:
-#     cd kag; ..\.venv\Scripts\python.exe builder\test_builder_fixes.py
+#     .venv/Scripts/python.exe -X utf8 tests/builder/test_builder_fixes.py
 #
 # Không dùng -e (editable). Lý do: pip cài editable bằng _editable_impl_*.pth
 # trỏ thẳng tới <repo>\vendor\KAG. File .pth đó nằm trong site-packages chứ

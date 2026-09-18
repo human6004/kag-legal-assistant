@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """R2: test bản vá reader trên ĐƯỜNG THẬT, kiểm cả THỨ TỰ nội dung.
 
-Chạy:  .venv\\Scripts\\python.exe kag/builder/test_reader_fixes.py
+Chạy:  .venv/Scripts/python.exe -X utf8 tests/builder/test_reader_fixes.py
 
 Không gọi LLM, không gọi mạng, không ghi gì. Mọi ca dùng đúng ``solve_content``
 — hàm mà ``indexer.py`` chạy — nên nếu seam vá sai thì test đổ, chứ không phải
@@ -329,4 +329,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

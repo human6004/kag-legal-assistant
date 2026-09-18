@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Chan duy nhat cho co dung o builder/indexer.py.
 
-Chay (PowerShell khong co &&, dung dau cham phay): cd kag; ..\.venv\Scripts\python.exe builder\test_stop_handler.py
+Chay tu goc repo: .venv/Scripts/python.exe -X utf8 tests/builder/test_stop_handler.py
 
 Co gia tri vi ca ban va nam o mot cho: BuilderComponent.invoke. Upstream doi ten
 ham hay doi module la ban va im lang khong lam gi -> test nay gay ngay.
@@ -9,10 +9,13 @@ ham hay doi module la ban va im lang khong lam gi -> test nay gay ngay.
 import os
 import sys
 import importlib.util
+from pathlib import Path
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+ROOT = Path(__file__).resolve().parents[2]
+BUILDER = ROOT / "kag" / "builder"
+sys.path.insert(0, str(BUILDER))
 spec = importlib.util.spec_from_file_location(
-    "indexer_under_test", os.path.join(os.path.dirname(os.path.abspath(__file__)), "indexer.py")
+    "indexer_under_test", BUILDER / "indexer.py"
 )
 idx = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(idx)
