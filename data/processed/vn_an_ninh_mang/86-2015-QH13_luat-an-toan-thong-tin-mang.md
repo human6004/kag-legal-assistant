@@ -2,6 +2,8 @@
 86/2015/QH13 — hết hiệu lực
 Nguồn thô: data/raw/vn_an_ninh_mang/86-2015-QH13_luat-an-toan-thong-tin-mang.html
 
+Hà Nội, ngày 19 tháng 11 năm 2015
+
 LUẬT
 
 AN TOÀN THÔNG TIN MẠNG

@@ -6,7 +6,6 @@ Nguồn thô: data/raw/vn_an_ninh_mang/331-2026-ND-CP_bao-ve-an-ninh-mang-doi-vo
 
 CHÍNH PHỦ
 
-63934230497
 
 Số: 331/2026/NĐ-CP
 

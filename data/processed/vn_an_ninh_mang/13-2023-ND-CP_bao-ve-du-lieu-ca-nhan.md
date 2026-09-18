@@ -2,6 +2,8 @@
 13/2023/NĐ-CP — hết hiệu lực
 Nguồn thô: data/raw/vn_an_ninh_mang/13-2023-ND-CP_bao-ve-du-lieu-ca-nhan.html
 
+Hà Nội, ngày 17 tháng 4 năm 2023
+
 NGHỊ ĐỊNH
 
 Bảo vệ dữ liệu cá nhân

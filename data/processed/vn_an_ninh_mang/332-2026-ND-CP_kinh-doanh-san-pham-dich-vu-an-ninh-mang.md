@@ -528,7 +528,6 @@ SẢN PHẨM, DỊCH VỤ AN NINH MẠNG
 
 (Có giá trị đến hết ngày ... / ... / ... )
 
-214883929845
 
 THỦ TRƯỞNG CƠ QUAN (2)
 

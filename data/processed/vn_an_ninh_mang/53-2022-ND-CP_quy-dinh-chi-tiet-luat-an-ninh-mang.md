@@ -2,6 +2,8 @@
 53/2022/NĐ-CP — hết hiệu lực
 Nguồn thô: data/raw/vn_an_ninh_mang/53-2022-ND-CP_quy-dinh-chi-tiet-luat-an-ninh-mang.html
 
+Hà Nội, Ngày 15 tháng 8 năm 2022
+
 NGHỊ ĐỊNH
 
 Quy định chi tiết một số điều của Luật An ninh mạng

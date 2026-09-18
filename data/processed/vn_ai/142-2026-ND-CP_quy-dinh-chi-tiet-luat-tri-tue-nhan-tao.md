@@ -1506,7 +1506,6 @@ Giấy xác nhận tham gia thử nghiệm có kiểm soát hệ thống trí tu
 
 [TÊN TỔ CHỨC/
 
-7203122019300
 
 DOANH NGHIỆP]
 
@@ -1514,7 +1513,6 @@ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-83756526336
 
 Số: .../BC -[TÊN TỔ CHỨC]
 
@@ -1602,7 +1600,6 @@ LÃNH ĐẠO TỔ CHỨC, DOANH NGHIỆP
 
 ### Mẫu AI01b: Báo cáo sự cố nghiêm trọng dành cho cá nhân
 
-1922557451245
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
@@ -1692,13 +1689,11 @@ NGƯỜI BÁO CÁO
 
 ĐƠN VỊ]
 
-774408247650
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-86825025246
 
 Số: .../BC -[TÊN CƠ QUAN/ ĐƠN VỊ]
 
@@ -1806,13 +1801,11 @@ LÃNH ĐẠO CƠ QUAN, ĐƠN VỊ
 
 [TÊN /TỔ CHỨC]
 
-76069753975
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-834758660730
 
 Số: .../[MÃ]
 
@@ -1886,7 +1879,6 @@ Nơi nhận:
 
 ### Mẫu AI03b: Đơn đề nghị tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân
 
-1903696440256
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
@@ -1954,13 +1946,11 @@ NGƯỜI ĐỀ NGHỊ
 
 [TÊN /TỔ CHỨC]
 
-74866541943
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-87085154042
 
 Số: .../[MÃ]
 
@@ -2034,7 +2024,6 @@ Nơi nhận:
 
 ### Mẫu AI03d: Đơn đề nghị gia hạn thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân
 
-1915727440256
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
@@ -2102,13 +2091,11 @@ NGƯỜI ĐỀ NGHỊ
 
 [TÊN CƠ QUAN/TỔ CHỨC]
 
-73663342679
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-85882142679
 
 Số: .../GXNHT -[MÃ]
 
@@ -2190,13 +2177,11 @@ THỦ TRƯỞNG CƠ QUAN CẤP XÁC NHẬN
 
 [TÊN TỔ CHỨC/DOANH NGHIỆP]
 
-72460236061
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-85882036061
 
 Số: .../GXNHT -[MÃ]
 
@@ -2280,7 +2265,6 @@ LÃNH ĐẠO TỔ CHỨC, DOANH NGHIỆP
 
 ### Mẫu AI05b: Báo cáo định kỳ về tình hình thử nghiệm hệ thống trí tuệ nhân tạo dành cho cá nhân
 
-1879633471003
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
@@ -2362,13 +2346,11 @@ NGƯỜI BÁO CÁO
 
 [TÊN TỔ CHỨC/DOANH NGHIỆP]
 
-70053929979
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-85882129979
 
 Số: .../GXNHT -[MÃ]
 
@@ -2482,7 +2464,6 @@ LÃNH ĐẠO TỔ CHỨC, DOANH NGHIỆP
 
 ### Mẫu AI06b: Báo cáo sự cố nghiêm trọng trong thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân
 
-1891664475013
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
@@ -2594,13 +2575,11 @@ NGƯỜI BÁO CÁO
 
 [TÊN TỔ CHỨC/DOANH NGHIỆP]
 
-72460229912
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-85882129912
 
 Số: .../GXNHT -[MÃ]
 
@@ -2694,7 +2673,6 @@ LÃNH ĐẠO TỔ CHỨC, DOANH NGHIỆP
 
 ### Mẫu AI07b: Báo cáo vượt giới hạn thử nghiệm dành cho cá nhân
 
-1879632474947
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
@@ -2786,7 +2764,6 @@ NGƯỜI BÁO CÁO
 
 Báo cáo tổng kết kết quả thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho tổ chức
 
-633897402891
 
 [TÊN TỔ CHỨC]
 
@@ -2796,7 +2773,6 @@ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
 Độc lập - Tự do - Hạnh phúc
 
-83221766140
 
 ………, ngày … tháng … năm …
 
@@ -3286,7 +3262,6 @@ Nơi nhận:
 
 Báo cáo tổng kết kết quả thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân
 
-1250916535238
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
@@ -3780,13 +3755,11 @@ CÁ NHÂN BÁO CÁO
 
 Giấy xác nhận tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho tổ chức
 
-662739222417
 
 [TÊN CƠ QUAN CẤP]
 
 Số: .../GXN-[MÃ]
 
-704247487112
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
@@ -3912,13 +3885,11 @@ THỦ TRƯỞNG CƠ QUAN CẤP
 
 Giấy xác nhận tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân
 
-640715221125
 
 [TÊN CƠ QUAN CẤP]
 
 Số: .../GXN-[MÃ]
 
-736666499143
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 

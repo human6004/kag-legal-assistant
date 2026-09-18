@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+import os
+os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
+
 import logging
 from typing import List
 

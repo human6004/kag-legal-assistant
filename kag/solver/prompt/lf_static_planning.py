@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
 """Prompt lập kế hoạch logic form, bản tiếng Việt miền pháp luật.
 
 Thay cho default_lf_static_planning của KAG. Khác bốn file prompt còn lại: file này
@@ -45,20 +47,20 @@ from kag.solver.prompt.lf_static_planning_prompt import (
 # "ActionN:Toán tử(...)" nằm trong khối ```, mỗi Step đúng một Action. Không phải case nào
 # cũng kết bằng output — bản gốc cũng vậy.
 DEFAULT_CASE_EN = [
-    # --- Retrieval đơn: tra nội dung một điều khoản -------------------------------
+    # --- Retrieval đơn: tra cứu văn bản hướng dẫn thi hành (implementsDoc trong graph v1) ---
     {
-        "query": "Điều 26 Luật An ninh mạng 2018 quy định gì?",
-        "answer": "Trước tiên cần tra nội dung Điều 26 của Luật An ninh mạng 2018\n```\nStep1:Điều 26 Luật An ninh mạng 2018 quy định gì?\nAction1:Retrieval(s=s1:Article[`Điều 26`], p=p1:belongsTo, o=o1:LegalDocument[`Luật An ninh mạng 2018`])\n```\nSau đó xuất nội dung tra được\n```\nStep2:Xuất kết quả ở Step1\nAction2:output(o1)\n```",
+        "query": "Văn bản nào quy định chi tiết Luật An ninh mạng 2018?",
+        "answer": "Trước tiên cần tra văn bản hướng dẫn thi hành Luật An ninh mạng 2018\n```\nStep1:Văn bản nào quy định chi tiết Luật An ninh mạng 2018?\nAction1:Retrieval(s=s1:LegalDocument, p=p1:implementsDoc, o=o1:LegalDocument[`Luật An ninh mạng 2018`])\n```\nSau đó xuất kết quả tra cứu được\n```\nStep2:Xuất kết quả ở Step1\nAction2:output(s1)\n```",
     },
-    # --- Retrieval hai bước: hiệu lực của văn bản thay thế -------------------------
+    # --- Retrieval hai bước: hiệu lực của văn bản thay thế (supersededBy trong graph v1) ---
     {
         "query": "Luật An ninh mạng 2018 đã bị thay thế bởi văn bản nào?",
         "answer": "Trước tiên cần xác định văn bản thay thế Luật An ninh mạng 2018\n```\nStep1:Luật An ninh mạng 2018 bị thay thế bởi văn bản nào?\nAction1:Retrieval(s=s1:LegalDocument[`Luật An ninh mạng 2018`], p=p1:supersededBy, o=o1:LegalDocument)\n```\nSau đó kiểm tra văn bản thay thế đó đã có hiệu lực hay chưa\n```\nStep2:Ngày có hiệu lực của văn bản tìm được ở Step1 là ngày nào?\nAction2:Retrieval(s=o1, p=p2:dateEffective, o=o2)\n```",
     },
-    # --- Bắc cầu qua Article mới tới Sanction (LegalDocument KHÔNG có cạnh imposes) -
+    # --- Retrieval hai bước: tra văn bản hướng dẫn và ngày ban hành (implementsDoc, dateIssued) ---
     {
-        "query": "Nghị định hướng dẫn thi hành Luật An ninh mạng quy định mức phạt bao nhiêu?",
-        "answer": "Trước tiên cần tìm nghị định hướng dẫn thi hành Luật An ninh mạng\n```\nStep1:Nghị định nào hướng dẫn thi hành Luật An ninh mạng?\nAction1:Retrieval(s=s1:LegalDocument[`Nghị định`], p=p1:implementsDoc, o=o1:LegalDocument[`Luật An ninh mạng`])\n```\nTiếp theo lấy các điều của nghị định đó, vì chế tài nằm trên Điều chứ không nằm trên văn bản\n```\nStep2:Nghị định tìm được ở Step1 gồm những điều nào?\nAction2:Retrieval(s=s2:Article, p=p2:belongsTo, o=o1)\n```\nSau đó tra các mức phạt mà những điều đó quy định\n```\nStep3:Các điều tìm được ở Step2 quy định những mức phạt nào?\nAction3:Retrieval(s=s2, p=p3:imposes, o=o3:Sanction)\n```\nCuối cùng xuất kết quả\n```\nStep4:Xuất kết quả ở Step3\nAction4:output(o3)\n```",
+        "query": "Nghị định hướng dẫn thi hành Luật An ninh mạng ban hành ngày nào?",
+        "answer": "Trước tiên cần tìm nghị định hướng dẫn thi hành Luật An ninh mạng\n```\nStep1:Nghị định nào hướng dẫn thi hành Luật An ninh mạng?\nAction1:Retrieval(s=s1:LegalDocument, p=p1:implementsDoc, o=o1:LegalDocument[`Luật An ninh mạng`])\n```\nSau đó tra ngày ban hành của văn bản hướng dẫn đó\n```\nStep2:Nghị định tìm được ở Step1 ban hành ngày nào?\nAction2:Retrieval(s=s1, p=p2:dateIssued, o=o2)\n```\nCuối cùng xuất kết quả ngày ban hành\n```\nStep3:Xuất kết quả ở Step2\nAction3:output(o2)\n```",
     },
     # --- Math: so sánh mốc thời gian ---------------------------------------------
     {
@@ -67,8 +69,8 @@ DEFAULT_CASE_EN = [
     },
     # --- Deduce: câu hỏi đúng/sai, op=judgement ----------------------------------
     {
-        "query": "Doanh nghiệp nước ngoài cung cấp dịch vụ trên mạng Internet có bắt buộc phải xác thực thông tin người dùng không?",
-        "answer": "Trước tiên cần tra điều khoản quy định về xác thực thông tin người dùng\n```\nStep1:Điều khoản nào quy định việc xác thực thông tin người dùng?\nAction1:Retrieval(s=s1:Article[`Điều 26`], p=p1:belongsTo, o=o1:LegalDocument[`Luật An ninh mạng 2018`])\n```\nSau đó suy luận xem nghĩa vụ đó có bắt buộc với doanh nghiệp nước ngoài hay không\n```\nStep2:Doanh nghiệp nước ngoài có bắt buộc phải xác thực thông tin người dùng không?\nAction2:Deduce(op=judgement, content=[`o1`], target=`Doanh nghiệp nước ngoài cung cấp dịch vụ trên mạng Internet có bắt buộc phải xác thực thông tin người dùng không?`)->deduce2\n```\nCuối cùng xuất kết quả suy luận\n```\nStep3:Xuất kết quả ở Step2\nAction3:output(deduce2)\n```",
+        "query": "Nghị định 53/2022/NĐ-CP có ban hành cùng ngày với Nghị định 13/2023/NĐ-CP không?",
+        "answer": "Trước tiên tra ngày ban hành của Nghị định 53/2022/NĐ-CP\n```\nStep1:Nghị định 53/2022/NĐ-CP ban hành ngày nào?\nAction1:Retrieval(s=s1:LegalDocument[`Nghị định 53/2022/NĐ-CP`], p=p1:dateIssued, o=o1)\n```\nTra ngày ban hành của Nghị định 13/2023/NĐ-CP\n```\nStep2:Nghị định 13/2023/NĐ-CP ban hành ngày nào?\nAction2:Retrieval(s=s2:LegalDocument[`Nghị định 13/2023/NĐ-CP`], p=p2:dateIssued, o=o2)\n```\nSau đó suy luận phán đoán xem hai ngày có trùng nhau không\n```\nStep3:Hai nghị định có ban hành cùng ngày không?\nAction3:Deduce(op=judgement, content=[`o1`,`o2`], target=`Hai nghị định có ban hành cùng ngày không?`)->deduce3\n```\nCuối cùng xuất kết quả suy luận\n```\nStep4:Xuất kết quả ở Step3\nAction4:output(deduce3)\n```",
     },
 ]
 

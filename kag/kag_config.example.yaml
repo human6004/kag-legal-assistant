@@ -105,7 +105,7 @@ kag_builder_pipeline:
       # goi external_graph.ner(passage) de vot thuc the LLM bo sot.
       external_graph: *external_graph_loader
     reader:
-      type: md_reader # kag.builder.component.reader.markdown_reader.MarkDownReader
+      type: legal_md_reader # kag/builder/reader.py — va so Khoan va noi dung lap
       # cat mot chunk = mot Dieu. Heading Dieu nam o muc h4 trong data/processed,
       # mac dinh 3 se cat o muc Muc va gop nhieu Dieu vao chung mot chunk.
       cut_depth: 4

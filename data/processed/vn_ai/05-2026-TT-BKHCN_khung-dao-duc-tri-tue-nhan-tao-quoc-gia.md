@@ -4,13 +4,11 @@ Nguồn thô: data/raw/vn_ai/05-2026-TT-BKHCN_khung-dao-duc-tri-tue-nhan-tao-quo
 
 
 
-934085258767
 
 BỘ KHOA HỌC VÀ CÔNG NGHỆ
 
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 
-6315122273300
 
 Độc lập - Tự do - Hạnh phúc
 
@@ -22,7 +20,6 @@ THÔNG TƯ
 
 Ban hành Khung đạo đức trí tuệ nhân tạo quốc gia
 
-221932556515
 
 Căn cứ Luật Trí tuệ nhân tạo số 134/2025/QH15 ngày 10 tháng 12 năm 2025;
 

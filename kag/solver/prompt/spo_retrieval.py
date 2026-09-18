@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
 """Prompt chọn quan hệ (SPO) khi tra đồ thị, bản tiếng Việt miền pháp luật.
 
 Thay cho default_spo_retrieval của KAG (ví dụ "Woman's Viewpoint", "Flute Sonata in C
@@ -49,12 +51,12 @@ TEMPLATE = """{
       "output": ["0"]
     },
     {
-      "question": "Điều 26 thuộc văn bản nào?",
-      "spo_mention": "Article[Điều 26] belongsTo LegalDocument",
+      "question": "Nghị định 53/2022/NĐ-CP hướng dẫn thi hành văn bản nào?",
+      "spo_mention": "LegalDocument[Nghị định 53/2022/NĐ-CP] implementsDoc LegalDocument",
       "spo_candidates": [
-        "điều 26 belongsTo luật 24/2018/qh14",
-        "điều 26 belongsTo luật 116/2025/qh15",
-        "điều 8 imposes sanction"
+        "nghị định 53/2022/nđ-cp implementsDoc luật 24/2018/qh14",
+        "nghị định 53/2022/nđ-cp implementsDoc luật 86/2015/qh13",
+        "luật 24/2018/qh14 supersededBy luật 116/2025/qh15"
       ],
       "output": ["0"]
     }
