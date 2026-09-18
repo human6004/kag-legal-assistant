@@ -906,17 +906,10 @@ Phụ lục
 
 ngày 19 tháng 8 năm 2026 của Chính phủ)
 
-Mẫu số 01
-
-Về việc thẩm định an ninh mạng đối với hệ thống thông tin quan trọng về an ninh quốc gia
-
-Mẫu số 02
-
-Về việc đề nghị chứng nhận điều kiện an ninh mạng đối với hệ thống thông tin quan trọng về an ninh quốc gia
-
-Mẫu số 03
-
-Đơn đăng ký tham gia mạng lưới tập huấn kiến thức, kỹ năng chuyên sâu về an ninh mạng
+| Mẫu số 01 | Về việc thẩm định an ninh mạng đối với hệ thống thông tin quan trọng về an ninh quốc gia |
+| --- | --- |
+| Mẫu số 02 | Về việc đề nghị chứng nhận điều kiện an ninh mạng đối với hệ thống thông tin quan trọng về an ninh quốc gia |
+| Mẫu số 03 | Đơn đăng ký tham gia mạng lưới tập huấn kiến thức, kỹ năng chuyên sâu về an ninh mạng |
 
 ### Mẫu số 01
 

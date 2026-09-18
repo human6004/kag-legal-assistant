@@ -98,7 +98,7 @@ l) Tổ chức khác theo quy định của pháp luật.
 
 2. Thời điểm chấm dứt hành vi vi phạm để tính thời hiệu xử phạt là ngày cá nhân, tổ chức thực hiện xong nghĩa vụ theo quy định hoặc ngày hành vi vi phạm đó thực tế kết thúc được cơ quan có thẩm quyền xác nhận.
 
-3. Ngoài quy định tại khoản 2 Điều này, cơ quan, người có thẩm quyền xử phạt vi phạm hành chính căn cứ vào các văn bản quy phạm pháp luật có liên quan, hồ sơ, tài liệu và tình tiết của từng vụ việc cụ thể để xác định hành vi vi phạm đã kết thúc hay hành vi vi phạm đang thực hiện theo quy định tại Nghị định của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Xử lý vi phạm hành chính hiện hành.
+3. Ngoài quy định tại khoản 2 Điều này, cơ quan, người có thẩm quyền xử phạt vi phạm hành chính căn cứ vào các văn bản quy phạm pháp luật có liên quan, hồ sơ, tài liệu và tình tiết của từng vụ việc cụ thể để xác định hành vi vi phạm đã kết thúc hay hành vi vi phạm đang thực hiện theo quy định tại Nghị định của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Xử lý vi phạm hành chính hiện hành.
 
 #### Điều 4. Hình thức xử phạt
 
@@ -186,11 +186,11 @@ b) Cá nhân, tổ chức cố tình trì hoãn, trốn tránh, cản trở vi�
 
 c) Chi phí tổ chức thi hành, cưỡng chế thi hành do cá nhân, tổ chức vi phạm chi trả theo quy định của pháp luật.
 
-Điều 7. Quy định về mức phạt tiền, thẩm quyền xử phạt
+#### Điều 7. Quy định về mức phạt tiền, thẩm quyền xử phạt
 
 1. Từ Mục 1 đến Mục 5 Chương II Nghị định này quy định về mức phạt tiền được áp dụng đối với hành vi vi phạm hành chính trong lĩnh vực an ninh mạng do cá nhân thực hiện. Trường hợp tổ chức có cùng hành vi vi phạm, mức phạt tiền được áp dụng với tổ chức bằng hai lần mức phạt tiền áp dụng đối với cá nhân.
 
-### Mục 6 Chương II Nghị định này quy định về mức phạt tiền được áp dụng đối với hành vi vi phạm hành chính trong lĩnh vực bảo vệ dữ liệu cá nhân do tổ chức thực hiện. Trường hợp cá nhân có cùng hành vi vi phạm, mức phạt tiền được áp dụng với cá nhân bằng một phần hai lần mức phạt tiền áp dụng đối với tổ chức.
+Mục 6 Chương II Nghị định này quy định về mức phạt tiền được áp dụng đối với hành vi vi phạm hành chính trong lĩnh vực bảo vệ dữ liệu cá nhân do tổ chức thực hiện. Trường hợp cá nhân có cùng hành vi vi phạm, mức phạt tiền được áp dụng với cá nhân bằng một phần hai lần mức phạt tiền áp dụng đối với tổ chức.
 
 2. Thẩm quyền xử phạt của các chức danh quy định tại Chương III Nghị định này là thẩm quyền áp dụng đối với một hành vi vi phạm hành chính của tổ chức. Trong trường hợp phạt tiền, thẩm quyền xử phạt đối với cá nhân bằng một phần hai lần thẩm quyền xử phạt đối với tổ chức.
 
@@ -248,7 +248,7 @@ VI PHẠM QUY ĐỊNH
 
 VỀ BẢO VỆ AN NINH QUỐC GIA, BẢO ĐẢM TRẬT TỰ,
 
-AN TOÀN XÃ HỘI TRÊN KHÔNG GIAN MẠNG
+AN TOÀN XÃ HỘI TRÊN KHÔNG GIAN MẠNG
 
 #### Điều 9. Cung cấp, chia sẻ thông tin trên không gian mạng có nội dung vi phạm pháp luật, gây ảnh hưởng đến an ninh, trật tự
 
@@ -276,11 +276,11 @@ d) Tạo ra, đăng tải, chia sẻ thông tin giả mạo trên không gian m�
 
 3. Biện pháp khắc phục hậu quả:
 
-a) Buộc gỡ, xóa thông tin vi phạm đối với hành vi quy định tại khoản 1, 2 Điều này;
+a) Buộc gỡ, xóa thông tin vi phạm đối với hành vi quy định tại khoản 1, 2 Điều này;
 
-b) Buộc cải chính thông tin sai sự thật đối với hành vi quy định tại khoản 1, 2 Điều này.
+b) Buộc cải chính thông tin sai sự thật đối với hành vi quy định tại khoản 1, 2 Điều này.
 
-#### Điều 10. Làm ra và phát tán thông tin trên không gian mạng có nội dung xâm phạm trật tự quản lý kinh tế
+#### Điều 10. Làm ra và phát tán thông tin trên không gian mạng có nội dung xâm phạm trật tự quản lý kinh tế
 
 1. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi sau đây:
 
@@ -306,11 +306,11 @@ a) Buộc gỡ, xóa thông tin trên không gian mạng có nội dung xâm ph�
 
 b) Buộc thu hồi hoặc buộc hoàn trả tên miền do thực hiện hành vi vi phạm quy định tại khoản 3 Điều này;
 
-c) Buộc cải chính thông tin trên không gian mạng có nội dung xâm phạm trật tự quản lý kinh tế đối với hành vi quy định tại khoản 1, 2, 3 Điều này;
+c) Buộc cải chính thông tin trên không gian mạng có nội dung xâm phạm trật tự quản lý kinh tế đối với hành vi quy định tại khoản 1, 2, 3 Điều này;
 
-d) Buộc nộp lại số tiền bằng với giá trị tang vật, phương tiện vi phạm hành chính đã bị tiêu thụ, tẩu tán, tiêu hủy trái quy định của pháp luật đối với hành vi quy định tại khoản 1, 2, 3 Điều này.
+d) Buộc nộp lại số tiền bằng với giá trị tang vật, phương tiện vi phạm hành chính đã bị tiêu thụ, tẩu tán, tiêu hủy trái quy định của pháp luật đối với hành vi quy định tại khoản 1, 2, 3 Điều này.
 
-#### Điều 11. Làm ra và phát tán thông tin trên không gian mạng có nội dung sai sự thật, chưa được kiểm chứng gây hoang mang trong Nhân dân, ảnh hưởng tới trật tự xã hội
+#### Điều 11. Làm ra và phát tán thông tin trên không gian mạng có nội dung sai sự thật, chưa được kiểm chứng gây hoang mang trong Nhân dân, ảnh hưởng tới trật tự xã hội
 
 1. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi sau đây:
 
@@ -350,7 +350,7 @@ a) Buộc gỡ, xóa thông tin trên không gian mạng có nội dung bịa đ
 
 b) Buộc thu hồi hoặc buộc hoàn trả tên miền do thực hiện hành vi vi phạm quy định tại khoản 3 Điều này;
 
-c) Buộc cải chính thông tin trên không gian mạng có nội dung bịa đặt, sai sự thật nhằm gây hoang mang trong Nhân dân, ảnh hưởng tới trật tự xã hội đối với hành vi quy định tại khoản 1, 2, 3 Điều này;
+c) Buộc cải chính thông tin trên không gian mạng có nội dung bịa đặt, sai sự thật nhằm gây hoang mang trong Nhân dân, ảnh hưởng tới trật tự xã hội đối với hành vi quy định tại khoản 1, 2, 3 Điều này;
 
 d) Buộc hoàn trả hoặc nộp lại số lợi bất hợp pháp có được do thực hiện hành vi vi phạm quy định tại khoản 1, 2 và 3 Điều này.
 
@@ -404,7 +404,7 @@ c) Thay đổi, hủy bỏ hoặc vô hiệu hóa trái phép các biện pháp 
 
 a) Tịch thu tang vật, phương tiện vi phạm hành chính đối với các hành vi vi phạm quy định tại điểm a, c khoản 1 Điều này;
 
-b) Đình chỉ hoạt động có thời hạn từ 01 tháng đến 03 tháng đối với hành vi vi phạm quy định tại điểm b, c khoản 1 Điều này.
+b) Đình chỉ hoạt động có thời hạn từ 01 tháng đến 03 tháng đối với hành vi vi phạm quy định tại điểm b, c khoản 1 Điều này.
 
 3. Biện pháp khắc phục hậu quả:
 
@@ -416,7 +416,7 @@ c) Buộc kiểm tra an ninh mạng lại đối với các sản phẩm, thiế
 
 d) Buộc nộp lại số tiền bằng với giá trị tang vật, phương tiện vi phạm hành chính đã bị tiêu thụ, tẩu tán, tiêu hủy trái quy định của pháp luật đối với hành vi quy định tại điểm a khoản 1 Điều này.
 
-#### Điều 14. Vi phạm quy định về phòng, chống hành vi sử dụng không gian mạng, công nghệ thông tin, phương tiện điện tử để xâm phạm trật tự quản lý kinh tế nhưng chưa đến mức truy cứu trách nhiệm hình sự
+#### Điều 14. Vi phạm quy định về phòng, chống hành vi sử dụng không gian mạng, công nghệ thông tin, phương tiện điện tử để xâm phạm trật tự quản lý kinh tế nhưng chưa đến mức truy cứu trách nhiệm hình sự
 
 1. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với hành vi: bán, cho thuê, cho mượn, tặng cho thông tin tài khoản số của mình, gồm: tài khoản ngân hàng, thẻ ngân hàng, tài khoản ví điện tử, tài khoản tiền di động, tài khoản chứng khoán, tài khoản giao dịch, tài khoản bảo hiểm, tài khoản thuế và tài khoản số khác có chức năng giao dịch tài chính.
 
@@ -478,7 +478,7 @@ a) Buộc gỡ, xóa thông tin đối với các hành vi vi phạm quy định
 
 b) Buộc nộp lại số tiền bằng với giá trị tang vật, phương tiện vi phạm hành chính đã bị tiêu thụ, tẩu tán, tiêu hủy trái quy định của pháp luật tại khoản 1, 2, 3, 4, 5, 6 Điều này.
 
-#### Điều 15. Vi phạm quy định phòng, chống hành vi sử dụng không gian mạng, công nghệ thông tin, phương tiện điện tử xâm phạm trật tự xã hội nhưng chưa đến mức truy cứu trách nhiệm hình sự
+#### Điều 15. Vi phạm quy định phòng, chống hành vi sử dụng không gian mạng, công nghệ thông tin, phương tiện điện tử xâm phạm trật tự xã hội nhưng chưa đến mức truy cứu trách nhiệm hình sự
 
 1. Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng đối với một trong các hành vi sau đây:
 
@@ -534,7 +534,7 @@ i) Đăng tải, chia sẻ thông tin hướng dẫn hoặc khuyến khích th�
 
 k) Đăng tải thông tin quảng bá dịch vụ cho vay không phù hợp với quy định của pháp luật về lãi suất và hoạt động cho vay trên không gian mạng;
 
-l) Đăng tải thông tin mua, bán vũ khí, vật liệu nổ, công cụ hỗ trợ, trang phục, cấp hiệu, phù hiệu, số hiệu Công an Nhân dân, Quân đội Nhân dân Việt Nam trên không gian mạng;
+l) Đăng tải thông tin mua, bán vũ khí, vật liệu nổ, công cụ hỗ trợ, trang phục, cấp hiệu, phù hiệu, số hiệu Công an Nhân dân, Quân đội Nhân dân Việt Nam trên không gian mạng;
 
 m) Cung cấp dịch vụ thanh toán trực tuyến cho các ứng dụng, trang web có hoạt động nội dung khiêu dâm, đồi trụy hoặc mại dâm nhưng chưa đến mức truy cứu trách nhiệm hình sự.
 
@@ -582,7 +582,7 @@ a) Sản xuất, mua bán, trao đổi, tặng cho chương trình tin học, ph
 
 b) Không phối hợp với lực lượng chuyên trách bảo vệ an ninh mạng áp dụng các biện pháp để ngăn chặn, loại trừ hành vi tấn công mạng;
 
-c) Cung cấp dịch vụ tấn công mạng trái pháp luật nhưng chưa đến mức truy cứu trách nhiệm hình sự.
+c) Cung cấp dịch vụ tấn công mạng trái pháp luật nhưng chưa đến mức truy cứu trách nhiệm hình sự.
 
 3. Hình thức xử phạt bổ sung:
 
@@ -874,7 +874,7 @@ b) Buộc khôi phục hoạt động bình thường của hệ thống thông 
 
 #### Điều 26. Vi phạm quy định về bảo vệ an ninh mạng đối với hệ thống thông tin quan trọng về an ninh quốc gia
 
-1. Phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng đối với một trong các hành vi vi phạm quy định về xác lập hệ thống thông tin quan trọng về an ninh quốc gia sau:
+1. Phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng đối với một trong các hành vi vi phạm quy định về xác lập hệ thống thông tin quan trọng về an ninh quốc gia sau:
 
 a) Không thực hiện hoặc thực hiện không đầy đủ theo quy định việc rà soát xác lập hệ thống thông tin quan trọng về an ninh quốc gia đối với hệ thống thông tin thuộc phạm vi quản lý;
 
@@ -884,13 +884,13 @@ c) Không gửi Bộ Công an, Bộ Quốc phòng, Ban Cơ yếu Chính phủ th
 
 d) Không chuyển cho Bộ Công an, Bộ Quốc phòng, Ban Cơ yếu Chính phủ theo phân cấp quản lý hồ sơ thẩm định về cấp độ an ninh mạng mà xét thấy có đủ căn cứ để đưa vào Danh mục hệ thống thông tin quan trọng về an ninh quốc gia để thẩm định hồ sơ đề nghị đưa hệ thống thông tin vào Danh mục hệ thống thông tin quan trọng về an ninh quốc gia.
 
-2. Phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng đối với một trong các hành vi vi phạm quy định về thẩm định an ninh mạng sau:
+2. Phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng đối với một trong các hành vi vi phạm quy định về thẩm định an ninh mạng sau:
 
 a) Không tiến hành thẩm định an ninh mạng làm cơ sở cho việc quyết định xây dựng hệ thống thông tin có đủ tiêu chí là hệ thống thông tin quan trọng về an ninh quốc gia;
 
 b) Không tiến hành thẩm định an ninh mạng làm cơ sở cho việc nâng cấp hệ thống thông tin có đủ tiêu chí là hệ thống thông tin quan trọng về an ninh quốc gia.
 
-3. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với một trong các hành vi vi phạm về kiểm tra an ninh mạng, giám sát an ninh mạng sau:
+3. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với một trong các hành vi vi phạm về kiểm tra an ninh mạng, giám sát an ninh mạng sau:
 
 a) Không tiến hành đánh giá điều kiện an ninh mạng đối với hệ thống thông tin trước khi đưa vào vận hành, sử dụng;
 
@@ -904,9 +904,9 @@ d) Không xây dựng biện pháp kỹ thuật để giám sát, bảo vệ an 
 
 e) Không có biện pháp bảo đảm an ninh vật lý theo quy định pháp luật;
 
-g) Chủ quản hệ thống thông tin quan trọng về an ninh quốc gia không tiến hành kiểm tra an ninh mạng, giám sát an ninh mạng đối với hệ thống thông tin thuộc phạm vi quản lý theo quy định pháp luật;
+g) Chủ quản hệ thống thông tin quan trọng về an ninh quốc gia không tiến hành kiểm tra an ninh mạng, giám sát an ninh mạng đối với hệ thống thông tin thuộc phạm vi quản lý theo quy định pháp luật;
 
-h) Không phối hợp với lực lượng chuyên trách bảo vệ an ninh mạng khi tiến hành kiểm tra an ninh mạng, giám sát an ninh mạng theo quy định pháp luật;
+h) Không phối hợp với lực lượng chuyên trách bảo vệ an ninh mạng khi tiến hành kiểm tra an ninh mạng, giám sát an ninh mạng theo quy định pháp luật;
 
 i) Không triển khai, không tham gia hoạt động ứng phó, khắc phục sự cố khi sự cố an ninh mạng xảy ra hoặc khi có yêu cầu của lực lượng chủ trì điều phối;
 
@@ -914,15 +914,15 @@ k) Không báo cáo kịp thời cho lực lượng chuyên trách bảo vệ an
 
 l) Không thực hiện các biện pháp theo hướng dẫn của lực lượng chuyên trách bảo vệ an ninh mạng và các biện pháp phù hợp khác để ngăn chặn, xử lý, khắc phục hậu quả trong thời hạn 24 giờ kể từ thời điểm nhận được thông báo.
 
-4. Phạt tiền từ 50.000.000 đồng đến 70.000.000 đồng đối với một trong các hành vi sau:
+4. Phạt tiền từ 50.000.000 đồng đến 70.000.000 đồng đối với một trong các hành vi sau:
 
 a) Không tiến hành kiểm tra an ninh mạng định kỳ hằng năm;
 
-b) Không tiến hành kiểm tra an ninh mạng, giám sát an ninh mạng khi có yêu cầu quản lý nhà nước về an ninh mạng;
+b) Không tiến hành kiểm tra an ninh mạng, giám sát an ninh mạng khi có yêu cầu quản lý nhà nước về an ninh mạng;
 
-c) Không thông báo kết quả kiểm tra an ninh mạng bằng văn bản cho lực lượng chuyên trách bảo vệ an ninh mạng theo quy định;
+c) Không thông báo kết quả kiểm tra an ninh mạng bằng văn bản cho lực lượng chuyên trách bảo vệ an ninh mạng theo quy định;
 
-d) Quá thời hạn mà không khắc phục điểm yếu, lỗ hổng bảo mật theo khuyến cáo của lực lượng chuyên trách bảo vệ an ninh mạng theo quy định;
+d) Quá thời hạn mà không khắc phục điểm yếu, lỗ hổng bảo mật theo khuyến cáo của lực lượng chuyên trách bảo vệ an ninh mạng theo quy định;
 
 đ) Vi phạm quy định, quy trình, phương án bảo đảm an ninh mạng đối với hệ thống thông tin quan trọng về an ninh quốc gia;
 
@@ -938,13 +938,13 @@ a) Buộc thực hiện các biện pháp bảo đảm an ninh mạng đối v�
 
 b) Buộc cải chính kết quả thẩm định, đánh giá, kiểm tra, chứng nhận về an ninh mạng đối với các hành vi quy định tại khoản 2, 3, 4 Điều này.
 
-#### Điều 27. Vi phạm quy định về bảo vệ an ninh mạng đối với hệ thống thông tin không thuộc Danh mục hệ thống thông tin quan trọng về an ninh quốc gia
+#### Điều 27. Vi phạm quy định về bảo vệ an ninh mạng đối với hệ thống thông tin không thuộc Danh mục hệ thống thông tin quan trọng về an ninh quốc gia
 
-1. Phạt tiền từ 25.000.000 đồng đến 50.000.000 đồng đối với một trong các hành vi sau:
+1. Phạt tiền từ 25.000.000 đồng đến 50.000.000 đồng đối với một trong các hành vi sau:
 
-a) Không phối hợp với lực lượng chuyên trách bảo vệ an ninh mạng thực hiện biện pháp bảo vệ an ninh mạng khi phát hiện hệ thống thông tin thuộc phạm vi quản lý có liên quan tới hành vi vi phạm quy định của pháp luật về an ninh mạng;
+a) Không phối hợp với lực lượng chuyên trách bảo vệ an ninh mạng thực hiện biện pháp bảo vệ an ninh mạng khi phát hiện hệ thống thông tin thuộc phạm vi quản lý có liên quan tới hành vi vi phạm quy định của pháp luật về an ninh mạng;
 
-b) Không thông báo cho lực lượng chuyên trách bảo vệ an ninh mạng khi phát hiện hành vi vi phạm pháp luật về an ninh mạng đối với hệ thống thông tin của cơ quan nhà nước, tổ chức chính trị ở trung ương và địa phương;
+b) Không thông báo cho lực lượng chuyên trách bảo vệ an ninh mạng khi phát hiện hành vi vi phạm pháp luật về an ninh mạng đối với hệ thống thông tin của cơ quan nhà nước, tổ chức chính trị ở trung ương và địa phương;
 
 c) Không thực hiện hoặc thực hiện không đầy đủ yêu cầu của lực lượng chuyên trách bảo vệ an ninh mạng về khắc phục điểm yếu, lỗ hổng bảo mật và hành vi vi phạm pháp luật về an ninh mạng.
 
@@ -956,9 +956,9 @@ c) Không thực hiện hoặc thực hiện không đầy đủ yêu cầu củ
 
 a) Không phối hợp với lực lượng chuyên trách bảo vệ an ninh mạng trong giám sát an ninh mạng đối với cơ sở hạ tầng không gian mạng quốc gia, cổng kết nối mạng quốc tế;
 
-b) Không phối hợp, cung cấp thông tin, dữ liệu phục vụ điều tra, xử lý hành vi vi phạm pháp luật khi đã có yêu cầu bằng văn bản;
+b) Không phối hợp, cung cấp thông tin, dữ liệu phục vụ điều tra, xử lý hành vi vi phạm pháp luật khi đã có yêu cầu bằng văn bản;
 
-c) Không bố trí mặt bằng, cổng kết nối, điều kiện và biện pháp kỹ thuật, nghiệp vụ cần thiết để lực lượng chuyên trách bảo vệ an ninh mạng thực hiện nhiệm vụ bảo vệ an ninh mạng theo quy định của pháp luật;
+c) Không bố trí mặt bằng, cổng kết nối, điều kiện và biện pháp kỹ thuật, nghiệp vụ cần thiết để lực lượng chuyên trách bảo vệ an ninh mạng thực hiện nhiệm vụ bảo vệ an ninh mạng theo quy định của pháp luật;
 
 d) Không triển khai biện pháp bảo vệ an ninh mạng; không thực hiện các yêu cầu về bảo vệ an ninh mạng của lực lượng chuyên trách bảo vệ an ninh mạng.
 
@@ -1020,7 +1020,7 @@ e) Không vô hiệu hóa, hủy tài khoản dịch vụ do trẻ em trực ti�
 
 2. Phạt tiền từ 50.000.000 đồng đến 70.000.000 đồng đối với một trong các hành vi sau:
 
-a) Đăng tải, phát tán, chia sẻ, lưu trữ, trao đổi, sử dụng thông tin, hình ảnh, âm thanh có nội dung khiêu dâm, đồi trụy, bạo lực liên quan đến trẻ em;
+a) Đăng tải, phát tán, chia sẻ, lưu trữ, trao đổi, sử dụng thông tin, hình ảnh, âm thanh có nội dung khiêu dâm, đồi trụy, bạo lực liên quan đến trẻ em;
 
 b) Đăng tải, chia sẻ, phát tán thông tin xúc phạm danh dự, uy tín, nhân phẩm, ảnh hưởng về sức khỏe, sự phát triển bình thường về tâm sinh lý của trẻ em nhưng không bị truy cứu trách nhiệm hình sự.
 
@@ -1028,7 +1028,7 @@ b) Đăng tải, chia sẻ, phát tán thông tin xúc phạm danh dự, uy tín
 
 a) Không phối hợp với cơ quan có thẩm quyền trong bảo đảm quyền của trẻ em trên không gian mạng;
 
-b) Kích động, lôi kéo, dụ dỗ, ép buộc trẻ em theo dõi, chia sẻ, phát tán thông tin có nội dung gây nguy hại cho trẻ em, xâm phạm đến trẻ em, quyền trẻ em hoặc tham gia vào các hoạt động vi phạm pháp luật khác.
+b) Kích động, lôi kéo, dụ dỗ, ép buộc trẻ em theo dõi, chia sẻ, phát tán thông tin có nội dung gây nguy hại cho trẻ em, xâm phạm đến trẻ em, quyền trẻ em hoặc tham gia vào các hoạt động vi phạm pháp luật khác.
 
 4. Hình thức xử phạt bổ sung:
 
@@ -2468,7 +2468,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 4. Trưởng phòng Quản lý xuất nhập cảnh thuộc Công an cấp tỉnh có thẩm quyền xử phạt theo quy định tại khoản 3 Điều này và có quyền quyết định áp dụng hình thức xử phạt trục xuất.
 
@@ -2512,7 +2512,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 2. Chủ tịch Ủy ban nhân dân cấp tỉnh có quyền:
 
@@ -2524,7 +2524,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 #### Điều 74. Thẩm quyền xử phạt hành chính của Thanh tra
 
@@ -2554,7 +2554,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 4. Chánh Thanh tra Bộ Quốc phòng, Bộ Công an, Ngân hàng Nhà nước Việt Nam; Trưởng đoàn thanh tra do Chánh Thanh tra Bộ Quốc phòng, Bộ Công an thành lập có quyền:
 
@@ -2566,7 +2566,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 #### Điều 75. Thẩm quyền xử phạt hành chính của Bộ đội Biên phòng
 
@@ -2606,7 +2606,7 @@ b) Phạt tiền đến 60.000.000 đồng đối với các hành vi vi phạm 
 
 c) Tịch thu tang vật, phương tiện vi phạm hành chính có giá trị không vượt quá 02 lần mức tiền phạt được quy định tại điểm b khoản này;
 
-d) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+d) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 5. Đoàn trưởng Đoàn đặc nhiệm phòng chống ma túy và tội phạm thuộc Cục Phòng chống ma túy và tội phạm thuộc Bộ Tư lệnh Bộ đội Biên phòng có quyền:
 
@@ -2618,7 +2618,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính có giá trị không vượt quá 02 lần mức tiền phạt được quy định tại điểm b khoản này;
 
-đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 6. Chỉ huy trưởng Ban Chỉ huy Bộ đội Biên phòng; Hải đoàn trưởng Hải đoàn biên phòng; Cục trưởng Cục Phòng chống ma túy và tội phạm thuộc Bộ Tư lệnh Bộ đội Biên phòng có quyền:
 
@@ -2630,7 +2630,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính có giá trị không vượt quá 02 lần mức tiền phạt được quy định tại điểm b khoản này;
 
-đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 #### Điều 76. Thẩm quyền xử phạt hành chính của Cảnh sát biển
 
@@ -2692,7 +2692,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 7. Tư lệnh Cảnh sát biển Việt Nam có quyền:
 
@@ -2704,7 +2704,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 #### Điều 77. Thẩm quyền của các cơ quan thực hiện nhiệm vụ quản lý nhà nước theo chuyên ngành, lĩnh vực và một số chức danh khác
 
@@ -2718,7 +2718,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 2. Chánh Văn phòng Bộ Khoa học và Công nghệ; Trưởng đoàn kiểm tra do Bộ trưởng Bộ Khoa học và Công nghệ; Chánh Văn phòng Bộ Văn hóa, Thể thao và Du lịch; Chánh Văn phòng Bộ Công Thương; Cục trưởng Cục Viễn thông; Cục trưởng Cục Thương mại điện tử và Kinh tế số; Cục trưởng Cục Báo chí; Cục trưởng Cục Phát thanh, truyền hình và thông tin điện tử có quyền:
 
@@ -2730,7 +2730,7 @@ c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ
 
 d) Tịch thu tang vật, phương tiện vi phạm hành chính;
 
-đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
+đ) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 5 Nghị định này.
 
 #### Điều 78. Phân định thẩm quyền xử phạt
 

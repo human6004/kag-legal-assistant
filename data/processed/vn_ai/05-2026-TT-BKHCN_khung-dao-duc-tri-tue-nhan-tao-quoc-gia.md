@@ -161,54 +161,23 @@ HƯỚNG DẪN MẪU PHIẾU TỰ ĐÁNH GIÁ TUÂN THỦ KHUNG ĐẠO ĐỨC TR
 
 Bộ trưởng Bộ Khoa học và Công nghệ)
 
-Nội dung đánh giá
-
-Mức độ đáp ứng
-
-(Đạt/Chưa đạt/Chưa áp dụng)
-
-Minh chứng
-
-Hành động khắc phục
-
-(nếu có)
-
-Đơn vị/cá nhân phụ trách
-
-& thời hạn
-
-A. Thông tin chung về hệ thống trí tuệ nhân tạo (tên, mục tiêu, phạm vi, người bị ảnh hưởng, giai đoạn vòng đời)
-
-B. Nguyên tắc 1: An toàn, độ tin cậy, không gây hại
-
-1. Có cơ chế kiểm thử, xác nhận, giám sát chất lượng đầu ra phù hợp
-
-2. Có cơ chế kiểm soát/can thiệp của con người đối với trường hợp quan trọng
-
-3. Có quy trình tiếp nhận phản ánh và xử lý sự cố liên quan tác động tiêu cực
-
-C. Nguyên tắc 2: Quyền con người, công bằng, minh bạch, không phân biệt đối xử
-
-1. Có biện pháp nhận diện và giảm thiểu thiên lệch dữ liệu/mô hình
-
-2. Có thông báo minh bạch phù hợp tới người sử dụng/người bị ảnh hưởng
-
-3. Có cơ chế giải thích ở mức hợp lý và lưu vết quyết định
-
-D. Nguyên tắc 3: Hạnh phúc, thịnh vượng, phát triển bền vững
-
-1. Mục tiêu/giá trị gia tăng xã hội của hệ thống được xác định và theo dõi
-
-2. Có cân nhắc tác động bao trùm và giảm khoảng cách số
-
-3. Có cân nhắc tác động môi trường và sử dụng tài nguyên tính toán hợp lý
-
-E. Nguyên tắc 4: Đổi mới sáng tạo và trách nhiệm xã hội
-
-1. Trách nhiệm và đầu mối giải trình được phân công rõ ràng
-
-2. Có cơ chế đào tạo/nâng cao nhận thức cho nhân sự và người sử dụng
-
-3. Có cơ chế tham vấn các bên liên quan khi cần thiết
-
-G. Kết luận và kiến nghị (duy trì/điều chỉnh/tạm dừng/mở rộng triển khai)
+| Nội dung đánh giá | Mức độ đáp ứng<br>(Đạt/Chưa đạt/Chưa áp dụng) | Minh chứng | Hành động khắc phục<br>(nếu có) | Đơn vị/cá nhân phụ trách<br>& thời hạn |
+| --- | --- | --- | --- | --- |
+| A. Thông tin chung về hệ thống trí tuệ nhân tạo (tên, mục tiêu, phạm vi, người bị ảnh hưởng, giai đoạn vòng đời) |  |  |  |  |
+| B. Nguyên tắc 1: An toàn, độ tin cậy, không gây hại |  |  |  |  |
+| 1. Có cơ chế kiểm thử, xác nhận, giám sát chất lượng đầu ra phù hợp |  |  |  |  |
+| 2. Có cơ chế kiểm soát/can thiệp của con người đối với trường hợp quan trọng |  |  |  |  |
+| 3. Có quy trình tiếp nhận phản ánh và xử lý sự cố liên quan tác động tiêu cực |  |  |  |  |
+| C. Nguyên tắc 2: Quyền con người, công bằng, minh bạch, không phân biệt đối xử |  |  |  |  |
+| 1. Có biện pháp nhận diện và giảm thiểu thiên lệch dữ liệu/mô hình |  |  |  |  |
+| 2. Có thông báo minh bạch phù hợp tới người sử dụng/người bị ảnh hưởng |  |  |  |  |
+| 3. Có cơ chế giải thích ở mức hợp lý và lưu vết quyết định |  |  |  |  |
+| D. Nguyên tắc 3: Hạnh phúc, thịnh vượng, phát triển bền vững |  |  |  |  |
+| 1. Mục tiêu/giá trị gia tăng xã hội của hệ thống được xác định và theo dõi |  |  |  |  |
+| 2. Có cân nhắc tác động bao trùm và giảm khoảng cách số |  |  |  |  |
+| 3. Có cân nhắc tác động môi trường và sử dụng tài nguyên tính toán hợp lý |  |  |  |  |
+| E. Nguyên tắc 4: Đổi mới sáng tạo và trách nhiệm xã hội |  |  |  |  |
+| 1. Trách nhiệm và đầu mối giải trình được phân công rõ ràng |  |  |  |  |
+| 2. Có cơ chế đào tạo/nâng cao nhận thức cho nhân sự và người sử dụng |  |  |  |  |
+| 3. Có cơ chế tham vấn các bên liên quan khi cần thiết |  |  |  |  |
+| G. Kết luận và kiến nghị (duy trì/điều chỉnh/tạm dừng/mở rộng triển khai) |  |  |  |  |

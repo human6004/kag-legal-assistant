@@ -1430,77 +1430,25 @@ DANH MỤC BIỂU MẪU
 
 ngày 30 tháng 4 năm 2026 của Chính phủ)
 
-Mẫu AI01a
-
-Báo cáo sự cố nghiêm trọng dành cho tổ chức
-
-Mẫu AI01b
-
-Báo cáo sự cố nghiêm trọng dành cho cá nhân
-
-Mẫu AI02
-
-Báo cáo đánh giá tác động khi sử dụng hệ thống trí tuệ nhân tạo trong cơ quan nhà nước
-
-Mẫu AI03a
-
-Đơn đề nghị tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho tổ chức
-
-Mẫu AI03b
-
-Đơn đề nghị tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân
-
-Mẫu AI03c
-
-Đơn đề nghị gia hạn thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho tổ chức
-
-Mẫu AI03d
-
-Đơn đề nghị gia hạn thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân
-
-Mẫu AI04
-
-Giấy xác nhận hoàn thành thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo
-
-Mẫu AI05a
-
-Báo cáo định kỳ về tình hình thử nghiệm hệ thống trí tuệ nhân tạo dành cho tổ chức
-
-Mẫu AI05b
-
-Báo cáo định kỳ về tình hình thử nghiệm hệ thống trí tuệ nhân tạo dành cho cá nhân
-
-Mẫu AI06a
-
-Báo cáo sự cố nghiêm trọng trong thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho tổ chức
-
-Mẫu AI06b
-
-Báo cáo sự cố nghiêm trọng trong thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân
-
-Mẫu AI07a
-
-Báo cáo vượt giới hạn thử nghiệm dành cho tổ chức
-
-Mẫu AI07b
-
-Báo cáo vượt giới hạn thử nghiệm dành cho cá nhân
-
-Mẫu AI08a
-
-Báo cáo tổng kết kết quả thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo cho tổ chức
-
-Mẫu AI08b
-
-Báo cáo tổng kết kết quả thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo cho cá nhân
-
-Mẫu AI09a
-
-Giấy xác nhận tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo tổ chức
-
-Mẫu AI09b
-
-Giấy xác nhận tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo cá nhân
+| Mẫu AI01a | Báo cáo sự cố nghiêm trọng dành cho tổ chức |
+| --- | --- |
+| Mẫu AI01b | Báo cáo sự cố nghiêm trọng dành cho cá nhân |
+| Mẫu AI02 | Báo cáo đánh giá tác động khi sử dụng hệ thống trí tuệ nhân tạo trong cơ quan nhà nước |
+| Mẫu AI03a | Đơn đề nghị tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho tổ chức |
+| Mẫu AI03b | Đơn đề nghị tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân |
+| Mẫu AI03c | Đơn đề nghị gia hạn thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho tổ chức |
+| Mẫu AI03d | Đơn đề nghị gia hạn thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân |
+| Mẫu AI04 | Giấy xác nhận hoàn thành thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo |
+| Mẫu AI05a | Báo cáo định kỳ về tình hình thử nghiệm hệ thống trí tuệ nhân tạo dành cho tổ chức |
+| Mẫu AI05b | Báo cáo định kỳ về tình hình thử nghiệm hệ thống trí tuệ nhân tạo dành cho cá nhân |
+| Mẫu AI06a | Báo cáo sự cố nghiêm trọng trong thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho tổ chức |
+| Mẫu AI06b | Báo cáo sự cố nghiêm trọng trong thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo dành cho cá nhân |
+| Mẫu AI07a | Báo cáo vượt giới hạn thử nghiệm dành cho tổ chức |
+| Mẫu AI07b | Báo cáo vượt giới hạn thử nghiệm dành cho cá nhân |
+| Mẫu AI08a | Báo cáo tổng kết kết quả thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo cho tổ chức |
+| Mẫu AI08b | Báo cáo tổng kết kết quả thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo cho cá nhân |
+| Mẫu AI09a | Giấy xác nhận tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo tổ chức |
+| Mẫu AI09b | Giấy xác nhận tham gia thử nghiệm có kiểm soát hệ thống trí tuệ nhân tạo cá nhân |
 
 ### Mẫu AI01a: Báo cáo sự cố nghiêm trọng dành cho tổ chức
 
@@ -2822,105 +2770,17 @@ d) Thời gian thử nghiệm được xác nhận: từ ngày …/…/… đế
 
 II. ĐỐI CHIẾU NỘI DUNG THỬ NGHIỆM VỚI GIẤY XÁC NHẬN THAM GIA THỬ NGHIỆM
 
-STT
-
-Nội dung đối chiếu
-
-Nội dung được xác nhận
-
-Nội dung thực tế thực hiện
-
-Kết quả đối chiếu/Ghi chú
-
-1
-
-Thời gian thử nghiệm
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-2
-
-Địa bàn/đơn vị triển khai
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-3
-
-Lĩnh vực/kịch bản thử nghiệm
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-4
-
-Số lượng cá nhân hoặc tổ chức chịu tác động trực tiếp tối đa
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-5
-
-Quy mô triển khai tối đa của hệ thống trí tuệ nhân tạo
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-6
-
-Mô-đun, thành phần hoặc phiên bản hệ thống được triển khai trong thử nghiệm
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-7
-
-Giá trị chịu rủi ro tối đa
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-8
-
-Giới hạn kỹ thuật, vận hành hoặc điều kiện khác
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-9
-
-Điều kiện kỹ thuật và quản trị rủi ro
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
+| STT | Nội dung đối chiếu | Nội dung được xác nhận | Nội dung thực tế thực hiện | Kết quả đối chiếu/Ghi chú |
+| --- | --- | --- | --- | --- |
+| 1 | Thời gian thử nghiệm |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 2 | Địa bàn/đơn vị triển khai |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 3 | Lĩnh vực/kịch bản thử nghiệm |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 4 | Số lượng cá nhân hoặc tổ chức chịu tác động trực tiếp tối đa |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 5 | Quy mô triển khai tối đa của hệ thống trí tuệ nhân tạo |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 6 | Mô-đun, thành phần hoặc phiên bản hệ thống được triển khai trong thử nghiệm |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 7 | Giá trị chịu rủi ro tối đa |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 8 | Giới hạn kỹ thuật, vận hành hoặc điều kiện khác |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 9 | Điều kiện kỹ thuật và quản trị rủi ro |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
 
 Trường hợp có nội dung vượt, khác hoặc thay đổi so với Giấy xác nhận tham gia thử nghiệm, nêu rõ lý do, thời điểm phát sinh, biện pháp xử lý và văn bản chấp thuận hoặc ghi nhận của cơ quan có thẩm quyền, nếu có:……………………….
 
@@ -2930,39 +2790,11 @@ III. KẾT QUẢ THỰC HIỆN MỤC TIÊU THỬ NGHIỆM
 
 1. Mục tiêu thử nghiệm đã được xác nhận: ………………………………………
 
-STT
-
-Mục tiêu thử nghiệm
-
-Chỉ số/tiêu chí đánh giá
-
-Kết quả thực tế
-
-Mức độ đạt được/Ghi chú
-
-1
-
-□ Đạt
-
-□ Đạt một phần
-
-□ Không đạt
-
-2
-
-□ Đạt
-
-□ Đạt một phần
-
-□ Không đạt
-
-3
-
-□ Đạt
-
-□ Đạt một phần
-
-□ Không đạt
+| STT | Mục tiêu thử nghiệm | Chỉ số/tiêu chí đánh giá | Kết quả thực tế | Mức độ đạt được/Ghi chú |
+| --- | --- | --- | --- | --- |
+| 1 |  |  |  | □ Đạt<br>□ Đạt một phần<br>□ Không đạt |
+| 2 |  |  |  | □ Đạt<br>□ Đạt một phần<br>□ Không đạt |
+| 3 |  |  |  | □ Đạt<br>□ Đạt một phần<br>□ Không đạt |
 
 2. Đánh giá hiệu năng, độ chính xác, độ tin cậy hoặc chất lượng đầu ra của hệ thống:……………………………………………………………………………..
 
@@ -2986,39 +2818,11 @@ IV. TÌNH HÌNH TUÂN THỦ PHẠM VI, GIỚI HẠN VÀ CHẾ ĐỘ BÁO CÁO
 
 2. Tình hình thực hiện báo cáo định kỳ:
 
-STT
-
-Kỳ báo cáo
-
-Thời hạn phải nộp
-
-Ngày nộp thực tế
-
-Tình trạng
-
-1
-
-□ Đúng hạn
-
-□ Quá hạn
-
-□ Không áp dụng
-
-2
-
-□ Đúng hạn
-
-□ Quá hạn
-
-□ Không áp dụng
-
-3
-
-□ Đúng hạn
-
-□ Quá hạn
-
-□ Không áp dụng
+| STT | Kỳ báo cáo | Thời hạn phải nộp | Ngày nộp thực tế | Tình trạng |
+| --- | --- | --- | --- | --- |
+| 1 |  |  |  | □ Đúng hạn<br>□ Quá hạn<br>□ Không áp dụng |
+| 2 |  |  |  | □ Đúng hạn<br>□ Quá hạn<br>□ Không áp dụng |
+| 3 |  |  |  | □ Đúng hạn<br>□ Quá hạn<br>□ Không áp dụng |
 
 3. Tình hình báo cáo sự cố nghiêm trọng, nếu có: …………………………………
 
@@ -3036,21 +2840,11 @@ V. QUẢN TRỊ RỦI RO, AN TOÀN HỆ THỐNG VÀ CƠ CHẾ DỪNG KHẨN CẤ
 
 3. Biện pháp kiểm soát, giảm thiểu rủi ro đã áp dụng:
 
-STT
-
-Rủi ro
-
-Biện pháp kiểm soát
-
-Kết quả thực hiện
-
-Rủi ro còn lại
-
-1
-
-2
-
-3
+| STT | Rủi ro | Biện pháp kiểm soát | Kết quả thực hiện | Rủi ro còn lại |
+| --- | --- | --- | --- | --- |
+| 1 |  |  |  |  |
+| 2 |  |  |  |  |
+| 3 |  |  |  |  |
 
 4. Đánh giá mức độ rủi ro của hệ thống sau thử nghiệm:
 
@@ -3146,39 +2940,11 @@ VIII. VIỆC THỰC HIỆN BẢO HIỂM TRÁCH NHIỆM DÂN SỰ HOẶC BIỆN P
 
 IX. KẾT QUẢ SỬ DỤNG QUYỀN LỢI VÀ CƠ CHẾ HỖ TRỢ TRONG PHẠM VI THỬ NGHIỆM
 
-STT
-
-Cơ chế được ghi nhận tại Giấy xác nhận
-
-Có sử dụng không
-
-Kết quả sử dụng/Vướng mắc
-
-Kiến nghị sau thử nghiệm
-
-1
-
-Cơ chế hỗ trợ và điều chỉnh nghĩa vụ tuân thủ trong phạm vi thử nghiệm
-
-□ Có
-
-□ Không
-
-2
-
-Chương trình hỗ trợ phát triển trí tuệ nhân tạo
-
-□ Có
-
-□ Không
-
-3
-
-Công nhận toàn bộ hoặc một phần kết quả thử nghiệm phục vụ hoạt động đánh giá sự phù hợp
-
-□ Có
-
-□ Không
+| STT | Cơ chế được ghi nhận tại Giấy xác nhận | Có sử dụng không | Kết quả sử dụng/Vướng mắc | Kiến nghị sau thử nghiệm |
+| --- | --- | --- | --- | --- |
+| 1 | Cơ chế hỗ trợ và điều chỉnh nghĩa vụ tuân thủ trong phạm vi thử nghiệm | □ Có<br>□ Không |  |  |
+| 2 | Chương trình hỗ trợ phát triển trí tuệ nhân tạo | □ Có<br>□ Không |  |  |
+| 3 | Công nhận toàn bộ hoặc một phần kết quả thử nghiệm phục vụ hoạt động đánh giá sự phù hợp | □ Có<br>□ Không |  |  |
 
 Trường hợp có sử dụng hạ tầng tính toán, dữ liệu dùng chung, nền tảng huấn luyện, kiểm thử, mô hình trí tuệ nhân tạo dùng chung, dịch vụ tư vấn kỹ thuật hoặc hỗ trợ khác, nêu rõ phạm vi và mức độ sử dụng thực tế:………………………………………………………………………………….
 
@@ -3317,105 +3083,17 @@ d) Thời gian thử nghiệm được xác nhận: từ ngày …/…/… đế
 
 II. ĐỐI CHIẾU NỘI DUNG THỬ NGHIỆM VỚI GIẤY XÁC NHẬN THAM GIA THỬ NGHIỆM
 
-STT
-
-Nội dung đối chiếu
-
-Nội dung được xác nhận
-
-Nội dung thực tế thực hiện
-
-Kết quả đối chiếu/Ghi chú
-
-1
-
-Thời gian thử nghiệm
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-2
-
-Địa bàn/đơn vị triển khai
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-3
-
-Lĩnh vực/kịch bản thử nghiệm
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-4
-
-Số lượng cá nhân hoặc tổ chức chịu tác động trực tiếp tối đa
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-5
-
-Quy mô triển khai tối đa của hệ thống trí tuệ nhân tạo
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-6
-
-Mô-đun, thành phần hoặc phiên bản hệ thống được triển khai trong thử nghiệm
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-7
-
-Giá trị chịu rủi ro tối đa
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-8
-
-Giới hạn kỹ thuật, vận hành hoặc điều kiện khác
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
-
-9
-
-Điều kiện kỹ thuật và quản trị rủi ro
-
-□ Không vượt/khác
-
-□ Có vượt/khác
-
-Căn cứ điều chỉnh/chấp thuận: …
+| STT | Nội dung đối chiếu | Nội dung được xác nhận | Nội dung thực tế thực hiện | Kết quả đối chiếu/Ghi chú |
+| --- | --- | --- | --- | --- |
+| 1 | Thời gian thử nghiệm |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 2 | Địa bàn/đơn vị triển khai |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 3 | Lĩnh vực/kịch bản thử nghiệm |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 4 | Số lượng cá nhân hoặc tổ chức chịu tác động trực tiếp tối đa |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 5 | Quy mô triển khai tối đa của hệ thống trí tuệ nhân tạo |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 6 | Mô-đun, thành phần hoặc phiên bản hệ thống được triển khai trong thử nghiệm |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 7 | Giá trị chịu rủi ro tối đa |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 8 | Giới hạn kỹ thuật, vận hành hoặc điều kiện khác |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
+| 9 | Điều kiện kỹ thuật và quản trị rủi ro |  |  | □ Không vượt/khác<br>□ Có vượt/khác<br>Căn cứ điều chỉnh/chấp thuận: … |
 
 Trường hợp có nội dung vượt, khác hoặc thay đổi so với Giấy xác nhận tham gia thử nghiệm, nêu rõ lý do, thời điểm phát sinh, biện pháp xử lý và văn bản chấp thuận hoặc ghi nhận của cơ quan có thẩm quyền, nếu có:……………………….
 
@@ -3423,39 +3101,11 @@ III. KẾT QUẢ THỰC HIỆN MỤC TIÊU THỬ NGHIỆM
 
 1. Mục tiêu thử nghiệm đã được xác nhận: ………………………………………
 
-STT
-
-Mục tiêu thử nghiệm
-
-Chỉ số/tiêu chí đánh giá
-
-Kết quả thực tế
-
-Mức độ đạt được/Ghi chú
-
-1
-
-□ Đạt
-
-□ Đạt một phần
-
-□ Không đạt
-
-2
-
-□ Đạt
-
-□ Đạt một phần
-
-□ Không đạt
-
-3
-
-□ Đạt
-
-□ Đạt một phần
-
-□ Không đạt
+| STT | Mục tiêu thử nghiệm | Chỉ số/tiêu chí đánh giá | Kết quả thực tế | Mức độ đạt được/Ghi chú |
+| --- | --- | --- | --- | --- |
+| 1 |  |  |  | □ Đạt<br>□ Đạt một phần<br>□ Không đạt |
+| 2 |  |  |  | □ Đạt<br>□ Đạt một phần<br>□ Không đạt |
+| 3 |  |  |  | □ Đạt<br>□ Đạt một phần<br>□ Không đạt |
 
 2. Đánh giá hiệu năng, độ chính xác, độ tin cậy hoặc chất lượng đầu ra của hệ thống:…………………………………………...…………………………………
 
@@ -3479,39 +3129,11 @@ IV. TÌNH HÌNH TUÂN THỦ PHẠM VI, GIỚI HẠN VÀ CHẾ ĐỘ BÁO CÁO
 
 2. Tình hình thực hiện báo cáo định kỳ:
 
-STT
-
-Kỳ báo cáo
-
-Thời hạn phải nộp
-
-Ngày nộp thực tế
-
-Tình trạng
-
-1
-
-□ Đúng hạn
-
-□ Quá hạn
-
-□ Không áp dụng
-
-2
-
-□ Đúng hạn
-
-□ Quá hạn
-
-□ Không áp dụng
-
-3
-
-□ Đúng hạn
-
-□ Quá hạn
-
-□ Không áp dụng
+| STT | Kỳ báo cáo | Thời hạn phải nộp | Ngày nộp thực tế | Tình trạng |
+| --- | --- | --- | --- | --- |
+| 1 |  |  |  | □ Đúng hạn<br>□ Quá hạn<br>□ Không áp dụng |
+| 2 |  |  |  | □ Đúng hạn<br>□ Quá hạn<br>□ Không áp dụng |
+| 3 |  |  |  | □ Đúng hạn<br>□ Quá hạn<br>□ Không áp dụng |
 
 3. Tình hình báo cáo sự cố nghiêm trọng, nếu có: …………………………………
 
@@ -3529,21 +3151,11 @@ V. QUẢN TRỊ RỦI RO, AN TOÀN HỆ THỐNG VÀ CƠ CHẾ DỪNG KHẨN CẤ
 
 3. Biện pháp kiểm soát, giảm thiểu rủi ro đã áp dụng:
 
-STT
-
-Rủi ro
-
-Biện pháp kiểm soát
-
-Kết quả thực hiện
-
-Rủi ro còn lại
-
-1
-
-2
-
-3
+| STT | Rủi ro | Biện pháp kiểm soát | Kết quả thực hiện | Rủi ro còn lại |
+| --- | --- | --- | --- | --- |
+| 1 |  |  |  |  |
+| 2 |  |  |  |  |
+| 3 |  |  |  |  |
 
 4. Đánh giá mức độ rủi ro của hệ thống sau thử nghiệm:
 
@@ -3639,39 +3251,11 @@ VIII. VIỆC THỰC HIỆN BẢO HIỂM TRÁCH NHIỆM DÂN SỰ HOẶC BIỆN P
 
 IX. KẾT QUẢ SỬ DỤNG QUYỀN LỢI VÀ CƠ CHẾ HỖ TRỢ TRONG PHẠM VI THỬ NGHIỆM
 
-STT
-
-Cơ chế được ghi nhận tại Giấy xác nhận
-
-Có sử dụng không
-
-Kết quả sử dụng/Vướng mắc
-
-Kiến nghị sau thử nghiệm
-
-1
-
-Cơ chế hỗ trợ và điều chỉnh nghĩa vụ tuân thủ trong phạm vi thử nghiệm
-
-□ Có
-
-□ Không
-
-2
-
-Chương trình hỗ trợ phát triển trí tuệ nhân tạo
-
-□ Có
-
-□ Không
-
-3
-
-Công nhận toàn bộ hoặc một phần kết quả thử nghiệm phục vụ hoạt động đánh giá sự phù hợp
-
-□ Có
-
-□ Không
+| STT | Cơ chế được ghi nhận tại Giấy xác nhận | Có sử dụng không | Kết quả sử dụng/Vướng mắc | Kiến nghị sau thử nghiệm |
+| --- | --- | --- | --- | --- |
+| 1 | Cơ chế hỗ trợ và điều chỉnh nghĩa vụ tuân thủ trong phạm vi thử nghiệm | □ Có<br>□ Không |  |  |
+| 2 | Chương trình hỗ trợ phát triển trí tuệ nhân tạo | □ Có<br>□ Không |  |  |
+| 3 | Công nhận toàn bộ hoặc một phần kết quả thử nghiệm phục vụ hoạt động đánh giá sự phù hợp | □ Có<br>□ Không |  |  |
 
 Trường hợp có sử dụng hạ tầng tính toán, dữ liệu dùng chung, nền tảng huấn luyện, kiểm thử, mô hình trí tuệ nhân tạo dùng chung, dịch vụ tư vấn kỹ thuật hoặc hỗ trợ khác, nêu rõ phạm vi và mức độ sử dụng thực tế:…………………………………………………………………………………
 

@@ -789,3 +789,11 @@ Thực hiện đầy đủ các quy định về trách nhiệm xử lý dữ li
 1. Bộ trưởng Bộ Công an đôn đốc, kiểm tra, hướng dẫn việc thực hiện Nghị định này.
 
 2. Bộ trưởng, Thủ trưởng cơ quan ngang bộ, Thủ trưởng cơ quan thuộc Chính phủ, Chủ tịch Ủy ban nhân dân các tỉnh, thành phố trực thuộc Trung ương chịu trách nhiệm thi hành Nghị định này.
+
+TM. CHÍNH PHỦ
+
+KT. THỦ TƯỚNG
+
+PHÓ THỦ TƯỚNG
+
+Trần Lưu Quang

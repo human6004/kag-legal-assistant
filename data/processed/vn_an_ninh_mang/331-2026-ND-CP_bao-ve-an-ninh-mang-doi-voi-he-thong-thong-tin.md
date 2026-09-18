@@ -869,37 +869,15 @@ MẪU VĂN BẢN XÁC ĐỊNH CẤP ĐỘ HỆ THỐNG THÔNG TIN
 
 ngày 19 tháng 8 năm 2026 của Chính phủ)
 
-Mẫu số 01
-
-Văn bản đề nghị thẩm định, phê duyệt hồ sơ đề xuất cấp độ
-
-Mẫu số 02
-
-Văn bản đề nghị thẩm định hồ sơ đề xuất cấp độ
-
-Mẫu số 03
-
-Văn bản xin ý kiến chuyên môn về hồ sơ đề xuất cấp độ
-
-Mẫu số 04
-
-Ý kiến thẩm định hồ sơ đề xuất cấp độ
-
-Mẫu số 05
-
-Tờ trình phê duyệt hồ sơ đề xuất cấp độ
-
-Mẫu số 06
-
-Quyết định phê duyệt cấp độ hệ thống thông tin
-
-Mẫu số 07
-
-Quyết định về việc phê duyệt phương án bảo đảm an ninh mạng hệ thống thông tin
-
-Mẫu số 08
-
-Mẫu báo cáo
+| Mẫu số 01 | Văn bản đề nghị thẩm định, phê duyệt hồ sơ đề xuất cấp độ |
+| --- | --- |
+| Mẫu số 02 | Văn bản đề nghị thẩm định hồ sơ đề xuất cấp độ |
+| Mẫu số 03 | Văn bản xin ý kiến chuyên môn về hồ sơ đề xuất cấp độ |
+| Mẫu số 04 | Ý kiến thẩm định hồ sơ đề xuất cấp độ |
+| Mẫu số 05 | Tờ trình phê duyệt hồ sơ đề xuất cấp độ |
+| Mẫu số 06 | Quyết định phê duyệt cấp độ hệ thống thông tin |
+| Mẫu số 07 | Quyết định về việc phê duyệt phương án bảo đảm an ninh mạng hệ thống thông tin |
+| Mẫu số 08 | Mẫu báo cáo |
 
 ### Mẫu số 01
 
@@ -1453,77 +1431,10 @@ Trường hợp thuộc phạm vi quản lý có nhiều đơn vị có đủ n�
 
 3. Thông tin chi tiết về các hệ thống thông tin thuộc phạm vi quản lý
 
-STT
-
-Tên HTTT
-
-Chủ quản HTTT
-
-Đơn vị vận hành HTTT
-
-Cấp độ đề xuất
-
-Tình trạng phê duyệt cấp độ
-
-Quyết định phê duyệt cấp độ
-
-Quy chế bảo đảm ANM cho hệ thống
-
-Dự kiến thời điểm phê duyệt HSĐXCĐ
-
-Đã triển khai đầy đủ PA BĐANM
-
-Dự kiến thời điểm triển khai đầy đủ PA BĐANM
-
-Đã kiểm tra, đánh giá ANM
-
-(1)
-
-(2)
-
-(3)
-
-(4)
-
-(5)
-
-(6)
-
-(7)
-
-(8)
-
-(9)
-
-(10)
-
-(11)
-
-(12)
-
-1
-
-…
-
-…
-
-…
-
-…
-
-…
-
-…
-
-…
-
-…
-
-…
-
-…
-
-…
+| STT | Tên HTTT | Chủ quản HTTT | Đơn vị vận hành HTTT | Cấp độ đề xuất | Tình trạng phê duyệt cấp độ | Quyết định phê duyệt cấp độ | Quy chế bảo đảm ANM cho hệ thống | Dự kiến thời điểm phê duyệt HSĐXCĐ | Đã triển khai đầy đủ PA BĐANM | Dự kiến thời điểm triển khai đầy đủ PA BĐANM | Đã kiểm tra, đánh giá ANM |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| (1) | (2) | (3) | (4) | (5) | (6) | (7) | (8) | (9) | (10) | (11) | (12) |
+| 1 | … | … | … | … | … | … | … | … | … | … | … |
 
 Chú thích:
 

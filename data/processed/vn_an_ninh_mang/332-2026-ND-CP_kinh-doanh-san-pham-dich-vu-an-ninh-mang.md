@@ -72,11 +72,11 @@ Sản phẩm an ninh mạng được quy định trong Nghị định này gồm
 
 4. Sản phẩm an ninh mạng khác thuộc một trong các sản phẩm sau:
 
-a) Sản phẩm bí mật thu thập thông tin, bao gồm: Các thiết bị phần cứng, phần mềm có tính năng bí mật thu thập thông tin trên không gian mạng, trong các phương tiện, thiết bị điện tử;
+a) Sản phẩm bí mật thu thập thông tin, bao gồm: Các thiết bị phần cứng, phần mềm có tính năng bí mật thu thập thông tin trên không gian mạng, trong các phương tiện, thiết bị điện tử;
 
-b) Sản phẩm chế áp thông tin mạng, bao gồm: Các thiết bị phần cứng, phần mềm chuyên dụng để ngăn chặn, chèn, gây nhiễu, phá đường truyền Internet không dây tại các khu vực, mục tiêu cần bảo vệ;
+b) Sản phẩm chế áp thông tin mạng, bao gồm: Các thiết bị phần cứng, phần mềm chuyên dụng để ngăn chặn, chèn, gây nhiễu, phá đường truyền Internet không dây tại các khu vực, mục tiêu cần bảo vệ;
 
-c) Sản phẩm pháp y số, điều tra số, bao gồm: Các thiết bị phần cứng, phần mềm chuyên dụng thu thập, trích xuất, phục hồi, phân tích dữ liệu điện tử và giám định kỹ thuật số từ nguồn dữ liệu điện tử;
+c) Sản phẩm pháp y số, điều tra số, bao gồm: Các thiết bị phần cứng, phần mềm chuyên dụng thu thập, trích xuất, phục hồi, phân tích dữ liệu điện tử và giám định kỹ thuật số từ nguồn dữ liệu điện tử;
 
 d) Sản phẩm chế áp hệ thống mạng, bao gồm: Các thiết bị phần cứng, phần mềm chuyên dụng để chế áp hoặc thay đổi hoạt động của mạng viễn thông, mạng Internet, mạng máy tính, hệ thống thông tin, hệ thống xử lý và điều khiển thông tin, cơ sở dữ liệu, phương tiện điện tử;
 
@@ -102,7 +102,7 @@ Dịch vụ an ninh mạng được quy định trong Nghị định này gồm:
 
 8. Dịch vụ an ninh mạng khác gồm:
 
-a) Dịch vụ cung cấp nền tảng kết nối bảo vệ an ninh mạng là dịch vụ kết nối chuyên gia, cộng đồng trên không gian mạng tham gia nhiệm vụ bảo vệ an ninh mạng, an ninh dữ liệu;
+a) Dịch vụ cung cấp nền tảng kết nối bảo vệ an ninh mạng là dịch vụ kết nối chuyên gia, cộng đồng trên không gian mạng tham gia nhiệm vụ bảo vệ an ninh mạng, an ninh dữ liệu;
 
 b) Dịch vụ huấn luyện, diễn tập bảo vệ an ninh mạng;
 
@@ -456,53 +456,19 @@ MẪU ĐƠN ĐỀ NGHỊ CẤP PHÉP, MẪU GIẤY PHÉP VÀ CÁC TÀI LIỆU
 
 ngày 19 tháng 8 năm 2026 của Chính phủ)
 
-Mẫu số 01
-
-Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng
-
-Mẫu số 02
-
-Giấy phép xuất khẩu, nhập khẩu sản phẩm an ninh mạng
-
-Mẫu số 03
-
-Văn bản đề nghị cấp/cấp đổi/cấp lại/gia hạn Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng
-
-Mẫu số 04
-
-Văn bản đề nghị cấp Giấy phép xuất khẩu, nhập khẩu sản phẩm an ninh mạng
-
-Mẫu số 05
-
-Bản khai lý lịch
-
-Mẫu số 06
-
-Bản kê khai danh sách nhân sự
-
-Mẫu số 07
-
-Phương án kỹ thuật
-
-Mẫu số 08
-
-Phương án kinh doanh
-
-Mẫu số 09
-
-Báo cáo tình hình thực hiện giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng
-
-Mẫu số 10
-
-Phiếu tiếp nhận hồ sơ và hẹn trả kết quả
-
-Mẫu số 11
-
-Phiếu từ chối tiếp nhận giải quyết hồ sơ
-
-Mẫu số 12
-
-Thông báo từ chối cấp/cấp đổi/cấp lại/gia hạn giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng
+| Mẫu số 01 | Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng |
+| --- | --- |
+| Mẫu số 02 | Giấy phép xuất khẩu, nhập khẩu sản phẩm an ninh mạng |
+| Mẫu số 03 | Văn bản đề nghị cấp/cấp đổi/cấp lại/gia hạn Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng |
+| Mẫu số 04 | Văn bản đề nghị cấp Giấy phép xuất khẩu, nhập khẩu sản phẩm an ninh mạng |
+| Mẫu số 05 | Bản khai lý lịch |
+| Mẫu số 06 | Bản kê khai danh sách nhân sự |
+| Mẫu số 07 | Phương án kỹ thuật |
+| Mẫu số 08 | Phương án kinh doanh |
+| Mẫu số 09 | Báo cáo tình hình thực hiện giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng |
+| Mẫu số 10 | Phiếu tiếp nhận hồ sơ và hẹn trả kết quả |
+| Mẫu số 11 | Phiếu từ chối tiếp nhận giải quyết hồ sơ |
+| Mẫu số 12 | Thông báo từ chối cấp/cấp đổi/cấp lại/gia hạn giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng |
 
 ### Phụ lục I - Mẫu số 01
 
@@ -931,23 +897,14 @@ II. QUAN HỆ GIA ĐÌNH
 
 (Gồm bố, mẹ, vợ hoặc chồng, con)
 
-STT
-
-Họ và tên
-
-Quan hệ
-
-Năm sinh
-
-Nơi đăng ký hộ khẩu thường trú và chỗ ở hiện nay
-
-Nghề nghiệp hiện tại
-
-Số định danh cá nhân
-
-Nam
-
-Nữ
+| STT | Họ và tên |  | Quan hệ | Năm sinh |  | Nơi đăng ký hộ khẩu thường trú và chỗ ở hiện nay | Nghề nghiệp hiện tại |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  | Số định danh cá nhân |  | Nam | Nữ |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
 
 III. QUÁ TRÌNH HỌC TẬP, CÔNG TÁC CỦA BẢN THÂN
 
@@ -999,29 +956,16 @@ Số định danh cá nhân của người đại diện theo pháp luật: ….
 
 Địa điểm kinh doanh: ………………Điện thoại liên hệ:……………………
 
-STT
-
-Họ và tên
-
-Năm sinh
-
-Địa chỉ thường trú, số điện thoại
-
-Số định danh cá nhân
-
-Trình độ chuyên môn
-
-Năm tốt nghiệp/
-
-Nơi cấp bằng
-
-Công việc được
-
-phân công
-
-Nam
-
-Nữ
+| STT | Họ và tên | Năm sinh |  | Địa chỉ thường trú, số điện thoại | Số định danh cá nhân | Trình độ chuyên môn | Năm tốt nghiệp/<br>Nơi cấp bằng | Công việc được<br>phân công |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  | Nam | Nữ |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |
 
 ………., ngày … tháng … năm…
 
@@ -1377,754 +1321,60 @@ DANH MỤC SẢN PHẨM AN NINH MẠNG XUẤT KHẨU, NHẬP KHẨU THEO GIẤY 
 
 (Kèm theo Nghị định số 332/2026/NĐ-CP ngày 19 tháng 8 năm 2026 của Chính phủ)
 
-TT
-
-Tên sản phẩm, hàng hóa
-
-Mô tả chức năng an ninh mạng
-
-Mã HS
-
-Mô tả hàng hóa
-
-I
-
-Sản phẩm an ninh mạng cho thiết bị đầu cuối
-
-1
-
-Bảo vệ máy tính cá nhân/máy chủ
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-2
-
-Bảo vệ thiết bị di động (Mobile Security)
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. - Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-II
-
-Sản phẩm an ninh lớp mạng
-
-3
-
-Sản phẩm kiểm soát truy cập mạng (Network Access Control)
-
-Giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-4
-
-Tường lửa bảo vệ lớp mạng (Network-base Firewall)
-
-Chống tấn công, xâm nhập
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-5
-
-Sản phẩm phát hiện và ngăn chặn xâm nhập - Intrusion Prevention/ Detection System (IPS/IDS)
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-6
-
-Sản phẩm chống tấn công từ chối dịch vụ (DDoS Prevention)
-
-Chống tấn công, xâm nhập
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-7
-
-Sản phẩm an toàn mạng Internet kết nối vạn vật (IoT Security)
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-8
-
-Sản phẩm quản lý sự kiện và an toàn thông tin (SIEM)
-
-Giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-9
-
-Thiết bị quản lý nguy cơ mất an toàn thông tin đa dụng (UTM)
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-10
-
-Sản phẩm giám sát mạng (Network Monitoring)
-
-Giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-11
-
-Mạng riêng ảo (VPN), sản phẩm che giấu địa chỉ IP
-
-Chống tấn công, xâm nhập trên đường truyền
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-III
-
-Sản phẩm an ninh mạng lớp ứng dụng
-
-12
-
-Tường lửa ứng dụng web (Web Application Firewall)
-
-Chống tấn công, xâm nhập
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-13
-
-Sản phẩm bảo vệ an toàn, an ninh cho hệ thống thư điện tử (Email Security)
-
-Chống tấn công, xâm nhập
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-14
-
-Hệ thống kiểm soát/giám sát/đánh giá an toàn, an ninh ứng dụng web
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-15
-
-Sản phẩm kiểm tra, rà soát tìm lỗ hổng mất an ninh mạng
-
-Giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-IV
-
-Sản phẩm bảo vệ dữ liệu
-
-16
-
-Sản phẩm bảo đảm an toàn, an ninh cho hệ thống cơ sở dữ liệu
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-17
-
-Sản phẩm an toàn, an ninh dữ liệu lưu trữ
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đối và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-18
-
-Sản phẩm chống thất thoát dữ liệu (DLP)
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-V
-
-Sản phẩm loại khác
-
-19
-
-Giải pháp thu thập thông tin nguy cơ, đe dọa thông minh
-
-(Threat Intelligence)
-
-Giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. - Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-20
-
-Giải pháp giám sát an ninh mạng tập trung
-
-Giám sát an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-21
-
-Giải pháp kiểm tra, đánh giá an ninh mạng
-
-Kiểm tra, đánh giá an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-22
-
-Giải pháp điều tra và xử lý sự cố
-
-Kiểm tra, đánh giá an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-23
-
-Sản phẩm an ninh mạng cho hệ thống điều khiển công nghiệp
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-24
-
-Sản phẩm bí mật thu thập thông tin; Sản phẩm pháp y số, điều tra số
-
-Giám sát an ninh mạng
-
-8521.90.99
-
-Thiết bị ghi hoặc tái tạo video, có hoặc không gắn bộ phận thu tín hiệu video:
-
-- Loại khác.
-
-8525.60.00
-
-8525.81.90
-
-8525.82.90
-
-8525.89.90
-
-Thiết bị phát dùng cho phát thanh sóng vô tuyến hoặc truyền hình, có hoặc không gắn với thiết bị thu hoặc ghi hoặc tái tạo âm thanh; camera truyền hình, camera kỹ thuật số và camera ghi hình ảnh
-
-- Thiết bị phát có gắn với thiết bị thu;
-
-- Loại khác của hàng hóa Camera truyền hình, camera kỹ thuật số và camera ghi hình ảnh;
-
-- Loại khác, được làm cứng bức xạ hoặc chịu bức xạ;
-
-- Loại khác, loại nhìn ban đêm;
-
-- Loại khác.
-
-25
-
-Sản phẩm khác
-
-Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng; chế áp thông tin mạng; chế áp hệ thống mạng
-
-8471.30.90
-
-8471.41.90
-
-8471.49.90
-
-Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:
-
-- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.
-
-- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.
-
-- Loại khác, ở dạng hệ thống.
-
-8517.62.43
-
-8517.62.49
-
-Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:
-
-- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
-
-- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.
+| TT | Tên sản phẩm, hàng hóa | Mô tả chức năng an ninh mạng | Mã HS | Mô tả hàng hóa |
+| --- | --- | --- | --- | --- |
+| I | Sản phẩm an ninh mạng cho thiết bị đầu cuối |  |  |  |
+| 1 | Bảo vệ máy tính cá nhân/máy chủ | Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 2 | Bảo vệ thiết bị di động (Mobile Security) | Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. - Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| II | Sản phẩm an ninh lớp mạng |  |  |  |
+| 3 | Sản phẩm kiểm soát truy cập mạng (Network Access Control) | Giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 4 | Tường lửa bảo vệ lớp mạng (Network-base Firewall) | Chống tấn công, xâm nhập | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 5 | Sản phẩm phát hiện và ngăn chặn xâm nhập - Intrusion Prevention/ Detection System (IPS/IDS) | Chống tấn công, xâm nhập; giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 6 | Sản phẩm chống tấn công từ chối dịch vụ (DDoS Prevention) | Chống tấn công, xâm nhập | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 7 | Sản phẩm an toàn mạng Internet kết nối vạn vật (IoT Security) | Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 8 | Sản phẩm quản lý sự kiện và an toàn thông tin (SIEM) | Giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 9 | Thiết bị quản lý nguy cơ mất an toàn thông tin đa dụng (UTM) | Chống tấn công, xâm nhập; giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 10 | Sản phẩm giám sát mạng (Network Monitoring) | Giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 11 | Mạng riêng ảo (VPN), sản phẩm che giấu địa chỉ IP | Chống tấn công, xâm nhập trên đường truyền | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| III | Sản phẩm an ninh mạng lớp ứng dụng |  |  |  |
+| 12 | Tường lửa ứng dụng web (Web Application Firewall) | Chống tấn công, xâm nhập | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 13 | Sản phẩm bảo vệ an toàn, an ninh cho hệ thống thư điện tử (Email Security) | Chống tấn công, xâm nhập | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 14 | Hệ thống kiểm soát/giám sát/đánh giá an toàn, an ninh ứng dụng web | Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 15 | Sản phẩm kiểm tra, rà soát tìm lỗ hổng mất an ninh mạng | Giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| IV | Sản phẩm bảo vệ dữ liệu |  |  |  |
+| 16 | Sản phẩm bảo đảm an toàn, an ninh cho hệ thống cơ sở dữ liệu | Chống tấn công, xâm nhập; giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 17 | Sản phẩm an toàn, an ninh dữ liệu lưu trữ | Chống tấn công, xâm nhập; giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đối và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 18 | Sản phẩm chống thất thoát dữ liệu (DLP) | Chống tấn công, xâm nhập; giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| V | Sản phẩm loại khác |  |  |  |
+| 19 | Giải pháp thu thập thông tin nguy cơ, đe dọa thông minh<br>(Threat Intelligence) | Giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. - Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 20 | Giải pháp giám sát an ninh mạng tập trung | Giám sát an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 21 | Giải pháp kiểm tra, đánh giá an ninh mạng | Kiểm tra, đánh giá an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 22 | Giải pháp điều tra và xử lý sự cố | Kiểm tra, đánh giá an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 23 | Sản phẩm an ninh mạng cho hệ thống điều khiển công nghiệp | Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |
+| 24 | Sản phẩm bí mật thu thập thông tin; Sản phẩm pháp y số, điều tra số | Giám sát an ninh mạng | 8521.90.99 | Thiết bị ghi hoặc tái tạo video, có hoặc không gắn bộ phận thu tín hiệu video:<br>- Loại khác. |
+|  |  |  | 8525.60.00<br>8525.81.90<br>8525.82.90<br>8525.89.90 | Thiết bị phát dùng cho phát thanh sóng vô tuyến hoặc truyền hình, có hoặc không gắn với thiết bị thu hoặc ghi hoặc tái tạo âm thanh; camera truyền hình, camera kỹ thuật số và camera ghi hình ảnh<br>- Thiết bị phát có gắn với thiết bị thu;<br>- Loại khác của hàng hóa Camera truyền hình, camera kỹ thuật số và camera ghi hình ảnh;<br>- Loại khác, được làm cứng bức xạ hoặc chịu bức xạ;<br>- Loại khác, loại nhìn ban đêm;<br>- Loại khác. |
+| 25 | Sản phẩm khác | Chống tấn công, xâm nhập; giám sát an ninh mạng; kiểm tra, đánh giá an ninh mạng; chế áp thông tin mạng; chế áp hệ thống mạng | 8471.30.90<br>8471.41.90<br>8471.49.90 | Máy xử lý dữ liệu tự động và các khối chức năng của chúng; máy truyền dữ liệu lên các phương tiện truyền dữ liệu dưới dạng mã hóa và máy xử lý những dữ liệu này, chưa được chi tiết hay ghi ở nơi khác gồm:<br>- Loại khác của hàng hóa Máy xử lý dữ liệu tự động loại xách tay, có trọng lượng không quá 10 kg, gồm ít nhất một đơn vị xử lý dữ liệu trung tâm, một bàn phím và một màn hình.<br>- Loại khác của hàng hóa chứa trong cùng một vỏ có ít nhất một đơn vị xử lý trung tâm, một đơn vị nhập và một đơn vị xuất, kết hợp hoặc không kết hợp với nhau.<br>- Loại khác, ở dạng hệ thống. |
+|  |  |  | 8517.62.43<br>8517.62.49 | Thiết bị khác để truyền hoặc nhận tiếng, hình ảnh hoặc dữ liệu khác, kể cả các thiết bị viễn thông nối mạng hữu tuyến hoặc không dây (như loại sử dụng trong mạng nội bộ hoặc mạng diện rộng) gồm:<br>- Bộ điều khiển và bộ thích ứng (adaptor), kể cả cổng nối, cầu nối, bộ định tuyến và các thiết bị tương tự khác được thiết kế để chỉ kết nối với máy xử lý dữ liệu tự động thuộc nhóm 84.71 của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến.<br>- Loại khác của hàng hóa Máy thu, đổi và truyền hoặc tái tạo âm thanh, hình ảnh hoặc dạng dữ liệu khác, kể cả thiết bị chuyển mạch và thiết bị định tuyến. |

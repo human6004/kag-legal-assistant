@@ -44,7 +44,7 @@ QUYẾT ĐỊNH:
 
 #### Điều 1. Phê duyệt Chương trình quốc gia phát triển nhân lực trí tuệ nhân tạo đến năm 2030, định hướng đến năm 2035 (sau đây gọi tắt là Chương trình) với các nội dung sau đây:
 
-QUAN ĐIỂM
+QUAN ĐIỂM
 
 1. Phát triển nhân lực trí tuệ nhân tạo là nhiệm vụ quốc gia mang tính chiến lược, cấp bách, gắn với phát triển nguồn nhân lực chất lượng cao, thúc đẩy hình thành lực lượng lao động số góp phần nâng cao năng lực cạnh tranh quốc gia và mục tiêu tăng trưởng kinh tế “2 con số” giai đoạn 2026 - 2030.
 
@@ -154,7 +154,7 @@ c) Phát triển và nhân rộng các mô hình đào tạo gắn với thực 
 
 d) Áp dụng cơ chế ưu đãi tài chính cho các doanh nghiệp đầu tư vào các phòng thí nghiệm trí tuệ nhân tạo tại các cơ sở giáo dục.
 
-đ) Khuyến khích doanh nghiệp tham gia xây dựng chương trình đào tạo, tiếp nhận thực tập, đào tạo lại lao động và phối hợp triển khai các mô hình trí tuệ nhân tạo ứng dụng theo ngành nghề, lĩnh vực.
+đ) Khuyến khích doanh nghiệp tham gia xây dựng chương trình đào tạo, tiếp nhận thực tập, đào tạo lại lao động và phối hợp triển khai các mô hình trí tuệ nhân tạo ứng dụng theo ngành nghề, lĩnh vực.
 
 e) Xây dựng và phát triển hệ sinh thái kết nối tuyển dụng, sử dụng và phát triển nhân lực trí tuệ nhân tạo, tăng cường phối hợp, kết hợp giữa nhà trường, thị trường lao động và hệ sinh thái đổi mới sáng tạo.
 
@@ -248,9 +248,9 @@ c) Hướng dẫn các doanh nghiệp, hiệp hội nghề nghiệp, tổ chức
 
 d) Định kỳ hằng năm báo cáo kết quả thực hiện Chương trình gửi Bộ Giáo dục và Đào tạo trước ngày 30 tháng 11 để tổng hợp, báo cáo Thủ tướng Chính phủ.
 
-#### Điều 2. Quyết định này có hiệu lực thi hành kể từ ngày ký ban hành.
+#### Điều 2. Quyết định này có hiệu lực thi hành kể từ ngày ký ban hành.
 
-#### Điều 3. Các Bộ trưởng, Thủ trưởng cơ quan ngang bộ, Chủ tịch Ủy ban nhân dân các tỉnh, thành phố, Thủ trưởng các tổ chức, cơ quan và cá nhân có liên quan chịu trách nhiệm thi hành Quyết định này.
+#### Điều 3. Các Bộ trưởng, Thủ trưởng cơ quan ngang bộ, Chủ tịch Ủy ban nhân dân các tỉnh, thành phố, Thủ trưởng các tổ chức, cơ quan và cá nhân có liên quan chịu trách nhiệm thi hành Quyết định này.
 
 KT. THỦ TƯỚNG
 
@@ -268,247 +268,22 @@ NHÂN LỰC TRÍ TUỆ NHÂN TẠO GIAI ĐOẠN 2026 - 2030
 
 ______________________________
 
-STT
-
-Chỉ tiêu
-
-Đơn vị
-
-Cơ quan chủ trì
-
-Năm 2026
-
-Năm 2027
-
-Năm 2028
-
-Năm 2029
-
-Năm 2030
-
-I
-
-Đào tạo trong nước
-
-1
-
-Học sinh phổ thông được học trí tuệ nhân tạo
-
-%
-
-Bộ Giáo dục và Đào tạo
-
-10
-
-30
-
-50
-
-65
-
-80
-
-2
-
-Người học giáo dục đại học được trang bị kiến thức, kỹ năng trí tuệ nhân tạo
-
-%
-
-Bộ Giáo dục và Đào tạo
-
-30
-
-55
-
-75
-
-90
-
-100
-
-3
-
-Người học giáo dục nghề nghiệp được học trí tuệ nhân tạo
-
-%
-
-Bộ Giáo dục và Đào tạo
-
-15
-
-35
-
-50
-
-65
-
-80
-
-4
-
-Nhân lực trí tuệ nhân tạo ứng dụng đào tạo mới, đào tạo chuyển đổi, đào tạo nâng cao
-
-Người (lũy kế)
-
-Bộ Giáo dục và Đào tạo
-
-5.000
-
-15.000
-
-28.000
-
-40.000
-
-50.000
-
-5
-
-Nhân lực trí tuệ nhân tạo trình độ cao, chuyên sâu
-
-Người (lũy kế)
-
-Bộ Giáo dục và Đào tạo
-
-500
-
-2.500
-
-5.000
-
-7.500
-
-10.000
-
-6
-
-Giảng viên, giáo viên, cán bộ quản lý giáo dục được bồi dưỡng, cập nhật kiến thức, kỹ năng về trí tuệ nhân tạo
-
-Người
-
-Bộ Giáo dục và Đào tạo
-
-10.000
-
-30.000
-
-55.000
-
-80.000
-
-100.000
-
-7
-
-Cán bộ, công chức, viên chức và người lao động trong đơn vị sự nghiệp công lập được bồi dưỡng, cập nhật kiến thức, kỹ năng về trí tuệ nhân tạo
-
-%
-
-Bộ Nội vụ
-
-15
-
-35
-
-55
-
-75
-
-90
-
-8
-
-Người lao động được bồi dưỡng kỹ năng trí tuệ nhân tạo
-
-Triệu người
-
-Bộ Nội vụ
-
-0.5
-
-2
-
-4
-
-7
-
-10
-
-II
-
-Đào tạo nước ngoài
-
-1
-
-Nghiên cứu sinh trí tuệ nhân tạo đào tạo ở nước ngoài
-
-Người
-
-Bộ Giáo dục và Đào tạo
-
-50
-
-120
-
-220
-
-330
-
-500
-
-2
-
-Thạc sĩ trí tuệ nhân tạo đào tạo ở nước ngoài
-
-Người
-
-Bộ Giáo dục và Đào tạo
-
-50
-
-150
-
-300
-
-450
-
-600
-
-3
-
-Giảng viên, nhà khoa học được đào tạo, thực tập tại nước ngoài
-
-Người
-
-Bộ Giáo dục và Đào tạo
-
-100
-
-300
-
-600
-
-900
-
-1.200
-
-4
-
-Chuyên gia được cử đào tạo ngắn hạn
-
-Người
-
-Bộ Giáo dục và Đào tạo
-
-200
-
-500
-
-900
-
-1.300
-
-1.800
+| STT | Chỉ tiêu | Đơn vị | Cơ quan chủ trì | Năm 2026 | Năm 2027 | Năm 2028 | Năm 2029 | Năm 2030 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| I | Đào tạo trong nước |  |  |  |  |  |  |  |
+| 1 | Học sinh phổ thông được học trí tuệ nhân tạo | % | Bộ Giáo dục và Đào tạo | 10 | 30 | 50 | 65 | 80 |
+| 2 | Người học giáo dục đại học được trang bị kiến thức, kỹ năng trí tuệ nhân tạo | % | Bộ Giáo dục và Đào tạo | 30 | 55 | 75 | 90 | 100 |
+| 3 | Người học giáo dục nghề nghiệp được học trí tuệ nhân tạo | % | Bộ Giáo dục và Đào tạo | 15 | 35 | 50 | 65 | 80 |
+| 4 | Nhân lực trí tuệ nhân tạo ứng dụng đào tạo mới, đào tạo chuyển đổi, đào tạo nâng cao | Người (lũy kế) | Bộ Giáo dục và Đào tạo | 5.000 | 15.000 | 28.000 | 40.000 | 50.000 |
+| 5 | Nhân lực trí tuệ nhân tạo trình độ cao, chuyên sâu | Người (lũy kế) | Bộ Giáo dục và Đào tạo | 500 | 2.500 | 5.000 | 7.500 | 10.000 |
+| 6 | Giảng viên, giáo viên, cán bộ quản lý giáo dục được bồi dưỡng, cập nhật kiến thức, kỹ năng về trí tuệ nhân tạo | Người | Bộ Giáo dục và Đào tạo | 10.000 | 30.000 | 55.000 | 80.000 | 100.000 |
+| 7 | Cán bộ, công chức, viên chức và người lao động trong đơn vị sự nghiệp công lập được bồi dưỡng, cập nhật kiến thức, kỹ năng về trí tuệ nhân tạo | % | Bộ Nội vụ | 15 | 35 | 55 | 75 | 90 |
+| 8 | Người lao động được bồi dưỡng kỹ năng trí tuệ nhân tạo | Triệu người | Bộ Nội vụ | 0.5 | 2 | 4 | 7 | 10 |
+| II | Đào tạo nước ngoài |  |  |  |  |  |  |  |
+| 1 | Nghiên cứu sinh trí tuệ nhân tạo đào tạo ở nước ngoài | Người | Bộ Giáo dục và Đào tạo | 50 | 120 | 220 | 330 | 500 |
+| 2 | Thạc sĩ trí tuệ nhân tạo đào tạo ở nước ngoài | Người | Bộ Giáo dục và Đào tạo | 50 | 150 | 300 | 450 | 600 |
+| 3 | Giảng viên, nhà khoa học được đào tạo, thực tập tại nước ngoài | Người | Bộ Giáo dục và Đào tạo | 100 | 300 | 600 | 900 | 1.200 |
+| 4 | Chuyên gia được cử đào tạo ngắn hạn | Người | Bộ Giáo dục và Đào tạo | 200 | 500 | 900 | 1.300 | 1.800 |
 
 Ghi chú: Chỉ tiêu 1.500 chuyên gia là bộ phận thuộc chỉ tiêu 10.000 nhân lực trình độ cao; các chỉ tiêu đào tạo ở nước ngoài có thể được tính trong tổng chỉ tiêu tương ứng nếu đáp ứng tiêu chí của Chương trình.
 
@@ -522,131 +297,14 @@ NGHIÊN CỨU TRÍ TUỆ NHÂN TẠO GIAI ĐOẠN 2026 - 2030
 
 ________________
 
-STT
-
-Chỉ tiêu
-
-Đơn vị
-
-Cơ quan chủ trì
-
-Năm 2026
-
-Năm 2027
-
-Năm 2028
-
-Năm 2029
-
-Năm 2030
-
-1
-
-Trung tâm đào tạo, nghiên cứu trí tuệ nhân tạo
-
-Trung tâm
-
-Bộ Giáo dục và Đào tạo
-
-2
-
-4
-
-6
-
-8
-
-10
-
-2
-
-Trong đó đạt trình độ khu vực, quốc tế
-
-Trung tâm
-
-Bộ Giáo dục và Đào tạo
-
-1
-
-2
-
-3
-
-5
-
-5-7
-
-3
-
-Cơ sở giáo dục đại học trọng điểm trí tuệ nhân tạo
-
-Cơ sở
-
-Bộ Giáo dục và Đào tạo
-
-5
-
-10
-
-15
-
-20
-
-25
-
-4
-
-Cơ sở giáo dục nghề nghiệp đào tạo trí tuệ nhân tạo
-
-Cơ sở
-
-Bộ Giáo dục và Đào tạo
-
-8
-
-15
-
-22
-
-28
-
-35
-
-5
-
-Phòng thí nghiệm trí tuệ nhân tạo hiện đại
-
-Phòng
-
-Bộ Giáo dục và Đào tạo, Bộ Khoa học và Công nghệ
-
-5
-
-10
-
-18
-
-25
-
-35
-
-6
-
-Nhóm nghiên cứu mạnh trí tuệ nhân tạo
-
-Nhóm
-
-Bộ Khoa học và Công nghệ
-
-10
-
-20
-
-35
-
-45
-
-60
+| STT | Chỉ tiêu | Đơn vị | Cơ quan chủ trì | Năm 2026 | Năm 2027 | Năm 2028 | Năm 2029 | Năm 2030 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Trung tâm đào tạo, nghiên cứu trí tuệ nhân tạo | Trung tâm | Bộ Giáo dục và Đào tạo | 2 | 4 | 6 | 8 | 10 |
+| 2 | Trong đó đạt trình độ khu vực, quốc tế | Trung tâm | Bộ Giáo dục và Đào tạo | 1 | 2 | 3 | 5 | 5-7 |
+| 3 | Cơ sở giáo dục đại học trọng điểm trí tuệ nhân tạo | Cơ sở | Bộ Giáo dục và Đào tạo | 5 | 10 | 15 | 20 | 25 |
+| 4 | Cơ sở giáo dục nghề nghiệp đào tạo trí tuệ nhân tạo | Cơ sở | Bộ Giáo dục và Đào tạo | 8 | 15 | 22 | 28 | 35 |
+| 5 | Phòng thí nghiệm trí tuệ nhân tạo hiện đại | Phòng | Bộ Giáo dục và Đào tạo, Bộ Khoa học và Công nghệ | 5 | 10 | 18 | 25 | 35 |
+| 6 | Nhóm nghiên cứu mạnh trí tuệ nhân tạo | Nhóm | Bộ Khoa học và Công nghệ | 10 | 20 | 35 | 45 | 60 |
 
 ### Phụ lục III
 
@@ -656,131 +314,14 @@ LỘ TRÌNH PHÁT TRIỂN HỢP TÁC QUỐC TẾ, DOANH NGHIỆP VÀ CÁC CHƯƠ
 
 ________________
 
-STT
-
-Chỉ tiêu
-
-Đơn vị tính
-
-Cơ quan chủ trì
-
-Năm 2026
-
-Năm 2027
-
-Năm 2028
-
-Năm 2029
-
-Năm 2030
-
-1
-
-Doanh nghiệp thuộc các ngành, lĩnh vực ưu tiên tham gia đào tạo, đào tạo lại và bồi dưỡng kỹ năng trí tuệ nhân tạo cho người lao động
-
-% doanh nghiệp
-
-Bộ Giáo dục và Đào tạo, Bộ Nội vụ
-
-5
-
-10
-
-18
-
-25
-
-30
-
-2
-
-Thỏa thuận hợp tác giữa cơ sở giáo dục với doanh nghiệp trong đào tạo, nghiên cứu và phát triển nhân lực trí tuệ nhân tạo
-
-Thỏa thuận
-
-Bộ Giáo dục và Đào tạo
-
-50
-
-120
-
-200
-
-280
-
-350
-
-3
-
-Chuyên gia doanh nghiệp, chuyên gia quốc tế tham gia giảng dạy, hướng dẫn nghiên cứu và phát triển chương trình đào tạo trí tuệ nhân tạo
-
-Người
-
-Bộ Giáo dục và Đào tạo
-
-200
-
-500
-
-800
-
-1.100
-
-1.500
-
-4
-
-Chương trình đào tạo tích hợp trí tuệ nhân tạo theo ngành, lĩnh vực (AI+X) được xây dựng hoặc cập nhật
-
-Chương trình
-
-Bộ Giáo dục và Đào tạo
-
-30
-
-70
-
-110
-
-140
-
-150
-
-5
-
-Chương trình đào tạo ứng dụng trí tuệ nhân tạo trong các lĩnh vực, ngành nghề ưu tiên (X+AI) được xây dựng hoặc cập nhật
-
-Chương trình
-
-Bộ Giáo dục và Đào tạo
-
-20
-
-60
-
-100
-
-130
-
-150
-
-6
-
-Chương trình hợp tác quốc tế về đào tạo, nghiên cứu và trao đổi nhân lực trí tuệ nhân tạo
-
-Chương trình
-
-Bộ Giáo dục và Đào tạo
-
-15
-
-30
-
-50
-
-70
-
-100
+| STT | Chỉ tiêu | Đơn vị tính | Cơ quan chủ trì | Năm 2026 | Năm 2027 | Năm 2028 | Năm 2029 | Năm 2030 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Doanh nghiệp thuộc các ngành, lĩnh vực ưu tiên tham gia đào tạo, đào tạo lại và bồi dưỡng kỹ năng trí tuệ nhân tạo cho người lao động | % doanh nghiệp | Bộ Giáo dục và Đào tạo, Bộ Nội vụ | 5 | 10 | 18 | 25 | 30 |
+| 2 | Thỏa thuận hợp tác giữa cơ sở giáo dục với doanh nghiệp trong đào tạo, nghiên cứu và phát triển nhân lực trí tuệ nhân tạo | Thỏa thuận | Bộ Giáo dục và Đào tạo | 50 | 120 | 200 | 280 | 350 |
+| 3 | Chuyên gia doanh nghiệp, chuyên gia quốc tế tham gia giảng dạy, hướng dẫn nghiên cứu và phát triển chương trình đào tạo trí tuệ nhân tạo | Người | Bộ Giáo dục và Đào tạo | 200 | 500 | 800 | 1.100 | 1.500 |
+| 4 | Chương trình đào tạo tích hợp trí tuệ nhân tạo theo ngành, lĩnh vực (AI+X) được xây dựng hoặc cập nhật | Chương trình | Bộ Giáo dục và Đào tạo | 30 | 70 | 110 | 140 | 150 |
+| 5 | Chương trình đào tạo ứng dụng trí tuệ nhân tạo trong các lĩnh vực, ngành nghề ưu tiên (X+AI) được xây dựng hoặc cập nhật | Chương trình | Bộ Giáo dục và Đào tạo | 20 | 60 | 100 | 130 | 150 |
+| 6 | Chương trình hợp tác quốc tế về đào tạo, nghiên cứu và trao đổi nhân lực trí tuệ nhân tạo | Chương trình | Bộ Giáo dục và Đào tạo | 15 | 30 | 50 | 70 | 100 |
 
 ### Phụ lục IV
 
@@ -792,144 +333,17 @@ VỀ PHÁT TRIỂN NHÂN LỰC TRÍ TUỆ NHÂN TẠO ĐẾN NĂM 2030, ĐỊNH 
 
 ______________________________
 
-STT
-
-Tên chương trình, đề án
-
-Đơn vị
-
-chủ trì
-
-Đơn vị phối hợp
-
-Sản phẩm
-
-Thời gian thực hiện
-
-Xây dựng Chuẩn chương trình đào tạo về trí tuệ nhân tạo cho giáo dục đại học và giáo dục nghề nghiệp
-
-Bộ Giáo dục và Đào tạo
-
-Các bộ, ngành liên quan, các cơ sở giáo dục đại học và cơ sở giáo dục nghề nghiệp
-
-Chuẩn chương trình đào tạo về trí tuệ nhân tạo cho giáo dục đại học và giáo dục nghề nghiệp
-
-Tháng 3/2027
-
-Xây dựng cơ sở dữ liệu về nhân lực trí tuệ nhân tạo
-
-Bộ Giáo dục và Đào tạo
-
-Bộ Nội vụ, Bộ Công an, Bộ Khoa học và Công nghệ và các bộ ngành khác có liên quan, các Ủy ban nhân dân tỉnh/thành phố
-
-Cơ sở dữ liệu về nhân lực trí tuệ nhân tạo
-
-Giai đoạn
-
-2026 - 2030
-
-Xây dựng Khung năng lực trí tuệ nhân tạo quốc gia bảo đảm bao quát, liên thông và có tiêu chí áp dụng cho từng nhóm đối tượng, bao gồm người học và người dạy
-
-Bộ Giáo dục và Đào tạo
-
-Bộ Nội vụ, Bộ Khoa học và Công nghệ, Bộ Công an và các bộ ngành khác có liên quan, các Ủy ban nhân dân tỉnh/thành phố
-
-Khung năng lực trí tuệ nhân tạo quốc gia
-
-Tháng 06/2027
-
-Hướng dẫn và ưu tiên kết nối hạ tầng tính toán, dữ liệu, nền tảng dùng chung phục vụ nghiên cứu, đào tạo và đổi mới sáng tạo về trí tuệ nhân tạo; hỗ trợ phát triển các phòng thí nghiệm, nhóm nghiên cứu mạnh và trung tâm nghiên cứu xuất sắc về trí tuệ nhân tạo
-
-Bộ Khoa học và Công nghệ
-
-Bộ Giáo dục và Đào tạo, Bộ Công an, Bộ Tài chính, Bộ Nội vụ; các bộ, ngành, địa phương; cơ sở giáo dục, viện nghiên cứu, doanh nghiệp công nghệ
-
-Cơ chế/hướng dẫn phân bổ, sử dụng, giám sát tài nguyên tính toán và dữ liệu; tiêu chí ưu tiên; quy trình đăng ký - phê duyệt - giám sát được ban hành
-
-Giai đoạn
-
-2027 - 2030
-
-Xây dựng, rà soát, cập nhật chương trình đào tạo, bồi dưỡng trực tuyến mở nhằm phổ cập trí tuệ nhân tạo cho toàn dân
-
-Bộ Giáo dục và Đào tạo
-
-Bộ Khoa học và Công nghệ, các bộ, ngành, địa phương, các doanh nghiệp liên quan
-
-Các khóa học đại trà trực tuyến mở nhằm phổ cập trí tuệ nhân tạo toàn dân được xây dựng, rà soát, cập nhật
-
-Hằng năm
-
-Xây dựng tiêu chí lựa chọn các cơ sở giáo dục đại học là đầu mối đào tạo, nghiên cứu và đổi mới sáng tạo về trí tuệ nhân tạo, xây dựng các mô hình hợp tác với doanh nghiệp, chương trình tích hợp trí tuệ nhân tạo theo ngành, lĩnh vực (AI+X) và chương trình ứng dụng trí tuệ nhân tạo (X+AI) gắn với các lĩnh vực, ngành nghề ưu tiên
-
-Bộ Giáo dục và Đào tạo
-
-Các bộ, ngành liên quan
-
-Bộ tiêu chí lựa chọn được xây dựng và số cơ sở giáo dục đại học được lựa chọn là đầu mối đào tạo, nghiên cứu và đổi mới sáng tạo về trí tuệ nhân tạo, xây dựng các mô hình hợp tác với doanh nghiệp, chương trình tích hợp trí tuệ nhân tạo theo ngành, lĩnh vực (AI+X) và chương trình ứng dụng trí tuệ nhân tạo (X+AI) gắn với các lĩnh vực, ngành nghề ưu tiên
-
-Tháng 12/2026
-
-Xây dựng, phát triển hệ thống học liệu mở, tài nguyên giáo dục dùng chung về trí tuệ nhân tạo trên các nền tảng học tập số, bao gồm nền tảng Bình dân học vụ số do Bộ Công an chủ trì
-
-Bộ Giáo dục và Đào tạo
-
-Bộ Khoa học và Công nghệ, Bộ Công an
-
-Hệ thống học liệu mở, tài nguyên giáo dục dùng chung về trí tuệ nhân tạo trên các nền tảng học tập số
-
-Tháng 3/2027
-
-Hướng dẫn kết nối, chia sẻ và khai thác dữ liệu từ Trung tâm Dữ liệu quốc gia phục vụ phát triển nhân lực trí tuệ nhân tạo theo quy định của pháp luật
-
-Bộ Công an
-
-Bộ Giáo dục và Đào tạo, Bộ Khoa học và Công nghệ, các bộ, ngành liên quan
-
-Hướng dẫn kết nối, chia sẻ và khai thác dữ liệu từ Trung tâm Dữ liệu quốc gia phục vụ phát triển nhân lực trí tuệ nhân tạo
-
-Hằng năm
-
-Triển khai Đề án phát triển và ứng dụng trí tuệ nhân tạo (AI) trong giáo dục
-
-Bộ Giáo dục và Đào tạo
-
-Các bộ, ngành liên quan
-
-Kế hoạch và các nội dung triển khai Đề án
-
-Giai đoạn
-
-2027 - 2030
-
-Triển khai Đề án phát triển một số cơ sở đào tạo trở thành các trung tâm đào tạo, nghiên cứu tiên tiến chuyên sâu về trí tuệ nhân tạo
-
-Bộ Giáo dục và Đào tạo
-
-Các bộ, ngành liên quan
-
-Kế hoạch và các nội dung triển khai Đề án
-
-Giai đoạn
-
-2026 - 2030
-
-Nghiên cứu đề xuất sửa đổi hoặc bổ sung cơ chế ưu đãi thuế, tài chính cho các doanh nghiệp đầu tư vào các phòng thí nghiệm trí tuệ nhân tạo tại các cơ sở giáo dục đại học
-
-Bộ Tài chính
-
-Bộ Khoa học và Công nghệ, Bộ Giáo dục và Đào tạo
-
-Cơ chế ưu đãi thuế, tài chính cho các doanh nghiệp đầu tư vào các phòng thí nghiệm trí tuệ nhân tạo tại các cơ sở giáo dục đại học được rà soát hoặc đề xuất sửa đổi hoặc bổ sung
-
-Tháng 12/2027
-
-Hướng dẫn và thực hiện triển khai đào tạo, bồi dưỡng, nâng cao năng lực ứng dụng trí tuệ nhân tạo; thực hiện phổ cập trí tuệ nhân tạo cho đội ngũ cán bộ, công chức, viên chức, người lao động trong các cơ sở sự nghiệp công lập thuộc thẩm quyền quản lý
-
-Các bộ, ngành liên quan, các Ủy ban nhân dân tỉnh/thành phố
-
-Bộ Nội vụ, Bộ Công an, Bộ Khoa học và Công nghệ, Bộ Giáo dục và Đào tạo
-
-Các chương trình đào tạo, bồi dưỡng, nâng cao năng lực ứng dụng trí tuệ nhân tạo; chương trình phổ cập trí tuệ nhân tạo được thực hiện
-
-Thường xuyên
+| STT | Tên chương trình, đề án | Đơn vị<br>chủ trì | Đơn vị phối hợp | Sản phẩm | Thời gian thực hiện |
+| --- | --- | --- | --- | --- | --- |
+|  | Xây dựng Chuẩn chương trình đào tạo về trí tuệ nhân tạo cho giáo dục đại học và giáo dục nghề nghiệp | Bộ Giáo dục và Đào tạo | Các bộ, ngành liên quan, các cơ sở giáo dục đại học và cơ sở giáo dục nghề nghiệp | Chuẩn chương trình đào tạo về trí tuệ nhân tạo cho giáo dục đại học và giáo dục nghề nghiệp | Tháng 3/2027 |
+|  | Xây dựng cơ sở dữ liệu về nhân lực trí tuệ nhân tạo | Bộ Giáo dục và Đào tạo | Bộ Nội vụ, Bộ Công an, Bộ Khoa học và Công nghệ và các bộ ngành khác có liên quan, các Ủy ban nhân dân tỉnh/thành phố | Cơ sở dữ liệu về nhân lực trí tuệ nhân tạo | Giai đoạn<br>2026 - 2030 |
+|  | Xây dựng Khung năng lực trí tuệ nhân tạo quốc gia bảo đảm bao quát, liên thông và có tiêu chí áp dụng cho từng nhóm đối tượng, bao gồm người học và người dạy | Bộ Giáo dục và Đào tạo | Bộ Nội vụ, Bộ Khoa học và Công nghệ, Bộ Công an và các bộ ngành khác có liên quan, các Ủy ban nhân dân tỉnh/thành phố | Khung năng lực trí tuệ nhân tạo quốc gia | Tháng 06/2027 |
+|  | Hướng dẫn và ưu tiên kết nối hạ tầng tính toán, dữ liệu, nền tảng dùng chung phục vụ nghiên cứu, đào tạo và đổi mới sáng tạo về trí tuệ nhân tạo; hỗ trợ phát triển các phòng thí nghiệm, nhóm nghiên cứu mạnh và trung tâm nghiên cứu xuất sắc về trí tuệ nhân tạo | Bộ Khoa học và Công nghệ | Bộ Giáo dục và Đào tạo, Bộ Công an, Bộ Tài chính, Bộ Nội vụ; các bộ, ngành, địa phương; cơ sở giáo dục, viện nghiên cứu, doanh nghiệp công nghệ | Cơ chế/hướng dẫn phân bổ, sử dụng, giám sát tài nguyên tính toán và dữ liệu; tiêu chí ưu tiên; quy trình đăng ký - phê duyệt - giám sát được ban hành | Giai đoạn<br>2027 - 2030 |
+|  | Xây dựng, rà soát, cập nhật chương trình đào tạo, bồi dưỡng trực tuyến mở nhằm phổ cập trí tuệ nhân tạo cho toàn dân | Bộ Giáo dục và Đào tạo | Bộ Khoa học và Công nghệ, các bộ, ngành, địa phương, các doanh nghiệp liên quan | Các khóa học đại trà trực tuyến mở nhằm phổ cập trí tuệ nhân tạo toàn dân được xây dựng, rà soát, cập nhật | Hằng năm |
+|  | Xây dựng tiêu chí lựa chọn các cơ sở giáo dục đại học là đầu mối đào tạo, nghiên cứu và đổi mới sáng tạo về trí tuệ nhân tạo, xây dựng các mô hình hợp tác với doanh nghiệp, chương trình tích hợp trí tuệ nhân tạo theo ngành, lĩnh vực (AI+X) và chương trình ứng dụng trí tuệ nhân tạo (X+AI) gắn với các lĩnh vực, ngành nghề ưu tiên | Bộ Giáo dục và Đào tạo | Các bộ, ngành liên quan | Bộ tiêu chí lựa chọn được xây dựng và số cơ sở giáo dục đại học được lựa chọn là đầu mối đào tạo, nghiên cứu và đổi mới sáng tạo về trí tuệ nhân tạo, xây dựng các mô hình hợp tác với doanh nghiệp, chương trình tích hợp trí tuệ nhân tạo theo ngành, lĩnh vực (AI+X) và chương trình ứng dụng trí tuệ nhân tạo (X+AI) gắn với các lĩnh vực, ngành nghề ưu tiên | Tháng 12/2026 |
+|  | Xây dựng, phát triển hệ thống học liệu mở, tài nguyên giáo dục dùng chung về trí tuệ nhân tạo trên các nền tảng học tập số, bao gồm nền tảng Bình dân học vụ số do Bộ Công an chủ trì | Bộ Giáo dục và Đào tạo | Bộ Khoa học và Công nghệ, Bộ Công an | Hệ thống học liệu mở, tài nguyên giáo dục dùng chung về trí tuệ nhân tạo trên các nền tảng học tập số | Tháng 3/2027 |
+|  | Hướng dẫn kết nối, chia sẻ và khai thác dữ liệu từ Trung tâm Dữ liệu quốc gia phục vụ phát triển nhân lực trí tuệ nhân tạo theo quy định của pháp luật | Bộ Công an | Bộ Giáo dục và Đào tạo, Bộ Khoa học và Công nghệ, các bộ, ngành liên quan | Hướng dẫn kết nối, chia sẻ và khai thác dữ liệu từ Trung tâm Dữ liệu quốc gia phục vụ phát triển nhân lực trí tuệ nhân tạo | Hằng năm |
+|  | Triển khai Đề án phát triển và ứng dụng trí tuệ nhân tạo (AI) trong giáo dục | Bộ Giáo dục và Đào tạo | Các bộ, ngành liên quan | Kế hoạch và các nội dung triển khai Đề án | Giai đoạn<br>2027 - 2030 |
+|  | Triển khai Đề án phát triển một số cơ sở đào tạo trở thành các trung tâm đào tạo, nghiên cứu tiên tiến chuyên sâu về trí tuệ nhân tạo | Bộ Giáo dục và Đào tạo | Các bộ, ngành liên quan | Kế hoạch và các nội dung triển khai Đề án | Giai đoạn<br>2026 - 2030 |
+|  | Nghiên cứu đề xuất sửa đổi hoặc bổ sung cơ chế ưu đãi thuế, tài chính cho các doanh nghiệp đầu tư vào các phòng thí nghiệm trí tuệ nhân tạo tại các cơ sở giáo dục đại học | Bộ Tài chính | Bộ Khoa học và Công nghệ, Bộ Giáo dục và Đào tạo | Cơ chế ưu đãi thuế, tài chính cho các doanh nghiệp đầu tư vào các phòng thí nghiệm trí tuệ nhân tạo tại các cơ sở giáo dục đại học được rà soát hoặc đề xuất sửa đổi hoặc bổ sung | Tháng 12/2027 |
+|  | Hướng dẫn và thực hiện triển khai đào tạo, bồi dưỡng, nâng cao năng lực ứng dụng trí tuệ nhân tạo; thực hiện phổ cập trí tuệ nhân tạo cho đội ngũ cán bộ, công chức, viên chức, người lao động trong các cơ sở sự nghiệp công lập thuộc thẩm quyền quản lý | Các bộ, ngành liên quan, các Ủy ban nhân dân tỉnh/thành phố | Bộ Nội vụ, Bộ Công an, Bộ Khoa học và Công nghệ, Bộ Giáo dục và Đào tạo | Các chương trình đào tạo, bồi dưỡng, nâng cao năng lực ứng dụng trí tuệ nhân tạo; chương trình phổ cập trí tuệ nhân tạo được thực hiện | Thường xuyên |
