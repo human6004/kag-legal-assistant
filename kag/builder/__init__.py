@@ -54,6 +54,7 @@ from kag.builder.model.sub_graph import SubGraph as _SubGraph
 
 from .canon_id import KEEP_ID as _KEEP_ID
 from .canon_id import canon_id as _canon_id
+from .canon_id import is_semantic_identity as _is_semantic_identity
 from .canon_id import slug as _slug
 
 
@@ -66,9 +67,15 @@ _sfe.processing_phrases = _processing_phrases_giu_dau
 
 
 def _id_chuan(node_id, label):
-    """id do tầng reader sinh ra (băm) thì giữ nguyên, còn lại quy về id chuẩn."""
+    """id do tầng reader sinh ra (băm) thì giữ nguyên, còn lại quy về id chuẩn.
+
+    id đã mang namespace của resolver danh tính (``article:``, ``sanction:``,
+    ``sanction-unresolved:``, …) cũng giữ nguyên: slug hóa nó là phá id. Nhưng
+    KHÔNG giữ nguyên cả nhãn: tên thô chưa qua resolver vẫn phải đi qua
+    ``canon_id()`` như trước, nếu không thì mọi biến thể viết tên lại nở ra node.
+    """
     label = str(label).split(".")[-1]
-    if label in _KEEP_ID or (label == "Article" and str(node_id).startswith(("article:", "article-unresolved:"))):
+    if label in _KEEP_ID or _is_semantic_identity(node_id, label):
         return node_id
     return _canon_id(node_id)
 

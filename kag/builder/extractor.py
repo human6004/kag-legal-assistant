@@ -46,7 +46,15 @@ from kag.builder.component.extractor.schema_free_extractor import SchemaFreeExtr
 from kag.builder.model.sub_graph import SubGraph
 from kag.common.utils import generate_hash_id
 
-from .canon_id import article_identity, canon_id, source_article_headings, source_document_id
+from .canon_id import (
+    SEMANTIC_CATEGORIES,
+    article_identity,
+    canon_id,
+    semantic_identity,
+    source_article_headings,
+    source_document_id,
+    unresolved_identity,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -57,6 +65,10 @@ PREDICATE_MAPPING_VERSION = "camel_case_v1"
 # Quan hệ do hệ thống sinh, không phải LLM trả. Không gắn original_predicate.
 _SYSTEM_PREDICATES = {"source", "OfficialName"}
 _ARTICLE_NO = re.compile(r"^Điều\s+(\d{1,3})\b", re.IGNORECASE)
+
+# Nhãn mà resolver cấp id. Vendor KHÔNG được dựng node cho các nhãn này: nó dùng
+# tên thô làm id, tức một danh tính cạnh tranh với danh tính đã phân giải.
+_MANAGED = frozenset(("Article",) + SEMANTIC_CATEGORIES)
 
 
 def _unresolved_article(chunk_id, name):
@@ -106,6 +118,49 @@ def _article_ids(chunk, entities):
         if key in ids and ids[key] != target:
             target = _unresolved_article(chunk.id, key)
         ids[key] = target
+    return source_id, heading, ids
+
+
+def _endpoint_ids(chunk, entities):
+    """MỘT bản đồ danh tính cho node và cho cả hai đầu mút cạnh.
+
+    Khóa là ``(nhãn, canon_id(tên))`` vì id trên cạnh đã đi qua ``canon_id()``
+    (``SubGraph.add_edge`` bị ``builder/__init__.py`` gắn đè). Article giữ nguyên
+    đường B2.1; các nhãn B2.2 đi qua ``semantic_identity()``.
+
+    Không có bản đồ dùng chung thì node và đầu mút cạnh tách thành hai danh tính
+    cạnh tranh — đúng lỗi mà B2.1 đã sửa cho Article.
+    """
+    source_id, heading, article_ids = _article_ids(chunk, entities)
+    ids = {("Article", key): target for key, target in article_ids.items()}
+    meta = chunk.kwargs
+    doc_id = source_document_id(meta.get("source_path", ""))
+    # Chỉ cấp occurrence khi Điều nguồn của chunk ĐÃ phân giải. Không có căn cứ
+    # thì mọi thực thể phụ thuộc ngữ cảnh trong chunk đều unresolved.
+    anchor = {
+        "doc_id": doc_id if source_id else None,
+        "article_no": meta.get("article_no") if source_id else None,
+        "clause_no": meta.get("clause_no"),
+        "point_no": meta.get("point_no"),
+        "heading": heading,
+        "content": chunk.content or "",
+    }
+    reasons = {}
+    for entity in entities:
+        category = entity.get("category")
+        if category not in SEMANTIC_CATEGORIES:
+            continue
+        name = entity["name"]
+        identity = semantic_identity(category, name, **anchor)
+        target = identity.id or unresolved_identity(category, chunk.id, name)
+        key = (category, canon_id(name))
+        # Hai tên chuẩn hóa như nhau mà suy ra hai đích khác nhau: giữ mơ hồ.
+        if key in ids and ids[key] != target:
+            target = unresolved_identity(category, chunk.id, key[1])
+        ids[key] = target
+        reasons[key] = identity.reason
+    if reasons:
+        logger.debug("danh tính B2.2 của chunk %s: %s", chunk.id, reasons)
     return source_id, heading, ids
 
 
@@ -163,40 +218,45 @@ class LegalSchemaFreeExtractor(SchemaFreeExtractor):
         return output
 
     def assemble_sub_graph_with_spg_records(self, entities):
-        # Vendor dựng raw Article quá sớm, trước khi chunk context được dùng.
+        # Vendor dựng node bằng TÊN THÔ, trước khi ngữ cảnh chunk được dùng. Với
+        # các nhãn resolver quản lý thì đó là một danh tính cạnh tranh, phải bỏ.
         graph, _ = super().assemble_sub_graph_with_spg_records(
-            [entity for entity in entities if entity.get("category") != "Article"]
+            [entity for entity in entities if entity.get("category") not in _MANAGED]
         )
         return graph, entities
 
     def assemble_sub_graph(self, sub_graph, chunk, entities, triples):
-        source_id, heading, article_ids = _article_ids(chunk, entities)
+        source_id, heading, endpoint_ids = _endpoint_ids(chunk, entities)
+        # Vendor cũng sinh node `official_name` cạnh node chính. Với nhãn resolver
+        # quản lý, official_name chỉ là tên hiển thị/alias, không được thành một
+        # danh tính thứ hai — nên các nhãn đó không đi qua đường này.
         self.assemble_sub_graph_with_entities(
-            sub_graph, [entity for entity in entities if entity.get("category") != "Article"]
+            sub_graph, [entity for entity in entities if entity.get("category") not in _MANAGED]
         )
         for entity in entities:
-            if entity.get("category") != "Article":
+            category = entity.get("category")
+            if category not in _MANAGED:
                 continue
-            node_id = article_ids[canon_id(entity["name"])]
+            node_id = endpoint_ids[(category, canon_id(entity["name"]))]
             properties = {
                 "desc": entity.get("description", ""),
                 "semanticType": entity.get("type", ""),
             }
             if node_id == source_id:
                 properties["articleNumber"] = str(chunk.kwargs["article_no"])
-            sub_graph.add_node(node_id, entity["name"], "Article", properties)
+            sub_graph.add_node(node_id, entity["name"], category, properties)
         if source_id:
             sub_graph.add_node(source_id, heading, "Article", {
                 "articleNumber": str(chunk.kwargs["article_no"]),
             })
-        self.assemble_sub_graph_with_triples(sub_graph, entities, triples, article_ids, chunk.id)
+        self.assemble_sub_graph_with_triples(sub_graph, entities, triples, endpoint_ids, chunk.id)
         self.assemble_sub_graph_with_chunk(sub_graph, chunk)
         return sub_graph
 
     @staticmethod
     def assemble_sub_graph_with_triples(
         sub_graph: SubGraph, entities: List[Dict], triples: List[list],
-        article_ids=None, chunk_id=None,
+        endpoint_ids=None, chunk_id=None,
     ):
         """Lọc triple trước khi lớp cha dựng cạnh.
 
@@ -229,17 +289,24 @@ class LegalSchemaFreeExtractor(SchemaFreeExtractor):
             sub_graph, entities, cleaned
         )
         _attach_original_predicates(sub_graph, before, snapshot, entities)
-        if article_ids is not None:
+        if endpoint_ids is not None:
+            # Đầu mút phải mang ĐÚNG id mà node mang. Đầu mút không có trong bản
+            # đồ là tên chỉ xuất hiện trong triple chứ không qua NER: không có
+            # entity để lấy bằng chứng, nên unresolved.
             for edge in sub_graph.edges[before:]:
                 for side in ("from", "to"):
                     label = getattr(edge, f"{side}_type").split(".")[-1]
-                    if label != "Article":
+                    if label not in _MANAGED:
                         continue
                     key = getattr(edge, f"{side}_id")
-                    node_id = article_ids.get(key)
+                    node_id = endpoint_ids.get((label, key))
                     if node_id is None:
-                        node_id = _unresolved_article(chunk_id, key)
-                        sub_graph.add_node(node_id, key, "Article")
+                        node_id = (
+                            _unresolved_article(chunk_id, key)
+                            if label == "Article"
+                            else unresolved_identity(label, chunk_id, key)
+                        )
+                        sub_graph.add_node(node_id, key, label)
                     setattr(edge, f"{side}_id", node_id)
         return result
 

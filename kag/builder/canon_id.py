@@ -38,12 +38,30 @@ reader sinh ra (băm sha256 kèm hậu tố #4950#table#0#LEN) — xem KEEP_ID.
 Chạy self-check: python builder/canon_id.py
 """
 
+import hashlib
 import re
 import json
+import unicodedata
 from functools import lru_cache
 from pathlib import Path
+from typing import NamedTuple, Optional, Tuple
 
-__all__ = ["slug", "canon_id", "source_document_id", "article_identity", "KEEP_ID"]
+__all__ = [
+    "slug",
+    "canon_id",
+    "source_document_id",
+    "article_identity",
+    "KEEP_ID",
+    "Identity",
+    "CONTEXTUAL_CATEGORIES",
+    "SEMANTIC_CATEGORIES",
+    "IDENTITY_PREFIXES",
+    "semantic_identity",
+    "unresolved_identity",
+    "is_semantic_identity",
+    "normalize_source_phrase",
+    "source_phrase_count",
+]
 
 # Nhãn giữ nguyên id gốc. Đây là các node do tầng reader/splitter sinh ra, id là
 # băm chứ không phải tên, đổi đi là mất liên hệ với chunk và với chỉ mục vector.
@@ -178,6 +196,254 @@ def source_article_headings(source_path):
     return frozenset(source)
 
 
+#  B2.2 — danh tính ngữ nghĩa cho thực thể phụ thuộc ngữ cảnh
+# ---------------------------------------------------------------------------
+# Bài toán: `canon_id()` chuẩn hóa TÊN, nên mọi thực thể trùng tên về một node.
+# Với tên văn bản đó là đúng (một văn bản một id), với chế tài/nghĩa vụ/hành vi
+# thì sai: "Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng" xuất hiện ở Điều
+# 9, 10 và 11 của cùng một nghị định là BA chế tài khác nhau, gộp lại thì Điều 9
+# thừa hưởng hành vi của Điều 11.
+#
+# Quy tắc chung, không có ngoại lệ:
+#
+#     đủ bằng chứng deterministic  -> danh tính canonical
+#     không đủ                     -> danh tính unresolved
+#
+# Không đoán. Không gộp vì trùng tên. Không tách vì khác chunk.
+#
+# Hai họ danh tính:
+#
+# * Authority — danh tính TOÀN CỤC theo tổ chức. "Bộ Công an" ở mọi văn bản là
+#   một cơ quan. Không dùng văn bản/Điều làm material, nếu không thì mỗi lần
+#   nhắc lại là một cơ quan mới.
+# * Sanction / Obligation / ProhibitedAct / LegalTerm / RegulatedEntity —
+#   danh tính THEO CĂN CỨ (legal occurrence). Material là căn cứ pháp lý đã
+#   phân giải cộng với đoạn văn nguồn, không phải tên hiển thị.
+#
+# Bằng chứng nào được tính. Pipeline hiện KHÔNG có character offset / mention
+# span: triple chỉ mang tên hai đầu mút. Nên bằng chứng duy nhất kiểm được bằng
+# code là "tên thực thể khớp DUY NHẤT MỘT lần vào văn bản nguồn của chunk". Khớp
+# 0 lần nghĩa là LLM diễn giải lại, khớp nhiều lần nghĩa là không biết lần nào —
+# cả hai đều ra unresolved. Đây là chỗ cố tình không dùng fuzzy match: một phép
+# khớp gần đúng sẽ sinh id canonical cho thứ không chứng minh được.
+#
+# Chuẩn hóa được phép mất: hoa/thường, khoảng trắng, dấu nháy, dấu đánh mục đầu
+# dòng ("1. ", "a) ") — hợp đồng NER đã bỏ các dấu này. KHÔNG được mất: số tiền,
+# phủ định, điều kiện, thời hạn, tỷ lệ, chủ thể. Vì vậy `_STRUCTURAL_MARKER`
+# đòi khoảng trắng sau dấu chấm: "10.000.000 đồng" không bị cắt thành "000.000".
+
+# Thực thể phụ thuộc căn cứ pháp lý. Authority đứng ngoài: nó toàn cục.
+CONTEXTUAL_CATEGORIES = (
+    "Sanction",
+    "Obligation",
+    "ProhibitedAct",
+    "LegalTerm",
+    "RegulatedEntity",
+)
+
+# Mọi nhãn do resolver này cấp id. Article do B2.1 cấp, giữ nguyên.
+SEMANTIC_CATEGORIES = ("Authority",) + CONTEXTUAL_CATEGORIES
+
+# namespace id theo nhãn. Dạng "<ns>:..." là canonical, "<ns>-unresolved:..."
+# là chưa phân giải. `builder/__init__.py` dựa vào đây để KHÔNG slug hóa id đã
+# mang namespace; tên thô chưa phân giải thì vẫn phải đi qua canon_id().
+IDENTITY_PREFIXES = {
+    "Article": "article",
+    "Authority": "authority",
+    "Sanction": "sanction",
+    "Obligation": "obligation",
+    "ProhibitedAct": "prohibitedact",
+    "LegalTerm": "legalterm",
+    "RegulatedEntity": "regulatedentity",
+}
+
+_QUOTES = dict.fromkeys(map(ord, "\"'“”‘’«»"), None)
+
+# Dấu đánh mục đầu dòng. PHẢI có khoảng trắng sau dấu chấm, nếu không thì
+# "10.000.000 đồng đến 20.000.000 đồng" bị cắt mất chữ số hàng triệu.
+_STRUCTURAL_MARKER = re.compile(r"^(?:\d{1,3}\.|[a-zđ]\)|[-–•])\s+")
+
+# Chức danh: người/vai, không phải tổ chức. Phải xét TRƯỚC loại tổ chức vì
+# "bộ trưởng bộ công an" cũng mở đầu bằng "bộ ".
+_PERSON_TITLES = (
+    "bộ trưởng", "thứ trưởng", "thủ tướng", "phó thủ tướng", "chủ tịch",
+    "phó chủ tịch", "cục trưởng", "tổng cục trưởng", "vụ trưởng", "giám đốc",
+    "chánh án", "phó chánh án", "viện trưởng", "phó viện trưởng",
+    "chánh thanh tra", "trưởng ban", "trưởng đoàn", "người đứng đầu",
+    "thủ trưởng", "tổng giám đốc", "tổng thanh tra",
+)
+
+# Tổ chức đầu mối. Chuỗi phải MỞ ĐẦU bằng một trong các loại này, nên
+# "Thanh tra Bộ Công an" và "Cục An ninh mạng ... Bộ Công an" không lọt vào.
+_ORG_KINDS = (
+    "bộ", "chính phủ", "quốc hội", "ủy ban thường vụ quốc hội",
+    "ủy ban nhân dân", "hội đồng nhân dân", "tòa án nhân dân",
+    "viện kiểm sát nhân dân", "ngân hàng nhà nước", "kiểm toán nhà nước",
+    "văn phòng chính phủ", "thanh tra chính phủ", "chủ tịch nước",
+)
+
+# Tổ chức nói chung, không rõ là cơ quan nào. Gộp các chuỗi này lại là gộp
+# UBND của mọi tỉnh vào một node.
+_AMBIGUOUS_ORG = frozenset({
+    "bộ", "cơ quan", "cơ quan nhà nước", "cơ quan có thẩm quyền",
+    "cơ quan quản lý", "cơ quan quản lý nhà nước", "nhà nước", "chính quyền",
+    "ủy ban", "ủy ban nhân dân", "hội đồng nhân dân", "tòa án nhân dân",
+    "viện kiểm sát nhân dân", "tòa án", "viện kiểm sát", "thanh tra",
+    "người có thẩm quyền", "cấp có thẩm quyền",
+})
+
+# Điều xác định phạm vi/đối tượng. Chỉ ở đây mới coi là đã chứng minh scope của
+# một RegulatedEntity; ở Điều khác thì "tổ chức, cá nhân" chỉ là lần nhắc.
+_SCOPE_HEADINGS = ("đối tượng áp dụng", "phạm vi điều chỉnh", "phạm vi áp dụng")
+
+
+class Identity(NamedTuple):
+    """Kết quả phân giải. `material` để test/debug xem được TRƯỚC khi băm."""
+
+    id: Optional[str]
+    material: Tuple[str, ...]
+    reason: str
+
+
+def _norm_text(text):
+    """Chuẩn hóa để SO KHỚP. Mất hoa/thường, khoảng trắng, dấu nháy."""
+    normalized = unicodedata.normalize("NFC", str(text)).translate(_QUOTES)
+    return _SPACES.sub(" ", normalized).strip().casefold()
+
+
+def normalize_source_phrase(text):
+    """Như `_norm_text` nhưng bỏ thêm dấu đánh mục đầu chuỗi."""
+    return _STRUCTURAL_MARKER.sub("", _norm_text(text), count=1).strip()
+
+
+def source_phrase_count(name, content):
+    """Số lần tên thực thể khớp vào văn bản nguồn. 1 = phân giải được."""
+    needle = normalize_source_phrase(name)
+    if not needle:
+        return 0
+    return _norm_text(content).count(needle)
+
+
+def _definition_hits(term, content):
+    """Số dòng mở đầu bằng "<thuật ngữ> là ", tức dòng ĐỊNH NGHĨA.
+
+    Không dùng `"<term> là" in content`: câu "bảo vệ an ninh mạng là trách
+    nhiệm của..." cũng chứa "an ninh mạng là" mà không định nghĩa gì.
+    """
+    needle = normalize_source_phrase(term)
+    if not needle:
+        return 0
+    return sum(
+        1
+        for line in str(content).splitlines()
+        if normalize_source_phrase(line).startswith(needle + " là ")
+    )
+
+
+def _digest(*parts):
+    """Băm ổn định cross-process. KHÔNG dùng hash() built-in (có PYTHONHASHSEED)."""
+    return hashlib.sha256("\x1f".join(parts).encode("utf-8")).hexdigest()[:16]
+
+
+def _authority_identity(name):
+    """Danh tính tổ chức toàn cục, hoặc None khi không chứng minh được."""
+    text = _SPACES.sub(" ", slug(name))
+    if not text:
+        return Identity(None, (), "authority:tên rỗng")
+    if any(text == title or text.startswith(title + " ") for title in _PERSON_TITLES):
+        # Chức danh không phải tổ chức. "Bộ trưởng Bộ Công an" KHÁC "Bộ Công an".
+        return Identity(None, (), "authority:chức danh, không phải tổ chức")
+    if " thuộc " in f" {text} ":
+        # Đơn vị trực thuộc. Không có bảng mapping deterministic thì không gộp
+        # vào cơ quan chủ quản, cũng không tự cấp danh tính toàn cục.
+        return Identity(None, (), "authority:đơn vị trực thuộc, chưa có mapping")
+    if text in _AMBIGUOUS_ORG:
+        return Identity(None, (), "authority:tổ chức nói chung, không rõ cơ quan")
+    kind = next(
+        (k for k in _ORG_KINDS if text == k or text.startswith(k + " ")), None
+    )
+    if not kind:
+        return Identity(None, (), "authority:không mở đầu bằng loại cơ quan")
+    return Identity(f"authority:{text}", ("Authority", text), "authority:tổ chức")
+
+
+def semantic_identity(
+    category,
+    name,
+    *,
+    doc_id=None,
+    article_no=None,
+    heading="",
+    content="",
+    clause_no=None,
+    point_no=None,
+):
+    """Một resolver dùng chung cho node và cả hai đầu mút cạnh.
+
+    Trả về `Identity`. `id is None` nghĩa là bằng chứng không đủ; tầng gọi phải
+    dùng `unresolved_identity()`, KHÔNG được tự bịa số thứ tự occurrence.
+
+    `clause_no`/`point_no` chỉ được truyền vào khi chunk THỰC SỰ là Khoản/Điểm
+    nguồn (splitter chỉ gắn hai khóa này khi `article_no` xác định được). Chúng
+    là điểm neo pháp lý, không phải id runtime — `chunk.id` và `split_index`
+    không bao giờ vào material canonical.
+    """
+    if category == "Authority":
+        return _authority_identity(name)
+    if category not in CONTEXTUAL_CATEGORIES:
+        return Identity(None, (), "nhãn không do resolver này cấp id")
+    if not doc_id or not str(article_no or "").isdigit():
+        # Chưa biết văn bản/Điều nguồn thì không có căn cứ để cấp occurrence.
+        return Identity(None, (), "chưa phân giải được căn cứ pháp lý")
+
+    if category == "LegalTerm":
+        hits = _definition_hits(name, content)
+        if hits != 1:
+            # Lần nhắc không phải lần định nghĩa. Không ép thuật ngữ thuộc Điều
+            # đang đọc chỉ vì nó được nhắc ở đó.
+            return Identity(None, (), f"không có ngữ cảnh định nghĩa (khớp {hits})")
+    else:
+        if category == "RegulatedEntity" and not any(
+            key in _norm_text(heading) for key in _SCOPE_HEADINGS
+        ):
+            return Identity(None, (), "chưa chứng minh được scope của đối tượng")
+        matches = source_phrase_count(name, content)
+        if matches != 1:
+            return Identity(None, (), f"khớp văn bản nguồn {matches} lần, cần đúng 1")
+
+    phrase = normalize_source_phrase(name)
+    anchor = [str(doc_id), str(int(article_no))]
+    if clause_no is not None:
+        anchor.append(f"k{clause_no}")
+    if point_no is not None:
+        anchor.append(f"p{point_no}")
+    material = (category, *anchor, phrase)
+    head = ":".join([IDENTITY_PREFIXES[category], *anchor])
+    return Identity(f"{head}:{_digest(*material)}", material, "phân giải theo căn cứ")
+
+
+def unresolved_identity(category, chunk_id, name):
+    """Danh tính CHƯA phân giải. KHÔNG phải danh tính pháp lý canonical.
+
+    Chỉ nói "trong chunk này có một thực thể tên như vậy mà chưa chứng minh
+    được nó là occurrence nào". Có `chunk_id` để hai chunk khác nhau không bị
+    gộp khi bằng chứng mơ hồ — và vì thế nó KHÔNG chứng minh cardinality: một
+    placeholder không có nghĩa trong chunk chỉ có một occurrence.
+    """
+    namespace = IDENTITY_PREFIXES.get(category)
+    if not namespace:
+        raise ValueError(f"nhãn {category!r} không có namespace danh tính")
+    return f"{namespace}-unresolved:{_digest(str(chunk_id), canon_id(name))}"
+
+
+def is_semantic_identity(node_id, label):
+    """id đã mang namespace của resolver thì giữ nguyên, không slug hóa nữa."""
+    namespace = IDENTITY_PREFIXES.get(str(label).split(".")[-1])
+    if not namespace:
+        return False
+    return str(node_id).startswith((f"{namespace}:", f"{namespace}-unresolved:"))
+
+
 def _self_check():
     """Ca thật lấy từ đồ thị thử 121 chunk. Không gọi mạng, không đụng Neo4j."""
     same = [
@@ -226,6 +492,54 @@ def _self_check():
         got = canon_id(goc)
         assert got == want, f"canon_id({goc!r}) = {got!r}, chờ đợi {want!r}"
         print(f"  không gộp bừa      : {goc!r} -> {got!r}")
+
+    # B2.2 — thực thể phụ thuộc căn cứ. Cùng câu chữ, khác Điều -> khác id.
+    fine = "Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng"
+    occurrences = [
+        semantic_identity("Sanction", fine, doc_id="330-2026-ND-CP",
+                          article_no=number, content=f"2. {fine} đối với hành vi X.")
+        for number in (9, 10, 11)
+    ]
+    assert all(o.id for o in occurrences), occurrences
+    assert len({o.id for o in occurrences}) == 3, [o.id for o in occurrences]
+    print(f"  chế tài theo căn cứ : 3 Điều cùng câu chữ -> {len({o.id for o in occurrences})} id")
+
+    # Số tiền KHÔNG được chuẩn hóa mất. "10.000.000" cũng không bị dấu đánh mục
+    # ăn mất chữ số: marker chỉ khớp khi có khoảng trắng sau dấu chấm.
+    assert normalize_source_phrase(f"2. {fine}") == normalize_source_phrase(fine)
+    assert "10.000.000" in normalize_source_phrase(fine)
+    khac = semantic_identity("Sanction", "Phạt tiền từ 10.000.000 đồng đến 30.000.000 đồng",
+                             doc_id="330-2026-ND-CP", article_no=9,
+                             content="2. Phạt tiền từ 10.000.000 đồng đến 30.000.000 đồng.")
+    assert khac.id and khac.id != occurrences[0].id
+    print("  số tiền giữ nguyên  : 20 triệu và 30 triệu không cùng id")
+
+    # Khớp 0 lần (LLM diễn giải lại) và khớp nhiều lần (không rõ lần nào) đều
+    # KHÔNG được cấp id canonical.
+    for content, ten in ((f"Nội dung khác.", "khớp 0 lần"), (f"{fine}. {fine}.", "khớp 2 lần")):
+        mo_ho = semantic_identity("Sanction", fine, doc_id="330-2026-ND-CP",
+                                  article_no=9, content=content)
+        assert mo_ho.id is None, (ten, mo_ho)
+        print(f"  {ten:<20}: {mo_ho.reason}")
+
+    # Authority toàn cục, nhưng chức danh và đơn vị trực thuộc thì KHÔNG gộp.
+    bca = semantic_identity("Authority", "Bộ Công an")
+    assert bca.id == "authority:bộ công an", bca
+    assert semantic_identity("Authority", "BỘ CÔNG AN").id == bca.id
+    for am in ("Bộ trưởng Bộ Công an", "Cục An ninh mạng thuộc Bộ Công an",
+               "Thanh tra Bộ Công an", "Ủy ban nhân dân", "cơ quan có thẩm quyền"):
+        got = semantic_identity("Authority", am)
+        assert got.id != bca.id, (am, got)
+        assert got.id is None, (am, got)
+    print(f"  cơ quan toàn cục    : {bca.id!r}; chức danh/đơn vị trực thuộc -> unresolved")
+
+    # unresolved ổn định trong cùng chunk, không gộp xuyên chunk.
+    a = unresolved_identity("Sanction", "chunk-1", fine)
+    assert a == unresolved_identity("Sanction", "chunk-1", fine)
+    assert a != unresolved_identity("Sanction", "chunk-2", fine)
+    assert a.startswith("sanction-unresolved:")
+    assert is_semantic_identity(a, "Sanction") and not is_semantic_identity(fine, "Sanction")
+    print(f"  unresolved ổn định  : {a!r}")
 
     print("[self-check ok] một thực thể một id, hai đường nạp gặp nhau")
     return 0
