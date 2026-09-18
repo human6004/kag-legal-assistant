@@ -30,11 +30,23 @@ không phải bằng regex số Điều.
 
 Hai kênh tách biệt
 ------------------
-* text cho LLM: heading prefix + thân đơn vị. Không chứa hash, đường dẫn,
-  offset hay hậu tố kỹ thuật kiểu ``_split_1``.
-* metadata truy nguồn: ``source_path``, ``heading_path``, ``article_no``,
-  ``clause_no``, ``point_no``, ``split_index``, ``split_total`` trong
-  ``chunk.kwargs``.
+* text cho LLM: ``name`` mang heading/ngữ cảnh pháp lý, ``content`` mang THÂN
+  ngữ nghĩa. Extractor thật dựng passage bằng
+  ``passage = input.name + "\\n" + input.content``
+  (``schema_free_extractor.py:506``), nên nếu prepend lại ``heading_path`` vào
+  ``content`` thì heading lặp hai lần trong passage — không làm vậy. Không chứa
+  hash, đường dẫn, offset hay hậu tố kỹ thuật kiểu ``_split_1``.
+* metadata truy nguồn: ``source_path`` (reader gắn), ``heading_path``,
+  ``article_no``, ``clause_no``, ``point_no``, ``split_index``, ``split_total``
+  trong ``chunk.kwargs``.
+
+Chỉ gọi là Khoản/Điểm khi biết chắc là Điều
+-------------------------------------------
+``1.``/``2.`` ở cột 0 vẫn dùng làm ranh giới chia ở mọi nhánh, nhưng nhãn pháp
+lý (``clause_no``, ``point_no``, tên ``... / Khoản N``) chỉ gắn khi
+``article_no`` xác định được. Trong Mẫu/Phụ lục/nhánh không phải Điều, ``1.``
+chỉ là mục đánh số — không đủ bằng chứng gọi là Khoản, nên ở đó chỉ giữ thứ tự
+bằng ``split_index`` và hậu tố ``(phần i/N)``.
 
 ID của chunk ở đây chỉ là **runtime chunk id**, không phải canonical legal
 identity; danh tính Điều/Khoản/Điểm là việc của B2.
@@ -74,22 +86,19 @@ class _Unit:
         clause_no: Optional[str] = None,
         point_no: Optional[str] = None,
         part_no: Optional[int] = None,
-        needs_clause_marker: bool = False,
     ):
         self.body = body
         self.clause_no = clause_no
         self.point_no = point_no
         self.part_no = part_no
-        self.needs_clause_marker = needs_clause_marker
 
-    def name_suffix(self) -> str:
+    def legal_suffix(self) -> str:
+        """Hậu tố pháp lý — chỉ dùng khi đã xác định được Điều."""
         parts = []
         if self.clause_no is not None:
             parts.append(f"Khoản {self.clause_no}")
         if self.point_no is not None:
             parts.append(f"Điểm {self.point_no}")
-        if self.part_no is not None:
-            parts.append(f"Phần {self.part_no}")
         return " / ".join(parts)
 
 
@@ -212,30 +221,19 @@ class LegalStructuralSplitter(LengthSplitter):
             if len(parts) == 1:
                 return [_Unit(parts[0], clause_no=clause_no)]
             return [
-                _Unit(
-                    part,
-                    clause_no=clause_no,
-                    part_no=number,
-                    needs_clause_marker=not _CLAUSE_RE.match(part.split("\n", 1)[0]),
-                )
+                _Unit(part, clause_no=clause_no, part_no=number)
                 for number, part in enumerate(parts, start=1)
             ]
 
         units: List[_Unit] = []
         for idx, (point_no, body) in enumerate(points):
             # Câu dẫn của Khoản đi cùng Điểm đầu (nó là đầu câu của Khoản);
-            # các Điểm sau chỉ nhận dấu "Khoản n." ở prefix, không nhận lại
-            # phần thân của Khoản cha.
+            # các Điểm sau lấy ngữ cảnh từ ``name`` (".../ Khoản n / Điểm x"),
+            # không nhận lại phần thân của Khoản cha.
             point_text = f"{lead}\n{body}" if idx == 0 and lead else body
-            marker = not _CLAUSE_RE.match(point_text.split("\n", 1)[0])
             if len(point_text) <= budget:
                 units.append(
-                    _Unit(
-                        point_text,
-                        clause_no=clause_no,
-                        point_no=point_no,
-                        needs_clause_marker=marker,
-                    )
+                    _Unit(point_text, clause_no=clause_no, point_no=point_no)
                 )
                 continue
             for number, part in enumerate(
@@ -247,7 +245,6 @@ class LegalStructuralSplitter(LengthSplitter):
                         clause_no=clause_no,
                         point_no=point_no,
                         part_no=number,
-                        needs_clause_marker=not _CLAUSE_RE.match(part.split("\n", 1)[0]),
                     )
                 )
         return units
@@ -282,16 +279,21 @@ class LegalStructuralSplitter(LengthSplitter):
         split_total: int,
     ) -> Dict:
         heading_path = self._heading_path(chunk)
+        article_no = self._article_no(heading_path)
+        # chunk.kwargs mang sẵn ``source_path`` reader đã gắn -> đi tiếp xuống
+        # chunk con, không dựng lại ở đây.
         meta = dict(chunk.kwargs)
         meta.update(
             {
                 "heading_path": heading_path,
-                "article_no": self._article_no(heading_path),
+                "article_no": article_no,
                 "split_index": split_index,
                 "split_total": split_total,
             }
         )
-        if unit is not None:
+        # Ngoài Điều thật thì "1."/"a)" chỉ là mục đánh số: không gắn nhãn
+        # pháp lý cho chúng.
+        if unit is not None and article_no is not None:
             if unit.clause_no is not None:
                 meta["clause_no"] = unit.clause_no
             if unit.point_no is not None:
@@ -301,36 +303,50 @@ class LegalStructuralSplitter(LengthSplitter):
     # ------------------------------------------------------------------ #
     # dựng chunk
     # ------------------------------------------------------------------ #
-    def _context_prefix(self, heading_path: List[str], unit: _Unit) -> str:
-        lines = list(heading_path)
-        if unit.needs_clause_marker and unit.clause_no is not None:
-            lines.append(f"Khoản {unit.clause_no}.")
-        return "\n".join(lines)
+    def _unit_name(
+        self,
+        base: str,
+        unit: _Unit,
+        legal: bool,
+        index: int,
+        total: int,
+        occurrence: Dict[str, int],
+    ) -> str:
+        """Tên chunk con = ngữ cảnh pháp lý; đây cũng là title LLM nhận.
+
+        Ngoài Điều thật thì không đặt tên "... / Khoản N" — chỉ đánh
+        ``(phần i/N)`` để giữ thứ tự và tránh tên trùng.
+        """
+        suffix = unit.legal_suffix() if legal else ""
+        if not suffix:
+            return f"{base} (phần {index}/{total})"
+        name = f"{base} / {suffix}"
+        if unit.part_no is not None:
+            name = f"{name} (phần {unit.part_no})"
+        # Biểu mẫu/đoạn đánh số lại từ 1 nhiều lần trong cùng một node nên
+        # "Khoản 1" có thể xuất hiện lại. Trùng tên thì thêm số lần lặp.
+        seen = occurrence.get(name, 0) + 1
+        occurrence[name] = seen
+        return name if seen == 1 else f"{name} (lần {seen})"
 
     def _emit(self, chunk: Chunk, units: List[_Unit]) -> List[Chunk]:
-        heading_path = self._heading_path(chunk)
+        legal = self._article_no(self._heading_path(chunk)) is not None
         total = len(units)
         output = []
-        # Biểu mẫu thường đánh số lại từ 1 nhiều lần trong cùng một node, nên
-        # "Khoản 1" có thể xuất hiện lại. Thêm số lần lặp để tên và id không
-        # trùng — trùng id là mất chunk ở tầng ghi, không chỉ khó đọc.
         occurrence: Dict[str, int] = {}
         for index, unit in enumerate(units, start=1):
-            prefix = self._context_prefix(heading_path, unit)
-            content = f"{prefix}\n\n{unit.body}" if prefix else unit.body
-            suffix = unit.name_suffix()
-            seen = occurrence.get(suffix, 0) + 1
-            occurrence[suffix] = seen
-            if suffix and seen > 1:
-                suffix = f"{suffix} (lần {seen})"
             output.append(
                 Chunk(
                     # split_index là vị trí trong chuỗi đơn vị của chunk cha nên
                     # id luôn phân biệt; đây là runtime chunk id, KHÔNG phải
                     # canonical legal identity (việc của B2).
                     id=generate_hash_id(f"{chunk.id}#{index}"),
-                    name=f"{chunk.name} / {suffix}" if suffix else chunk.name,
-                    content=content,
+                    name=self._unit_name(
+                        chunk.name, unit, legal, index, total, occurrence
+                    ),
+                    # Chỉ thân ngữ nghĩa: heading đã nằm trong name, extractor
+                    # ghép lại bằng name + "\n" + content.
+                    content=unit.body,
                     type=chunk.type,
                     **self._metadata(chunk, unit, index, total),
                 )
@@ -354,13 +370,15 @@ class LegalStructuralSplitter(LengthSplitter):
         heading, nên phải giữ lại đúng một lần. ``Phụ lục I``/``Chương III`` chỉ
         là nhãn: nội dung thật nằm ở các chunk con, nhãn đã có trong heading path
         của chúng, nên không sinh chunk thân rỗng.
+
+        Quy định nằm ở ``name`` (extractor dựng passage từ ``name`` +
+        ``content``), nên ``content`` để rỗng: viết lại heading vào ``content``
+        là để LLM đọc chính câu đó hai lần.
         """
         heading_path = self._heading_path(chunk)
         leaf = heading_path[-1] if heading_path else ""
         if _ARTICLE_RE.match(leaf) and not _LABEL_RE.match(leaf):
-            prefix = "\n".join(heading_path[:-1])
-            content = f"{prefix}\n\n{leaf}" if prefix else leaf
-            return [self._keep(chunk, content=content)]
+            return [self._keep(chunk, content="")]
         logger.debug("Bo heading nhan cau truc khong co than: %s", chunk.name)
         return []
 
@@ -424,11 +442,10 @@ class LegalStructuralSplitter(LengthSplitter):
         if len(content) <= self.split_length:
             return [self._keep(chunk)]
 
-        heading_path = self._heading_path(chunk)
-        # Prefix ngữ cảnh cũng tính vào ngưỡng, nên đơn vị con phải trừ trước
-        # phần prefix để chunk phát ra không vượt 4950.
-        reserve = len("\n".join(heading_path)) + len("\n\n") + len("Khoản 999.\n")
-        budget = max(self.split_length - reserve, 500)
+        # Ngưỡng đo trên ``content``: heading không còn nằm trong content nên
+        # không phải trừ trước phần prefix nữa. Cùng một thước với nhánh giữ
+        # nguyên ở trên (``len(content) <= split_length``).
+        budget = self.split_length
 
         if chunk.type == ChunkTypeEnum.Table:
             return self._split_oversize_table(chunk, budget)

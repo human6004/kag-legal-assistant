@@ -23,7 +23,9 @@ Các vấn đề đã giải quyết:
 
 import io
 import logging
+import os
 import re
+from pathlib import Path
 from typing import List, Optional
 
 from bs4 import BeautifulSoup, Tag
@@ -38,6 +40,9 @@ logger = logging.getLogger(__name__)
 
 _HEADINGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 _BLOCK_TAGS = {"p", "ol", "ul", "table", "pre", "blockquote", *_HEADINGS}
+
+#: Gốc repo, để quy đường dẫn nguồn về dạng tương đối portable.
+_REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
 class _LexicalTable(pd.DataFrame):
@@ -83,6 +88,43 @@ class _SourceNumbers(Extension):
 class LegalMarkdownReader(MarkDownReader):
     """``MarkDownReader`` bảo toàn cấu trúc pháp lý, thứ tự và nội dung không lặp."""
 
+    @staticmethod
+    def _source_path(id) -> str:
+        """Đường dẫn nguồn ổn định của file đang đọc.
+
+        ``MarkDownReader._parse_input`` đã có đường dẫn file ở tham số ``id``,
+        nhưng chỉ chunk BẢNG được gắn ``file_name``; chunk TEXT không giữ gì. Ở
+        đây quy về đường dẫn TƯƠNG ĐỐI so với gốc repo, dấu ``/``, để không ghi
+        absolute path của máy người dùng vào graph. File ngoài repo chỉ giữ tên
+        file; input không phải path thì trả nguyên chuỗi.
+
+        Đây là provenance để truy nguồn, KHÔNG phải canonical legal identity.
+        """
+        raw = str(id or "").strip()
+        if not raw:
+            return ""
+        path = Path(raw)
+        if not (raw.lower().endswith(".md") or os.path.isfile(raw)):
+            return raw
+        try:
+            resolved = path.resolve()
+        except OSError:
+            return path.name
+        try:
+            return resolved.relative_to(_REPO_ROOT).as_posix()
+        except ValueError:
+            return resolved.name
+
+    @staticmethod
+    def _stamp(chunks, source_path: str):
+        """Gắn ``source_path`` vào ``chunk.kwargs`` (kênh metadata, không vào text)."""
+        if not source_path:
+            return chunks
+        for chunk in chunks:
+            chunk.kwargs["source_path"] = source_path
+            chunk.source_path = source_path
+        return chunks
+
     def solve_content(self, id, title, content, **kwargs):
         # Same orchestration as KAG; add the ordinal-preserving block processor.
         html = markdown.markdown(self._preprocess_markdown_content(content),
@@ -92,6 +134,9 @@ class LegalMarkdownReader(MarkDownReader):
         outputs, mapping = self._convert_to_outputs(root, id)
         if self.length_splitter:
             outputs, mapping = self._apply_length_splitting(outputs, mapping)
+        # Gắn sau khi chia để mọi chunk (TEXT và TABLE) đều có cùng một
+        # source identifier trước khi đi vào splitter.
+        self._stamp(outputs, self._source_path(id))
         graph, _ = convert_to_subgraph(root, outputs, self._flatten_node_chunk_map(mapping))
         return outputs, graph
 
