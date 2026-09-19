@@ -941,6 +941,98 @@ class PTestPromptMatchesContract(unittest.TestCase):
         for triple in self.example["output"]:
             self.assertIn(triple[1], CANONICAL_RELATIONS, triple)
 
+    # --- A. hai đầu mút, không phải "ít nhất một" -------------------------
+    def test_prompt_requires_both_endpoints_in_entity_list(self):
+        """Validator bind CẢ hai đầu; prompt phải đòi đúng thứ đó.
+
+        Không chỉ kiểm câu cũ biến mất: kiểm luôn semantics mới có mặt.
+        """
+        self.assertNotIn("ít nhất một", self.template)
+        self.assertIn(
+            "CẢ chủ ngữ VÀ tân ngữ phải là thực thể có tên trong entity_list",
+            self.template,
+        )
+        self.assertIn("viết tên y hệt trong entity_list", self.template)
+        self.assertIn(
+            "Nếu một trong hai đầu không có trong entity_list thì KHÔNG sinh bộ ba đó",
+            self.template,
+        )
+
+    def test_validator_rejects_what_the_old_rule_allowed(self):
+        """Luật cũ cho phép một đầu ngoài entity_list — validator thì không.
+
+        Đây là bằng chứng hai hợp đồng từng lệch nhau, và là lý do phải sửa
+        prompt chứ không nới validator.
+        """
+        entities = [{"name": "Điều 1", "category": "Article"}]
+        sg, ev = relations(
+            [["Điều 1", "prohibits", "hành vi không có trong entity_list"]],
+            entities=entities,
+        )
+        self.assertEqual(semantic(sg), [])
+        self.assertEqual(len(ev), 1)
+        self.assertEqual(ev[0]["status"], UNRESOLVED_ENDPOINT)
+
+    # --- B. đầu mút của ví dụ ---------------------------------------------
+    def test_every_example_endpoint_is_in_the_example_entity_list(self):
+        names = {entity["name"] for entity in self.example["entity_list"]}
+        for triple in self.example["output"]:
+            with self.subTest(triple=triple):
+                self.assertIn(triple[0], names)
+                self.assertIn(triple[2], names)
+
+    # --- D. ví dụ không được dạy fact không có trong input -----------------
+    def test_example_does_not_define_bien_metric_term_without_a_definition(self):
+        """`dữ liệu sinh trắc học` được input NHẮC, không được input ĐỊNH NGHĨA.
+
+        Cụm này vẫn là LegalTerm hợp lệ trong entity_list, nhưng `defines` thì
+        phải có câu định nghĩa trong input. Khóa lại để lần sau không ai "sửa
+        cho schema-valid mà text-false".
+        """
+        for triple in self.example["output"]:
+            self.assertNotEqual(
+                (triple[1], triple[2]),
+                ("defines", "dữ liệu sinh trắc học"),
+                triple,
+            )
+
+    def test_example_has_no_triple_about_an_entity_absent_from_the_input(self):
+        """`chủ sở hữu tài khoản số` không nằm trong input ví dụ.
+
+        Không có trong text thì không được làm đầu mút, và cũng không nên nằm
+        trong entity_list vì NER không thể lấy nó từ đâu.
+        """
+        absent = "chủ sở hữu tài khoản số"
+        self.assertNotIn(absent, self.example["input"])
+        self.assertNotIn(
+            absent, {entity["name"] for entity in self.example["entity_list"]}
+        )
+        for triple in self.example["output"]:
+            self.assertNotIn(absent, (triple[0], triple[2]), triple)
+
+    def test_example_relations_are_the_ones_the_input_actually_states(self):
+        """Chốt cứng tập quan hệ của ví dụ hiện tại.
+
+        Mỗi nhãn dưới đây truy được về một câu trong input ví dụ. Test này vỡ
+        khi có người thêm quan hệ mới vào ví dụ — buộc phải đối chiếu input.
+        """
+        self.assertEqual(
+            sorted(triple[1] for triple in self.example["output"]),
+            sorted(
+                [
+                    "belongsTo",
+                    "prohibits",
+                    "imposes",
+                    "imposes",
+                    "forAct",
+                    "forAct",
+                    "basedOn",
+                    "enforcedBy",
+                    "implementsDoc",
+                ]
+            ),
+        )
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
