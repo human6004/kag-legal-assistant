@@ -6,7 +6,7 @@ Ba lỗi đầu từng làm 11 trên 23 văn bản không dựng được đồ 
 máy có bản KAG đã sửa. Chuyển vào đây thì KAG trở lại là thư viện pip bình
 thường, ai clone repo về cũng chạy được.
 
-Lỗi thứ tư (mới, giai đoạn 6): vị ngữ gốc do LLM trả bị mất.
+Lỗi thứ tư (giai đoạn 6, đã thay bằng B3): edge type sinh từ `to_camel_case`.
 
 `schema_free_extractor.py:358` gọi `to_camel_case(tri[1])` rồi dùng kết quả làm
 edge type. `to_camel_case` đi qua `processing_phrases`, hàm này thay MỌI ký tự
@@ -24,13 +24,30 @@ Hậu quả đã đo trên snapshot 17/09/2026: 554 loại quan hệ, 342 loại
 hiện một lần, và 51 loại là mảnh vụn <= 4 ký tự (``l``, ``ngh``, ``c``, ``k``)
 — không thể biết nghĩa gốc. Checkpoint cũ chỉ giữ tên ĐÃ biến đổi.
 
-Cách sửa: giữ nguyên `to_camel_case` cho edge type (đường đó đang chạy được,
-đổi đi là phá 554 loại hiện có), nhưng ghi THÊM vị ngữ gốc vào properties của
-cạnh: `original_predicate` và `predicate_mapping_version`. Writer đã ghi
-properties cấp cạnh, nên không cần đổi schema hay tầng ghi.
+Giai đoạn 6 chỉ ghi THÊM vị ngữ gốc vào properties cạnh và giữ edge type camel.
+B3 bỏ hẳn đường đó: `to_camel_case` KHÔNG còn quyết định nhãn quan hệ ngữ nghĩa.
+
+B3 — quan hệ canonical (xem `RELATION_CONTRACT` bên dưới)
+----------------------------------------------------------
+Triple của LLM đi đúng năm bước, tất cả tất định, không đoán:
+
+    làm sạch triple thô
+    -> bind hai đầu về entity/nhãn của NER
+    -> ánh xạ vị ngữ thô sang quan hệ canonical trong Legal.schema
+    -> kiểm tuple (nhãn nguồn, quan hệ, nhãn đích) theo contract
+    -> lấy id cuối của B2 rồi add_edge trực tiếp
+
+Vì vậy KHÔNG còn gọi `SchemaFreeExtractor.assemble_sub_graph_with_triples`: lớp
+cha sinh nhãn bằng `to_camel_case` và không kiểm chiều/nhãn hai đầu. `edge.label`
+bây giờ luôn là một trong 17 tên quan hệ của schema.
+
+Không map được, sai chiều, sai nhãn hoặc không định vị được đầu mút thì KHÔNG
+sinh cạnh nào — không `relatedTo`, không `UnknownRelation`, không tự đảo chiều.
+Nhưng cũng không im lặng bỏ: triple bị từ chối được ghi vào
+`relationEvidence` của chính node Chunk đang xử lý.
 
 Không gắn FULL/VERIFIED khi LLM trả triple: cạnh mới chỉ có
-`evidence_status=UNVERIFIED`, provenance thật do tầng gọi bổ sung.
+`evidenceStatus=UNVERIFIED`, provenance thật do tầng gọi bổ sung.
 
 Không chép lại thân hàm của lớp cha: cả bốn chỗ đều làm sạch dữ liệu trước hoặc
 sau khi gọi super(), nên bản KAG mới ra vẫn dùng được mà không phải so lại từng
@@ -39,12 +56,14 @@ dòng.
 
 import logging
 import re
+import unicodedata
 from typing import Dict, List
 
 from kag.interface import ExtractorABC
 from kag.builder.component.extractor.schema_free_extractor import SchemaFreeExtractor
 from kag.builder.model.sub_graph import SubGraph
 from kag.common.utils import generate_hash_id
+from knext.schema.client import CHUNK_TYPE, OTHER_TYPE
 
 from .canon_id import (
     CONTEXTUAL_CATEGORIES,
@@ -59,12 +78,151 @@ from .canon_id import (
 
 logger = logging.getLogger(__name__)
 
-# Phiên bản quy tắc ánh xạ vị ngữ -> edge type. Tăng khi đổi cách sinh type,
-# để dữ liệu cũ biết nó thuộc quy tắc nào.
-PREDICATE_MAPPING_VERSION = "camel_case_v1"
+# Phiên bản quy tắc ánh xạ vị ngữ thô -> quan hệ canonical. KHÔNG còn là
+# "camel_case_v1": nhãn quan hệ không sinh từ camel-case của vị ngữ nữa.
+RELATION_MAPPING_VERSION = "legal_relation_v1"
 
-# Quan hệ do hệ thống sinh, không phải LLM trả. Không gắn original_predicate.
+# Tên field cũ giữ nguyên để consumer đang đọc `predicateMappingVersion` không
+# vỡ; giá trị thì theo quy tắc mới. Cạnh mới mang CẢ HAI field, cùng giá trị.
+PREDICATE_MAPPING_VERSION = RELATION_MAPPING_VERSION
+
+# Contract quan hệ: CHÍNH XÁC các tuple đang khai báo trong kag/schema/Legal.schema.
+# 18 tuple, 17 tên quan hệ (`basedOn` xuất hiện ở hai nhãn nguồn).
+#
+# Đây là bảng explicit, không parse schema lúc chạy — nhưng
+# tests/builder/test_relation_b3.py khóa parity với Legal.schema để hai bên không
+# lệch âm thầm. Thêm/bớt quan hệ là đổi schema, không phải đổi riêng bảng này.
+RELATION_CONTRACT = frozenset({
+    ("LegalDocument", "supersedes", "LegalDocument"),
+    ("LegalDocument", "supersededBy", "LegalDocument"),
+    ("LegalDocument", "amends", "LegalDocument"),
+    ("LegalDocument", "implementsDoc", "LegalDocument"),
+    ("Article", "belongsTo", "LegalDocument"),
+    ("Article", "prohibits", "ProhibitedAct"),
+    ("Article", "imposes", "Sanction"),
+    ("Article", "obliges", "Obligation"),
+    ("Article", "defines", "LegalTerm"),
+    ("Article", "appliesTo", "RegulatedEntity"),
+    ("ProhibitedAct", "prohibitedBy", "Article"),
+    ("ProhibitedAct", "sanctionedBy", "Sanction"),
+    ("Sanction", "forAct", "ProhibitedAct"),
+    ("Sanction", "basedOn", "Article"),
+    ("Sanction", "enforcedBy", "Authority"),
+    ("Obligation", "boundEntity", "RegulatedEntity"),
+    ("Obligation", "basedOn", "Article"),
+    ("LegalTerm", "definedIn", "Article"),
+})
+
+# 17 tên. Chiều nào có mặt trong schema thì chiều đó hợp lệ — `prohibits` và
+# `prohibitedBy` đều là quan hệ thật. Nhưng KHÔNG suy một chiều từ chiều kia:
+# OpenIE không tự materialize inverse (xem `_map_relation`).
+CANONICAL_RELATIONS = frozenset(relation for _, relation, _ in RELATION_CONTRACT)
+
+# Vị ngữ tiếng Việt explicit -> quan hệ canonical. Bảng đóng: không fuzzy match,
+# không tự thêm từ đồng nghĩa. Prompt (prompt/triple.py) yêu cầu model dùng đúng
+# tên canonical; bảng alias là đường vào tất định cho output tiếng Việt.
+RELATION_ALIASES = {
+    "thay thế": "supersedes",
+    "bị thay thế bởi": "supersededBy",
+    "sửa đổi bổ sung": "amends",
+    "hướng dẫn thi hành": "implementsDoc",
+    "thuộc văn bản": "belongsTo",
+    "nghiêm cấm": "prohibits",
+    "quy định chế tài": "imposes",
+    "quy định nghĩa vụ": "obliges",
+    "định nghĩa": "defines",
+    "áp dụng cho": "appliesTo",
+    "bị cấm theo": "prohibitedBy",
+    "bị xử phạt theo": "sanctionedBy",
+    "áp dụng cho hành vi": "forAct",
+    "căn cứ pháp lý": "basedOn",
+    "thẩm quyền xử phạt": "enforcedBy",
+    "ràng buộc đối tượng": "boundEntity",
+    "định nghĩa tại": "definedIn",
+}
+
+# Trạng thái từ chối. Tập nhỏ, tất định, được test khóa. Không thêm trạng thái
+# mới chỉ để mô tả sắc thái — `reason` là chỗ ghi chi tiết.
+UNKNOWN_PREDICATE = "UNKNOWN_PREDICATE"
+INVALID_ENDPOINT_TYPES = "INVALID_ENDPOINT_TYPES"
+UNRESOLVED_ENDPOINT = "UNRESOLVED_ENDPOINT"
+AMBIGUOUS_BINDING = "AMBIGUOUS_BINDING"
+
+# Quan hệ do hệ thống sinh, không phải fact LLM. `source` do
+# `assemble_sub_graph_with_chunk` tạo, `OfficialName` do
+# `assemble_sub_graph_with_entities` tạo — cả hai KHÔNG đi qua mapper quan hệ
+# pháp lý. Nếu LLM trả đúng hai chữ này làm vị ngữ thì đó không phải cạnh hệ
+# thống hợp lệ: nó bị từ chối như mọi vị ngữ ngoài contract.
 _SYSTEM_PREDICATES = {"source", "OfficialName"}
+
+
+def _normalize_predicate(raw):
+    """Chuẩn hóa CHỈ để tra bảng. Không dùng để sinh nhãn, không fuzzy match."""
+    if not isinstance(raw, str):
+        return ""
+    text = unicodedata.normalize("NFC", raw).casefold()
+    return re.sub(r"\s+", " ", text).strip()
+
+
+# Tra cứu: tên canonical (mọi cách viết hoa/thường) + alias tiếng Việt. Giá trị
+# luôn là tên canonical ĐÚNG CASE của schema, nên "imposes"/"IMPOSES"/"Imposes"
+# đều ra "imposes" và "basedon" ra "basedOn" — không bị lowercase thành sai tên.
+_RELATION_LOOKUP = {
+    **{_normalize_predicate(name): name for name in CANONICAL_RELATIONS},
+    **{_normalize_predicate(alias): name for alias, name in RELATION_ALIASES.items()},
+}
+
+
+def _map_relation(raw):
+    """Vị ngữ thô -> tên quan hệ canonical, hoặc None nếu không map được.
+
+    Tất định và không đối xứng: `prohibits` KHÔNG sinh thêm `prohibitedBy`, và
+    một triple sai chiều KHÔNG được đảo lại thành chiều hợp schema. Ánh xạ tên
+    và kiểm tuple là hai bước tách biệt — cùng một alias (`"căn cứ pháp lý"` ->
+    `basedOn`) hợp lệ với `Sanction`/`Obligation` nhưng sai với `Authority`.
+    """
+    if not isinstance(raw, str) or raw.strip() in _SYSTEM_PREDICATES:
+        return None
+    return _RELATION_LOOKUP.get(_normalize_predicate(raw))
+
+
+def _bind_endpoint(raw, entity_labels):
+    """Đầu mút thô -> nhãn NER của nó. Trả `(label, (status, reason))`.
+
+    Chỉ nhận đầu mút khớp một thực thể NER: không có entity thì không có bằng
+    chứng nhãn, mà không biết nhãn thì không kiểm được tuple. Khóa khớp là
+    `canon_id()` — cùng khóa mà `_endpoint_ids` dùng, nên bind và tra id không
+    lệch nhau.
+    """
+    key = canon_id(raw) if isinstance(raw, str) else ""
+    if not key:
+        return None, (UNRESOLVED_ENDPOINT, "đầu mút rỗng sau chuẩn hóa")
+    labels = entity_labels.get(key)
+    if not labels:
+        return None, (UNRESOLVED_ENDPOINT, f"{raw!r} không khớp thực thể NER nào")
+    if len(labels) > 1:
+        return None, (
+            AMBIGUOUS_BINDING,
+            f"{raw!r} khớp nhiều nhãn: {sorted(labels)}",
+        )
+    return next(iter(labels)), None
+
+
+def _final_endpoint_id(label, raw, endpoint_ids):
+    """Id THẬT trên cạnh, phải trùng id mà node mang.
+
+    Nhãn resolver quản lý thì lấy đúng id cuối của B2; nhãn khác (LegalDocument,
+    …) dùng `canon_id()` — cùng phép mà `add_node` của vendor đã đi qua sau khi
+    `builder/__init__.py` gắn đè. Không được dựng một bộ danh tính thứ hai ở đây.
+    """
+    key = canon_id(raw)
+    if label not in _MANAGED or endpoint_ids is None:
+        # `endpoint_ids is None` chỉ xảy ra khi gọi trực tiếp ngoài pipeline
+        # (unit test). Đường pipeline luôn truyền bản đồ B2.
+        return key
+    return endpoint_ids.get((label, key))
+
+
 _ARTICLE_NO = re.compile(r"^Điều\s+(\d{1,3})\b", re.IGNORECASE)
 
 # Nhãn mà resolver cấp id. Vendor KHÔNG được dựng node cho các nhãn này: nó dùng
@@ -299,26 +457,71 @@ class LegalSchemaFreeExtractor(SchemaFreeExtractor):
             sub_graph.add_node(source_id, heading, "Article", {
                 "articleNumber": str(chunk.kwargs["article_no"]),
             })
-        self.assemble_sub_graph_with_triples(sub_graph, entities, triples, endpoint_ids, chunk.id)
+        source_path = chunk.kwargs.get("source_path", "")
+        # Provenance của CHUNK đang xử lý, không phải của đầu mút quan hệ.
+        # `sourceArticleId` chỉ điền khi Điều nguồn của chunk đã phân giải tất
+        # định; không suy Article từ endpoint của cạnh. `sourceDocumentId` suy từ
+        # `source_path` (portable, B1.2), không lấy LegalDocument làm tân ngữ.
+        provenance = {
+            "sourceChunkId": chunk.id,
+            "sourcePath": source_path,
+            "sourceDocumentId": source_document_id(source_path),
+            "sourceArticleId": source_id or "",
+        }
+        evidence = []
+        self.assemble_sub_graph_with_triples(
+            sub_graph, entities, triples, endpoint_ids, chunk.id,
+            provenance=provenance, evidence=evidence,
+        )
         self.assemble_sub_graph_with_chunk(sub_graph, chunk)
+        if evidence:
+            # Chunk node tự nó LÀ source occurrence của bằng chứng này, nên
+            # không cần artifact ngoài và không lưu path tuyệt đối. Gắn sau khi
+            # chunk node đã tồn tại: `add_node` ưu tiên properties đã có, ghi
+            # trước sẽ bị chính nó bỏ qua.
+            node = sub_graph.get_node_by_id(chunk.id, CHUNK_TYPE)
+            if node is not None:
+                node.properties["relationEvidence"] = evidence
+            else:  # pragma: no cover - vendor luôn tạo node chunk
+                logger.warning("không thấy node Chunk %s để ghi relationEvidence", chunk.id)
         return sub_graph
 
     @staticmethod
     def assemble_sub_graph_with_triples(
         sub_graph: SubGraph, entities: List[Dict], triples: List[list],
-        endpoint_ids=None, chunk_id=None,
+        endpoint_ids=None, chunk_id=None, provenance=None, evidence=None,
     ):
-        """Lọc triple trước khi lớp cha dựng cạnh.
+        """Dựng cạnh ngữ nghĩa theo hợp đồng quan hệ, KHÔNG qua lớp cha.
 
-        Hai lỗi khác nhau gộp vào một chỗ vì cùng sửa được ở đầu vào:
+        Vì sao không gọi ``SchemaFreeExtractor.assemble_sub_graph_with_triples``
+        nữa: lớp cha đặt ``edge_type = to_camel_case(tri[1])``, nghĩa là vị ngữ
+        thô QUYẾT ĐỊNH nhãn quan hệ. Phép đó không khả nghịch (``cấm`` và ``căm``
+        cùng ra ``cM``) và sinh nhãn ngoài schema (``quyNhNghAV``). Vá nhãn sau
+        khi lớp cha đã tạo cạnh cũng không cứu được: vị ngữ không map được vẫn
+        đã thành một cạnh rồi, mà hợp đồng B3 yêu cầu KHÔNG có cạnh nào cả.
+
+        Đường tất định, đúng thứ tự:
+
+        1. làm sạch triple thô (giữ hai bản sửa cũ, xem dưới);
+        2. bind hai đầu mút -> nhãn NER;
+        3. map vị ngữ thô -> tên quan hệ canonical (bảng tường minh);
+        4. kiểm tuple ``(sourceType, relation, targetType)`` trong hợp đồng;
+        5. phân giải id cuối theo bản đồ B2;
+        6. thêm cạnh canonical trực tiếp.
+
+        Trượt bất kỳ bước nào: KHÔNG sinh cạnh, không loại quan hệ tự do, không
+        ``relatedTo``, không tự đảo chiều. Triple bị loại ghi vào ``evidence``
+        (kết thúc ở property ``relationEvidence`` của Chunk) — loại có bằng
+        chứng, không phải drop im lặng.
+
+        Hai bản sửa cũ vẫn giữ vì vẫn là lỗi đầu vào:
 
         1. ``_invoke`` của KAG 0.8.0 viết
            ``triples = (self.triples_extraction(...),)`` — dấu phẩy thừa biến
-           danh sách triple thành tuple một phần tử, lớp cha lặp đúng một vòng
-           rồi bỏ sạch quan hệ. Đường ``_ainvoke`` viết đúng nên không dính.
-           Đây là lý do đồ thị từng chỉ có 38 quan hệ thay vì hơn 10.000.
+           danh sách triple thành tuple một phần tử, chỉ lặp đúng một vòng rồi
+           bỏ sạch quan hệ. Đường ``_ainvoke`` viết đúng nên không dính.
         2. Triple do LLM sinh có thể là ``None`` hoặc phần tử không phải bộ ba
-           chuỗi, lớp cha gọi ``processing_phrases`` lên đó là nổ.
+           chuỗi.
         """
         if isinstance(triples, tuple) and len(triples) == 1:
             triples = triples[0]
@@ -329,178 +532,93 @@ class LegalSchemaFreeExtractor(SchemaFreeExtractor):
             and len(tri) == 3
             and all(isinstance(x, str) for x in tri)
         ]
-        before = len(sub_graph.edges)
-        # Lớp cha SỬA TẠI CHỖ `tri[0] = processing_phrases(tri[0])`
-        # (schema_free_extractor.py:344), nên sau lời gọi đó vị ngữ gốc vẫn còn
-        # nhưng ĐẦU MÚT đã mất dấu tiếng Việt. Phải chụp lại bản gốc TRƯỚC khi
-        # gọi, nếu không thì không còn gì để đối chiếu hai đầu cạnh.
-        snapshot = [list(tri) for tri in cleaned]
-        result = SchemaFreeExtractor.assemble_sub_graph_with_triples(
-            sub_graph, entities, cleaned
-        )
-        _attach_original_predicates(sub_graph, before, snapshot, entities)
-        if endpoint_ids is not None:
-            # Đầu mút phải mang ĐÚNG id mà node mang. Đầu mút không có trong bản
-            # đồ là tên chỉ xuất hiện trong triple chứ không qua NER: không có
-            # entity để lấy bằng chứng, nên unresolved.
-            for edge in sub_graph.edges[before:]:
-                for side in ("from", "to"):
-                    label = getattr(edge, f"{side}_type").split(".")[-1]
-                    if label not in _MANAGED:
-                        continue
-                    key = getattr(edge, f"{side}_id")
-                    node_id = endpoint_ids.get((label, key))
-                    if node_id is None:
-                        node_id = (
-                            _unresolved_article(chunk_id, key)
-                            if label == "Article"
-                            else unresolved_identity(label, chunk_id, key)
-                        )
-                        sub_graph.add_node(node_id, key, label)
-                    setattr(edge, f"{side}_id", node_id)
-        return result
-
-
-def _attach_original_predicates(sub_graph, first_new_edge, cleaned_triples,
-                                entities=None):
-    """Ghi vị ngữ gốc của LLM vào properties cạnh.
-
-    Vì sao phải làm ở đây: lớp cha gọi ``to_camel_case(tri[1])`` rồi vứt
-    ``tri[1]`` đi. Sau lời gọi đó không còn chỗ nào lấy lại được vị ngữ gốc, mà
-    phép biến đổi thì không khả nghịch (``cấm`` và ``căm`` cùng ra ``cM``).
-
-    CÁCH KHỚP — đây là chỗ từng sai. Lớp cha bỏ một số triple (subject rỗng
-    chẳng hạn), nên **không được zip theo vị trí**: chỉ cần mất một hàng ở đầu
-    là mọi cạnh sau đó nhận vị ngữ của triple khác. Cũng **không được chọn ứng
-    viên khớp đầu tiên** theo thứ tự, vì triple bị bỏ vẫn nằm trong danh sách
-    ứng viên (nó chỉ không sinh cạnh) và sẽ cướp mất cạnh của triple thật.
-
-    Bằng chứng dùng để khớp là **hai đầu cạnh thật**:
-
-        cạnh.label        == to_camel_case(tri[1])
-        cạnh.from_id      == processing_phrases(tri[0])
-        cạnh.to_id        == processing_phrases(tri[2])
-
-    Đầu nào không suy ra được id (triple có subject/object rỗng) thì KHÔNG
-    tính là khớp: bỏ ứng viên đó. Đây là điểm mấu chốt — triple `['', 'cấm',
-    'B']` có head rỗng nên id của nó không thể là `a`, vì vậy nó không được
-    phép nhận cạnh `a -> b`. Chỉ nhận khi **mọi** đầu suy ra được đều trùng.
-
-    Ứng viên được tiêu thụ theo thứ tự để hai triple giống nhau không dùng
-    chung một cạnh. Cạnh không chứng minh được tương ứng thì **để trống** vị
-    ngữ gốc và ghi ``originalPredicateStatus = UNRESOLVED`` — không đoán bừa,
-    không lấy đại ứng viên còn lại.
-
-    Vị ngữ gốc KHÔNG BAO GIỜ thay ``edge.label``. Edge type giữ nguyên.
-    """
-    from kag.common.utils import to_camel_case
-
-    new_edges = sub_graph.edges[first_new_edge:]
-    if not new_edges:
-        return
-
-    def _phrase(text):
-        """Cùng phép biến đổi lớp cha dùng để sinh id nút."""
-        from kag.common.utils import processing_phrases
-
-        return processing_phrases(text) if isinstance(text, str) and text else None
-
-    def _category_and_name(entity_name):
-        """Bản sao của `get_category_and_name` trong lớp cha.
-
-        Phải sao lại ĐÚNG logic này, vì id đầu cạnh không phải lúc nào cũng là
-        `processing_phrases(tri[i])`:
-          - nếu khớp một entity -> id là TÊN GỐC của entity (`s_name`);
-          - nếu không khớp -> id là `processing_phrases(tri[0])`.
-        Hai cách này cho hai id khác nhau, nên dùng sai là không chứng minh được.
-        """
-        from kag.common.utils import processing_phrases
-
-        for ent in entities or []:
-            if not isinstance(ent, dict) or not ent.get("name"):
+        # Nhãn đầu mút LẤY TỪ NER, không suy từ tên. Không có entity thì không
+        # có bằng chứng nhãn -> không kiểm được tuple -> loại.
+        entity_labels = {}
+        for entity in entities or []:
+            if not isinstance(entity, dict) or not entity.get("name"):
                 continue
-            if processing_phrases(ent["name"]) == processing_phrases(entity_name):
-                return ent["name"]
-        return None
+            key = canon_id(entity["name"])
+            if key:
+                entity_labels.setdefault(key, set()).add(
+                    entity.get("category") or OTHER_TYPE
+                )
 
-    def _final_id(raw_name):
-        """Id THẬT SỰ xuất hiện trên cạnh, sau mọi tầng biến đổi.
+        meta = provenance or {}
+        sink = evidence if evidence is not None else []
+        for raw_s, raw_p, raw_o in cleaned:
+            relation = _map_relation(raw_p)
+            s_label, s_err = _bind_endpoint(raw_s, entity_labels)
+            o_label, o_err = _bind_endpoint(raw_o, entity_labels)
 
-        Quan trọng: `SubGraph.add_edge` bị `kag/builder/__init__.py` gắn đè để
-        chạy `canon_id()` lên mọi id (trừ nhãn trong KEEP_ID). Nghĩa là id trên
-        cạnh KHÔNG phải `s_name` thô mà là dạng đã chuẩn hoá, ví dụ
-        'Điều 34 Nghị định 330/2026/NĐ-CP' -> 'điều 34 nghị định 330 2026 nđ cp'.
-        Không áp đúng phép chuẩn hoá này thì không bao giờ khớp được hai đầu.
-        """
-        try:
-            from builder.canon_id import canon_id, KEEP_ID
-        except ImportError:
-            return raw_name
-        return raw_name if raw_name is None else canon_id(raw_name)
+            def reject(status, reason):
+                entry = {
+                    "rawSubject": raw_s,
+                    "rawPredicate": raw_p,
+                    "rawObject": raw_o,
+                    "status": status,
+                    "reason": reason,
+                }
+                # "nếu biết" theo đúng nghĩa: không bịa nhãn, không bịa quan hệ.
+                if s_label:
+                    entry["sourceType"] = s_label
+                if o_label:
+                    entry["targetType"] = o_label
+                if relation:
+                    entry["candidateRelation"] = relation
+                sink.append(entry)
 
-    # Ứng viên: mọi triple sinh được cạnh, kèm hai đầu ĐÃ biến đổi.
-    candidates = []
-    for tri in cleaned_triples:
-        edge_type = to_camel_case(tri[1])
-        if not edge_type:
-            # Lớp cha bỏ triple có vị ngữ rỗng -> không sinh cạnh, không ứng viên.
-            continue
-        s_name = _category_and_name(tri[0]) or _phrase(tri[0])
-        o_name = _category_and_name(tri[2]) or _phrase(tri[2])
-        candidates.append({
-            "edge_type": edge_type,
-            "raw": tri[1],
-            "head": _final_id(s_name),
-            "tail": _final_id(o_name),
-        })
-
-    used = set()
-    unresolved = 0
-    for edge in new_edges:
-        pick = None
-        for i, c in enumerate(candidates):
-            if i in used or c["edge_type"] != edge.label:
+            if relation is None:
+                # Gồm cả trường hợp vị ngữ thô là "source"/"OfficialName": quan
+                # hệ hệ thống do KAG sinh, LLM nói ra thì KHÔNG phải quan hệ hợp lệ.
+                reject(UNKNOWN_PREDICATE, f"{raw_p!r} không có trong bảng map tất định")
                 continue
-            # Cả hai đầu phải CHỨNG MINH được. Đầu rỗng ở triple nghĩa là
-            # triple đó không thể sinh cạnh có id tương ứng -> loại.
-            if not c["head"] or not c["tail"]:
+            if s_err or o_err:
+                status, reason = s_err or o_err
+                reject(status, reason)
                 continue
-            if c["head"] != edge.from_id or c["tail"] != edge.to_id:
+            if (s_label, relation, o_label) not in RELATION_CONTRACT:
+                reason = (
+                    f"({s_label}, {relation}, {o_label}) không có trong hợp đồng"
+                )
+                if (o_label, relation, s_label) in RELATION_CONTRACT:
+                    # Chiều ngược hợp lệ trong schema NHƯNG không tự đảo: chiều
+                    # là một phần của fact, đảo hộ là bịa fact.
+                    reason += "; chiều ngược tồn tại trong schema, không tự đảo"
+                reject(INVALID_ENDPOINT_TYPES, reason)
                 continue
-            pick = i
-            break
 
-        props = dict(edge.properties or {})
-        if pick is None:
-            unresolved += 1
-            # Không chứng minh được tương ứng -> KHÔNG gán vị ngữ nào cả.
-            props.setdefault("originalPredicateStatus", "UNRESOLVED")
-            props.setdefault("predicateMappingVersion", PREDICATE_MAPPING_VERSION)
-            props.setdefault("evidenceStatus", "UNVERIFIED")
-            edge.properties = props
-            continue
+            from_id = _final_endpoint_id(s_label, raw_s, endpoint_ids)
+            to_id = _final_endpoint_id(o_label, raw_o, endpoint_ids)
+            if not from_id or not to_id:
+                missing = raw_s if not from_id else raw_o
+                reject(
+                    UNRESOLVED_ENDPOINT,
+                    f"{missing!r} không có id cuối trong bản đồ danh tính B2",
+                )
+                continue
 
-        used.add(pick)
-        if edge.label in _SYSTEM_PREDICATES:
-            # Cạnh do hệ thống sinh, không phải fact của LLM.
-            props.setdefault("originalPredicateStatus", "NOT_APPLICABLE")
-            props.setdefault("predicateMappingVersion", PREDICATE_MAPPING_VERSION)
-            props.setdefault("evidenceStatus", "UNVERIFIED")
-            edge.properties = props
-            continue
-        # Không ghi đè nếu tầng trên đã đặt: tầng trên biết nhiều hơn.
-        props.setdefault("originalPredicate", candidates[pick]["raw"])
-        props.setdefault("originalPredicateStatus", "RESOLVED")
-        props.setdefault("predicateMappingVersion", PREDICATE_MAPPING_VERSION)
-        # Cạnh mới CHƯA được xác minh. Không gắn FULL/VERIFIED ở đây.
-        props.setdefault("evidenceStatus", "UNVERIFIED")
-        edge.properties = props
+            properties = {
+                # Vị ngữ GỐC của triple đang xử lý, không suy ngược từ nhãn cạnh.
+                "originalPredicate": raw_p,
+                "originalPredicateStatus": "RESOLVED",
+                "relationMappingVersion": RELATION_MAPPING_VERSION,
+                "predicateMappingVersion": PREDICATE_MAPPING_VERSION,
+                # Cạnh mới CHƯA xác minh. Không bao giờ VERIFIED/FULL/human_verified.
+                "evidenceStatus": "UNVERIFIED",
+            }
+            for field in ("sourceChunkId", "sourcePath", "sourceDocumentId"):
+                if meta.get(field):
+                    properties[field] = meta[field]
+            # Chỉ điền khi Điều nguồn của CHUNK đã phân giải tất định. Không đoán
+            # Article từ đầu mút cạnh.
+            if meta.get("sourceArticleId"):
+                properties["sourceArticleId"] = meta["sourceArticleId"]
+            sub_graph.add_edge(from_id, s_label, relation, to_id, o_label, properties)
 
-    if unresolved:
-        logger.warning(
-            "không chứng minh được vị ngữ gốc cho %d/%d cạnh mới; "
-            "để trống originalPredicate thay vì gán theo thứ tự",
-            unresolved,
-            len(new_edges),
-        )
-
+        if sink:
+            logger.debug(
+                "chunk %s: loại %d/%d triple, có bằng chứng trong relationEvidence",
+                chunk_id, len(sink), len(cleaned),
+            )
+        return sub_graph

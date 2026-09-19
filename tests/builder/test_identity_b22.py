@@ -216,7 +216,7 @@ class ATestSanctionOccurrence(unittest.TestCase):
             self.assertEqual(len(ids), 1, ids)
             self.assertTrue(ids[0].startswith(f"sanction:330-2026-ND-CP:{article_no}:"))
             sanctions[article_no] = ids[0]
-            based = next(e for e in graph.edges if e.label == "basedon")
+            based = next(e for e in graph.edges if e.label == "basedOn")
             pairs.add((based.from_id, based.to_id))
         self.assertEqual(len(set(sanctions.values())), 3, sanctions)
         # 0 cặp chéo: mỗi chế tài chỉ nối về đúng Điều của nó.
@@ -238,7 +238,7 @@ class ATestSanctionOccurrence(unittest.TestCase):
             [[FINE, "forAct", a] for a in acts],
         )
         self.assertEqual(len(set(ids_of(graph, "Sanction"))), 1)
-        self.assertEqual(len([e for e in graph.edges if e.label == "foract"]), 2)
+        self.assertEqual(len([e for e in graph.edges if e.label == "forAct"]), 2)
 
     def test_money_amount_never_normalized_away(self):
         self.assertIn("10.000.000", normalize_source_phrase(f"2. {FINE}"))
@@ -433,7 +433,7 @@ class GTestNodeEndpointConsistency(unittest.TestCase):
                 self.assertIn(edge.to_id, node_ids, edge.label)
             sanction_id = ids_of(graph, "Sanction")[0]
             imposes = next(e for e in graph.edges if e.label == "imposes")
-            for_act = next(e for e in graph.edges if e.label == "foract")
+            for_act = next(e for e in graph.edges if e.label == "forAct")
             self.assertEqual(imposes.to_id, sanction_id)
             self.assertEqual(for_act.from_id, sanction_id)
             self.assertEqual(imposes.from_id, f"article:330-2026-ND-CP:{article_no}")
@@ -450,16 +450,30 @@ class GTestNodeEndpointConsistency(unittest.TestCase):
         self.assertTrue(edge.to_id.startswith("obligation-unresolved:"), edge.to_id)
         self.assertIn(edge.to_id, ids_of(graph, "Obligation"))
 
-    def test_endpoint_not_listed_as_entity_still_resolves_to_one_node(self):
+    def test_endpoint_not_listed_as_entity_is_rejected_not_invented(self):
+        """B3 đổi hành vi ở đây, có chủ ý.
+
+        Trước B3: đầu mút không có trong entity_list vẫn sinh cạnh, nhãn đầu mút
+        đoán bằng ``OTHER_TYPE`` và id dựng tại chỗ. B3 §5 coi đó là thiếu bằng
+        chứng nhãn -> KHÔNG sinh cạnh, ghi bằng chứng loại.
+
+        Ý nghĩa regression giữ nguyên: không được dựng bộ danh tính thứ hai, và
+        không có đầu mút nào trỏ ra ngoài tập node.
+        """
         chunk = chunk_with("330-2026-ND-CP", 9, FINE)
         graph = graph_for(
             chunk,
             [{"name": FINE, "category": "Sanction"}],
             [[FINE, "basedOn", "Điều 9"]],
         )
-        edge = next(e for e in graph.edges if e.label == "basedon")
-        self.assertEqual(edge.from_id, ids_of(graph, "Sanction")[0])
-        self.assertIn(edge.to_id, {node.id for node in graph.nodes})
+        self.assertEqual([e for e in graph.edges if e.label == "basedOn"], [])
+        node_ids = {node.id for node in graph.nodes}
+        for edge in graph.edges:
+            self.assertIn(edge.from_id, node_ids, edge.label)
+            self.assertIn(edge.to_id, node_ids, edge.label)
+        evidence = next(n for n in graph.nodes if n.label == "Chunk").properties["relationEvidence"]
+        self.assertEqual([e["rawObject"] for e in evidence], ["Điều 9"])
+        self.assertEqual(evidence[0]["status"], "UNRESOLVED_ENDPOINT")
 
 
 class HTestOfficialNameNoCompetingIdentity(unittest.TestCase):
@@ -707,7 +721,7 @@ class MTestSameSourceUnitAmbiguity(unittest.TestCase):
         node_ids = {node.id for node in graph.nodes}
         endpoints = set()
         for edge in graph.edges:
-            if edge.label != "appliesto":
+            if edge.label != "appliesTo":
                 continue
             self.assertIn(edge.from_id, node_ids)
             self.assertIn(edge.to_id, node_ids)

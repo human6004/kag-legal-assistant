@@ -155,14 +155,14 @@ class B21IdentityTests(unittest.TestCase):
         )
         canonical = "article:142-2026-ND-CP:13"
         self.assertIn(canonical, [n.id for n in graph.nodes])
-        edge = next(e for e in graph.edges if e.label == "basedon")
+        edge = next(e for e in graph.edges if e.label == "basedOn")
         self.assertTrue(edge.to_id.startswith("article-unresolved:"), edge.to_id)
         self.assertNotEqual(edge.to_id, canonical)
         self.assertIn(edge.to_id, [n.id for n in graph.nodes])
         self.assertEqual(edge.to_id, next(e for e in graph_for(
             chunk, [{"name": "Điều 13", "category": "Article"}, {"name": "X", "category": "Sanction"}],
             [["X", "basedOn", "Điều 13"]],
-        ).edges if e.label == "basedon").to_id)
+        ).edges if e.label == "basedOn").to_id)
         other = fixture_chunk("24-2018-QH14", 13, chunk.content)
         other_graph = graph_for(other, [{"name": "Điều 13", "category": "Article"}])
         self.assertNotIn(edge.to_id, [n.id for n in other_graph.nodes])
@@ -177,7 +177,7 @@ class B21IdentityTests(unittest.TestCase):
         graph = graph_for(chunk, [{"name": name, "category": "Article"},
                                   {"name": "X", "category": "Sanction"}],
                           [["X", "basedOn", name]])
-        edge = next(e for e in graph.edges if e.label == "basedon")
+        edge = next(e for e in graph.edges if e.label == "basedOn")
         self.assertTrue(edge.to_id.startswith("article-unresolved:"))
         self.assertNotEqual(edge.to_id, "article:142-2026-ND-CP:13")
         self.assertIn("article:142-2026-ND-CP:13", [n.id for n in graph.nodes])
@@ -191,7 +191,7 @@ class B21IdentityTests(unittest.TestCase):
         graph = graph_for(chunk, [{"name": "Điều 13", "category": "Article"},
                                   {"name": "X", "category": "Sanction"}],
                           [["X", "basedOn", "Điều 13"]])
-        edge = next(e for e in graph.edges if e.label == "basedon")
+        edge = next(e for e in graph.edges if e.label == "basedOn")
         self.assertTrue(edge.to_id.startswith("article-unresolved:"))
 
     def test_ner_keeps_same_name_with_different_labels(self):
