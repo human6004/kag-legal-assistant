@@ -47,6 +47,7 @@ from kag.builder.model.sub_graph import SubGraph
 from kag.common.utils import generate_hash_id
 
 from .canon_id import (
+    CONTEXTUAL_CATEGORIES,
     SEMANTIC_CATEGORIES,
     article_identity,
     canon_id,
@@ -121,6 +122,50 @@ def _article_ids(chunk, entities):
     return source_id, heading, ids
 
 
+def _same_unit_ambiguity(resolved, chunk_id, ids):
+    """Nhiều tên khác nhau cùng rơi vào một occurrence nguồn -> cả nhóm mơ hồ.
+
+    `semantic_identity()` chỉ trả lời "tên này định vị vào đơn vị nguồn nào"; nó
+    không biết trong cùng lượt trích xuất còn tên nào khác cũng trỏ đúng đơn vị
+    đó. Vì vậy phải quyết ở đây, SAU khi từng thực thể đã phân giải riêng.
+
+    Khi hai tên chuẩn hóa KHÁC nhau cùng ra một id canonical, tầng danh tính
+    không có bằng chứng nào phân biệt được hai khả năng:
+
+        (1) hai cách gọi của cùng một occurrence — alias;
+        (2) hai occurrence/nhóm con khác nhau trên cùng dòng nguồn.
+
+    Không có alias tất định thì không được chọn (1) rồi gộp. `official_name` của
+    LLM KHÔNG phải bằng chứng; thứ tự xuất hiện cũng không. Hạ cả nhóm về
+    unresolved theo contract sẵn có: mỗi tên một id riêng, không `_1`/`_2`.
+
+    Bất biến câu chữ NER không vỡ: phân giải RIÊNG từng tên vẫn cho cùng id
+    canonical. Chỉ khi hai tên cùng có mặt một lượt mới thành mơ hồ cardinality.
+
+    Authority nằm ngoài rule này (§4): danh tính của nó là tổ chức toàn cục, hai
+    tên khác nhau về cùng một tổ chức là hợp nhất đúng, không phải mơ hồ.
+    """
+    groups = {}
+    for key, target in resolved.items():
+        groups.setdefault((key[0], target), []).append(key)
+    downgraded = {}
+    for (category, target), keys in groups.items():
+        if len(keys) < 2:
+            continue
+        for key in keys:
+            ids[key] = unresolved_identity(category, chunk_id, key[1])
+            downgraded[key] = (
+                f"{len(keys)} tên khác nhau cùng trỏ một đơn vị nguồn "
+                f"({target}), không có bằng chứng alias tất định"
+            )
+    if downgraded:
+        logger.warning(
+            "hạ %d thực thể về unresolved vì trùng đơn vị nguồn ở chunk %s",
+            len(downgraded), chunk_id,
+        )
+    return downgraded
+
+
 def _endpoint_ids(chunk, entities):
     """MỘT bản đồ danh tính cho node và cho cả hai đầu mút cạnh.
 
@@ -146,7 +191,7 @@ def _endpoint_ids(chunk, entities):
         "clause_no": meta.get("clause_no"),
         "point_no": meta.get("point_no"),
     }
-    reasons = {}
+    reasons, resolved = {}, {}
     for entity in entities:
         category = entity.get("category")
         if category not in SEMANTIC_CATEGORIES:
@@ -158,8 +203,12 @@ def _endpoint_ids(chunk, entities):
         # Hai tên chuẩn hóa như nhau mà suy ra hai đích khác nhau: giữ mơ hồ.
         if key in ids and ids[key] != target:
             target = unresolved_identity(category, chunk.id, key[1])
+        elif identity.id and category in CONTEXTUAL_CATEGORIES:
+            resolved[key] = identity.id
         ids[key] = target
         reasons[key] = identity.reason
+    for key, reason in _same_unit_ambiguity(resolved, chunk.id, ids).items():
+        reasons[key] = reason
     if reasons:
         logger.debug("danh tính B2.2 của chunk %s: %s", chunk.id, reasons)
     return source_id, heading, ids

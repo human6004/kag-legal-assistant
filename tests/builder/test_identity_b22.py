@@ -56,6 +56,11 @@ OBLIGATION_SHARED = (
     "sau đây"
 )
 
+# Ca thật cho mơ hồ trùng đơn vị nguồn: hai cụm này nằm trong CÙNG một dòng
+# nguồn của Điều 2 Luật 134/2025 (Đối tượng áp dụng).
+ENTITY_VN = "cơ quan, tổ chức, cá nhân Việt Nam"
+ENTITY_FOREIGN = "tổ chức, cá nhân nước ngoài tham gia vào hoạt động trí tuệ nhân tạo"
+
 
 def source_path_of(doc_id):
     """Đường dẫn portable như Reader cấp, KHÔNG phải path tuyệt đối."""
@@ -91,6 +96,43 @@ def legacy_canon_id():
     module.__file__ = str(ROOT / "kag" / "builder" / "canon_id.py")
     exec(compile(show.stdout, f"{LEGACY_COMMIT}:canon_id.py", "exec"), module.__dict__)
     return module
+
+
+# Bản đã push lên master, trước khi sửa mơ hồ trùng đơn vị nguồn.
+MERGE_COMMIT = "b58e9c0"
+
+
+@lru_cache(maxsize=None)
+def legacy_extractor():
+    """`extractor.py` tại `b58e9c0`, nạp trong bộ nhớ, không ghi file nào.
+
+    `canon_id.py` KHÔNG đổi ở lượt này (test dưới đây kiểm lại), nên extractor cũ
+    + canon_id hiện tại đúng bằng hành vi của `b58e9c0`. Import tương đối
+    `.canon_id` giải theo `__package__ = "builder"` nên trỏ về module thật.
+    """
+    show = subprocess.run(
+        ["git", "show", f"{MERGE_COMMIT}:kag/builder/extractor.py"],
+        cwd=str(ROOT), capture_output=True, text=True, encoding="utf-8",
+    )
+    if show.returncode != 0:
+        raise unittest.SkipTest(f"không đọc được {MERGE_COMMIT}: {show.stderr.strip()}")
+    module = ModuleType("builder.extractor_legacy")
+    module.__file__ = str(ROOT / "kag" / "builder" / "extractor.py")
+    module.__package__ = "builder"
+    exec(compile(show.stdout, f"{MERGE_COMMIT}:extractor.py", "exec"), module.__dict__)
+    return module
+
+
+class ZTestNegativeControlIsValid(unittest.TestCase):
+    """canon_id.py không đổi ở lượt này -> đối chứng `b58e9c0` là thật."""
+
+    def test_canon_id_is_untouched_since_the_merge_commit(self):
+        diff = subprocess.run(
+            ["git", "diff", MERGE_COMMIT, "--", "kag/builder/canon_id.py"],
+            cwd=str(ROOT), capture_output=True, text=True, encoding="utf-8",
+        )
+        self.assertEqual(diff.returncode, 0, diff.stderr)
+        self.assertEqual(diff.stdout.strip(), "", diff.stdout[:400])
 
 _LABELS = (
     "Article", "LegalDocument", "Authority", "Sanction", "Obligation",
@@ -597,6 +639,142 @@ class LTestNerWordingInvariance(unittest.TestCase):
         ]
         self.assertNotIn(None, ids, ids)
         self.assertNotEqual(ids[0], ids[1])
+
+
+class MTestSameSourceUnitAmbiguity(unittest.TestCase):
+    """M — nhiều tên khác nhau cùng trỏ một đơn vị nguồn -> cả nhóm unresolved.
+
+    Ca thật: Điều 2 Luật 134/2025 (Đối tượng áp dụng) có MỘT dòng nguồn chứa cả
+    "cơ quan, tổ chức, cá nhân Việt Nam" và "tổ chức, cá nhân nước ngoài tham
+    gia vào hoạt động trí tuệ nhân tạo". Tầng danh tính không có bằng chứng nói
+    hai tên này là alias của nhau, cũng không có bằng chứng nói chúng là hai
+    nhóm con khác nhau. Đối chứng: `b58e9c` gộp cả hai vào một id canonical.
+    """
+
+    def entities(self):
+        return [{"name": name, "category": "RegulatedEntity"}
+                for name in (ENTITY_VN, ENTITY_FOREIGN)]
+
+    def test_each_name_alone_still_resolves_to_the_same_unit(self):
+        """Tiền đề của ca mơ hồ: gọi riêng thì cả hai đều ra CÙNG id canonical."""
+        source = source_path_of("134-2025-QH15")
+        ids = [semantic_identity("RegulatedEntity", name, source_path=source,
+                                 article_no=2)
+               for name in (ENTITY_VN, ENTITY_FOREIGN)]
+        self.assertTrue(all(i.id for i in ids), ids)
+        self.assertEqual(ids[0].id, ids[1].id)
+        self.assertTrue(ids[0].id.startswith("regulatedentity:134-2025-QH15:2:"))
+        self.assertNotEqual(canon_id(ENTITY_VN), canon_id(ENTITY_FOREIGN))
+
+    def test_two_names_one_unit_are_downgraded_to_unresolved(self):
+        chunk = article_chunks("134-2025-QH15", 2)[0]
+        graph = graph_for(chunk, self.entities())
+        ids = ids_of(graph, "RegulatedEntity")
+        self.assertEqual(len(ids), 2, ids)
+        self.assertTrue(all(i.startswith("regulatedentity-unresolved:") for i in ids), ids)
+        # Hai id unresolved KHÁC nhau vì tên thô khác nhau. Không `_1`/`_2`.
+        self.assertEqual(len(set(ids)), 2, ids)
+        self.assertEqual(
+            set(ids),
+            {unresolved_identity("RegulatedEntity", chunk.id, canon_id(name))
+             for name in (ENTITY_VN, ENTITY_FOREIGN)})
+
+    def test_canonical_id_disappears_entirely_after_downgrade(self):
+        chunk = article_chunks("134-2025-QH15", 2)[0]
+        merged = semantic_identity("RegulatedEntity", ENTITY_VN,
+                                   source_path=source_path_of("134-2025-QH15"),
+                                   article_no=2).id
+        graph = graph_for(chunk, self.entities())
+        self.assertNotIn(merged, {node.id for node in graph.nodes})
+
+    def test_one_entity_alone_keeps_its_canonical_id(self):
+        """Không có tên thứ hai cạnh tranh thì không hạ cấp gì."""
+        chunk = article_chunks("134-2025-QH15", 2)[0]
+        graph = graph_for(chunk, [{"name": ENTITY_VN, "category": "RegulatedEntity"}])
+        ids = ids_of(graph, "RegulatedEntity")
+        self.assertEqual(len(ids), 1, ids)
+        self.assertTrue(ids[0].startswith("regulatedentity:134-2025-QH15:2:"), ids[0])
+
+    def test_downgrade_flows_into_edge_endpoints(self):
+        """§9 — cạnh dùng bản đồ CUỐI, không dùng bản đồ trước khi hạ cấp."""
+        chunk = article_chunks("134-2025-QH15", 2)[0]
+        graph = graph_for(
+            chunk,
+            [{"name": "Điều 2", "category": "Article"}] + self.entities(),
+            [["Điều 2", "appliesTo", ENTITY_VN],
+             ["Điều 2", "appliesTo", ENTITY_FOREIGN]],
+        )
+        node_ids = {node.id for node in graph.nodes}
+        endpoints = set()
+        for edge in graph.edges:
+            if edge.label != "appliesto":
+                continue
+            self.assertIn(edge.from_id, node_ids)
+            self.assertIn(edge.to_id, node_ids)
+            endpoints.add(edge.to_id)
+        self.assertEqual(endpoints, set(ids_of(graph, "RegulatedEntity")))
+        self.assertTrue(all(e.startswith("regulatedentity-unresolved:") for e in endpoints),
+                        endpoints)
+
+    def test_authority_is_outside_this_rule(self):
+        """Authority giữ danh tính tổ chức toàn cục dù chunk có nhóm mơ hồ."""
+        chunk = article_chunks("134-2025-QH15", 2)[0]
+        graph = graph_for(
+            chunk,
+            [{"name": "Bộ Công an", "category": "Authority"}] + self.entities(),
+        )
+        self.assertEqual(ids_of(graph, "Authority"), ["authority:bộ công an"])
+
+    def test_negative_control_legacy_implementation_merges_them(self):
+        legacy = legacy_extractor()
+        chunk = article_chunks("134-2025-QH15", 2)[0]
+        _, _, ids = legacy._endpoint_ids(chunk, self.entities())
+        targets = {ids[("RegulatedEntity", canon_id(name))]
+                   for name in (ENTITY_VN, ENTITY_FOREIGN)}
+        self.assertEqual(len(targets), 1, targets)
+        self.assertTrue(next(iter(targets)).startswith("regulatedentity:134-2025-QH15:2:"),
+                        targets)
+
+
+class NTestSimultaneousSpansAreAmbiguous(unittest.TestCase):
+    """N — bất biến câu chữ NER không vỡ, nhưng hai span cùng lượt thì mơ hồ.
+
+    `independent resolution != simultaneous ambiguous cardinality`.
+    """
+
+    def test_single_span_resolution_is_unchanged(self):
+        source = source_path_of("330-2026-ND-CP")
+        short = semantic_identity("Sanction", FINE, source_path=source, article_no=9)
+        long = semantic_identity("Sanction", FINE_LONG, source_path=source, article_no=9)
+        self.assertEqual(short.id, long.id)
+        self.assertTrue(short.id.startswith("sanction:330-2026-ND-CP:9:k2:"))
+
+    def test_each_span_alone_in_a_graph_keeps_the_canonical_id(self):
+        chunk = chunk_with("330-2026-ND-CP", 9, FINE)
+        ids = set()
+        for span in (FINE, FINE_LONG):
+            graph = graph_for(chunk, [{"name": span, "category": "Sanction"}])
+            ids.update(ids_of(graph, "Sanction"))
+        self.assertEqual(len(ids), 1, ids)
+        self.assertTrue(next(iter(ids)).startswith("sanction:330-2026-ND-CP:9:k2:"), ids)
+
+    def test_both_spans_in_one_extraction_are_unresolved(self):
+        chunk = chunk_with("330-2026-ND-CP", 9, FINE)
+        graph = graph_for(
+            chunk,
+            [{"name": FINE, "category": "Sanction"},
+             {"name": FINE_LONG, "category": "Sanction"}],
+        )
+        ids = ids_of(graph, "Sanction")
+        self.assertEqual(len(ids), 2, ids)
+        self.assertEqual(len(set(ids)), 2, ids)
+        self.assertTrue(all(i.startswith("sanction-unresolved:") for i in ids), ids)
+
+    def test_sanction_nine_ten_eleven_unaffected(self):
+        """Ca bắt buộc: mỗi Điều một Sanction -> vẫn 3 id canonical."""
+        ids = [ids_of(sanction_graph(no)[1], "Sanction")[0] for no in (9, 10, 11)]
+        self.assertEqual(len(set(ids)), 3, ids)
+        self.assertTrue(all(i.startswith("sanction:330-2026-ND-CP:") for i in ids), ids)
 
 
 class JTestUnresolvedContract(unittest.TestCase):
