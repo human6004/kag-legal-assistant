@@ -65,7 +65,14 @@ from kag.builder.model.sub_graph import SubGraph
 from kag.common.utils import generate_hash_id
 from knext.schema.client import CHUNK_TYPE, OTHER_TYPE
 
-from .canon_id import (
+# Import tuyệt đối, KHÔNG dùng `from .canon_id`: loader production
+# (kag/common/registry/utils.py:31, gọi từ indexer.py và injection.py) import mọi
+# module con của kag/builder dưới tên TOP-LEVEL ("extractor"), nên module này khi
+# đó không có parent package và relative import nổ ImportError ngay lúc bootstrap.
+# Loader đã chèn kag/ vào sys.path và đã import package `builder` trước khi đệ quy,
+# nên `builder.canon_id` giải được ở cả hai đường: production loader và
+# `import builder.extractor` (đường của tests).
+from builder.canon_id import (
     CONTEXTUAL_CATEGORIES,
     SEMANTIC_CATEGORIES,
     article_identity,

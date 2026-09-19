@@ -58,10 +58,27 @@ if __name__ == "__main__":
 
     # 3. Dấu phẩy thừa trong _invoke của KAG biến list triple thành tuple
     #    1 phần tử -> mất sạch quan hệ. Kèm triple rác do LLM sinh.
-    triples = [["a", "quy định", "b"], None, ["thiếu", "bộ ba"], ["c", 1, "d"]]
-    ents = [{"name": "a", "category": "Others"}, {"name": "b", "category": "Others"}]
+    #
+    #    Triple hợp lệ ở đây phải là tuple có trong hợp đồng quan hệ B3. Bản cũ
+    #    dùng (Others, "quy định", Others) và chờ 1 cạnh: đó là behavior TRƯỚC
+    #    B3, nay vị ngữ tự do bị loại đúng theo hợp đồng. Ý định của test không
+    #    đổi — "tuple wrapper + triple rác không làm mất triple hợp lệ" — chỉ
+    #    đổi mẫu triple hợp lệ sang (Article, imposes, Sanction).
+    #    Gọi trực tiếp nên endpoint_ids=None: id cuối đi qua canon_id, không cần
+    #    bản đồ danh tính B2 ở tầng thấp này.
+    triples = [
+        ["Điều 9", "imposes", "Phạt tiền"],
+        None,
+        ["thiếu", "bộ ba"],
+        ["c", 1, "d"],
+    ]
+    ents = [
+        {"name": "Điều 9", "category": "Article"},
+        {"name": "Phạt tiền", "category": "Sanction"},
+    ]
     graph = ext.assemble_sub_graph_with_triples(SubGraph([], []), ents, (triples,))
     assert len(graph.edges) == 1, [(e.from_id, e.label, e.to_id) for e in graph.edges]
+    assert graph.edges[0].label == "imposes", graph.edges[0].label
     print("triple bọc tuple / triple rác     : OK")
 
     # 4. Một node hỏng chỉ được bỏ chunk đó, không ném lên cho future.
