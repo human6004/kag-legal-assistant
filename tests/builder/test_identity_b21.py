@@ -125,11 +125,21 @@ class B21IdentityTests(unittest.TestCase):
         articles = [n for n in graph.nodes if n.label == "Article"]
         self.assertEqual([n.id for n in articles], ["article:134-2025-QH15:1"])
         self.assertEqual(articles[0].properties["articleNumber"], "1")
-        semantic = [e for e in graph.edges if e.label not in ("source", "OfficialName")]
+        # Cạnh do LLM khai mang `originalPredicate`; cạnh hệ thống thì không.
+        # Lọc theo dấu đó, không liệt kê tên cạnh hệ thống: danh sách tên phải
+        # sửa lại mỗi lần thêm một cạnh cấu trúc, còn dấu này thì đúng mãi.
+        semantic = [e for e in graph.edges if "originalPredicate" in (e.properties or {})]
         self.assertEqual(len(semantic), 2)
         self.assertEqual(semantic[0].from_id, articles[0].id)
         self.assertEqual(semantic[1].to_id, articles[0].id)
         self.assertFalse(any(e.label == "OfficialName" and e.from_type == "Article" for e in graph.edges))
+        # Điều nguồn biết mình thuộc văn bản nào kể cả khi LLM không khai gì:
+        # cạnh cấu trúc, nên KHÔNG mang `originalPredicate` (xem lọc ở trên).
+        structural = [e for e in graph.edges if e.label == "belongsTo"]
+        self.assertEqual(len(structural), 1)
+        self.assertEqual(structural[0].from_id, articles[0].id)
+        self.assertEqual(structural[0].to_id, canon_id("Luật 134/2025/QH15"))
+        self.assertNotIn("originalPredicate", structural[0].properties or {})
 
     def test_raw_article_with_source_document_number_resolves(self):
         path = next((ROOT / "data/processed").rglob("330-2026-ND-CP_*.md"))

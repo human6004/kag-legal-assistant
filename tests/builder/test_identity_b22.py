@@ -8,6 +8,7 @@ Nguyên tắc kiểm: đủ chứng cứ xác định -> canonical; không đủ
 Một id ``*-unresolved:`` KHÔNG phải bằng chứng rằng chỉ có một occurrence.
 """
 
+import ast
 import subprocess
 import sys
 import unittest
@@ -124,15 +125,45 @@ def legacy_extractor():
 
 
 class ZTestNegativeControlIsValid(unittest.TestCase):
-    """canon_id.py không đổi ở lượt này -> đối chứng `b58e9c0` là thật."""
+    """Đối chứng `b58e9c0` chỉ thật nếu extractor cũ thấy canon_id y như cũ.
 
-    def test_canon_id_is_untouched_since_the_merge_commit(self):
-        diff = subprocess.run(
-            ["git", "diff", MERGE_COMMIT, "--", "kag/builder/canon_id.py"],
+    Điều đó KHÔNG đòi canon_id.py không đổi một byte, mà đòi mọi tên top-level
+    đã có ở `b58e9c0` còn nguyên từng chữ. Thêm tên MỚI không lọt được vào
+    extractor cũ — nó không gọi thứ chưa tồn tại lúc nó được viết — nên phần
+    thêm không phá đối chứng. Sửa hay xóa một định nghĩa cũ thì phá, và đó
+    đúng là thứ test này chặn.
+    """
+
+    def test_definitions_the_legacy_extractor_sees_are_untouched(self):
+        show = subprocess.run(
+            ["git", "show", f"{MERGE_COMMIT}:kag/builder/canon_id.py"],
             cwd=str(ROOT), capture_output=True, text=True, encoding="utf-8",
         )
-        self.assertEqual(diff.returncode, 0, diff.stderr)
-        self.assertEqual(diff.stdout.strip(), "", diff.stdout[:400])
+        self.assertEqual(show.returncode, 0, show.stderr)
+        current = (ROOT / "kag" / "builder" / "canon_id.py").read_text(encoding="utf-8")
+
+        def top_level_source(source):
+            """Tên top-level -> mã nguồn của nó, chuẩn hóa xuống dòng."""
+            text = source.replace("\r\n", "\n")
+            out = {}
+            for node in ast.parse(text).body:
+                if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                    names = [node.name]
+                elif isinstance(node, ast.Assign):
+                    names = [t.id for t in node.targets if isinstance(t, ast.Name)]
+                elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+                    names = [node.target.id]
+                else:
+                    continue
+                for name in names:
+                    out[name] = ast.get_source_segment(text, node)
+            return out
+
+        old, new = top_level_source(show.stdout), top_level_source(current)
+        missing = sorted(set(old) - set(new))
+        self.assertEqual(missing, [], f"định nghĩa bị xóa: {missing}")
+        changed = sorted(name for name, src in old.items() if new[name] != src)
+        self.assertEqual(changed, [], f"định nghĩa cũ bị sửa: {changed}")
 
 _LABELS = (
     "Article", "LegalDocument", "Authority", "Sanction", "Obligation",

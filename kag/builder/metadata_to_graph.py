@@ -91,14 +91,13 @@ def schema_rels(label):
 
 
 def node_name(meta):
-    """Tên node phải trùng cách LLM gọi văn bản, xem prompt std (legal_std)."""
-    number = (meta.get("doc_number") or "").strip()
-    if not number:
-        return meta["title"].strip()
-    doc_type = (meta.get("doc_type") or "").strip()
-    if meta.get("jurisdiction") == "VN" and doc_type:
-        return f"{doc_type} {number}"
-    return number
+    """Tên node phải trùng cách LLM gọi văn bản, xem prompt std (legal_std).
+
+    Quy tắc nằm ở canon_id.py, dùng chung với extractor: Điều nguồn tự suy ra
+    văn bản chứa nó cũng phải gọi tên y như đường metadata này, nếu không thì
+    một văn bản lại nở ra hai node.
+    """
+    return canon_id.document_node_name(meta)
 
 
 def load_metadata():
