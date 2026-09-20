@@ -55,7 +55,7 @@ project:
   # loi. Prompt nao chua viet ban legal_ thi tu roi ve default, khong gay.
   biz_scene: legal
   host_addr: http://127.0.0.1:8887
-  id: '1'
+  id: "1"
   language: en
   namespace: Legal
 #------------project configuration end----------------#
@@ -258,7 +258,7 @@ kag_hybrid_executor: &kag_hybrid_executor_conf
     - *rc
   merger:
     type: kag_merger
-  enable_summary:  true
+  enable_summary: true
 
 kag_output_executor: &kag_output_executor_conf
   type: kag_output_executor
@@ -272,9 +272,10 @@ py_code_based_math_executor: &py_code_based_math_executor_conf
   type: py_code_based_math_executor
   llm: *chat_llm
 
-
 kag_solver_pipeline:
-  type: evidence_aware_iterative_pipeline
+  type: kag_static_pipeline
+  #Cải tiến:
+  # type:evidence_aware_iterative_pipeline
   planner:
     type: lf_kag_static_planner
     llm: *chat_llm

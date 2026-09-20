@@ -14,7 +14,7 @@ kag/ckpt.*/
 # eval.py chdir vao day truoc khi chay: ckpt, benchmark.txt, *_res/*_metrics
 kag/solver/runs/
 
-KAG_OpenSPG/
+
 # build
 /*.whl
 /*.egg-info/
