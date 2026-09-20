@@ -159,6 +159,40 @@ def source_document_id(source_path):
     return doc_id
 
 
+def document_node_name(meta):
+    """Tên node LegalDocument, phải trùng cách LLM gọi văn bản (xem prompt legal_std).
+
+    Là tên HIỂN THỊ, không phải id: `canon_id()` mới quy nó về id. Hai đường nạp
+    dùng chung hàm này (`metadata_to_graph.py` và extractor) để không có đường
+    nào tự đặt tên khác rồi nở ra node thứ hai cho cùng một văn bản.
+    """
+    number = (meta.get("doc_number") or "").strip()
+    if not number:
+        return (meta.get("title") or "").strip()
+    doc_type = (meta.get("doc_type") or "").strip()
+    if meta.get("jurisdiction") == "VN" and doc_type:
+        return f"{doc_type} {number}"
+    return number
+
+
+@lru_cache(maxsize=None)
+def source_document_name(doc_id):
+    """doc_id -> tên node LegalDocument của nó, hoặc None nếu không có metadata.
+
+    Chỉ đọc `data/metadata`, không suy từ tên file và không hỏi LLM: đây là
+    đường tất định để một Điều NGUỒN biết mình thuộc văn bản nào.
+    """
+    if not isinstance(doc_id, str) or not re.fullmatch(r"[A-Za-z0-9-]+", doc_id):
+        return None
+    meta_path = Path(__file__).resolve().parents[2] / "data" / "metadata" / f"{doc_id}.json"
+    if not meta_path.is_file():
+        return None
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    if meta.get("doc_id") != doc_id:
+        return None
+    return document_node_name(meta) or None
+
+
 def article_identity(doc_id, article_no):
     """Danh tính Điều đã được xác định nguồn; độc lập tên hiển thị/chunk."""
     if not isinstance(doc_id, str) or not re.fullmatch(r"[A-Za-z0-9-]+", doc_id) or not str(article_no).isdigit():

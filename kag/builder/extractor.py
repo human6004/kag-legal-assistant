@@ -80,6 +80,7 @@ from builder.canon_id import (
     semantic_identity,
     source_article_headings,
     source_document_id,
+    source_document_name,
     unresolved_identity,
 )
 
@@ -480,6 +481,13 @@ class LegalSchemaFreeExtractor(SchemaFreeExtractor):
             sub_graph, entities, triples, endpoint_ids, chunk.id,
             provenance=provenance, evidence=evidence,
         )
+        # Điều NGUỒN thuộc văn bản nào là fact CẤU TRÚC, suy từ source_path +
+        # metadata. Trước đây cạnh này chỉ sinh khi LLM tình cờ emit triple
+        # "thuộc văn bản" mà chủ ngữ lại phân giải về đúng id Điều nguồn — hai
+        # điều kiện độc lập nhau, nên có Điều mất hẳn cạnh dù nội dung còn đủ.
+        # Đặt SAU đường triple để chỉ bù khi Điều nguồn chưa có cạnh nào: không
+        # đụng tới cạnh LLM đã tạo, cũng không tự phân xử khi LLM nói văn bản khác.
+        self._add_source_document_edge(sub_graph, source_id, provenance)
         self.assemble_sub_graph_with_chunk(sub_graph, chunk)
         if evidence:
             # Chunk node tự nó LÀ source occurrence của bằng chứng này, nên
@@ -492,6 +500,48 @@ class LegalSchemaFreeExtractor(SchemaFreeExtractor):
             else:  # pragma: no cover - vendor luôn tạo node chunk
                 logger.warning("không thấy node Chunk %s để ghi relationEvidence", chunk.id)
         return sub_graph
+
+    @staticmethod
+    def _add_source_document_edge(sub_graph, source_id, provenance):
+        """`belongsTo` tất định cho Điều nguồn: Điều -> văn bản chứa nó.
+
+        Không phải fact của LLM nên KHÔNG mang `originalPredicate` — cùng lý lẽ
+        với cạnh hệ thống `source`/`OfficialName`. `evidenceStatus` là
+        ``STRUCTURAL``: suy từ đường dẫn nguồn và metadata, không phải suy luận
+        chưa xác minh, nhưng cũng không bao giờ là VERIFIED/FULL.
+
+        Ba điều kiện, thiếu một thì không thêm cạnh:
+
+        1. Điều nguồn của chunk đã phân giải tất định (`source_id`);
+        2. doc_id của chunk có metadata, tức tên node văn bản là tất định;
+        3. chính Điều nguồn đó CHƯA có cạnh `belongsTo` nào trong subgraph này.
+
+        Điều kiện 3 giữ cho các cạnh LLM đã đúng không bị nhân đôi, và cũng là
+        lý do fix này không tự phân xử khi LLM khai một văn bản khác: nó chỉ bù
+        chỗ trống, không tranh chấp.
+
+        Node văn bản được thêm cùng lúc vì mọi đầu mút cạnh phải là node có thật
+        trong subgraph; `add_node` nhường properties cho node đã có, nên bản nạp
+        từ metadata vẫn giữ nguyên status/dateEffective/sourceUrl của nó.
+        """
+        if not source_id:
+            return
+        name = source_document_name(provenance.get("sourceDocumentId"))
+        if not name:
+            return
+        if any(
+            edge.label == "belongsTo" and edge.from_id == source_id
+            for edge in sub_graph.edges
+        ):
+            return
+        sub_graph.add_node(name, name, "LegalDocument")
+        properties = {
+            field: provenance[field]
+            for field in ("sourceChunkId", "sourcePath", "sourceDocumentId")
+            if provenance.get(field)
+        }
+        properties["evidenceStatus"] = "STRUCTURAL"
+        sub_graph.add_edge(source_id, "Article", "belongsTo", name, "LegalDocument", properties)
 
     @staticmethod
     def assemble_sub_graph_with_triples(
