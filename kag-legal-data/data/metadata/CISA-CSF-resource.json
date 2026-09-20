@@ -1,0 +1,39 @@
+{
+  "doc_id": "CISA-CSF-resource",
+  "title": "CISA - Framework for Improving Critical Infrastructure Cybersecurity (trang tài nguyên)",
+  "doc_number": "",
+  "doc_type": "Trang tài nguyên của cơ quan liên bang Mỹ",
+  "issuing_body": "Cybersecurity and Infrastructure Security Agency (CISA), U.S. DHS",
+  "date_issued": "",
+  "date_effective": "",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "không áp dụng",
+  "in_force": null,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Không phải văn bản pháp luật nên không có tình trạng hiệu lực.",
+  "status_source": "",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "NIST CSWP 29"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "an_ninh_mang",
+  "source_url": "https://www.cisa.gov/resources-tools/resources/framework-improving-critical-infrastructure-cybersecurity",
+  "source_name": "CISA",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_an_ninh_mang/CISA_framework-improving-critical-infrastructure-cybersecurity.html",
+  "raw_files": [
+    "data/raw/quoc_te_an_ninh_mang/CISA_framework-improving-critical-infrastructure-cybersecurity.html"
+  ],
+  "text_extractable": true,
+  "notes": "Trang điều hướng ~10 KB do SOURCES.md liệt kê, không có nội dung quy phạm. Nội dung kỹ thuật thực chất nằm ở NIST CSF 2.0. Có thể loại khỏi knowledge base nếu muốn giảm nhiễu."
+}

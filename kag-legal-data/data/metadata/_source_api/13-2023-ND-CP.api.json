@@ -1,0 +1,200 @@
+{
+  "id": "161106",
+  "docType": {
+    "id": "0d08b84c-7de7-4800-8760-2a68265e7890",
+    "name": "Nghị định",
+    "code": "NĐ",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "13/2023/NĐ-CP",
+  "title": "Nghị định số 13/2023/NĐ-CP Bảo vệ dữ liệu cá nhân",
+  "issueDate": "2023-04-17T00:00:00",
+  "effFrom": "2023-07-01T00:00:00",
+  "effTo": "2026-01-01T00:00:00",
+  "publicDate": null,
+  "effStatus": {
+    "id": "f55c1469-4341-4274-93ef-32b283db4dbd",
+    "name": "Hết hiệu lực toàn bộ",
+    "code": "HHL",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "bca_bientap",
+  "updatedDate": "2026-05-14T10:39:08",
+  "agencyName": "Chính phủ",
+  "organization": {
+    "id": "0995e017-a693-4ca7-9dc6-b0a969fe5f19",
+    "code": "G01",
+    "name": "Bộ Công an",
+    "nameEn": "Bộ Công an",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "Template.pdf",
+  "documentContentFileDocName": "13.2023.NĐ.CP.doc",
+  "documentIssues": [
+    {
+      "id": "6817048a-4f46-11f1-b97f-236060b7ac90",
+      "agencyId": "1",
+      "agencyName": "Chính phủ",
+      "agencyNameEn": "The Government",
+      "personId": "1604",
+      "personName": "TRẦN LƯU QUANG",
+      "jobTitleId": "1f64c755-938a-4c2b-8b84-d67d421878b2",
+      "jobTitleCode": "PTTCP",
+      "jobTitleName": "Phó Thủ tướng Chính phủ",
+      "orderIndex": 1
+    },
+    {
+      "id": "bd01e5a1-2561-4225-b671-a437e0274940",
+      "agencyId": "1",
+      "agencyName": "Chính phủ",
+      "agencyNameEn": "The Government",
+      "personId": "1604",
+      "personName": "Trần Lưu Quang",
+      "jobTitleId": null,
+      "jobTitleCode": "PTT",
+      "jobTitleName": "Phó Thủ tướng",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [
+    {
+      "id": "e1823855-a27d-4c78-9531-78512294d62d",
+      "name": "An ninh quốc gia",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentFields": [
+    {
+      "id": "76e2c0d5-e93e-4ee9-8c72-59dae1167432",
+      "name": "Chưa phân loại",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentRelatedList": [
+    {
+      "id": "85d78062-5c1e-4a30-bafc-ea44b78b67a5",
+      "fileName": "161106_body_content.html",
+      "relatedType": "MARKDOWN",
+      "fileTitle": "161106_body_content.html",
+      "fileOrder": null
+    }
+  ],
+  "provisionTree": null,
+  "references": [
+    {
+      "id": "1ae9889d-690e-41a7-aa4e-4765759fe82c",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "70821",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "76/2015/QH13",
+        "title": "Luật Tổ chức Chính phủ số 76/2015/QH13",
+        "docAbs": null,
+        "issueDate": "2015-06-19T00:00:00",
+        "effFrom": "2016-01-01T00:00:00",
+        "effTo": "2025-03-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "6ce14809-9044-4617-be9b-598801762cc9",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "95942",
+        "docType": "404b68a7-8e71-4ee5-a6c0-07e59f35f824",
+        "docNum": "91/2015/QH13",
+        "title": "Bộ luật Dân sự số 91/2015/QH13",
+        "docAbs": null,
+        "issueDate": "2015-11-24T00:00:00",
+        "effFrom": "2017-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "360eb0d1-1d32-4c78-942a-f1d434ccc1b7",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "132957",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "24/2018/QH14",
+        "title": "Luật An ninh mạng số 24/2018/QH14",
+        "docAbs": null,
+        "issueDate": "2018-06-12T00:00:00",
+        "effFrom": "2019-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "50e205c7-cb56-4e13-8787-5d5c6d67ba82",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "139878",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "47/2019/QH14",
+        "title": "Luật sửa đổi, bổ sung một số điều của Luật Tổ chức Chính phủ và Luật Tổ chức chính quyền địa phương số 47/2019/QH14",
+        "docAbs": null,
+        "issueDate": "2019-11-22T00:00:00",
+        "effFrom": "2020-07-01T00:00:00",
+        "effTo": "2025-03-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "51f5e6bc-adc4-46f7-892e-4d7a45a32113",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "18562",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "32/2004/QH11",
+        "title": "Luật An ninh Quốc gia số 32/2004/QH11",
+        "docAbs": null,
+        "issueDate": "2004-12-03T00:00:00",
+        "effFrom": "2005-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    }
+  ],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "RV_DONE",
+  "reviewed": true,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 326,
+  "hasContent": true,
+  "hasOriginalPdf": true,
+  "hasAIProcessed": false,
+  "hasClauseRelation": true
+}

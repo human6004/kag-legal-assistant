@@ -1,0 +1,46 @@
+{
+  "doc_id": "1671-QD-TTg",
+  "title": "Quyết định phê duyệt Chiến lược quốc gia về trí tuệ nhân tạo đến năm 2030, tầm nhìn đến năm 2045",
+  "doc_number": "1671/QĐ-TTg",
+  "doc_type": "Quyết định",
+  "issuing_body": "Thủ tướng Chính phủ",
+  "date_issued": "2026-08-28",
+  "date_effective": "2026-08-28",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Quyết định có hiệu lực từ ngày ký (28/8/2026), thay thế Quyết định 127/QĐ-TTg ngày 26/01/2021 - theo công bố của Báo điện tử Chính phủ và Bộ Khoa học và Công nghệ.",
+  "status_source": "baochinhphu.vn + mst.gov.vn (Cổng TTĐT Chính phủ và Bộ chủ quản); file PDF ký số tại datafiles.chinhphu.vn",
+  "status_conflict": "CHƯA đối chiếu được điều khoản thi hành trong chính văn bản vì file PDF là ảnh scan.",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [
+    "127/QĐ-TTg"
+  ],
+  "implements": [
+    "134/2025/QH15"
+  ],
+  "implemented_by": [],
+  "related_docs": [
+    "127/QĐ-TTg",
+    "134/2025/QH15",
+    "1528/QĐ-TTg",
+    "367/QĐ-TTg"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "ai",
+  "source_url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/9/1671_qd-ttg_28082026-signed.signed.pdf",
+  "source_name": "Hệ thống văn bản Chính phủ (vanban.chinhphu.vn / datafiles.chinhphu.vn)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_ai/1671-QD-TTg_chien-luoc-quoc-gia-tri-tue-nhan-tao-2030-tam-nhin-2045.pdf",
+  "raw_files": [
+    "data/raw/vn_ai/1671-QD-TTg_chien-luoc-quoc-gia-tri-tue-nhan-tao-2030-tam-nhin-2045.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "CHIẾN LƯỢC AI ĐANG ÁP DỤNG - thay Quyết định 127/QĐ-TTg mà SOURCES.md liệt kê. 9 trụ cột, 32 chỉ tiêu, 97 nhiệm vụ. PDF ký số là ảnh scan: pdftotext và PyMuPDF chỉ đọc được 195 ký tự của lớp chữ ký số. Toàn văn tiếng Việt trong data/processed lấy từ bước OCR ở lần xử lý trước và đã được giữ lại; build_processed.py không dựng lại file md này từ PDF. Chưa lên Công báo tại ngày cào nên chưa có bản DOCX."
+}

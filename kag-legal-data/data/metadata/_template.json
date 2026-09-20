@@ -1,0 +1,44 @@
+{
+  "doc_id": "24-2018-QH14",
+  "title": "Luật An ninh mạng (2018)",
+  "doc_number": "24/2018/QH14",
+  "doc_type": "Luật",
+  "issuing_body": "Quốc hội nước CHXHCN Việt Nam",
+  "date_issued": "2018-06-12",
+  "date_effective": "2019-01-01",
+  "date_applicable": "",
+  "date_expired": "2026-07-01",
+  "status": "hết hiệu lực",
+  "in_force": false,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Điều 44 khoản 2 Luật An ninh mạng số 116/2025/QH15",
+  "status_source": "Đọc trực tiếp trong toàn văn Luật 116/2025/QH15 đã cào",
+  "status_conflict": "vbpl.vn tại ngày cào vẫn ghi 'Còn hiệu lực'",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [
+    "116/2025/QH15"
+  ],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [
+    "53/2022/NĐ-CP"
+  ],
+  "related_docs": [
+    "53/2022/NĐ-CP",
+    "116/2025/QH15"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://vbpl.vn/van-ban/chi-tiet/luat-an-ninh-mang-so-24-2018-qh14--132957",
+  "source_name": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/24-2018-QH14_luat-an-ninh-mang.html",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/24-2018-QH14_luat-an-ninh-mang.html"
+  ],
+  "text_extractable": true,
+  "notes": "Ghi chú tự do: cảnh báo, hạn chế của bản cào, việc cần kiểm tra lại."
+}

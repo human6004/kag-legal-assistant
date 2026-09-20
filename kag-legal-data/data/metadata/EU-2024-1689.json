@@ -1,0 +1,54 @@
+{
+  "doc_id": "EU-2024-1689",
+  "title": "Regulation (EU) 2024/1689 (EU Artificial Intelligence Act) - bản Công báo EU gốc",
+  "doc_number": "Regulation (EU) 2024/1689",
+  "doc_type": "Quy định (Regulation) của EU",
+  "issuing_body": "European Parliament and Council of the European Union",
+  "date_issued": "2024-06-13",
+  "date_effective": "2024-08-01",
+  "date_applicable": "2026-08-02",
+  "date_expired": "",
+  "status": "còn hiệu lực (đã bị sửa đổi)",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "EUR-Lex: 'In force: This act has been changed. Current consolidated version: 27/07/2026'. Điều 113: có hiệu lực ngày thứ 20 sau khi công bố (01/8/2024); áp dụng theo giai đoạn.",
+  "status_source": "EUR-Lex / Publications Office of the EU (Cellar)",
+  "status_conflict": "",
+  "amends": [
+    "Regulation (EC) No 300/2008",
+    "Regulation (EU) No 167/2013",
+    "Regulation (EU) No 168/2013",
+    "Directive 2014/90/EU",
+    "Directive (EU) 2016/797",
+    "Regulation (EU) 2018/858",
+    "Regulation (EU) 2018/1139",
+    "Regulation (EU) 2019/2144",
+    "Directive (EU) 2020/1828"
+  ],
+  "amended_by": [
+    "Regulation (EU) 2026/1744"
+  ],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Regulation (EU) 2026/1744",
+    "CETS No. 225",
+    "OECD/LEGAL/0449",
+    "134/2025/QH15"
+  ],
+  "jurisdiction": "EU",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689",
+  "source_name": "EUR-Lex / Publications Office of the EU (Cellar)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/EU-2024-1689_eu-ai-act.html",
+  "raw_files": [
+    "data/raw/quoc_te_ai/EU-2024-1689_eu-ai-act.html"
+  ],
+  "text_extractable": true,
+  "notes": "ĐÂY LÀ BẢN GỐC CHƯA HỢP NHẤT - không phản ánh sửa đổi của Regulation (EU) 2026/1744. Dùng bản hợp nhất 27/07/2026 để trả lời câu hỏi về quy định đang áp dụng. Áp dụng theo giai đoạn (Điều 113): Chương I và II từ 02/02/2025; Chương III mục 4, Chương V, Chương VII, Chương XII và Điều 78 từ 02/8/2025 (trừ Điều 101); phần còn lại từ 02/8/2026; Điều 6(1) và nghĩa vụ tương ứng từ 02/8/2027."
+}

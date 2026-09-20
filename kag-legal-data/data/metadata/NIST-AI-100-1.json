@@ -1,0 +1,40 @@
+{
+  "doc_id": "NIST-AI-100-1",
+  "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+  "doc_number": "NIST AI 100-1",
+  "doc_type": "Framework kỹ thuật (không phải văn bản quy phạm pháp luật)",
+  "issuing_body": "National Institute of Standards and Technology (NIST), U.S. Department of Commerce",
+  "date_issued": "2023-01",
+  "date_effective": "2023-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Trang bìa ghi 'January 2023'. Đã kiểm tra không có bản sửa đổi (NIST.AI.100-1r1.pdf trả về 404).",
+  "status_source": "nvlpubs.nist.gov",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Executive Order 14110",
+    "NIST CSWP 29"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+  "source_name": "NIST",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/NIST-AI-100-1_ai-risk-management-framework.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/NIST-AI-100-1_ai-risk-management-framework.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Trang bìa CHỈ ghi tháng, không có ngày cụ thể, nên date_issued để ở dạng tháng (2023-01) thay vì bịa ngày."
+}

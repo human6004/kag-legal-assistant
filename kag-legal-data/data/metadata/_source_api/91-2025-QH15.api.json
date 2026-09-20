@@ -1,0 +1,108 @@
+{
+  "id": "179252",
+  "docType": {
+    "id": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+    "name": "Luật",
+    "code": "Lu",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "91/2025/QH15",
+  "title": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15",
+  "issueDate": "2025-06-26T00:00:00",
+  "effFrom": "2026-01-01T00:00:00",
+  "effTo": null,
+  "publicDate": null,
+  "effStatus": {
+    "id": "1419f6be-4a15-44a7-97ac-ea042770a514",
+    "name": "Còn hiệu lực",
+    "code": "CHL",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "dungdvm_II.2",
+  "updatedDate": "2026-03-24T14:02:28",
+  "agencyName": "Quốc hội",
+  "organization": {
+    "id": "0995e017-a693-4ca7-9dc6-b0a969fe5f19",
+    "code": "G01",
+    "name": "Bộ Công an",
+    "nameEn": "Bộ Công an",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "VanBanGoc_91.L2025-Luat Bao ve du lieu ca nhan.pdf",
+  "documentContentFileDocName": null,
+  "documentIssues": [
+    {
+      "id": "b5c8b057-1800-439c-ac92-fcce3df1b579",
+      "agencyId": "55",
+      "agencyName": "Quốc hội",
+      "agencyNameEn": "National Assembly of Vietnam",
+      "personId": "1734",
+      "personName": "Trần Thanh Mẫn",
+      "jobTitleId": "28da0087-8afd-420c-875c-b2369e212c3e",
+      "jobTitleCode": "CTQH",
+      "jobTitleName": "Chủ tịch Quốc hội",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [],
+  "documentFields": [
+    {
+      "id": "76e2c0d5-e93e-4ee9-8c72-59dae1167432",
+      "name": "Chưa phân loại",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentRelatedList": [
+    {
+      "id": "83a61b3f-7df1-4e73-98dd-101da79a047c",
+      "fileName": "179252_body_content.html",
+      "relatedType": "MARKDOWN",
+      "fileTitle": "179252_body_content.html",
+      "fileOrder": null
+    }
+  ],
+  "provisionTree": null,
+  "references": [
+    {
+      "id": "ddeaf0d0-479f-11f1-aa4c-6fc51766d446",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32801",
+        "docType": "58bf04c0-a197-4d6e-96e9-2e51066209b5",
+        "docNum": "Không số",
+        "title": "Hiến pháp năm 2013",
+        "docAbs": null,
+        "issueDate": "2013-11-28T00:00:00",
+        "effFrom": "2014-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    }
+  ],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "FPT_RV_DONE",
+  "reviewed": true,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 354,
+  "hasContent": true,
+  "hasOriginalPdf": true,
+  "hasAIProcessed": false,
+  "hasClauseRelation": null
+}

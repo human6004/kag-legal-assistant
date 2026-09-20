@@ -1,0 +1,51 @@
+{
+  "doc_id": "134-2025-QH15",
+  "title": "Luật Trí tuệ nhân tạo",
+  "doc_number": "134/2025/QH15",
+  "doc_type": "Luật",
+  "issuing_body": "Quốc hội nước CHXHCN Việt Nam",
+  "date_issued": "2025-12-10",
+  "date_effective": "2026-03-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Điều 34: Luật có hiệu lực thi hành từ ngày 01/3/2026, trừ nội dung tại Điều 35 (chuyển tiếp).",
+  "status_source": "Đọc trực tiếp Điều 34 trong toàn văn đã cào",
+  "status_conflict": "API vbpl.vn trả effStatus = null (chưa gán trạng thái) cho văn bản này. Đã lấy theo điều khoản thi hành trong chính luật.",
+  "amends": [
+    "71/2025/QH15"
+  ],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [
+    "142/2026/NĐ-CP",
+    "05/2026/TT-BKHCN",
+    "367/QĐ-TTg",
+    "1528/QĐ-TTg",
+    "1671/QĐ-TTg"
+  ],
+  "related_docs": [
+    "71/2025/QH15",
+    "1671/QĐ-TTg",
+    "1528/QĐ-TTg",
+    "Regulation (EU) 2024/1689"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "ai",
+  "source_url": "https://vbpl.vn/van-ban/chi-tiet/luat-tri-tue-nhan-tao-so-134-2025-qh15--69ba65c0-8a56-11f1-878c-399a87bcb3eb",
+  "source_name": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc (HTML) + Công báo Chính phủ (congbao.chinhphu.vn) (PDF ký số)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_ai/134-2025-QH15_luat-tri-tue-nhan-tao.html",
+  "raw_files": [
+    "data/raw/vn_ai/134-2025-QH15_luat-tri-tue-nhan-tao.html",
+    "data/raw/vn_ai/134-2025-QH15_luat-tri-tue-nhan-tao_congbao.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Luật chuyên biệt đầu tiên của Việt Nam về AI, quản lý theo rủi ro (cao / trung bình / thấp). Điều 33 bãi bỏ khoản 9 Điều 3, khoản 7 Điều 4, khoản 6 Điều 12, điểm đ khoản 2 Điều 34 và Chương IV của Luật Công nghiệp công nghệ số 71/2025/QH15. Bản Công báo ký số: https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm"
+}

@@ -1,0 +1,41 @@
+{
+  "doc_id": "ETS-189",
+  "title": "Additional Protocol to the Convention on Cybercrime, concerning the criminalisation of acts of a racist and xenophobic nature committed through computer systems",
+  "doc_number": "ETS No. 189",
+  "doc_type": "Nghị định thư bổ sung",
+  "issuing_body": "Council of Europe",
+  "date_issued": "2003-01-28",
+  "date_effective": "2006-03-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Treaty Office: 'Opening of the treaty: Strasbourg 28/01/2003', 'Entry in force: 01/03/2006 (5 Ratifications)'.",
+  "status_source": "Council of Europe Treaty Office (coe.int), bảng ký kết - phê chuẩn",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [
+    "ETS No. 185"
+  ],
+  "implemented_by": [],
+  "related_docs": [
+    "ETS No. 185"
+  ],
+  "jurisdiction": "quốc tế",
+  "language": "en",
+  "category": "an_ninh_mang",
+  "source_url": "https://www.coe.int/en/web/conventions/full-list?module=treaty-detail&treatynum=189",
+  "source_name": "Council of Europe (toàn văn tại rm.coe.int/168008160f)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_an_ninh_mang/ETS-189_nghi-dinh-thu-bo-sung-budapest-phan-biet-chung-toc.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_an_ninh_mang/ETS-189_nghi-dinh-thu-bo-sung-budapest-phan-biet-chung-toc.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Bổ sung cho phần thiếu của lần cào trước: SOURCES.md có nhắc '+ Nghị định thư bổ sung' nhưng chưa liệt kê cụ thể."
+}

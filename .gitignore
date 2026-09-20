@@ -2,7 +2,7 @@
 *.env
 .env
 venv/
-.venv/
+*.venv/
 *.key
 # chua khoa API that; dung kag/kag_config.example.yaml lam mau
 kag/kag_config.yaml
@@ -14,7 +14,7 @@ kag/ckpt.*/
 # eval.py chdir vao day truoc khi chay: ckpt, benchmark.txt, *_res/*_metrics
 kag/solver/runs/
 
-
+KAG_OpenSPG/
 # build
 /*.whl
 /*.egg-info/

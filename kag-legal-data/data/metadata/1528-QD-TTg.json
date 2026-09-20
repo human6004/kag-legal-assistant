@@ -1,0 +1,42 @@
+{
+  "doc_id": "1528-QD-TTg",
+  "title": "Quyết định phê duyệt Chương trình quốc gia phát triển nhân lực trí tuệ nhân tạo đến năm 2030, định hướng đến năm 2035",
+  "doc_number": "1528/QĐ-TTg",
+  "doc_type": "Quyết định",
+  "issuing_body": "Thủ tướng Chính phủ",
+  "date_issued": "2026-08-11",
+  "date_effective": "2026-08-11",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Ngày ban hành 11/8/2026 đọc trực tiếp trong bản DOCX Công báo; Quyết định của Thủ tướng loại này có hiệu lực kể từ ngày ký.",
+  "status_source": "Công báo Chính phủ (congbao.chinhphu.vn) (Công báo số 477 ngày 23/08/2026)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [
+    "134/2025/QH15"
+  ],
+  "implemented_by": [],
+  "related_docs": [
+    "1671/QĐ-TTg",
+    "134/2025/QH15"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "ai",
+  "source_url": "https://congbao.chinhphu.vn/van-ban/quyet-dinh-so-1528-qd-ttg-470264.htm",
+  "source_name": "Công báo Chính phủ (congbao.chinhphu.vn)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_ai/1528-QD-TTg_chuong-trinh-quoc-gia-phat-trien-nhan-luc-ai.docx",
+  "raw_files": [
+    "data/raw/vn_ai/1528-QD-TTg_chuong-trinh-quoc-gia-phat-trien-nhan-luc-ai.docx"
+  ],
+  "text_extractable": true,
+  "notes": "Bổ sung ngoài SOURCES.md: trụ cột nhân lực của chính sách AI quốc gia, hay bị hỏi cùng với Chiến lược 1671/QĐ-TTg."
+}

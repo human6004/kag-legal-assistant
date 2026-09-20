@@ -1,0 +1,41 @@
+{
+  "doc_id": "CETS-225",
+  "title": "Council of Europe Framework Convention on Artificial Intelligence and Human Rights, Democracy and the Rule of Law",
+  "doc_number": "CETS No. 225",
+  "doc_type": "Công ước khung quốc tế",
+  "issuing_body": "Council of Europe",
+  "date_issued": "2024-09-05",
+  "date_effective": "",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "chưa có hiệu lực",
+  "in_force": false,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Treaty Office, bảng ký kết - phê chuẩn ghi 'Status as of 09/09/2026', mục 'Entry in force' để trống với điều kiện '5 Ratifications including at least 3 member States of the Council of Europe'.",
+  "status_source": "Council of Europe Treaty Office (coe.int), bảng ký kết - phê chuẩn",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Regulation (EU) 2024/1689",
+    "OECD/LEGAL/0449",
+    "SHS/BIO/PI/2021/1"
+  ],
+  "jurisdiction": "quốc tế",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://www.coe.int/en/web/conventions/full-list?module=signatures-by-treaty&treatynum=225",
+  "source_name": "Council of Europe Treaty Office (coe.int), bảng ký kết - phê chuẩn (toàn văn tại rm.coe.int/1680afae3c)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/CETS-225_coe-framework-convention-ai-human-rights.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/CETS-225_coe-framework-convention-ai-human-rights.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "BỔ SUNG NGOÀI SOURCES.md nhưng rất quan trọng: đây là điều ước quốc tế ràng buộc đầu tiên về AI, mở ký tại Vilnius 05/9/2024. Chatbot phải nói rõ CHƯA có hiệu lực tại 09/9/2026."
+}

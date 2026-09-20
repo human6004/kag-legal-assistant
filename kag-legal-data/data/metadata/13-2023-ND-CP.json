@@ -1,0 +1,45 @@
+{
+  "doc_id": "13-2023-ND-CP",
+  "title": "Nghị định về bảo vệ dữ liệu cá nhân",
+  "doc_number": "13/2023/NĐ-CP",
+  "doc_type": "Nghị định",
+  "issuing_body": "Chính phủ",
+  "date_issued": "2023-04-17",
+  "date_effective": "2023-07-01",
+  "date_applicable": "",
+  "date_expired": "2026-01-01",
+  "status": "hết hiệu lực",
+  "in_force": false,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "effStatus của vbpl.vn = 'Hết hiệu lực toàn bộ', effTo = 01/01/2026 - trùng ngày Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15 và Nghị định 356/2025/NĐ-CP có hiệu lực. Điều 39 Luật 91/2025/QH15 có điều khoản chuyển tiếp dẫn chiếu trực tiếp Nghị định này.",
+  "status_source": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc + đọc Điều 39 Luật 91/2025/QH15 đã cào",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [
+    "91/2025/QH15",
+    "356/2025/NĐ-CP"
+  ],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "24/2018/QH14",
+    "91/2025/QH15",
+    "356/2025/NĐ-CP",
+    "Regulation (EU) 2016/679"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://vbpl.vn/van-ban/chi-tiet/nghi-dinh-so-13-2023-nd-cp-bao-ve-du-lieu-ca-nhan--161106",
+  "source_name": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/13-2023-ND-CP_bao-ve-du-lieu-ca-nhan.html",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/13-2023-ND-CP_bao-ve-du-lieu-ca-nhan.html"
+  ],
+  "text_extractable": true,
+  "notes": "SOURCES.md trỏ tới bản toàn văn trên xaydungchinhsach.chinhphu.vn; ở đây dùng nguồn cấp nhà nước cao hơn (vbpl.vn) vì truy cập được. Giữ lại làm mốc lịch sử, phải đánh dấu hết hiệu lực."
+}

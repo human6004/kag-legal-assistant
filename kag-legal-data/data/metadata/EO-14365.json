@@ -1,0 +1,41 @@
+{
+  "doc_id": "EO-14365",
+  "title": "Executive Order 14365 - Ensuring a National Policy Framework for Artificial Intelligence",
+  "doc_number": "Executive Order 14365",
+  "doc_type": "Executive Order",
+  "issuing_body": "President of the United States",
+  "date_issued": "2025-12-11",
+  "date_effective": "2025-12-11",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Không tìm thấy văn bản thu hồi tại ngày tham chiếu.",
+  "status_source": "Federal Register qua govinfo.gov (bản in chính thức)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Executive Order 14179",
+    "Executive Order 14365",
+    "NIST AI 100-1"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://www.federalregister.gov/documents/2025/12/16/2025-23092/national-policy-framework-ai",
+  "source_name": "Federal Register qua govinfo.gov (bản in chính thức) - 90 FR 58499",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/EO-14365_national-policy-framework-ai.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/EO-14365_national-policy-framework-ai.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Bản PDF chính thức: https://www.govinfo.gov/content/pkg/FR-2025-12-16/pdf/2025-23092.pdf . LƯU Ý KỸ THUẬT: URL raw text của federalregister.gov bị chặn bot (trả về trang 'Request Access'), phải dùng govinfo.gov. Mỹ VẪN CHƯA có đạo luật liên bang thống nhất về AI - Executive Order là mệnh lệnh hành pháp của Tổng thống, không phải luật do Quốc hội thông qua. Chatbot phải nói rõ điều này."
+}

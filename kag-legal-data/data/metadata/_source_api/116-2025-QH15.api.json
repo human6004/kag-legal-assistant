@@ -1,0 +1,73 @@
+{
+  "id": "187039",
+  "docType": {
+    "id": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+    "name": "Luật",
+    "code": "Lu",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "116/2025/QH15",
+  "title": "LUẬT AN NINH MẠNG SỐ 116/2025/QH15",
+  "issueDate": "2025-12-10T00:00:00",
+  "effFrom": "2026-07-01T00:00:00",
+  "effTo": null,
+  "publicDate": null,
+  "effStatus": {
+    "id": "9c20e89d-e048-4f3a-b6c2-df87fe0b1ada",
+    "name": "Hết hiệu lực một phần",
+    "code": "HHL1P",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "dungdvm_II.2",
+  "updatedDate": "2026-04-17T08:53:21",
+  "agencyName": "Quốc hội",
+  "organization": {
+    "id": "0995e017-a693-4ca7-9dc6-b0a969fe5f19",
+    "code": "G01",
+    "name": "Bộ Công an",
+    "nameEn": "Bộ Công an",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "Template.pdf",
+  "documentContentFileDocName": "116.2025.QH15.docx",
+  "documentIssues": [
+    {
+      "id": "493433c4-7401-435a-994a-54e223de8cf3",
+      "agencyId": "55",
+      "agencyName": "Quốc hội",
+      "agencyNameEn": "National Assembly of Vietnam",
+      "personId": "1734",
+      "personName": "Trần Thanh Mẫn",
+      "jobTitleId": "28da0087-8afd-420c-875c-b2369e212c3e",
+      "jobTitleCode": "CTQH",
+      "jobTitleName": "Chủ tịch Quốc hội",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [],
+  "documentFields": [],
+  "documentRelatedList": [],
+  "provisionTree": null,
+  "references": [],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "OP_INPR",
+  "reviewed": false,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 368,
+  "hasContent": true,
+  "hasOriginalPdf": true,
+  "hasAIProcessed": false,
+  "hasClauseRelation": true
+}

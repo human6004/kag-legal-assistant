@@ -1,0 +1,59 @@
+{
+  "doc_id": "116-2025-QH15",
+  "title": "Luật An ninh mạng (2025)",
+  "doc_number": "116/2025/QH15",
+  "doc_type": "Luật",
+  "issuing_body": "Quốc hội nước CHXHCN Việt Nam",
+  "date_issued": "2025-12-10",
+  "date_effective": "2026-07-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Điều 44 khoản 1: Luật có hiệu lực thi hành từ ngày 01/7/2026. Không tìm thấy văn bản nào sửa đổi luật này (API vbpl.vn không trả về references; tra cứu web không thấy).",
+  "status_source": "Đọc trực tiếp toàn văn + CSDL văn bản Bộ Công an (vanban.bocongan.gov.vn) ghi 'Còn hiệu lực'",
+  "status_conflict": "vbpl.vn gán effStatus = 'Hết hiệu lực một phần' cho luật này - mâu thuẫn với CSDL Bộ Công an và với chính văn bản. Nghi là lỗi dữ liệu của vbpl.vn; CẦN KIỂM TRA LẠI.",
+  "amends": [
+    "71/2025/QH15",
+    "33/2024/QH15",
+    "19/2023/QH15",
+    "97/2015/QH13",
+    "46/2019/QH14"
+  ],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [
+    "24/2018/QH14",
+    "86/2015/QH13"
+  ],
+  "implements": [],
+  "implemented_by": [
+    "328/2026/NĐ-CP",
+    "329/2026/NĐ-CP",
+    "330/2026/NĐ-CP",
+    "331/2026/NĐ-CP",
+    "332/2026/NĐ-CP",
+    "333/2026/NĐ-CP",
+    "341/2026/NĐ-CP"
+  ],
+  "related_docs": [
+    "24/2018/QH14",
+    "86/2015/QH13",
+    "53/2022/NĐ-CP"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://vbpl.vn/van-ban/chi-tiet/luat-an-ninh-mang-so-116-2025-qh15--187039",
+  "source_name": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc (HTML) + Công báo Chính phủ (congbao.chinhphu.vn) (PDF ký số)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/116-2025-QH15_luat-an-ninh-mang-2025.html",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/116-2025-QH15_luat-an-ninh-mang-2025.html",
+    "data/raw/vn_an_ninh_mang/116-2025-QH15_luat-an-ninh-mang-2025_congbao.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "VĂN BẢN TRUNG TÂM của nhóm 1: hợp nhất và thay thế cả Luật An ninh mạng 2018 lẫn Luật An toàn thông tin mạng 2015 kể từ 01/7/2026. Bản Công báo ký số: https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm . Trường 'amends' chỉ liệt kê một phần các luật bị sửa tại Điều 43 (Điều 43 sửa/bãi bỏ cụm từ trong hơn 15 luật khác) - cần rà soát đầy đủ nếu dựng graph chi tiết."
+}

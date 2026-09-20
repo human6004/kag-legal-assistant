@@ -1,0 +1,45 @@
+{
+  "doc_id": "EU-2022-2555",
+  "title": "Directive (EU) 2022/2555 (NIS 2 Directive)",
+  "doc_number": "Directive (EU) 2022/2555",
+  "doc_type": "Chỉ thị (Directive) của EU",
+  "issuing_body": "European Parliament and Council of the European Union",
+  "date_issued": "2022-12-14",
+  "date_effective": "2023-01-16",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "EUR-Lex: 'In force'; Date of effect 16/01/2023 (Điều 45); hạn chuyển hóa nội luật 17/10/2024, áp dụng từ 18/10/2024 (Điều 41). Bản hợp nhất hiện hành vẫn là 27/12/2022 - tức chưa bị sửa đổi nội dung.",
+  "status_source": "EUR-Lex / Publications Office of the EU (Cellar)",
+  "status_conflict": "",
+  "amends": [
+    "Regulation (EU) No 910/2014",
+    "Directive (EU) 2018/1972"
+  ],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [
+    "Directive (EU) 2016/1148"
+  ],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Directive (EU) 2016/1148",
+    "116/2025/QH15"
+  ],
+  "jurisdiction": "EU",
+  "language": "en",
+  "category": "an_ninh_mang",
+  "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022L2555",
+  "source_name": "EUR-Lex / Publications Office of the EU (Cellar)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_an_ninh_mang/EU-2022-2555_nis2-directive.html",
+  "raw_files": [
+    "data/raw/quoc_te_an_ninh_mang/EU-2022-2555_nis2-directive.html"
+  ],
+  "text_extractable": true,
+  "notes": "Điều 44 bãi bỏ Directive (EU) 2016/1148 (NIS1) kể từ 18/10/2024. Hay dùng để đối chiếu mô hình phân cấp hệ thống thông tin với Nghị định 331/2026/NĐ-CP của Việt Nam."
+}

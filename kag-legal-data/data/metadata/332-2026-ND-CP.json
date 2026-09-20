@@ -1,0 +1,42 @@
+{
+  "doc_id": "332-2026-ND-CP",
+  "title": "Nghị định quy định hoạt động kinh doanh sản phẩm, dịch vụ an ninh mạng",
+  "doc_number": "332/2026/NĐ-CP",
+  "doc_type": "Nghị định",
+  "issuing_body": "Chính phủ",
+  "date_issued": "2026-08-19",
+  "date_effective": "2026-08-19",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Điều 20: Nghị định có hiệu lực thi hành kể từ ngày 19/8/2026.",
+  "status_source": "Đọc trực tiếp điều khoản thi hành trong bản Công báo đã cào",
+  "status_conflict": "Chưa có trên vbpl.vn tại ngày cào (đã quét toàn bộ sitemap vbpl.vn).",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [
+    "116/2025/QH15"
+  ],
+  "implemented_by": [],
+  "related_docs": [
+    "116/2025/QH15",
+    "53/2022/NĐ-CP"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-332-2026-nd-cp-470329.htm",
+  "source_name": "Công báo Chính phủ (congbao.chinhphu.vn)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/332-2026-ND-CP_kinh-doanh-san-pham-dich-vu-an-ninh-mang.docx",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/332-2026-ND-CP_kinh-doanh-san-pham-dich-vu-an-ninh-mang.docx"
+  ],
+  "text_extractable": true,
+  "notes": "Lấy bản DOCX của Công báo thay vì PDF vì bản PDF ký số trên datafiles.chinhphu.vn là ảnh scan (không có lớp text) còn bản PDF Công báo dùng font cũ nên trích text bị mất dấu. Bản DOCX là text Unicode sạch, dùng được ngay cho chunk/embed."
+}

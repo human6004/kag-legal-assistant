@@ -1,0 +1,41 @@
+{
+  "doc_id": "35-2018-QH14",
+  "title": "Luật sửa đổi, bổ sung một số điều của 37 luật có liên quan đến quy hoạch",
+  "doc_number": "35/2018/QH14",
+  "doc_type": "Luật",
+  "issuing_body": "Quốc hội nước CHXHCN Việt Nam",
+  "date_issued": "2018-11-20",
+  "date_effective": "2019-01-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "một phần hết hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "effStatus của vbpl.vn = 'Hết hiệu lực một phần' tại ngày cào.",
+  "status_source": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc",
+  "status_conflict": "",
+  "amends": [
+    "86/2015/QH13"
+  ],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "86/2015/QH13"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://vbpl.vn/van-ban/chi-tiet/132982",
+  "source_name": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/35-2018-QH14_sua-doi-37-luat-lien-quan-quy-hoach.html",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/35-2018-QH14_sua-doi-37-luat-lien-quan-quy-hoach.html"
+  ],
+  "text_extractable": true,
+  "notes": "Luật sửa 37 luật khác nhau, phần lớn không liên quan an ninh mạng. Cào vào bộ dữ liệu vì đây là văn bản sửa đổi Luật An toàn thông tin mạng 86/2015/QH13. Khi chunk nên lọc riêng điều khoản sửa Luật 86/2015/QH13."
+}

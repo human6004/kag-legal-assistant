@@ -1,0 +1,41 @@
+{
+  "doc_id": "NIST-CSWP-29",
+  "title": "The NIST Cybersecurity Framework (CSF) 2.0",
+  "doc_number": "NIST CSWP 29",
+  "doc_type": "Framework kỹ thuật (không phải văn bản quy phạm pháp luật)",
+  "issuing_body": "National Institute of Standards and Technology (NIST), U.S. Department of Commerce",
+  "date_issued": "2024-02-26",
+  "date_effective": "2024-02-26",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Ngày 26/02/2024 in trên trang bìa. Đã kiểm tra không có bản sửa đổi (NIST.CSWP.29r1.pdf trả về 404).",
+  "status_source": "nvlpubs.nist.gov",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [
+    "Framework for Improving Critical Infrastructure Cybersecurity v1.1"
+  ],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "NIST AI 100-1"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "an_ninh_mang",
+  "source_url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+  "source_name": "NIST",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_an_ninh_mang/NIST-CSWP-29_cybersecurity-framework-2-0.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_an_ninh_mang/NIST-CSWP-29_cybersecurity-framework-2-0.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Không phải luật cứng - 'còn hiệu lực' ở đây nghĩa là phiên bản hiện hành. Văn bản ghi rõ CSF 2.0 thay tên gọi cũ 'Framework for Improving Critical Infrastructure Cybersecurity'."
+}

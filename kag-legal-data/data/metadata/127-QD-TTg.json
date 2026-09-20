@@ -1,0 +1,42 @@
+{
+  "doc_id": "127-QD-TTg",
+  "title": "Quyết định ban hành Chiến lược quốc gia về nghiên cứu, phát triển và ứng dụng Trí tuệ nhân tạo đến năm 2030",
+  "doc_number": "127/QĐ-TTg",
+  "doc_type": "Quyết định",
+  "issuing_body": "Thủ tướng Chính phủ",
+  "date_issued": "2021-01-26",
+  "date_effective": "2021-01-26",
+  "date_applicable": "",
+  "date_expired": "2026-08-28",
+  "status": "hết hiệu lực",
+  "in_force": false,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Quyết định 1671/QĐ-TTg ngày 28/8/2026 phê duyệt Chiến lược quốc gia về trí tuệ nhân tạo đến năm 2030, tầm nhìn 2045 và thay thế Quyết định 127/QĐ-TTg ngày 26/01/2021.",
+  "status_source": "baochinhphu.vn + mst.gov.vn (Cổng TTĐT Chính phủ và Bộ chủ quản)",
+  "status_conflict": "Không có nguồn nhà nước nào gán trường tình trạng hiệu lực cho văn bản này (không phải văn bản quy phạm pháp luật nên không có trên vbpl.vn).",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [
+    "1671/QĐ-TTg"
+  ],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "1671/QĐ-TTg",
+    "134/2025/QH15"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "ai",
+  "source_url": "https://vanban.chinhphu.vn/default.aspx?pageid=27160&docid=202565",
+  "source_name": "Hệ thống văn bản Chính phủ (vanban.chinhphu.vn / datafiles.chinhphu.vn)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_ai/127-QD-TTg_chien-luoc-quoc-gia-tri-tue-nhan-tao-den-2030.pdf",
+  "raw_files": [
+    "data/raw/vn_ai/127-QD-TTg_chien-luoc-quoc-gia-tri-tue-nhan-tao-den-2030.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Lần cào trước để 'cần xem lại' - nay đã tra ra: BỊ THAY THẾ bởi Quyết định 1671/QĐ-TTg từ 28/8/2026. Các nhiệm vụ đang triển khai theo QĐ 127 tiếp tục thực hiện đến khi hoàn thành hoặc được tích hợp vào chiến lược mới. PDF ký số là ảnh scan: pdftotext và PyMuPDF chỉ đọc được 149 ký tự của lớp chữ ký số. Toàn văn tiếng Việt trong data/processed lấy từ bước OCR ở lần xử lý trước và đã được giữ lại; build_processed.py không dựng lại file md này từ PDF."
+}

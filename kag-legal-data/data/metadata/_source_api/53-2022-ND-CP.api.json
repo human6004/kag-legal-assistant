@@ -1,0 +1,162 @@
+{
+  "id": "180306",
+  "docType": {
+    "id": "0d08b84c-7de7-4800-8760-2a68265e7890",
+    "name": "Nghị định",
+    "code": "NĐ",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "53/2022/NĐ-CP",
+  "title": "Nghị định số 53/2022/NĐ-CP Quy định chi tiết một số điều của Luật An ninh mạng",
+  "issueDate": "2022-08-15T00:00:00",
+  "effFrom": "2022-10-01T00:00:00",
+  "effTo": null,
+  "publicDate": null,
+  "effStatus": {
+    "id": "1419f6be-4a15-44a7-97ac-ea042770a514",
+    "name": "Còn hiệu lực",
+    "code": "CHL",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "dungdvm_II.4",
+  "updatedDate": "2026-04-05T07:36:40",
+  "agencyName": "Chính phủ",
+  "organization": {
+    "id": "0995e017-a693-4ca7-9dc6-b0a969fe5f19",
+    "code": "G01",
+    "name": "Bộ Công an",
+    "nameEn": "Bộ Công an",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "Template.pdf",
+  "documentContentFileDocName": "53.2022.ND.CP.doc",
+  "documentIssues": [
+    {
+      "id": "ffc75fc1-0880-4c3b-a9ab-91dfb23c4082",
+      "agencyId": "1",
+      "agencyName": "Chính phủ",
+      "agencyNameEn": "The Government",
+      "personId": "382",
+      "personName": "Vũ Đức Đam",
+      "jobTitleId": "1f64c755-938a-4c2b-8b84-d67d421878b2",
+      "jobTitleCode": "PTTCP",
+      "jobTitleName": "Phó Thủ tướng Chính phủ",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [],
+  "documentFields": [
+    {
+      "id": "76e2c0d5-e93e-4ee9-8c72-59dae1167432",
+      "name": "Chưa phân loại",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentRelatedList": [
+    {
+      "id": "5a899a81-513c-4217-8aaa-66fff31277fb",
+      "fileName": "180306_body_content.html",
+      "relatedType": "MARKDOWN",
+      "fileTitle": "180306_body_content.html",
+      "fileOrder": null
+    }
+  ],
+  "provisionTree": null,
+  "references": [
+    {
+      "id": "083c5bf0-486b-11f1-a979-2f5e7dc1b4a4",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "95908",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "86/2015/QH13",
+        "title": "Luật An toàn thông tin mạng số 86/2015/QH13",
+        "docAbs": null,
+        "issueDate": "2015-11-19T00:00:00",
+        "effFrom": "2016-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "083cd120-486b-11f1-a94c-2310448bd8ed",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "132957",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "24/2018/QH14",
+        "title": "Luật An ninh mạng số 24/2018/QH14",
+        "docAbs": null,
+        "issueDate": "2018-06-12T00:00:00",
+        "effFrom": "2019-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "083cf830-486b-11f1-804f-47077cdae2bf",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "18562",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "32/2004/QH11",
+        "title": "Luật An ninh Quốc gia số 32/2004/QH11",
+        "docAbs": null,
+        "issueDate": "2004-12-03T00:00:00",
+        "effFrom": "2005-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "083d6d60-486b-11f1-ba39-69b2230d5968",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "70821",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "76/2015/QH13",
+        "title": "Luật Tổ chức Chính phủ số 76/2015/QH13",
+        "docAbs": null,
+        "issueDate": "2015-06-19T00:00:00",
+        "effFrom": "2016-01-01T00:00:00",
+        "effTo": "2025-03-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    }
+  ],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "RV_DONE",
+  "reviewed": true,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 154,
+  "hasContent": true,
+  "hasOriginalPdf": true,
+  "hasAIProcessed": false,
+  "hasClauseRelation": null
+}

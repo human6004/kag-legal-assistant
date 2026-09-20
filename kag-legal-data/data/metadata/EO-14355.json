@@ -1,0 +1,41 @@
+{
+  "doc_id": "EO-14355",
+  "title": "Executive Order 14355 - Unlocking Cures for Pediatric Cancer With Artificial Intelligence",
+  "doc_number": "Executive Order 14355",
+  "doc_type": "Executive Order",
+  "issuing_body": "President of the United States",
+  "date_issued": "2025-09-30",
+  "date_effective": "2025-09-30",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Không tìm thấy văn bản thu hồi tại ngày tham chiếu.",
+  "status_source": "Federal Register qua govinfo.gov (bản in chính thức)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Executive Order 14179",
+    "Executive Order 14365",
+    "NIST AI 100-1"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://www.federalregister.gov/documents/2025/10/07/2025-19495/unlocking-cures-pediatric-cancer-with-ai",
+  "source_name": "Federal Register qua govinfo.gov (bản in chính thức)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/EO-14355_unlocking-cures-pediatric-cancer-with-ai.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/EO-14355_unlocking-cures-pediatric-cancer-with-ai.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Bản PDF chính thức: https://www.govinfo.gov/content/pkg/FR-2025-10-07/pdf/2025-19495.pdf . LƯU Ý KỸ THUẬT: URL raw text của federalregister.gov bị chặn bot (trả về trang 'Request Access'), phải dùng govinfo.gov. Bổ sung khi rà soát lại: AI trong y tế."
+}

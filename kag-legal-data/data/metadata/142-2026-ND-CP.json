@@ -1,0 +1,43 @@
+{
+  "doc_id": "142-2026-ND-CP",
+  "title": "Nghị định quy định chi tiết một số điều và biện pháp thi hành Luật Trí tuệ nhân tạo",
+  "doc_number": "142/2026/NĐ-CP",
+  "doc_type": "Nghị định",
+  "issuing_body": "Chính phủ",
+  "date_issued": "2026-04-30",
+  "date_effective": "2026-05-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Công báo và Cổng TTĐT Chính phủ: ban hành 30/4/2026, hiệu lực từ 01/5/2026.",
+  "status_source": "Công báo Chính phủ (congbao.chinhphu.vn)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [
+    "134/2025/QH15"
+  ],
+  "implemented_by": [],
+  "related_docs": [
+    "134/2025/QH15",
+    "05/2026/TT-BKHCN"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "ai",
+  "source_url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-142-2026-nd-cp-469480.htm",
+  "source_name": "Công báo Chính phủ (congbao.chinhphu.vn)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_ai/142-2026-ND-CP_quy-dinh-chi-tiet-luat-tri-tue-nhan-tao.docx",
+  "raw_files": [
+    "data/raw/vn_ai/142-2026-ND-CP_quy-dinh-chi-tiet-luat-tri-tue-nhan-tao.docx",
+    "data/raw/vn_ai/142-2026-ND-CP_quy-dinh-chi-tiet-luat-tri-tue-nhan-tao.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Gồm 8 chương, 46 điều. Quy định phân loại mức độ rủi ro hệ thống AI, đánh giá sự phù hợp với hệ thống rủi ro cao, trách nhiệm minh bạch, cơ chế thử nghiệm có kiểm soát. Giữ cả DOCX (text sạch để chunk) và PDF (bản ký số để đối chiếu)."
+}

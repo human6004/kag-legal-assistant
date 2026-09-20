@@ -1,0 +1,41 @@
+{
+  "doc_id": "OECD-LEGAL-0449",
+  "title": "OECD Recommendation of the Council on Artificial Intelligence (OECD AI Principles)",
+  "doc_number": "OECD/LEGAL/0449",
+  "doc_type": "Khuyến nghị (soft law)",
+  "issuing_body": "Organisation for Economic Co-operation and Development (OECD) - Council",
+  "date_issued": "2019-05-22",
+  "date_effective": "2019-05-22",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Phần Background của chính văn bản: thông qua ngày 22/5/2019; sửa đổi ngày 08/11/2023 (cập nhật định nghĩa 'AI System') và ngày 03/5/2024. File cào là bản hợp nhất mới nhất.",
+  "status_source": "OECD Legal Instruments (legalinstruments.oecd.org)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Regulation (EU) 2024/1689",
+    "SHS/BIO/PI/2021/1",
+    "05/2026/TT-BKHCN"
+  ],
+  "jurisdiction": "quốc tế",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://legalinstruments.oecd.org/en/instruments/oecd-legal-0449",
+  "source_name": "OECD Legal Instruments",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/OECD-LEGAL-0449_oecd-ai-principles.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/OECD-LEGAL-0449_oecd-ai-principles.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Văn bản khuyến nghị, không ràng buộc pháp lý. File PDF gốc: https://legalinstruments.oecd.org/public/doc/648/648.en.pdf"
+}

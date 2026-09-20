@@ -1,0 +1,174 @@
+{
+  "id": "69ba65c0-8a56-11f1-878c-399a87bcb3eb",
+  "docType": {
+    "id": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+    "name": "Luật",
+    "code": "Lu",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "134/2025/QH15",
+  "title": "LUẬT TRÍ TUỆ NHÂN TẠO SỐ 134/2025/QH15",
+  "issueDate": "2025-12-10T00:00:00",
+  "effFrom": "2026-03-01T00:00:00",
+  "effTo": null,
+  "publicDate": null,
+  "effStatus": null,
+  "status": "Publish",
+  "lang": null,
+  "defaultLanguage": "VN",
+  "updatedBy": "bkhcn_bientap",
+  "updatedDate": "2026-08-28T12:12:32",
+  "agencyName": "Quốc hội",
+  "organization": {
+    "id": "94e7dd4f-5655-4249-b6d2-f58d1a0d6cb4",
+    "code": "G06",
+    "name": "Bộ Khoa học và Công nghệ",
+    "nameEn": "Minister of Science and Technology",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "luat134.signed.pdf",
+  "documentContentFileDocName": "Luật TTNT 2025 (bản clean).docx",
+  "documentIssues": [
+    {
+      "id": "df2c77d0-8a56-11f1-bba4-0f00fc83014e",
+      "agencyId": "55",
+      "agencyName": "Quốc hội",
+      "agencyNameEn": "National Assembly of Vietnam",
+      "personId": "1734",
+      "personName": "Trần Thanh Mẫn",
+      "jobTitleId": "28da0087-8afd-420c-875c-b2369e212c3e",
+      "jobTitleCode": "CTQH",
+      "jobTitleName": "Chủ tịch Quốc hội",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [
+    {
+      "id": "54",
+      "name": "Khoa học và công nghệ",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentFields": [
+    {
+      "id": "03fb176b-fd95-46e2-ade5-ce24b284051f",
+      "name": "Công nghệ thông tin",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentRelatedList": [],
+  "provisionTree": null,
+  "references": [
+    {
+      "id": "65041ec0-8a58-11f1-b384-e30e66336747",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32804",
+        "docType": "044d941c-40de-45b9-ae84-51f5a730bfe0",
+        "docNum": "64/2013/QH13",
+        "title": "Nghị quyết số 64/2013/QH13 Quy định một số điểm thi hành Hiến pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam",
+        "docAbs": null,
+        "issueDate": "2013-11-28T00:00:00",
+        "effFrom": "2013-11-28T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "65041eca-8a58-11f1-bf03-bb8ef736ce47",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179989",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "71/2025/QH15",
+        "title": "Luật Công nghiệp công nghệ số số 71/2025/QH15",
+        "docAbs": null,
+        "issueDate": "2025-06-14T00:00:00",
+        "effFrom": "2026-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "65041ede-8a58-11f1-84d3-1bef357b7222",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179989",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "71/2025/QH15",
+        "title": "Luật Công nghiệp công nghệ số số 71/2025/QH15",
+        "docAbs": null,
+        "issueDate": "2025-06-14T00:00:00",
+        "effFrom": "2026-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "65050920-8a58-11f1-a1b6-ed08cbc65202",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179989",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "71/2025/QH15",
+        "title": "Luật Công nghiệp công nghệ số số 71/2025/QH15",
+        "docAbs": null,
+        "issueDate": "2025-06-14T00:00:00",
+        "effFrom": "2026-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "65057e50-8a58-11f1-b467-dd162054ab28",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179989",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "71/2025/QH15",
+        "title": "Luật Công nghiệp công nghệ số số 71/2025/QH15",
+        "docAbs": null,
+        "issueDate": "2025-06-14T00:00:00",
+        "effFrom": "2026-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    }
+  ],
+  "isEffectAllDocument": false,
+  "isOld": false,
+  "reviewStatus": null,
+  "reviewed": false,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 8,
+  "hasContent": true,
+  "hasOriginalPdf": null,
+  "hasAIProcessed": true,
+  "hasClauseRelation": true
+}

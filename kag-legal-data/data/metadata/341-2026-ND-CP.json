@@ -1,0 +1,42 @@
+{
+  "doc_id": "341-2026-ND-CP",
+  "title": "Nghị định quy định chi tiết một số điều và biện pháp thi hành Luật An ninh mạng về hoạt động mật mã dân sự",
+  "doc_number": "341/2026/NĐ-CP",
+  "doc_type": "Nghị định",
+  "issuing_body": "Chính phủ",
+  "date_issued": "2026-09-01",
+  "date_effective": "2026-09-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Ngày ban hành và ngày hiệu lực 01/9/2026 theo công bố của Cổng TTĐT Chính phủ (xaydungchinhsach.chinhphu.vn) và theo tên file PDF ký số trên datafiles.chinhphu.vn.",
+  "status_source": "Hệ thống văn bản Chính phủ (vanban.chinhphu.vn / datafiles.chinhphu.vn)",
+  "status_conflict": "CHƯA đối chiếu được điều khoản thi hành trong chính văn bản vì file PDF là ảnh scan, không trích được text.",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [
+    "116/2025/QH15"
+  ],
+  "implemented_by": [],
+  "related_docs": [
+    "116/2025/QH15",
+    "86/2015/QH13"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/9/341_2026_nd-cp_01092026-signed.signed.pdf",
+  "source_name": "Hệ thống văn bản Chính phủ (vanban.chinhphu.vn / datafiles.chinhphu.vn)",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/341-2026-ND-CP_mat-ma-dan-su.pdf",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/341-2026-ND-CP_mat-ma-dan-su.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Chưa có bản DOCX/HTML: chưa lên Công báo (đã quét dải mã văn bản Công báo) và chưa có trên vbpl.vn tại ngày cào. Thay thế vai trò quản lý mật mã dân sự trước đây thuộc Luật An toàn thông tin mạng 86/2015/QH13. File PDF ký số là ảnh scan: pdftotext và PyMuPDF chỉ đọc được 195 ký tự của lớp chữ ký số. Toàn văn tiếng Việt trong data/processed lấy từ bước OCR ở lần xử lý trước và đã được giữ lại; build_processed.py không dựng lại file md này từ PDF."
+}

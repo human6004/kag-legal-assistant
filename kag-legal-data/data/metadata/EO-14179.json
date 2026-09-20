@@ -1,0 +1,43 @@
+{
+  "doc_id": "EO-14179",
+  "title": "Executive Order 14179 - Removing Barriers to American Leadership in Artificial Intelligence",
+  "doc_number": "Executive Order 14179",
+  "doc_type": "Executive Order",
+  "issuing_body": "President of the United States",
+  "date_issued": "2025-01-23",
+  "date_effective": "2025-01-23",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Không tìm thấy văn bản thu hồi. Vẫn được dẫn chiếu như chính sách hiện hành trong EO 14365 (11/12/2025).",
+  "status_source": "Federal Register qua govinfo.gov (bản in chính thức)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [
+    "Executive Order 14110"
+  ],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Executive Order 14179",
+    "Executive Order 14365",
+    "NIST AI 100-1"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://www.federalregister.gov/documents/2025/01/31/2025-02172/removing-barriers-american-leadership-ai",
+  "source_name": "Federal Register qua govinfo.gov (bản in chính thức) - 90 FR 8741",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/EO-14179_removing-barriers-american-leadership-ai.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/EO-14179_removing-barriers-american-leadership-ai.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Bản PDF chính thức: https://www.govinfo.gov/content/pkg/FR-2025-01-31/pdf/2025-02172.pdf . LƯU Ý KỸ THUẬT: URL raw text của federalregister.gov bị chặn bot (trả về trang 'Request Access'), phải dùng govinfo.gov. Thu hồi Executive Order 14110."
+}

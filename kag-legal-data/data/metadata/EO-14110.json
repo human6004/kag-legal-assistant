@@ -1,0 +1,43 @@
+{
+  "doc_id": "EO-14110",
+  "title": "Executive Order 14110 - Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence",
+  "doc_number": "Executive Order 14110",
+  "doc_type": "Executive Order",
+  "issuing_body": "President of the United States",
+  "date_issued": "2023-10-30",
+  "date_effective": "2023-10-30",
+  "date_applicable": "",
+  "date_expired": "2025-01-23",
+  "status": "hết hiệu lực",
+  "in_force": false,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Section 5 của Executive Order 14179 (23/01/2025) ghi rõ 'the revoked Executive Order 14110 of October 30, 2023'.",
+  "status_source": "Federal Register qua govinfo.gov (bản in chính thức)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [
+    "Executive Order 14179"
+  ],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Executive Order 14179",
+    "Executive Order 14365",
+    "NIST AI 100-1"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://www.federalregister.gov/documents/2023/11/01/2023-24283/safe-secure-trustworthy-ai",
+  "source_name": "Federal Register qua govinfo.gov (bản in chính thức) - 88 FR 75191",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/EO-14110_safe-secure-trustworthy-ai.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/EO-14110_safe-secure-trustworthy-ai.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Bản PDF chính thức: https://www.govinfo.gov/content/pkg/FR-2023-11-01/pdf/2023-24283.pdf . LƯU Ý KỸ THUẬT: URL raw text của federalregister.gov bị chặn bot (trả về trang 'Request Access'), phải dùng govinfo.gov. Giữ lại làm mốc lịch sử, PHẢI đánh dấu hết hiệu lực. Đây là EO mà NIST AI RMF hay được dẫn chiếu kèm."
+}

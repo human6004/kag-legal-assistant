@@ -1,0 +1,44 @@
+{
+  "doc_id": "53-2022-ND-CP",
+  "title": "Nghị định quy định chi tiết một số điều của Luật An ninh mạng",
+  "doc_number": "53/2022/NĐ-CP",
+  "doc_type": "Nghị định",
+  "issuing_body": "Chính phủ",
+  "date_issued": "2022-08-15",
+  "date_effective": "2022-10-01",
+  "date_applicable": "",
+  "date_expired": "2026-08-19",
+  "status": "hết hiệu lực",
+  "in_force": false,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Nghị định 333/2026/NĐ-CP có hiệu lực từ 19/8/2026 (Điều 30) và thay thế phạm vi điều chỉnh của Nghị định 53/2022/NĐ-CP. Trước đó, Luật An ninh mạng 116/2025/QH15 Điều 44 khoản 2 đã cho cả hai luật mẹ của Nghị định 53/2022/NĐ-CP là Luật 24/2018/QH14 và Luật 86/2015/QH13 hết hiệu lực từ 01/7/2026. Lấy 19/8/2026 làm mốc hết hiệu lực vì đó là mốc có văn bản nêu rõ, thay cho mốc 01/7/2026 chỉ suy ra từ nguyên tắc chung.",
+  "status_source": "Đọc trực tiếp Điều 30-32 Nghị định 333/2026/NĐ-CP và Điều 44-45 Luật 116/2025/QH15 trong bản đã cào. Quyết định của chủ dataset ngày 2026-09-09.",
+  "status_conflict": "vbpl.vn tại 2026-09-09 vẫn ghi 'Còn hiệu lực'. Nghị định 333/2026/NĐ-CP không có câu bãi bỏ trực tiếp Nghị định 53/2022/NĐ-CP, Điều 31 chỉ quy định chuyển tiếp hồ sơ. Khoảng 01/7/2026 đến 19/8/2026 chưa có văn bản nào xử lý rõ.",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [
+    "24/2018/QH14",
+    "86/2015/QH13"
+  ],
+  "implemented_by": [],
+  "related_docs": [
+    "24/2018/QH14",
+    "116/2025/QH15",
+    "333/2026/NĐ-CP"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://vbpl.vn/van-ban/chi-tiet/nghi-dinh-so-53-2022-nd-cp-quy-dinh-chi-tiet-mot-so-dieu-cua-luat-an-ninh-mang--180306",
+  "source_name": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/53-2022-ND-CP_quy-dinh-chi-tiet-luat-an-ninh-mang.html",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/53-2022-ND-CP_quy-dinh-chi-tiet-luat-an-ninh-mang.html"
+  ],
+  "text_extractable": true,
+  "notes": "Ưu tiên trả lời theo Nghị định 333/2026/NĐ-CP. Nghị định 53/2022/NĐ-CP chỉ dùng bổ sung cho hồ sơ thẩm định an ninh mạng và hồ sơ đánh giá điều kiện an ninh mạng đã được tiếp nhận hợp lệ trước 19/8/2026, theo Điều 31 Nghị định 333/2026/NĐ-CP, và phải nêu rõ nguồn. Chưa đối chiếu điều khoản của Luật Ban hành văn bản quy phạm pháp luật 64/2025/QH15 về hiệu lực của văn bản quy định chi tiết: luật đó chưa có trong dataset. Nếu cào bổ sung và điều khoản đó xác nhận, mốc hết hiệu lực phải lùi về 01/7/2026."
+}

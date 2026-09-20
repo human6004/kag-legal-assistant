@@ -1,0 +1,116 @@
+{
+  "id": "95908",
+  "docType": {
+    "id": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+    "name": "Luật",
+    "code": "Lu",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "86/2015/QH13",
+  "title": "Luật An toàn thông tin mạng số 86/2015/QH13",
+  "issueDate": "2015-11-19T00:00:00",
+  "effFrom": "2016-07-01T00:00:00",
+  "effTo": null,
+  "publicDate": null,
+  "effStatus": {
+    "id": "9c20e89d-e048-4f3a-b6c2-df87fe0b1ada",
+    "name": "Hết hiệu lực một phần",
+    "code": "HHL1P",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "System Account",
+  "updatedDate": "2026-05-08T18:56:13",
+  "agencyName": "Quốc hội",
+  "organization": {
+    "id": "94e7dd4f-5655-4249-b6d2-f58d1a0d6cb4",
+    "code": "G06",
+    "name": "Bộ Khoa học và Công nghệ",
+    "nameEn": "Minister of Science and Technology",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "VanBanGoc_86.2015.QH13.pdf",
+  "documentContentFileDocName": "86.2015.QH13.doc",
+  "documentIssues": [
+    {
+      "id": "45d7b246-bd11-4006-8f54-e5d0410476ea",
+      "agencyId": "55",
+      "agencyName": "Quốc hội",
+      "agencyNameEn": "National Assembly of Vietnam",
+      "personId": "122",
+      "personName": "Nguyễn Sinh Hùng",
+      "jobTitleId": null,
+      "jobTitleCode": "CT",
+      "jobTitleName": "Chủ tịch",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [
+    {
+      "id": "58",
+      "name": "Thông tin và Truyền thông",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentFields": [
+    {
+      "id": "76e2c0d5-e93e-4ee9-8c72-59dae1167432",
+      "name": "Chưa phân loại",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentRelatedList": [
+    {
+      "id": "039eb2b3-f45b-47bd-9d59-9e5482dfd352",
+      "fileName": "95908_body_content.html",
+      "relatedType": "MARKDOWN",
+      "fileTitle": "95908_body_content.html",
+      "fileOrder": null
+    }
+  ],
+  "provisionTree": null,
+  "references": [
+    {
+      "id": "41ed637b-5445-43d3-80b3-9eaf0184649e",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32801",
+        "docType": "58bf04c0-a197-4d6e-96e9-2e51066209b5",
+        "docNum": "Không số",
+        "title": "Hiến pháp năm 2013",
+        "docAbs": null,
+        "issueDate": "2013-11-28T00:00:00",
+        "effFrom": "2014-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    }
+  ],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "RV_DONE",
+  "reviewed": true,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 151,
+  "hasContent": true,
+  "hasOriginalPdf": true,
+  "hasAIProcessed": false,
+  "hasClauseRelation": null
+}

@@ -1,0 +1,576 @@
+{
+  "id": "179989",
+  "docType": {
+    "id": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+    "name": "Luật",
+    "code": "Lu",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "71/2025/QH15",
+  "title": "Luật Công nghiệp công nghệ số số 71/2025/QH15",
+  "issueDate": "2025-06-14T00:00:00",
+  "effFrom": "2026-01-01T00:00:00",
+  "effTo": null,
+  "publicDate": "2026-07-01T00:00:00",
+  "effStatus": {
+    "id": "9c20e89d-e048-4f3a-b6c2-df87fe0b1ada",
+    "name": "Hết hiệu lực một phần",
+    "code": "HHL1P",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "phuongnv41",
+  "updatedDate": "2026-07-04T22:22:21",
+  "agencyName": "Quốc hội",
+  "organization": {
+    "id": "94e7dd4f-5655-4249-b6d2-f58d1a0d6cb4",
+    "code": "G06",
+    "name": "Bộ Khoa học và Công nghệ",
+    "nameEn": "Minister of Science and Technology",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "VanBanGoc_Luật CNCNS số 71.pdf",
+  "documentContentFileDocName": "2025.6.26.Luật Công nghiệp công nghệ số. Bản trình ký chứng thực.docx",
+  "documentIssues": [
+    {
+      "id": "100954c0-77bc-11f1-9692-eb9a3bf5d7cc",
+      "agencyId": "55",
+      "agencyName": "Quốc hội",
+      "agencyNameEn": "National Assembly of Vietnam",
+      "personId": "1734",
+      "personName": "Trần Thanh Mẫn",
+      "jobTitleId": "28da0087-8afd-420c-875c-b2369e212c3e",
+      "jobTitleCode": "CTQH",
+      "jobTitleName": "Chủ tịch Quốc hội",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [
+    {
+      "id": "54",
+      "name": "Khoa học và công nghệ",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentFields": [
+    {
+      "id": "03fb176b-fd95-46e2-ade5-ce24b284051f",
+      "name": "Công nghệ thông tin",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentRelatedList": [],
+  "provisionTree": null,
+  "references": [
+    {
+      "id": "8b6e7ef0-30be-11f1-a48f-234b273849ba",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32804",
+        "docType": "044d941c-40de-45b9-ae84-51f5a730bfe0",
+        "docNum": "64/2013/QH13",
+        "title": "Nghị quyết số 64/2013/QH13 Quy định một số điểm thi hành Hiến pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam",
+        "docAbs": null,
+        "issueDate": "2013-11-28T00:00:00",
+        "effFrom": "2013-11-28T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "b5c7840a-47aa-11f1-9bc2-bd8eb9c7582d",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "139264",
+        "docType": "404b68a7-8e71-4ee5-a6c0-07e59f35f824",
+        "docNum": "45/2019/QH14",
+        "title": "Bộ Luật lao động số 45/2019/QH14",
+        "docAbs": null,
+        "issueDate": "2019-11-20T00:00:00",
+        "effFrom": "2021-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "d6294810-4ae2-11f1-aad4-ab9754984cc8",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15066",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "67/2006/QH11",
+        "title": "Luật Công nghệ thông tin số 67/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "d6296f2a-4ae2-11f1-b6c3-af0bbc8c6214",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15066",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "67/2006/QH11",
+        "title": "Luật Công nghệ thông tin số 67/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "d62a3270-4ae2-11f1-88f2-f36cad0b6f28",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15066",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "67/2006/QH11",
+        "title": "Luật Công nghệ thông tin số 67/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "d62a0b60-4ae2-11f1-9290-3d6a9e007089",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15066",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "67/2006/QH11",
+        "title": "Luật Công nghệ thông tin số 67/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "d62a5980-4ae2-11f1-b5d7-1520eb788cfe",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15066",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "67/2006/QH11",
+        "title": "Luật Công nghệ thông tin số 67/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "d62a8090-4ae2-11f1-adc7-e352ccad1cd3",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15066",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "67/2006/QH11",
+        "title": "Luật Công nghệ thông tin số 67/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "d62aceb0-4ae2-11f1-b4a8-a1126d98146c",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15066",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "67/2006/QH11",
+        "title": "Luật Công nghệ thông tin số 67/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 1
+    },
+    {
+      "id": "d62b1cd0-4ae2-11f1-8d95-351603c26271",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "25400",
+        "docType": "044d941c-40de-45b9-ae84-51f5a730bfe0",
+        "docNum": "04/2007/QH12",
+        "title": "Nghị quyết số 04/2007/QH12 Về việc điều chỉnh chương trình xây dựng luật, pháp lệnh năm 2007",
+        "docAbs": null,
+        "issueDate": "2007-07-31T00:00:00",
+        "effFrom": "2007-07-31T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "d62b43ea-4ae2-11f1-9323-2ba57e9277a8",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "139264",
+        "docType": "404b68a7-8e71-4ee5-a6c0-07e59f35f824",
+        "docNum": "45/2019/QH14",
+        "title": "Bộ Luật lao động số 45/2019/QH14",
+        "docAbs": null,
+        "issueDate": "2019-11-20T00:00:00",
+        "effFrom": "2021-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "d62bb910-4ae2-11f1-8008-51337fc3cc2a",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "139264",
+        "docType": "404b68a7-8e71-4ee5-a6c0-07e59f35f824",
+        "docNum": "45/2019/QH14",
+        "title": "Bộ Luật lao động số 45/2019/QH14",
+        "docAbs": null,
+        "issueDate": "2019-11-20T00:00:00",
+        "effFrom": "2021-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "d62c0730-4ae2-11f1-b978-3df78fd527e5",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "168687",
+        "docType": "044d941c-40de-45b9-ae84-51f5a730bfe0",
+        "docNum": "136/2024/QH15",
+        "title": "Nghị quyết số 136/2024/QH15 về tổ chức chính quyền đô thị và thí điểm một số cơ chế, chính sách đặc thù phát triển thành phố Đà Nẵng",
+        "docAbs": null,
+        "issueDate": "2024-06-26T00:00:00",
+        "effFrom": "2025-01-01T00:00:00",
+        "effTo": "2025-06-16T00:00:00",
+        "status": "DELETED"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62c074e-4ae2-11f1-9bbc-07bf9c799ede",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179317",
+        "docType": "044d941c-40de-45b9-ae84-51f5a730bfe0",
+        "docNum": "98/2023/QH15",
+        "title": "Nghị quyết số 98/2023/QH15 Về thí điểm một số cơ chế, chính sách đặc thù phát triển thành phố Hồ Chí Minh",
+        "docAbs": null,
+        "issueDate": "2023-06-24T00:00:00",
+        "effFrom": "2023-08-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62c073a-4ae2-11f1-a87b-5d5d5a865cec",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179317",
+        "docType": "044d941c-40de-45b9-ae84-51f5a730bfe0",
+        "docNum": "98/2023/QH15",
+        "title": "Nghị quyết số 98/2023/QH15 Về thí điểm một số cơ chế, chính sách đặc thù phát triển thành phố Hồ Chí Minh",
+        "docAbs": null,
+        "issueDate": "2023-06-24T00:00:00",
+        "effFrom": "2023-08-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62ca370-4ae2-11f1-a217-1fe9d13a5fb9",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "166402",
+        "docType": "044d941c-40de-45b9-ae84-51f5a730bfe0",
+        "docNum": "81/2023/QH15",
+        "title": "Nghị quyết số 81/2023/QH15 Về Quy hoạch tổng thể quốc gia thời kỳ 2021 – 2023, tầm nhìn năm 2050",
+        "docAbs": null,
+        "issueDate": "2023-01-09T00:00:00",
+        "effFrom": "2023-01-09T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62ca384-4ae2-11f1-a716-6d05dd672086",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "166402",
+        "docType": "044d941c-40de-45b9-ae84-51f5a730bfe0",
+        "docNum": "81/2023/QH15",
+        "title": "Nghị quyết số 81/2023/QH15 Về Quy hoạch tổng thể quốc gia thời kỳ 2021 – 2023, tầm nhìn năm 2050",
+        "docAbs": null,
+        "issueDate": "2023-01-09T00:00:00",
+        "effFrom": "2023-01-09T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62e0300-4ae2-11f1-8b3c-452b5e8db2cf",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "142867",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "61/2020/QH14",
+        "title": "Luật đầu tư số 61/2020/QH14",
+        "docAbs": null,
+        "issueDate": "2020-06-17T00:00:00",
+        "effFrom": "2021-01-01T00:00:00",
+        "effTo": "2026-03-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62e0314-4ae2-11f1-b3b4-f7a5f6da819e",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "142867",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "61/2020/QH14",
+        "title": "Luật đầu tư số 61/2020/QH14",
+        "docAbs": null,
+        "issueDate": "2020-06-17T00:00:00",
+        "effFrom": "2021-01-01T00:00:00",
+        "effTo": "2026-03-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62e7830-4ae2-11f1-a4cc-e771351b92da",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "172548",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "47/2024/QH15",
+        "title": "Luật Quy hoạch đô thị và nông thôn số 47/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-11-26T00:00:00",
+        "effFrom": "2025-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62f3b80-4ae2-11f1-88b1-036f0e113400",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "172548",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "47/2024/QH15",
+        "title": "Luật Quy hoạch đô thị và nông thôn số 47/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-11-26T00:00:00",
+        "effFrom": "2025-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62e9f40-4ae2-11f1-b5a4-d189afb82b78",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "172548",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "47/2024/QH15",
+        "title": "Luật Quy hoạch đô thị và nông thôn số 47/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-11-26T00:00:00",
+        "effFrom": "2025-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62fd7c0-4ae2-11f1-8377-dd73b541350f",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "169990",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "39/2024/QH15",
+        "title": "Luật Thủ đô số 39/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-06-28T00:00:00",
+        "effFrom": "2025-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d62fd7d4-4ae2-11f1-8631-0d106e714145",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "169990",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "39/2024/QH15",
+        "title": "Luật Thủ đô số 39/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-06-28T00:00:00",
+        "effFrom": "2025-01-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d6304cf0-4ae2-11f1-a138-2561940028b5",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "177815",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "31/2024/QH15",
+        "title": "Luật Đất đai số 31/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-01-18T00:00:00",
+        "effFrom": "2025-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d6304d04-4ae2-11f1-8abc-bf85ef730867",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "177815",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "31/2024/QH15",
+        "title": "Luật Đất đai số 31/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-01-18T00:00:00",
+        "effFrom": "2025-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "d630e930-4ae2-11f1-b7dd-d1aa0ea42a56",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "177815",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "31/2024/QH15",
+        "title": "Luật Đất đai số 31/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-01-18T00:00:00",
+        "effFrom": "2025-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    }
+  ],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "RV_DONE",
+  "reviewed": true,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 282,
+  "hasContent": true,
+  "hasOriginalPdf": true,
+  "hasAIProcessed": false,
+  "hasClauseRelation": true
+}

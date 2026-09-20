@@ -1,0 +1,44 @@
+{
+  "doc_id": "ETS-185",
+  "title": "Convention on Cybercrime (Budapest Convention)",
+  "doc_number": "ETS No. 185",
+  "doc_type": "Công ước quốc tế",
+  "issuing_body": "Council of Europe",
+  "date_issued": "2001-11-23",
+  "date_effective": "2004-07-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Treaty Office của Hội đồng châu Âu: 'Opening of the treaty: Budapest 23/11/2001', 'Entry in force: 01/07/2004 (5 Ratifications including at least 3 member States)'.",
+  "status_source": "Council of Europe Treaty Office (coe.int), bảng ký kết - phê chuẩn",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [
+    "ETS No. 189",
+    "CETS No. 224"
+  ],
+  "related_docs": [
+    "ETS No. 189",
+    "CETS No. 224",
+    "A/RES/79/243"
+  ],
+  "jurisdiction": "quốc tế",
+  "language": "en",
+  "category": "an_ninh_mang",
+  "source_url": "https://www.coe.int/en/web/conventions/full-list?module=treaty-detail&treatynum=185",
+  "source_name": "Council of Europe (toàn văn tại rm.coe.int/1680081561)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_an_ninh_mang/ETS-185_budapest-convention-cybercrime.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_an_ninh_mang/ETS-185_budapest-convention-cybercrime.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Việt Nam không phải thành viên nhưng công ước này là nền tảng đối chiếu cho nhiều quy định hình sự mạng."
+}

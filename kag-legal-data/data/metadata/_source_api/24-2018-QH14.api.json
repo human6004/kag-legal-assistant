@@ -1,0 +1,89 @@
+{
+  "id": "132957",
+  "docType": {
+    "id": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+    "name": "Luật",
+    "code": "Lu",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "24/2018/QH14",
+  "title": "Luật An ninh mạng số 24/2018/QH14",
+  "issueDate": "2018-06-12T00:00:00",
+  "effFrom": "2019-01-01T00:00:00",
+  "effTo": null,
+  "publicDate": null,
+  "effStatus": {
+    "id": "1419f6be-4a15-44a7-97ac-ea042770a514",
+    "name": "Còn hiệu lực",
+    "code": "CHL",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "dungdvm_II.2",
+  "updatedDate": "2026-04-06T10:21:16",
+  "agencyName": "Quốc hội",
+  "organization": {
+    "id": "0995e017-a693-4ca7-9dc6-b0a969fe5f19",
+    "code": "G01",
+    "name": "Bộ Công an",
+    "nameEn": "Bộ Công an",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "Template.pdf",
+  "documentContentFileDocName": "24.2018.QH14. Luat An ninh mang.doc",
+  "documentIssues": [
+    {
+      "id": "a76a6d8c-a06c-4160-abbc-05363aee9d54",
+      "agencyId": "55",
+      "agencyName": "Quốc hội",
+      "agencyNameEn": "National Assembly of Vietnam",
+      "personId": "132",
+      "personName": "Nguyễn Thị Kim Ngân",
+      "jobTitleId": "28da0087-8afd-420c-875c-b2369e212c3e",
+      "jobTitleCode": "CTQH",
+      "jobTitleName": "Chủ tịch Quốc hội",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [
+    {
+      "id": "69",
+      "name": "Công an",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentFields": [
+    {
+      "id": "76e2c0d5-e93e-4ee9-8c72-59dae1167432",
+      "name": "Chưa phân loại",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentRelatedList": [],
+  "provisionTree": null,
+  "references": [],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "RV_DONE",
+  "reviewed": true,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 204,
+  "hasContent": true,
+  "hasOriginalPdf": true,
+  "hasAIProcessed": false,
+  "hasClauseRelation": null
+}

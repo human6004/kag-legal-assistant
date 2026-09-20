@@ -1,0 +1,864 @@
+{
+  "id": "132982",
+  "docType": {
+    "id": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+    "name": "Luật",
+    "code": "Lu",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "35/2018/QH14",
+  "title": "Luật Sửa đổi, bổ sung một số điều của 37 luật có liên quan đến quy hoạch số 35/2018/QH14",
+  "issueDate": "2018-11-20T00:00:00",
+  "effFrom": "2019-01-01T00:00:00",
+  "effTo": null,
+  "publicDate": null,
+  "effStatus": {
+    "id": "9c20e89d-e048-4f3a-b6c2-df87fe0b1ada",
+    "name": "Hết hiệu lực một phần",
+    "code": "HHL1P",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "System Account",
+  "updatedDate": "2026-05-08T18:48:39",
+  "agencyName": "Quốc hội",
+  "organization": {
+    "id": "d2907e2d-b1d4-4f22-8cfc-35f786fbf860",
+    "code": "G12",
+    "name": "Bộ Tài chính",
+    "nameEn": "Bộ Tài chính",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "VanBanGoc_Luat 35.2018.QH14 (PDF).pdf",
+  "documentContentFileDocName": "35.2018.QH14 (Word)..doc",
+  "documentIssues": [
+    {
+      "id": "ca09b5bb-3448-44c9-88d1-9a897afc86fc",
+      "agencyId": "55",
+      "agencyName": "Quốc hội",
+      "agencyNameEn": "National Assembly of Vietnam",
+      "personId": "132",
+      "personName": "Nguyễn Thị Kim Ngân",
+      "jobTitleId": "28da0087-8afd-420c-875c-b2369e212c3e",
+      "jobTitleCode": "CTQH",
+      "jobTitleName": "Chủ tịch Quốc hội",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [],
+  "documentFields": [
+    {
+      "id": "76e2c0d5-e93e-4ee9-8c72-59dae1167432",
+      "name": "Chưa phân loại",
+      "code": null,
+      "parentCode": null,
+      "parentName": null
+    }
+  ],
+  "documentRelatedList": [
+    {
+      "id": "8c94b6e1-9263-47b1-a7bf-9a1cbee63bcb",
+      "fileName": "132982_body_content.html",
+      "relatedType": "MARKDOWN",
+      "fileTitle": "132982_body_content.html",
+      "fileOrder": 1
+    }
+  ],
+  "provisionTree": null,
+  "references": [
+    {
+      "id": "37a695c3-7337-4e9c-a30c-7ba119139064",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "12326",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "25/2008/QH12",
+        "title": "Luật Bảo hiểm y tế số 25/2008/QH12",
+        "docAbs": null,
+        "issueDate": "2008-11-14T00:00:00",
+        "effFrom": "2009-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "9f750cdc-7fdc-4be2-8d9b-478da6f63db9",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "12333",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "23/2008/QH12",
+        "title": "Luật Giao thông đường bộ số 23/2008/QH12",
+        "docAbs": null,
+        "issueDate": "2008-11-13T00:00:00",
+        "effFrom": "2009-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "60957db9-c744-472b-8d67-5d5230811b6b",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "12900",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "03/2007/QH12",
+        "title": "Luật Phòng, chống bệnh truyền nhiễm số 03/2007/QH12",
+        "docAbs": null,
+        "issueDate": "2007-11-21T00:00:00",
+        "effFrom": "2008-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "353231e1-beff-40c8-80de-a8488e4324e0",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15062",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "68/2006/QH11",
+        "title": "Luật Tiêu chuẩn và quy chuẩn kỹ thuật số 68/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "3115dd22-5b75-42f9-8b4a-7900989a7fea",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "19476",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "23/2004/QH11",
+        "title": "Luật Giao thông đường thủy nội địa số 23/2004/QH11",
+        "docAbs": null,
+        "issueDate": "2004-06-15T00:00:00",
+        "effFrom": "2005-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "a28c9939-8988-4c75-86b6-26047c8ed05d",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "27308",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "04/2011/QH13",
+        "title": "Luật Đo lường số 04/2011/QH13",
+        "docAbs": null,
+        "issueDate": "2011-11-11T00:00:00",
+        "effFrom": "2012-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "33b0b27c-72b4-446f-9b98-dc6bd18607b5",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "27615",
+        "docType": "404b68a7-8e71-4ee5-a6c0-07e59f35f824",
+        "docNum": "10/2012/QH13",
+        "title": "Bộ luật Lao động số 10/2012/QH13",
+        "docAbs": null,
+        "issueDate": "2012-06-18T00:00:00",
+        "effFrom": "2013-05-01T00:00:00",
+        "effTo": "2021-01-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "0a30cbb6-3121-4650-ba1e-0541ed274759",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "27616",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "17/2012/QH13",
+        "title": "Luật Tài nguyên nước số 17/2012/QH13",
+        "docAbs": null,
+        "issueDate": "2012-06-21T00:00:00",
+        "effFrom": "2013-01-01T00:00:00",
+        "effTo": "2024-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "208a863c-0e8f-47ca-afb5-c53c1550868e",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32833",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "45/2013/QH13",
+        "title": "Luật Đất đai số 45/2013/QH13",
+        "docAbs": null,
+        "issueDate": "2013-11-29T00:00:00",
+        "effFrom": "2014-07-01T00:00:00",
+        "effTo": "2025-01-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "181e1af1-39ec-46b8-8961-5c6480843fb0",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32905",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "44/2013/QH13",
+        "title": "Luật Thực hành tiết kiệm, chống lãng phí số 44/2013/QH13",
+        "docAbs": null,
+        "issueDate": "2013-11-26T00:00:00",
+        "effFrom": "2014-07-01T00:00:00",
+        "effTo": "2026-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "79c44909-53bf-4e66-8358-db8320ccd7fd",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32909",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "41/2013/QH13",
+        "title": "Luật Bảo vệ và kiểm dịch thực vật số 41/2013/QH13",
+        "docAbs": null,
+        "issueDate": "2013-11-25T00:00:00",
+        "effFrom": "2015-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "c1574389-d2a0-4b00-b3cc-7116035b0c9c",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "46744",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "58/2014/QH13",
+        "title": "Luật Bảo hiểm xã hội số 58/2014/QH13",
+        "docAbs": null,
+        "issueDate": "2014-11-20T00:00:00",
+        "effFrom": "2016-01-01T00:00:00",
+        "effTo": "2025-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "59f10e69-0505-419a-af13-c7a3aa1e23ed",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "70804",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "82/2015/QH13",
+        "title": "Luật Tài nguyên, môi trường biển và hải đảo số 82/2015/QH13",
+        "docAbs": null,
+        "issueDate": "2015-06-25T00:00:00",
+        "effFrom": "2016-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "5d115760-c0d0-4377-a80b-b0d48f2fde1c",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "96020",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "90/2015/QH13",
+        "title": "Luật Khí tượng thủy văn số 90/2015/QH13",
+        "docAbs": null,
+        "issueDate": "2015-11-23T00:00:00",
+        "effFrom": "2016-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "f487e78f-afdf-4fc7-9e9f-4051e316ea04",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "101872",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "103/2016/QH13",
+        "title": "Luật Báo chí số 103/2016/QH13",
+        "docAbs": null,
+        "issueDate": "2016-04-05T00:00:00",
+        "effFrom": "2017-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "50b27cda-faa8-4de0-b310-a0091d28b798",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "113342",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "19/2012/QhH13",
+        "title": "Luật xuất bản số 19/2012/QhH13",
+        "docAbs": null,
+        "issueDate": "2012-11-20T00:00:00",
+        "effFrom": "2012-11-20T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "751af643-7256-45df-b5f5-cd9e31c5024e",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "113345",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "19/2012/QH13",
+        "title": "Luật xuất bản số 19/2012/QH13",
+        "docAbs": null,
+        "issueDate": "2012-11-20T00:00:00",
+        "effFrom": "2012-11-20T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "1d1a2c54-8ac5-4416-b5a0-64f944e18791",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "36867",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "50/2014/QH13",
+        "title": "Luật Xây dựng số 50/2014/QH13",
+        "docAbs": null,
+        "issueDate": "2014-06-18T00:00:00",
+        "effFrom": "2015-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "0f4fd85e-7d98-46a8-bf99-149560a1538a",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15082",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "62/2006/QH11",
+        "title": "Luật Điện ảnh số 62/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": "2023-01-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "387fc809-10c2-4a4e-900a-0fdbbd13c628",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "12809",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "10/2008/QH12",
+        "title": "Luật Sửa đổi, bổ sung một số điều của Luật Dầu khí số 10/2008/QH12",
+        "docAbs": null,
+        "issueDate": "2008-06-03T00:00:00",
+        "effFrom": "2009-01-01T00:00:00",
+        "effTo": "2023-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "3c26f523-d73a-4736-8f7f-8c538f98845c",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "26356",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "59/2010/QH12",
+        "title": "Luật Bảo vệ quyền lợi người tiêu dùng số 59/2010/QH12",
+        "docAbs": null,
+        "issueDate": "2010-11-17T00:00:00",
+        "effFrom": "2011-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "3ea6bc7d-079f-4bb6-923d-c24132f3dff1",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32521",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "30/2013/QH13",
+        "title": "Luật Giáo dục quốc phòng và an ninh số 30/2013/QH13",
+        "docAbs": null,
+        "issueDate": "2013-06-19T00:00:00",
+        "effFrom": "2014-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "424bfe0f-b12a-4790-8dd6-9409957d56c2",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "12356",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "20/2008/QH12",
+        "title": "Luật Đa dạng sinh học số 20/2008/QH12",
+        "docAbs": null,
+        "issueDate": "2008-11-13T00:00:00",
+        "effFrom": "2009-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "4eea08d1-50b2-4617-a271-89de9f0b2678",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "96117",
+        "docType": "404b68a7-8e71-4ee5-a6c0-07e59f35f824",
+        "docNum": "95/2015/QH13",
+        "title": "Bộ luật Hàng hải số 95/2015/QH13",
+        "docAbs": null,
+        "issueDate": "2015-11-25T00:00:00",
+        "effFrom": "2017-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "5751a726-fbb1-4ab1-b495-3dd4d98d3cf2",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "11757",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "30/2009/QH12",
+        "title": "Luật Quy hoạch đô thị số 30/2009/QH12",
+        "docAbs": null,
+        "issueDate": "2009-06-17T00:00:00",
+        "effFrom": "2010-01-01T00:00:00",
+        "effTo": "2025-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "5818c2ec-40f3-4e92-b504-9e2172fc10dc",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "27623",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "13/2012/QH13",
+        "title": "Luật Giám định tư pháp số 13/2012/QH13",
+        "docAbs": null,
+        "issueDate": "2012-06-20T00:00:00",
+        "effFrom": "2013-01-01T00:00:00",
+        "effTo": "2026-05-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "5e4f7391-2a77-4acf-b20f-97fb4a1e482d",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "32801",
+        "docType": "58bf04c0-a197-4d6e-96e9-2e51066209b5",
+        "docNum": "Không số",
+        "title": "Hiến pháp năm 2013",
+        "docAbs": null,
+        "issueDate": "2013-11-28T00:00:00",
+        "effFrom": "2014-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "602fe42d-a2f3-48cd-b3f8-b5a0704b7947",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "95908",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "86/2015/QH13",
+        "title": "Luật An toàn thông tin mạng số 86/2015/QH13",
+        "docAbs": null,
+        "issueDate": "2015-11-19T00:00:00",
+        "effFrom": "2016-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "04bd527b-6fa4-4dc4-a15c-255b767579bf",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "26349",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "60/2010/QH12",
+        "title": "Luật Khoáng sản số 60/2010/QH12",
+        "docAbs": null,
+        "issueDate": "2010-11-17T00:00:00",
+        "effFrom": "2011-07-01T00:00:00",
+        "effTo": "2025-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "66ad44af-830a-42e8-88ec-1c7692602f3c",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "126171",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "06/2017/QH14",
+        "title": "Luật Đường sắt số 06/2017/QH14",
+        "docAbs": null,
+        "issueDate": "2017-06-16T00:00:00",
+        "effFrom": "2018-07-01T00:00:00",
+        "effTo": "2026-01-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "66ffe2b4-591d-4e1f-9116-94432f9891fa",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "36793",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "46/2014/QH13",
+        "title": "Luật Sửa đổi, bổ sung một số điều của Luật Bảo hiểm y tế số 46/2014/QH13",
+        "docAbs": null,
+        "issueDate": "2014-06-13T00:00:00",
+        "effFrom": "2015-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "69c82e9d-3682-412d-bcbc-952538ed07bd",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "27617",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "16/2012/QH13",
+        "title": "Luật Quảng cáo số 16/2012/QH13",
+        "docAbs": null,
+        "issueDate": "2012-06-21T00:00:00",
+        "effFrom": "2013-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "718ab527-3b09-4971-944e-ae049a582c15",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "36884",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "55/2014/QH13",
+        "title": "Luật Bảo vệ môi trường số 55/2014/QH13",
+        "docAbs": null,
+        "issueDate": "2014-06-23T00:00:00",
+        "effFrom": "2015-01-01T00:00:00",
+        "effTo": "2022-01-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "02f43976-12d4-42e3-93a3-7db74dcd5fcd",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "46790",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "69/2014/QH13",
+        "title": "Luật Quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp số 69/2014/QH13",
+        "docAbs": null,
+        "issueDate": "2014-11-26T00:00:00",
+        "effFrom": "2015-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "8f2c61c6-b8b3-41ba-aa08-d2ce14d6b27e",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "12804",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "18/2008/QH12",
+        "title": "Luật Năng lượng nguyên tử số 18/2008/QH12",
+        "docAbs": null,
+        "issueDate": "2008-06-03T00:00:00",
+        "effFrom": "2009-01-01T00:00:00",
+        "effTo": "2026-01-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "9f39a782-4562-47b6-9aee-26d5a815727f",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "15052",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "70/2006/QH11",
+        "title": "Luật Chứng khoán số 70/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-06-29T00:00:00",
+        "effFrom": "2007-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "f43b7a3b-839d-4ee6-9ce0-15bb15cef02b",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "126723",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "08/2017/QH14",
+        "title": "Luật Thủy lợi số 08/2017/QH14",
+        "docAbs": null,
+        "issueDate": "2017-06-19T00:00:00",
+        "effFrom": "2018-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "25f19ab5-4081-4d86-b8e8-f8d764a0736d",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "10809",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "18-L/CTN",
+        "title": "Luật Dầu khí số 18-L/CTN",
+        "docAbs": null,
+        "issueDate": "1993-07-06T00:00:00",
+        "effFrom": "1993-09-01T00:00:00",
+        "effTo": "2023-07-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "e7783fb3-6054-4ce5-95b1-ebfb1185dd4d",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "12896",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "05/2007/QH12",
+        "title": "Luật Chất lượng sản phẩm, hàng hoá số 05/2007/QH12",
+        "docAbs": null,
+        "issueDate": "2007-11-21T00:00:00",
+        "effFrom": "2008-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "2f264767-9860-47de-a5e0-18b77de78e3c",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "28015",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "19/2012/QH13",
+        "title": "Luật Xuất bản số 19/2012/QH13",
+        "docAbs": null,
+        "issueDate": "2012-11-20T00:00:00",
+        "effFrom": "2013-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "21ad0a24-3156-44a6-8126-4450a19d344a",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "14831",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "79/2006/QH11",
+        "title": "Luật Đê điều số 79/2006/QH11",
+        "docAbs": null,
+        "issueDate": "2006-11-29T00:00:00",
+        "effFrom": "2007-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "1d6192d0-49df-47a3-ba2f-c8f9fd2ec1ee",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "36878",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "54/2014/QH13",
+        "title": "LUẬT HẢI QUAN SỐ 54/2014/QH13",
+        "docAbs": null,
+        "issueDate": "2014-06-23T00:00:00",
+        "effFrom": "2015-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "34666959-de87-437d-aaca-37d14db1e734",
+      "isRootDocument": false,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "36824",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "48/2014/QH13",
+        "title": "Luật Sửa đổi, bổ sung một số điều của Luật Giao thông đường thủy nội địa số 48/2014/QH13",
+        "docAbs": null,
+        "issueDate": "2014-06-17T00:00:00",
+        "effFrom": "2015-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    }
+  ],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "RV_DONE",
+  "reviewed": true,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 160,
+  "hasContent": true,
+  "hasOriginalPdf": true,
+  "hasAIProcessed": false,
+  "hasClauseRelation": null
+}

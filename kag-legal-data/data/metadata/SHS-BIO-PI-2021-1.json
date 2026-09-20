@@ -1,0 +1,41 @@
+{
+  "doc_id": "SHS-BIO-PI-2021-1",
+  "title": "UNESCO Recommendation on the Ethics of Artificial Intelligence",
+  "doc_number": "SHS/BIO/PI/2021/1",
+  "doc_type": "Khuyến nghị (soft law)",
+  "issuing_body": "UNESCO - General Conference (kỳ họp thứ 41)",
+  "date_issued": "2021-11-23",
+  "date_effective": "2021-11-23",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Trang bìa văn bản ghi 'Adopted on 23 November 2021'.",
+  "status_source": "UNESDOC - thư viện số UNESCO",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "OECD/LEGAL/0449",
+    "CETS No. 225",
+    "05/2026/TT-BKHCN"
+  ],
+  "jurisdiction": "quốc tế",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://unesdoc.unesco.org/ark:/48223/pf0000381137",
+  "source_name": "UNESCO (UNESDOC)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/SHS-BIO-PI-2021-1_unesco-recommendation-ethics-of-ai.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/SHS-BIO-PI-2021-1_unesco-recommendation-ethics-of-ai.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Văn bản khuyến nghị, không ràng buộc pháp lý; được 193 nước thông qua. Ghi chú kỹ thuật: unesdoc.unesco.org chặn Cloudflare với curl, phải mở trang record bằng trình duyệt để lấy URL file thật dạng /in/rest/annotationSVC/DownloadWatermarkedAttachment/attach_import_<uuid>; URL đó có thể hết hạn, dùng URL ark ở source_url làm nguồn dẫn chính."
+}

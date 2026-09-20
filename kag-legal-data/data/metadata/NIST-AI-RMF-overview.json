@@ -1,0 +1,39 @@
+{
+  "doc_id": "NIST-AI-RMF-overview",
+  "title": "NIST - AI Risk Management Framework (trang tổng quan)",
+  "doc_number": "",
+  "doc_type": "Trang thông tin của cơ quan liên bang Mỹ",
+  "issuing_body": "National Institute of Standards and Technology (NIST)",
+  "date_issued": "",
+  "date_effective": "",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "không áp dụng",
+  "in_force": null,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Không phải văn bản pháp luật nên không có tình trạng hiệu lực.",
+  "status_source": "",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "NIST AI 100-1"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://www.nist.gov/itl/ai-risk-management-framework",
+  "source_name": "NIST",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/NIST-AI-RMF_trang-tong-quan-nist.html",
+  "raw_files": [
+    "data/raw/quoc_te_ai/NIST-AI-RMF_trang-tong-quan-nist.html"
+  ],
+  "text_extractable": true,
+  "notes": "Trang tổng quan do SOURCES.md chỉ định. Nội dung framework thực chất nằm ở NIST AI 100-1."
+}

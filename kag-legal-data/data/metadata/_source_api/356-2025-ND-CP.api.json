@@ -1,0 +1,236 @@
+{
+  "id": "187276",
+  "docType": {
+    "id": "0d08b84c-7de7-4800-8760-2a68265e7890",
+    "name": "Nghị định",
+    "code": "NĐ",
+    "parentCode": "VBQPPL",
+    "parentName": null
+  },
+  "docNum": "356/2025/NĐ-CP",
+  "title": "Nghị định số 356/2025/NĐ-CP Quy định chi tiết một số điều và biện pháp thi hành \nLuật Bảo vệ dữ liệu cá nhân",
+  "issueDate": "2025-12-31T00:00:00",
+  "effFrom": "2026-01-01T00:00:00",
+  "effTo": null,
+  "publicDate": null,
+  "effStatus": {
+    "id": "1419f6be-4a15-44a7-97ac-ea042770a514",
+    "name": "Còn hiệu lực",
+    "code": "CHL",
+    "parentCode": null,
+    "parentName": null
+  },
+  "status": "Publish",
+  "lang": "vi",
+  "defaultLanguage": "VN",
+  "updatedBy": "dungdvm_II.4",
+  "updatedDate": "2026-04-20T13:37:43",
+  "agencyName": "Chính phủ",
+  "organization": {
+    "id": "0995e017-a693-4ca7-9dc6-b0a969fe5f19",
+    "code": "G01",
+    "name": "Bộ Công an",
+    "nameEn": "Bộ Công an",
+    "shortName": null,
+    "orgType": "0"
+  },
+  "isLw": true,
+  "documentContentEn": null,
+  "documentContentFileName": "Template.pdf",
+  "documentContentFileDocName": "ND.356.2025.doc",
+  "documentIssues": [
+    {
+      "id": "f579cf46-c1c0-4b31-827d-9989e5e2c39e",
+      "agencyId": "1",
+      "agencyName": "Chính phủ",
+      "agencyNameEn": "The Government",
+      "personId": "97",
+      "personName": "Nguyễn Hoà Bình",
+      "jobTitleId": "1f64c755-938a-4c2b-8b84-d67d421878b2",
+      "jobTitleCode": "PTTCP",
+      "jobTitleName": "Phó Thủ tướng Chính phủ",
+      "orderIndex": 1
+    }
+  ],
+  "documentMajors": [],
+  "documentFields": [],
+  "documentRelatedList": [],
+  "provisionTree": null,
+  "references": [
+    {
+      "id": "6bcff470-38b6-11f1-be95-c75b818a939b",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "175258",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "63/2025/QH15",
+        "title": "Luật Tổ chức chính phủ số 63/2025/QH15",
+        "docAbs": null,
+        "issueDate": "2025-02-18T00:00:00",
+        "effFrom": "2025-03-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "6bd04290-38b6-11f1-93b1-b11ea2408c2c",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179252",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "91/2025/QH15",
+        "title": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15",
+        "docAbs": null,
+        "issueDate": "2025-06-26T00:00:00",
+        "effFrom": "2026-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "6bd090b0-38b6-11f1-8270-c37809847f91",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "174877",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "60/2024/QH15",
+        "title": "Luật Dữ liệu số 60/2024/QH15",
+        "docAbs": null,
+        "issueDate": "2024-11-30T00:00:00",
+        "effFrom": "2025-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "6bd17b10-38b6-11f1-a651-a94bbcd460b8",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179382",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "90/2025/QH15",
+        "title": "Luật Sửa đổi, bổ sung một số điều của Luật Đấu thầu, Luật Đầu tư theo phương thức đối tác công tư, Luật Hải quan, Luật Thuế giá trị gia tăng, Luật Thuế xuất khẩu, thuế nhập khẩu, Luật Đầu tư, Luật Đầu tư công, Luật Quản lý, sử dụng tài sản công số 90/2025/QH15",
+        "docAbs": null,
+        "issueDate": "2025-06-25T00:00:00",
+        "effFrom": "2025-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 3
+    },
+    {
+      "id": "6bd17b1a-38b6-11f1-ac05-af2426b34e05",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179252",
+        "docType": "11025e19-2dd6-4165-85ad-ab6241186a1a",
+        "docNum": "91/2025/QH15",
+        "title": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15",
+        "docAbs": null,
+        "issueDate": "2025-06-26T00:00:00",
+        "effFrom": "2026-01-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 9
+    },
+    {
+      "id": "6bd1f040-38b6-11f1-b541-9f84f18e353e",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "161106",
+        "docType": "0d08b84c-7de7-4800-8760-2a68265e7890",
+        "docNum": "13/2023/NĐ-CP",
+        "title": "Nghị định số 13/2023/NĐ-CP Bảo vệ dữ liệu cá nhân",
+        "docAbs": null,
+        "issueDate": "2023-04-17T00:00:00",
+        "effFrom": "2023-07-01T00:00:00",
+        "effTo": "2026-01-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    },
+    {
+      "id": "6bd23e60-38b6-11f1-9ff6-d3a4632de13d",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179108",
+        "docType": "0d08b84c-7de7-4800-8760-2a68265e7890",
+        "docNum": "165/2025/NĐ-CP",
+        "title": "Nghị định số 165/2025/NĐ-CP Quy định chi tiết một số điều và biện pháp thi hành Luật Dữ liệu",
+        "docAbs": null,
+        "issueDate": "2025-06-30T00:00:00",
+        "effFrom": "2025-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "b1acfcca-48e9-11f1-a2c5-3db0b8c17080",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "179108",
+        "docType": "0d08b84c-7de7-4800-8760-2a68265e7890",
+        "docNum": "165/2025/NĐ-CP",
+        "title": "Nghị định số 165/2025/NĐ-CP Quy định chi tiết một số điều và biện pháp thi hành Luật Dữ liệu",
+        "docAbs": null,
+        "issueDate": "2025-06-30T00:00:00",
+        "effFrom": "2025-07-01T00:00:00",
+        "effTo": null,
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 10
+    },
+    {
+      "id": "c74a6e5a-5e29-11f1-9389-ef04832a4533",
+      "isRootDocument": null,
+      "isConsolidatedDocument": null,
+      "targetDocument": {
+        "id": "161106",
+        "docType": "0d08b84c-7de7-4800-8760-2a68265e7890",
+        "docNum": "13/2023/NĐ-CP",
+        "title": "Nghị định số 13/2023/NĐ-CP Bảo vệ dữ liệu cá nhân",
+        "docAbs": null,
+        "issueDate": "2023-04-17T00:00:00",
+        "effFrom": "2023-07-01T00:00:00",
+        "effTo": "2026-01-01T00:00:00",
+        "status": "Publish"
+      },
+      "referenceProvisions": null,
+      "referenceType": 12
+    }
+  ],
+  "isEffectAllDocument": false,
+  "isOld": true,
+  "reviewStatus": "RV_DONE",
+  "reviewed": true,
+  "isTranslationDoc": false,
+  "isConsolidatedDocument": false,
+  "isConstitutionDocument": false,
+  "isAdministrativeDocument": false,
+  "viewCount": 462,
+  "hasContent": true,
+  "hasOriginalPdf": null,
+  "hasAIProcessed": false,
+  "hasClauseRelation": true
+}

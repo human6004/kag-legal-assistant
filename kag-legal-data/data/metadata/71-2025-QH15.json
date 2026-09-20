@@ -1,0 +1,48 @@
+{
+  "doc_id": "71-2025-QH15",
+  "title": "Luật Công nghiệp công nghệ số",
+  "doc_number": "71/2025/QH15",
+  "doc_type": "Luật",
+  "issuing_body": "Quốc hội nước CHXHCN Việt Nam",
+  "date_issued": "2025-06-14",
+  "date_effective": "2026-01-01",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "một phần hết hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "effStatus của vbpl.vn = 'Hết hiệu lực một phần'. Phần bị bãi bỏ: Điều 33 Luật 134/2025/QH15 (bãi bỏ Chương IV và một số khoản) và Điều 43 khoản 4 Luật 116/2025/QH15 (thay thế / bãi bỏ một số cụm từ).",
+  "status_source": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc + đọc Điều 33 Luật 134/2025/QH15 và Điều 43 Luật 116/2025/QH15",
+  "status_conflict": "",
+  "amends": [
+    "67/2006/QH11"
+  ],
+  "amended_by": [
+    "134/2025/QH15",
+    "116/2025/QH15"
+  ],
+  "superseded_by": [],
+  "supersedes": [
+    "67/2006/QH11"
+  ],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "134/2025/QH15",
+    "116/2025/QH15",
+    "67/2006/QH11"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "ai",
+  "source_url": "https://vbpl.vn/van-ban/chi-tiet/luat-cong-nghiep-cong-nghe-so-so-71-2025-qh15--179989",
+  "source_name": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_ai/71-2025-QH15_luat-cong-nghiep-cong-nghe-so.html",
+  "raw_files": [
+    "data/raw/vn_ai/71-2025-QH15_luat-cong-nghiep-cong-nghe-so.html"
+  ],
+  "text_extractable": true,
+  "notes": "SOURCES.md ghi số hiệu là '71/2024/QH15' - SAI. Số hiệu đúng trên CSDL quốc gia là 71/2025/QH15, ban hành 14/6/2025. Chương IV (về AI) đã bị Luật Trí tuệ nhân tạo bãi bỏ, nên KHÔNG được dùng Chương IV để trả lời câu hỏi về AI."
+}

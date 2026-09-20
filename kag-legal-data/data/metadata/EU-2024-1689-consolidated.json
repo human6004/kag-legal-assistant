@@ -1,0 +1,40 @@
+{
+  "doc_id": "EU-2024-1689-consolidated",
+  "title": "Regulation (EU) 2024/1689 (EU AI Act) - bản hợp nhất ngày 27/07/2026",
+  "doc_number": "Regulation (EU) 2024/1689 (consolidated 27/07/2026)",
+  "doc_type": "Bản hợp nhất (consolidated text) của EU",
+  "issuing_body": "Publications Office of the European Union",
+  "date_issued": "2026-07-27",
+  "date_effective": "2026-07-27",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "EUR-Lex ghi 'Current consolidated version: 27/07/2026'. Bảng đầu văn bản liệt kê 'Amended by: ►M1 REGULATION (EU) 2026/1744 ... L 1744 1 24.7.2026'.",
+  "status_source": "EUR-Lex / Publications Office of the EU (Cellar)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Regulation (EU) 2024/1689",
+    "Regulation (EU) 2026/1744"
+  ],
+  "jurisdiction": "EU",
+  "language": "en",
+  "category": "ai",
+  "source_url": "http://publications.europa.eu/resource/celex/02024R1689-20260727",
+  "source_name": "EUR-Lex / Publications Office of the EU (Cellar) (Cellar - dùng khi eur-lex.europa.eu chặn tải tự động)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/EU-2024-1689_eu-ai-act_ban-hop-nhat-20260727.html",
+  "raw_files": [
+    "data/raw/quoc_te_ai/EU-2024-1689_eu-ai-act_ban-hop-nhat-20260727.html"
+  ],
+  "text_extractable": true,
+  "notes": "ĐÂY LÀ BẢN NÊN DÙNG cho câu hỏi 'quy định hiện hành của EU AI Act là gì'. Bản hợp nhất là công cụ tra cứu, không có giá trị pháp lý; văn bản có giá trị pháp lý là bản OJ gốc cộng văn bản sửa đổi - đều đã cào. Ghi chú kỹ thuật: eur-lex.europa.eu trả HTTP 202 rỗng khi tải tự động nhiều lần, phải dùng publications.europa.eu/resource/celex/... với header Accept: application/xhtml+xml."
+}

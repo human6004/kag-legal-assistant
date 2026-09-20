@@ -1,0 +1,39 @@
+{
+  "doc_id": "bo-cong-an-csdl-van-ban",
+  "title": "Bộ Công an - Cơ sở dữ liệu văn bản (trang tra cứu của cơ quan chủ quản an ninh mạng)",
+  "doc_number": "",
+  "doc_type": "Trang tra cứu của cơ quan nhà nước",
+  "issuing_body": "Bộ Công an",
+  "date_issued": "",
+  "date_effective": "",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "không áp dụng",
+  "in_force": null,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Không phải văn bản pháp luật nên không có tình trạng hiệu lực.",
+  "status_source": "",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "116/2025/QH15"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://vanban.bocongan.gov.vn/co-so-du-lieu-van-ban",
+  "source_name": "Cổng văn bản Bộ Công an",
+  "source_tier": "cơ quan ban hành / chủ quản",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/bo-cong-an_co-so-du-lieu-van-ban.html",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/bo-cong-an_co-so-du-lieu-van-ban.html"
+  ],
+  "text_extractable": true,
+  "notes": "THAY THẾ nguồn mic.gov.vn trong SOURCES.md: tên miền mic.gov.vn không còn phân giải DNS sau khi Bộ Thông tin và Truyền thông sáp nhập. Theo Điều 41 khoản 2 Luật An ninh mạng 116/2025/QH15, Bộ Công an là cơ quan đầu mối giúp Chính phủ quản lý nhà nước về an ninh mạng, nên đây là cổng chủ quản đúng để theo dõi văn bản mới."
+}

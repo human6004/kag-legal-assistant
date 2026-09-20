@@ -1,0 +1,302 @@
+# Mau cau hinh. Ban that la kag/kag_config.yaml, da bi .gitignore chan vi
+# chua khoa API that. Dung file nay nhu sau:
+#     cp kag/kag_config.example.yaml kag/kag_config.yaml
+# roi dien 3 cho api_key va 3 cho base_url: hai cho LLM (openie_llm, chat_llm)
+# va mot cho vectorize_model. Sua file that, TUYET DOI khong dien vao day.
+#------------project configuration start----------------#
+# Trich xuat thuc the / quan he tu van ban luat. ~2700 luot goi cho ca kho, nen
+# do tre moi luot quan trong hon chat luong tung cau tra loi. Do tren chunk that
+# 4000 ky tu: model nhanh 12.4s, model vua 7.0s, con model thinking-max 253.9s
+# va 302.8s -> vuot timeout.
+# Model thinking-max bi gateway cat o 524, va llm_client.py invoke(with_except=False)
+# nuot loi im lang -> chunk mat sach thuc the ma van bao thanh cong.
+# Dung dat model thinking-max o day.
+openie_llm: &openie_llm
+  type: maas
+  base_url: <URL_GATEWAY_LLM>/v1
+  api_key: ""
+  model: <TEN_MODEL_LLM>
+  enable_check: false
+  # Khong co dong nay thi OpenAIClient khong truyen timeout xuong, roi ve mac dinh
+  # 600s cua SDK -> mot request treo dung ca run 2700 luot. Do that 12.4s/luot nen
+  # 90s da rat rong; request chet thi bung ra ngay thay vi dung 10 phut.
+  timeout: 90
+
+chat_llm: &chat_llm
+  type: maas
+  base_url: <URL_GATEWAY_LLM>/v1
+  api_key: ""
+  model: <TEN_MODEL_LLM>
+  enable_check: false
+  # Rong hon openie vi cau tra loi dai hon nhieu.
+  timeout: 120
+
+vectorize_model: &vectorize_model
+  api_key: ""
+  base_url: <URL_DICH_VU_EMBEDDING>/v1
+  # Gateway dinh tuyen theo dang provider/model. Doi model thi phai doi ca
+  # vector_dimensions cho khop, va phai reset lai index cu trong OpenSPG.
+  model: <TEN_MODEL_EMBEDDING>
+  type: openai
+  vector_dimensions: 3072
+  enable_check: false
+  # OpenAIVectorizeModel CO truyen timeout xuong client, nhung bo trong = vo han.
+  timeout: 60
+vectorizer: *vectorize_model
+
+log:
+  level: INFO
+
+project:
+  # Tien to tra prompt. init_prompt_with_fallback thu "{biz_scene}_{ten}" truoc,
+  # loi moi roi ve "default_{ten}". Day la duong DUY NHAT de thay prompt sinh cau
+  # tra loi khi enable_ref: true, xem kag/solver/prompt/refer_generator.py.
+  # Doi lai thanh default la quay ve prompt tieng Anh cua KAG, im lang, khong bao
+  # loi. Prompt nao chua viet ban legal_ thi tu roi ve default, khong gay.
+  biz_scene: legal
+  host_addr: http://127.0.0.1:8887
+  id: "1"
+  language: en
+  namespace: Legal
+#------------project configuration end----------------#
+
+#------------metadata injection configuration start----------------#
+# Nap 25 file data/metadata vao do thi duoi dang node LegalDocument + canh
+# thay the / sua doi / huong dan thi hanh. Scanner cua builder chi nhan .md
+# nen day la duong duy nhat de ngay hieu luc va chuoi thay the vao duoc graph.
+# Sinh file truoc bang: python builder/metadata_to_graph.py (dung o thu muc kag/)
+#
+# Duong dan tinh theo CWD chu khong theo vi tri file config, vi
+# DefaultExternalGraphLoader.from_json_file goi thang open(node_file_path).
+# Ca ba lenh metadata_to_graph / injection / indexer deu chay o kag/ nen ../data
+# la dung. Doi cho dung thi phai doi hai dong duoi.
+external_graph_loader: &external_graph_loader
+  type: legal_external_graph # kag/builder/external_graph.py
+  node_file_path: ../data/graph/nodes.json
+  edge_file_path: ../data/graph/edges.json
+  match_config:
+    k: 1
+    threshold: 0.9
+
+metadata_inject_chain:
+  type: domain_kg_inject_chain # kag.builder.default_chain.DomainKnowledgeInjectChain
+  external_graph: *external_graph_loader
+  vectorizer:
+    type: batch_vectorizer # kag.builder.component.vectorizer.batch_vectorizer.BatchVectorizer
+    vectorize_model: *vectorize_model
+  writer:
+    type: kg_writer # kag.builder.component.writer.kg_writer.KGWriter
+#------------metadata injection configuration end----------------#
+
+#------------kag-builder configuration start----------------#
+kag_builder_pipeline:
+  chain:
+    type: legal_unstructured_builder_chain # kag/builder/chain.py
+    extractor:
+      type: legal_schema_free_extractor # kag/builder/extractor.py
+      llm: *openie_llm
+      ner_prompt:
+        type: legal_ner # kag/builder/prompt/ner.py
+      std_prompt:
+        type: legal_std # kag/builder/prompt/std.py
+      triple_prompt:
+        type: legal_triple # kag/builder/prompt/triple.py
+      # Cho extractor biet truoc danh sach van ban: schema_free_extractor.py:120
+      # goi external_graph.ner(passage) de vot thuc the LLM bo sot.
+      external_graph: *external_graph_loader
+    reader:
+      type: legal_md_reader # kag/builder/reader.py — va so Khoan va noi dung lap
+      # cat mot chunk = mot Dieu. Heading Dieu nam o muc h4 trong data/processed,
+      # mac dinh 3 se cat o muc Muc va gop nhieu Dieu vao chung mot chunk.
+      cut_depth: 4
+    post_processor:
+      type: kag_post_processor # kag.builder.component.postprocessor.kag_postprocessor.KAGPostProcessor
+      external_graph: *external_graph_loader
+      # CO Y BO TRONG similarity_threshold, khong phai quen.
+      #
+      # kag_postprocessor.py:187 la
+      #     if self.similarity_threshold is not None:
+      # bao trum CA similarity_based_link LAN external_graph_based_link, nen bo
+      # trong la tat ca hai buoc noi mo. filter_invalid_data van chay.
+      #
+      # Do tren do thi thu 121 chunk ngay 2026-09-15: 514 canh `similar`, chia ra
+      #   108  Chunk -> Chunk          ten chunk cung van ban giong nhau
+      #    58  Article -> Article      "dieu 2" ~ "dieu 1", khac han ve nghia
+      #    13  LegalDocument -> LegalDocument KHAC van ban (328 -> 329)
+      #    26  cap tho/slug cua cung mot thuc the (nay da gop bang canon_id)
+      # Nguong 0.9 do tren vector `name` hop voi ten thuc the ngan kieu domain_kg,
+      # khong hop voi ten phap ly tieng Viet: "Dieu 1" va "Dieu 2" chi khac mot
+      # chu so nhung khac han nghia, ma cosine van tren 0.9.
+      #
+      # Sau khi canon_id gop id, viec noi thuc the cung ten nam o cac chunk khac
+      # nhau da xay ra ngay luc ghi: cung mot id thi la cung mot node. Muon noi
+      # mem lai thi dien lai dong similarity_threshold, nhung do lai so canh sai
+      # truoc da.
+    splitter:
+      # kag/builder/splitter.py — chia theo Dieu -> Khoan -> Diem, fallback do dai
+      # la buoc cuoi. split_length la so KY TU Unicode, khong phai token.
+      # window_length: 0 — chunk cau truc khong overlap; ngu canh giu bang heading
+      # prefix chu khong sao lai than cua chunk truoc.
+      type: legal_structural_splitter
+      split_length: 4950
+      window_length: 0
+    vectorizer:
+      type: batch_vectorizer # kag.builder.component.vectorizer.batch_vectorizer.BatchVectorizer
+      vectorize_model: *vectorize_model
+    writer:
+      type: kg_writer # kag.builder.component.writer.kg_writer.KGWriter
+  # ponytail: 2x2 = 4 request song song. Dat tay, khong do tu rate limit that.
+  # Ban goc de 50x16 = 800 luong.
+  #
+  # Da phai ha hai lan trong ngay 2026-09-14, hai nguyen nhan khac han nhau:
+  #
+  # 1. Sang: gateway EMBEDDING. dich vu embedding mien phi gioi han 100
+  #    request/phut (429 "embed_content_free_tier_requests, limit: 100"). Moi
+  #    chunk chia lo 32 text, tenacity thu lai 3 lan TUC THI vi
+  #    batch_vectorizer.py:399 khong co wait=, nen 16 chunk song song la vuot
+  #    chac chan. Khong va duoc bang max_rate/time_period trong vectorize_model:
+  #    bo gioi han toc do do chi nam trong avectorize (duong async), con duong
+  #    sync vectorize() ma builder dang dung KHONG co rate limit nao.
+  #    Hau qua: vectorize() tra None -> extend(None) -> TypeError -> ca FILE do
+  #    tinh la that bai, do thi thung lo ma khong bao loi gi.
+  #    => Da doi sang dich vu embedding tra phi. LY DO NAY HET HIEU LUC.
+  #
+  # 2. Trua: NEO4J CHET HEAP. Ly do dang con hieu luc, dung nang lai 4x4.
+  #      java.lang.OutOfMemoryError: Java heap space   (/logs/debug.log)
+  #    heap max 4G + pagecache 1G, ma ca Docker VM chi co 7.62GiB. 16 luong
+  #    cung ghi vector 3072 chieu qua 36 index HNSW la day qua mep. Neo4j GC
+  #    quay 980% CPU roi ngung tra loi -> openspg-server cho vo han -> ca 16
+  #    luong builder treo o 127.0.0.1:8887. Nhin nhu dung im, khong loi gi.
+  #    Ctrl+C khong go duoc: luong ket trong HTTP call khong co timeout.
+  #
+  # Muon 4x4 thi phai cap them RAM cho Docker VM TRUOC, roi moi tang heap Neo4j.
+  # Tang heap khong thoi la container an exit 137 (bi OOM-kill).
+  num_threads_per_chain: 2
+  num_chains: 2
+  scanner:
+    type: dir_file_scanner # kag.builder.component.scanner.directory_scanner.DirectoryScanner
+    file_suffix: md
+#------------kag-builder configuration end----------------#
+
+#------------kag-solver configuration start----------------#
+search_api: &search_api
+  type: openspg_search_api #kag.solver.tools.search_api.impl.openspg_search_api.OpenSPGSearchAPI
+
+graph_api: &graph_api
+  type: openspg_graph_api #kag.solver.tools.graph_api.impl.openspg_graph_api.OpenSPGGraphApi
+
+chain_vectorizer:
+  type: batch
+  vectorize_model: *vectorize_model
+
+kg_cs: &kg_cs
+  type: kg_cs_open_spg
+  priority: 0
+  path_select:
+    type: exact_one_hop_select
+    graph_api: *graph_api
+    search_api: *search_api
+  entity_linking:
+    type: entity_linking
+    graph_api: *graph_api
+    search_api: *search_api
+    recognition_threshold: 0.9
+    exclude_types:
+      - Chunk
+      - AtomicQuery
+      - KnowledgeUnit
+      - Summary
+      - Outline
+      - Doc
+
+kg_fr: &kg_fr
+  type: kg_fr_open_spg
+  top_k: 20
+  graph_api: *graph_api
+  search_api: *search_api
+  vectorize_model: *vectorize_model
+  path_select:
+    type: fuzzy_one_hop_select
+    llm_client: *openie_llm
+    graph_api: *graph_api
+    search_api: *search_api
+  ppr_chunk_retriever_tool:
+    type: ppr_chunk_retriever
+    llm_client: *chat_llm
+    graph_api: *graph_api
+    search_api: *search_api
+  entity_linking:
+    type: entity_linking
+    graph_api: *graph_api
+    search_api: *search_api
+    recognition_threshold: 0.8
+    exclude_types:
+      - Chunk
+      - AtomicQuery
+      - KnowledgeUnit
+      - Summary
+      - Outline
+      - Doc
+
+rc: &rc
+  type: rc_open_spg
+  vector_chunk_retriever:
+    type: vector_chunk_retriever
+    vectorize_model: *vectorize_model
+    score_threshold: 0.65
+    search_api: *search_api
+  graph_api: *graph_api
+  search_api: *search_api
+  vectorize_model: *vectorize_model
+  top_k: 20
+
+kag_hybrid_executor: &kag_hybrid_executor_conf
+  type: kag_hybrid_retrieval_executor
+  retrievers:
+    - *kg_cs
+    - *kg_fr
+    - *rc
+  merger:
+    type: kag_merger
+  enable_summary: true
+
+kag_output_executor: &kag_output_executor_conf
+  type: kag_output_executor
+  llm_module: *chat_llm
+
+kag_deduce_executor: &kag_deduce_executor_conf
+  type: kag_deduce_executor
+  llm_module: *chat_llm
+
+py_code_based_math_executor: &py_code_based_math_executor_conf
+  type: py_code_based_math_executor
+  llm: *chat_llm
+
+kag_solver_pipeline:
+  type: evidence_aware_iterative_pipeline
+  max_iteration: 4
+  planner:
+    type: lf_kag_static_planner
+    llm: *chat_llm
+    plan_prompt:
+      type: legal_lf_static_planning
+    rewrite_prompt:
+      type: legal_rewrite_sub_task_query
+  executors:
+    - *kag_hybrid_executor_conf
+    - *py_code_based_math_executor_conf
+    - *kag_deduce_executor_conf
+    - *kag_output_executor_conf
+  generator:
+    type: llm_index_generator
+    llm_client: *chat_llm
+    # Chi duoc doc o nhanh `if not self.enable_ref` (llm_index_generator.py:73).
+    # Dang bat enable_ref nen dong nay KHONG chay: prompt that lay qua biz_scene
+    # thanh legal_refer_generator_prompt / legal_without_refer_generator_prompt.
+    # Van tro vao ban khong-ref de lo tat enable_ref thi con tieng Viet, va vi
+    # nhanh do chi truyen content + query, khong truyen ref.
+    generated_prompt:
+      type: legal_without_refer_generator_prompt
+    enable_ref: true
+
+#------------kag-solver configuration end----------------#

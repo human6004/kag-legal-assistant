@@ -1,0 +1,47 @@
+{
+  "doc_id": "86-2015-QH13",
+  "title": "Luật An toàn thông tin mạng",
+  "doc_number": "86/2015/QH13",
+  "doc_type": "Luật",
+  "issuing_body": "Quốc hội nước CHXHCN Việt Nam",
+  "date_issued": "2015-11-19",
+  "date_effective": "2016-07-01",
+  "date_applicable": "",
+  "date_expired": "2026-07-01",
+  "status": "hết hiệu lực",
+  "in_force": false,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Điều 44 khoản 2 Luật An ninh mạng số 116/2025/QH15: Luật An toàn thông tin mạng số 86/2015/QH13 đã được sửa đổi, bổ sung theo Luật số 35/2018/QH14 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành (01/7/2026).",
+  "status_source": "Đọc trực tiếp trong toàn văn Luật 116/2025/QH15 đã cào",
+  "status_conflict": "vbpl.vn tại ngày cào vẫn ghi effStatus = 'Hết hiệu lực một phần' (chưa cập nhật việc luật bị thay thế toàn bộ).",
+  "amends": [],
+  "amended_by": [
+    "35/2018/QH14"
+  ],
+  "superseded_by": [
+    "116/2025/QH15"
+  ],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [
+    "53/2022/NĐ-CP"
+  ],
+  "related_docs": [
+    "35/2018/QH14",
+    "116/2025/QH15",
+    "53/2022/NĐ-CP"
+  ],
+  "jurisdiction": "VN",
+  "language": "vi",
+  "category": "an_ninh_mang",
+  "source_url": "https://vbpl.vn/van-ban/chi-tiet/luat-an-toan-thong-tin-mang-so-86-2015-qh13--95908",
+  "source_name": "CSDL quốc gia về pháp luật (vbpl.vn - Bộ Tư pháp), qua API công khai qtdc/public/doc",
+  "source_tier": "nguồn chính thống cấp nhà nước",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/vn_an_ninh_mang/86-2015-QH13_luat-an-toan-thong-tin-mang.html",
+  "raw_files": [
+    "data/raw/vn_an_ninh_mang/86-2015-QH13_luat-an-toan-thong-tin-mang.html"
+  ],
+  "text_extractable": true,
+  "notes": "Toàn văn cào được là BẢN GỐC 2015, chưa hợp nhất phần sửa đổi của Luật 35/2018/QH14. Giữ trong knowledge base để tra cứu lịch sử; phải chặn không cho chatbot dùng như luật đang áp dụng."
+}

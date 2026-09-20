@@ -1,0 +1,41 @@
+{
+  "doc_id": "EO-14409",
+  "title": "Executive Order 14409 - Promoting Advanced Artificial Intelligence Innovation and Security",
+  "doc_number": "Executive Order 14409",
+  "doc_type": "Executive Order",
+  "issuing_body": "President of the United States",
+  "date_issued": "2026-06-02",
+  "date_effective": "2026-06-02",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "còn hiệu lực",
+  "in_force": true,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Không tìm thấy văn bản thu hồi tại ngày tham chiếu.",
+  "status_source": "Federal Register qua govinfo.gov (bản in chính thức)",
+  "status_conflict": "",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "Executive Order 14179",
+    "Executive Order 14365",
+    "NIST AI 100-1"
+  ],
+  "jurisdiction": "US",
+  "language": "en",
+  "category": "ai",
+  "source_url": "https://www.federalregister.gov/documents/2026/06/05/2026-11415/promoting-advanced-ai-innovation-security",
+  "source_name": "Federal Register qua govinfo.gov (bản in chính thức) - 91 FR 34565",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_ai/EO-14409_promoting-advanced-ai-innovation-security.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_ai/EO-14409_promoting-advanced-ai-innovation-security.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Bản PDF chính thức: https://www.govinfo.gov/content/pkg/FR-2026-06-05/pdf/2026-11415.pdf . LƯU Ý KỸ THUẬT: URL raw text của federalregister.gov bị chặn bot (trả về trang 'Request Access'), phải dùng govinfo.gov. EO về AI mới nhất tìm thấy qua API Federal Register tại ngày cào."
+}

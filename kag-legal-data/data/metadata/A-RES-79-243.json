@@ -1,0 +1,40 @@
+{
+  "doc_id": "A-RES-79-243",
+  "title": "United Nations Convention against Cybercrime (\"Hanoi Convention\"), phụ lục Nghị quyết 79/243 của Đại hội đồng LHQ",
+  "doc_number": "A/RES/79/243",
+  "doc_type": "Công ước quốc tế / Nghị quyết Đại hội đồng LHQ",
+  "issuing_body": "United Nations General Assembly",
+  "date_issued": "2024-12-24",
+  "date_effective": "",
+  "date_applicable": "",
+  "date_expired": "",
+  "status": "chưa có hiệu lực",
+  "in_force": false,
+  "in_force_as_of": "2026-09-09",
+  "status_basis": "Điều 65 khoản 1: Công ước có hiệu lực vào ngày thứ 90 sau khi nộp lưu chiểu văn kiện phê chuẩn thứ 40. Tại ngày tham chiếu, số phê chuẩn còn xa ngưỡng 40.",
+  "status_source": "Đọc Điều 64-65 trong bản PDF chính thức đã cào; số lượng phê chuẩn tham khảo từ nguồn thứ cấp",
+  "status_conflict": "Số phê chuẩn cụ thể CHƯA xác minh được trên United Nations Treaty Collection (treaties.un.org). Nguồn thứ cấp ghi khoảng 76 nước ký, mới 3 nước phê chuẩn (trong đó có Việt Nam) - CẦN KIỂM TRA LẠI trước khi dùng con số này.",
+  "amends": [],
+  "amended_by": [],
+  "superseded_by": [],
+  "supersedes": [],
+  "implements": [],
+  "implemented_by": [],
+  "related_docs": [
+    "ETS No. 185",
+    "CETS No. 224"
+  ],
+  "jurisdiction": "quốc tế",
+  "language": "en",
+  "category": "an_ninh_mang",
+  "source_url": "https://documents.un.org/doc/undoc/gen/n24/426/74/pdf/n2442674.pdf",
+  "source_name": "Hệ thống văn bản Liên Hợp Quốc (documents.un.org)",
+  "source_tier": "cơ quan ban hành",
+  "retrieved_date": "2026-09-09",
+  "raw_file": "data/raw/quoc_te_an_ninh_mang/A-RES-79-243_un-convention-against-cybercrime.pdf",
+  "raw_files": [
+    "data/raw/quoc_te_an_ninh_mang/A-RES-79-243_un-convention-against-cybercrime.pdf"
+  ],
+  "text_extractable": true,
+  "notes": "Đại hội đồng thông qua 24/12/2024; mở ký tại Hà Nội 25-26/10/2025 và sau đó tại New York đến 31/12/2026 (Điều 64). Gắn trực tiếp với Việt Nam nên rất đáng có trong knowledge base, nhưng chatbot PHẢI nói rõ công ước chưa có hiệu lực."
+}

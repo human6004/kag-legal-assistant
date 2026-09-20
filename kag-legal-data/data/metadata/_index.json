@@ -1,0 +1,1285 @@
+{
+  "generated_on": "2026-09-09",
+  "in_force_as_of": "2026-09-09",
+  "count": 50,
+  "documents": [
+    {
+      "doc_id": "116-2025-QH15",
+      "doc_number": "116/2025/QH15",
+      "title": "Luật An ninh mạng (2025)",
+      "doc_type": "Luật",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2025-12-10",
+      "date_effective": "2026-07-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "24/2018/QH14",
+        "86/2015/QH13"
+      ],
+      "superseded_by": [],
+      "amends": [
+        "71/2025/QH15",
+        "33/2024/QH15",
+        "19/2023/QH15",
+        "97/2015/QH13",
+        "46/2019/QH14"
+      ],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [
+        "328/2026/NĐ-CP",
+        "329/2026/NĐ-CP",
+        "330/2026/NĐ-CP",
+        "331/2026/NĐ-CP",
+        "332/2026/NĐ-CP",
+        "333/2026/NĐ-CP",
+        "341/2026/NĐ-CP"
+      ],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/116-2025-QH15_luat-an-ninh-mang-2025.html",
+        "data/raw/vn_an_ninh_mang/116-2025-QH15_luat-an-ninh-mang-2025_congbao.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "13-2023-ND-CP",
+      "doc_number": "13/2023/NĐ-CP",
+      "title": "Nghị định về bảo vệ dữ liệu cá nhân",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2023-04-17",
+      "date_effective": "2023-07-01",
+      "date_expired": "2026-01-01",
+      "status": "hết hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [
+        "91/2025/QH15",
+        "356/2025/NĐ-CP"
+      ],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/13-2023-ND-CP_bao-ve-du-lieu-ca-nhan.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "24-2018-QH14",
+      "doc_number": "24/2018/QH14",
+      "title": "Luật An ninh mạng (2018)",
+      "doc_type": "Luật",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2018-06-12",
+      "date_effective": "2019-01-01",
+      "date_expired": "2026-07-01",
+      "status": "hết hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [
+        "116/2025/QH15"
+      ],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [
+        "53/2022/NĐ-CP"
+      ],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/24-2018-QH14_luat-an-ninh-mang.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "328-2026-ND-CP",
+      "doc_number": "328/2026/NĐ-CP",
+      "title": "Nghị định quy định về phòng, chống tin giả, tin sai sự thật",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2026-08-19",
+      "date_effective": "2026-10-05",
+      "date_expired": "",
+      "status": "chưa có hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "116/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/328-2026-ND-CP_phong-chong-tin-gia-tin-sai-su-that.docx"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "329-2026-ND-CP",
+      "doc_number": "329/2026/NĐ-CP",
+      "title": "Nghị định quy định về lực lượng bảo vệ an ninh mạng",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2026-08-19",
+      "date_effective": "2026-08-19",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "116/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/329-2026-ND-CP_luc-luong-bao-ve-an-ninh-mang.docx"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "330-2026-ND-CP",
+      "doc_number": "330/2026/NĐ-CP",
+      "title": "Nghị định quy định xử phạt vi phạm hành chính trong lĩnh vực an ninh mạng và bảo vệ dữ liệu cá nhân",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2026-08-19",
+      "date_effective": "2026-08-19",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "116/2025/QH15",
+        "91/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/330-2026-ND-CP_xu-phat-vi-pham-hanh-chinh-linh-vuc-an-ninh-mang.docx"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "331-2026-ND-CP",
+      "doc_number": "331/2026/NĐ-CP",
+      "title": "Nghị định về bảo vệ an ninh mạng đối với hệ thống thông tin",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2026-08-19",
+      "date_effective": "2026-08-19",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "116/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/331-2026-ND-CP_bao-ve-an-ninh-mang-doi-voi-he-thong-thong-tin.docx"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "332-2026-ND-CP",
+      "doc_number": "332/2026/NĐ-CP",
+      "title": "Nghị định quy định hoạt động kinh doanh sản phẩm, dịch vụ an ninh mạng",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2026-08-19",
+      "date_effective": "2026-08-19",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "116/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/332-2026-ND-CP_kinh-doanh-san-pham-dich-vu-an-ninh-mang.docx"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "333-2026-ND-CP",
+      "doc_number": "333/2026/NĐ-CP",
+      "title": "Nghị định quy định chi tiết một số điều và biện pháp thi hành Luật An ninh mạng",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2026-08-19",
+      "date_effective": "2026-08-19",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "116/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/333-2026-ND-CP_quy-dinh-chi-tiet-bien-phap-thi-hanh-luat-an-ninh-mang.docx"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "341-2026-ND-CP",
+      "doc_number": "341/2026/NĐ-CP",
+      "title": "Nghị định quy định chi tiết một số điều và biện pháp thi hành Luật An ninh mạng về hoạt động mật mã dân sự",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2026-09-01",
+      "date_effective": "2026-09-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "116/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/341-2026-ND-CP_mat-ma-dan-su.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "35-2018-QH14",
+      "doc_number": "35/2018/QH14",
+      "title": "Luật sửa đổi, bổ sung một số điều của 37 luật có liên quan đến quy hoạch",
+      "doc_type": "Luật",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2018-11-20",
+      "date_effective": "2019-01-01",
+      "date_expired": "",
+      "status": "một phần hết hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [
+        "86/2015/QH13"
+      ],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/35-2018-QH14_sua-doi-37-luat-lien-quan-quy-hoach.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "356-2025-ND-CP",
+      "doc_number": "356/2025/NĐ-CP",
+      "title": "Nghị định quy định chi tiết một số điều và biện pháp thi hành Luật Bảo vệ dữ liệu cá nhân",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2025-12-31",
+      "date_effective": "2026-01-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "13/2023/NĐ-CP"
+      ],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "91/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/356-2025-ND-CP_quy-dinh-chi-tiet-luat-bao-ve-du-lieu-ca-nhan.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "53-2022-ND-CP",
+      "doc_number": "53/2022/NĐ-CP",
+      "title": "Nghị định quy định chi tiết một số điều của Luật An ninh mạng",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2022-08-15",
+      "date_effective": "2022-10-01",
+      "date_expired": "2026-08-19",
+      "status": "hết hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "24/2018/QH14",
+        "86/2015/QH13"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/53-2022-ND-CP_quy-dinh-chi-tiet-luat-an-ninh-mang.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "86-2015-QH13",
+      "doc_number": "86/2015/QH13",
+      "title": "Luật An toàn thông tin mạng",
+      "doc_type": "Luật",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2015-11-19",
+      "date_effective": "2016-07-01",
+      "date_expired": "2026-07-01",
+      "status": "hết hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [
+        "116/2025/QH15"
+      ],
+      "amends": [],
+      "amended_by": [
+        "35/2018/QH14"
+      ],
+      "implements": [],
+      "implemented_by": [
+        "53/2022/NĐ-CP"
+      ],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/86-2015-QH13_luat-an-toan-thong-tin-mang.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "91-2025-QH15",
+      "doc_number": "91/2025/QH15",
+      "title": "Luật Bảo vệ dữ liệu cá nhân",
+      "doc_type": "Luật",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "2025-06-26",
+      "date_effective": "2026-01-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "13/2023/NĐ-CP"
+      ],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [
+        "356/2025/NĐ-CP",
+        "330/2026/NĐ-CP"
+      ],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/91-2025-QH15_luat-bao-ve-du-lieu-ca-nhan.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "bo-cong-an-csdl-van-ban",
+      "doc_number": "",
+      "title": "Bộ Công an - Cơ sở dữ liệu văn bản (trang tra cứu của cơ quan chủ quản an ninh mạng)",
+      "doc_type": "Trang tra cứu của cơ quan nhà nước",
+      "jurisdiction": "VN",
+      "category": "an_ninh_mang",
+      "date_issued": "",
+      "date_effective": "",
+      "date_expired": "",
+      "status": "không áp dụng",
+      "in_force": null,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_an_ninh_mang/bo-cong-an_co-so-du-lieu-van-ban.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "A-RES-79-243",
+      "doc_number": "A/RES/79/243",
+      "title": "United Nations Convention against Cybercrime (\"Hanoi Convention\"), phụ lục Nghị quyết 79/243 của Đại hội đồng LHQ",
+      "doc_type": "Công ước quốc tế / Nghị quyết Đại hội đồng LHQ",
+      "jurisdiction": "quốc tế",
+      "category": "an_ninh_mang",
+      "date_issued": "2024-12-24",
+      "date_effective": "",
+      "date_expired": "",
+      "status": "chưa có hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_an_ninh_mang/A-RES-79-243_un-convention-against-cybercrime.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "CETS-224",
+      "doc_number": "CETS No. 224",
+      "title": "Second Additional Protocol to the Convention on Cybercrime on enhanced co-operation and disclosure of electronic evidence",
+      "doc_type": "Nghị định thư bổ sung",
+      "jurisdiction": "quốc tế",
+      "category": "an_ninh_mang",
+      "date_issued": "2022-05-12",
+      "date_effective": "",
+      "date_expired": "",
+      "status": "chưa có hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "ETS No. 185"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_an_ninh_mang/CETS-224_nghi-dinh-thu-bo-sung-thu-hai-budapest-chung-cu-dien-tu.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "CISA-CSF-resource",
+      "doc_number": "",
+      "title": "CISA - Framework for Improving Critical Infrastructure Cybersecurity (trang tài nguyên)",
+      "doc_type": "Trang tài nguyên của cơ quan liên bang Mỹ",
+      "jurisdiction": "US",
+      "category": "an_ninh_mang",
+      "date_issued": "",
+      "date_effective": "",
+      "date_expired": "",
+      "status": "không áp dụng",
+      "in_force": null,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_an_ninh_mang/CISA_framework-improving-critical-infrastructure-cybersecurity.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "ETS-185",
+      "doc_number": "ETS No. 185",
+      "title": "Convention on Cybercrime (Budapest Convention)",
+      "doc_type": "Công ước quốc tế",
+      "jurisdiction": "quốc tế",
+      "category": "an_ninh_mang",
+      "date_issued": "2001-11-23",
+      "date_effective": "2004-07-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [
+        "ETS No. 189",
+        "CETS No. 224"
+      ],
+      "raw_files": [
+        "data/raw/quoc_te_an_ninh_mang/ETS-185_budapest-convention-cybercrime.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "ETS-189",
+      "doc_number": "ETS No. 189",
+      "title": "Additional Protocol to the Convention on Cybercrime, concerning the criminalisation of acts of a racist and xenophobic nature committed through computer systems",
+      "doc_type": "Nghị định thư bổ sung",
+      "jurisdiction": "quốc tế",
+      "category": "an_ninh_mang",
+      "date_issued": "2003-01-28",
+      "date_effective": "2006-03-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "ETS No. 185"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_an_ninh_mang/ETS-189_nghi-dinh-thu-bo-sung-budapest-phan-biet-chung-toc.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EU-2016-679",
+      "doc_number": "Regulation (EU) 2016/679",
+      "title": "Regulation (EU) 2016/679 (General Data Protection Regulation - GDPR)",
+      "doc_type": "Quy định (Regulation) của EU",
+      "jurisdiction": "EU",
+      "category": "an_ninh_mang",
+      "date_issued": "2016-04-27",
+      "date_effective": "2016-05-24",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "Directive 95/46/EC"
+      ],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_an_ninh_mang/EU-2016-679_gdpr.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EU-2022-2555",
+      "doc_number": "Directive (EU) 2022/2555",
+      "title": "Directive (EU) 2022/2555 (NIS 2 Directive)",
+      "doc_type": "Chỉ thị (Directive) của EU",
+      "jurisdiction": "EU",
+      "category": "an_ninh_mang",
+      "date_issued": "2022-12-14",
+      "date_effective": "2023-01-16",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "Directive (EU) 2016/1148"
+      ],
+      "superseded_by": [],
+      "amends": [
+        "Regulation (EU) No 910/2014",
+        "Directive (EU) 2018/1972"
+      ],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_an_ninh_mang/EU-2022-2555_nis2-directive.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "NIST-CSWP-29",
+      "doc_number": "NIST CSWP 29",
+      "title": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "doc_type": "Framework kỹ thuật (không phải văn bản quy phạm pháp luật)",
+      "jurisdiction": "US",
+      "category": "an_ninh_mang",
+      "date_issued": "2024-02-26",
+      "date_effective": "2024-02-26",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "Framework for Improving Critical Infrastructure Cybersecurity v1.1"
+      ],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_an_ninh_mang/NIST-CSWP-29_cybersecurity-framework-2-0.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "05-2026-TT-BKHCN",
+      "doc_number": "05/2026/TT-BKHCN",
+      "title": "Thông tư ban hành Khung đạo đức trí tuệ nhân tạo quốc gia",
+      "doc_type": "Thông tư",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "2026-03-10",
+      "date_effective": "2026-03-10",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "134/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_ai/05-2026-TT-BKHCN_khung-dao-duc-tri-tue-nhan-tao-quoc-gia.docx",
+        "data/raw/vn_ai/05-2026-TT-BKHCN_khung-dao-duc-tri-tue-nhan-tao-quoc-gia.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "127-QD-TTg",
+      "doc_number": "127/QĐ-TTg",
+      "title": "Quyết định ban hành Chiến lược quốc gia về nghiên cứu, phát triển và ứng dụng Trí tuệ nhân tạo đến năm 2030",
+      "doc_type": "Quyết định",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "2021-01-26",
+      "date_effective": "2021-01-26",
+      "date_expired": "2026-08-28",
+      "status": "hết hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [
+        "1671/QĐ-TTg"
+      ],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_ai/127-QD-TTg_chien-luoc-quoc-gia-tri-tue-nhan-tao-den-2030.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "134-2025-QH15",
+      "doc_number": "134/2025/QH15",
+      "title": "Luật Trí tuệ nhân tạo",
+      "doc_type": "Luật",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "2025-12-10",
+      "date_effective": "2026-03-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [
+        "71/2025/QH15"
+      ],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [
+        "142/2026/NĐ-CP",
+        "05/2026/TT-BKHCN",
+        "367/QĐ-TTg",
+        "1528/QĐ-TTg",
+        "1671/QĐ-TTg"
+      ],
+      "raw_files": [
+        "data/raw/vn_ai/134-2025-QH15_luat-tri-tue-nhan-tao.html",
+        "data/raw/vn_ai/134-2025-QH15_luat-tri-tue-nhan-tao_congbao.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "142-2026-ND-CP",
+      "doc_number": "142/2026/NĐ-CP",
+      "title": "Nghị định quy định chi tiết một số điều và biện pháp thi hành Luật Trí tuệ nhân tạo",
+      "doc_type": "Nghị định",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "2026-04-30",
+      "date_effective": "2026-05-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "134/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_ai/142-2026-ND-CP_quy-dinh-chi-tiet-luat-tri-tue-nhan-tao.docx",
+        "data/raw/vn_ai/142-2026-ND-CP_quy-dinh-chi-tiet-luat-tri-tue-nhan-tao.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "1528-QD-TTg",
+      "doc_number": "1528/QĐ-TTg",
+      "title": "Quyết định phê duyệt Chương trình quốc gia phát triển nhân lực trí tuệ nhân tạo đến năm 2030, định hướng đến năm 2035",
+      "doc_type": "Quyết định",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "2026-08-11",
+      "date_effective": "2026-08-11",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "134/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_ai/1528-QD-TTg_chuong-trinh-quoc-gia-phat-trien-nhan-luc-ai.docx"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "1671-QD-TTg",
+      "doc_number": "1671/QĐ-TTg",
+      "title": "Quyết định phê duyệt Chiến lược quốc gia về trí tuệ nhân tạo đến năm 2030, tầm nhìn đến năm 2045",
+      "doc_type": "Quyết định",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "2026-08-28",
+      "date_effective": "2026-08-28",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "127/QĐ-TTg"
+      ],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "134/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_ai/1671-QD-TTg_chien-luoc-quoc-gia-tri-tue-nhan-tao-2030-tam-nhin-2045.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "367-QD-TTg",
+      "doc_number": "367/QĐ-TTg",
+      "title": "Quyết định ban hành Kế hoạch triển khai thi hành Luật Trí tuệ nhân tạo",
+      "doc_type": "Quyết định",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "2026-02-28",
+      "date_effective": "2026-02-28",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [
+        "134/2025/QH15"
+      ],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_ai/367-QD-TTg_ke-hoach-trien-khai-thi-hanh-luat-tri-tue-nhan-tao.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "71-2025-QH15",
+      "doc_number": "71/2025/QH15",
+      "title": "Luật Công nghiệp công nghệ số",
+      "doc_type": "Luật",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "2025-06-14",
+      "date_effective": "2026-01-01",
+      "date_expired": "",
+      "status": "một phần hết hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "67/2006/QH11"
+      ],
+      "superseded_by": [],
+      "amends": [
+        "67/2006/QH11"
+      ],
+      "amended_by": [
+        "134/2025/QH15",
+        "116/2025/QH15"
+      ],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_ai/71-2025-QH15_luat-cong-nghiep-cong-nghe-so.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "mst-gov-vn",
+      "doc_number": "",
+      "title": "Bộ Khoa học và Công nghệ - Cổng thông tin điện tử (cơ quan chủ quản về AI)",
+      "doc_type": "Trang thông tin của cơ quan nhà nước",
+      "jurisdiction": "VN",
+      "category": "ai",
+      "date_issued": "",
+      "date_effective": "",
+      "date_expired": "",
+      "status": "không áp dụng",
+      "in_force": null,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/vn_ai/bo-khoa-hoc-va-cong-nghe_mst-gov-vn_trang-chu.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "CETS-225",
+      "doc_number": "CETS No. 225",
+      "title": "Council of Europe Framework Convention on Artificial Intelligence and Human Rights, Democracy and the Rule of Law",
+      "doc_type": "Công ước khung quốc tế",
+      "jurisdiction": "quốc tế",
+      "category": "ai",
+      "date_issued": "2024-09-05",
+      "date_effective": "",
+      "date_expired": "",
+      "status": "chưa có hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/CETS-225_coe-framework-convention-ai-human-rights.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14110",
+      "doc_number": "Executive Order 14110",
+      "title": "Executive Order 14110 - Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2023-10-30",
+      "date_effective": "2023-10-30",
+      "date_expired": "2025-01-23",
+      "status": "hết hiệu lực",
+      "in_force": false,
+      "supersedes": [],
+      "superseded_by": [
+        "Executive Order 14179"
+      ],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14110_safe-secure-trustworthy-ai.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14179",
+      "doc_number": "Executive Order 14179",
+      "title": "Executive Order 14179 - Removing Barriers to American Leadership in Artificial Intelligence",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2025-01-23",
+      "date_effective": "2025-01-23",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [
+        "Executive Order 14110"
+      ],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14179_removing-barriers-american-leadership-ai.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14318",
+      "doc_number": "Executive Order 14318",
+      "title": "Executive Order 14318 - Accelerating Federal Permitting of Data Center Infrastructure",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2025-07-23",
+      "date_effective": "2025-07-23",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14318_accelerating-federal-permitting-data-center-infrastructure.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14319",
+      "doc_number": "Executive Order 14319",
+      "title": "Executive Order 14319 - Preventing Woke AI in the Federal Government",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2025-07-23",
+      "date_effective": "2025-07-23",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14319_preventing-woke-ai-federal-government.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14320",
+      "doc_number": "Executive Order 14320",
+      "title": "Executive Order 14320 - Promoting the Export of the American AI Technology Stack",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2025-07-23",
+      "date_effective": "2025-07-23",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14320_promoting-export-american-ai-technology-stack.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14355",
+      "doc_number": "Executive Order 14355",
+      "title": "Executive Order 14355 - Unlocking Cures for Pediatric Cancer With Artificial Intelligence",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2025-09-30",
+      "date_effective": "2025-09-30",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14355_unlocking-cures-pediatric-cancer-with-ai.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14363",
+      "doc_number": "Executive Order 14363",
+      "title": "Executive Order 14363 - Launching the Genesis Mission",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2025-11-24",
+      "date_effective": "2025-11-24",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14363_launching-the-genesis-mission.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14365",
+      "doc_number": "Executive Order 14365",
+      "title": "Executive Order 14365 - Ensuring a National Policy Framework for Artificial Intelligence",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2025-12-11",
+      "date_effective": "2025-12-11",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14365_national-policy-framework-ai.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EO-14409",
+      "doc_number": "Executive Order 14409",
+      "title": "Executive Order 14409 - Promoting Advanced Artificial Intelligence Innovation and Security",
+      "doc_type": "Executive Order",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2026-06-02",
+      "date_effective": "2026-06-02",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EO-14409_promoting-advanced-ai-innovation-security.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EU-2024-1689",
+      "doc_number": "Regulation (EU) 2024/1689",
+      "title": "Regulation (EU) 2024/1689 (EU Artificial Intelligence Act) - bản Công báo EU gốc",
+      "doc_type": "Quy định (Regulation) của EU",
+      "jurisdiction": "EU",
+      "category": "ai",
+      "date_issued": "2024-06-13",
+      "date_effective": "2024-08-01",
+      "date_expired": "",
+      "status": "còn hiệu lực (đã bị sửa đổi)",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [
+        "Regulation (EC) No 300/2008",
+        "Regulation (EU) No 167/2013",
+        "Regulation (EU) No 168/2013",
+        "Directive 2014/90/EU",
+        "Directive (EU) 2016/797",
+        "Regulation (EU) 2018/858",
+        "Regulation (EU) 2018/1139",
+        "Regulation (EU) 2019/2144",
+        "Directive (EU) 2020/1828"
+      ],
+      "amended_by": [
+        "Regulation (EU) 2026/1744"
+      ],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EU-2024-1689_eu-ai-act.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EU-2024-1689-consolidated",
+      "doc_number": "Regulation (EU) 2024/1689 (consolidated 27/07/2026)",
+      "title": "Regulation (EU) 2024/1689 (EU AI Act) - bản hợp nhất ngày 27/07/2026",
+      "doc_type": "Bản hợp nhất (consolidated text) của EU",
+      "jurisdiction": "EU",
+      "category": "ai",
+      "date_issued": "2026-07-27",
+      "date_effective": "2026-07-27",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EU-2024-1689_eu-ai-act_ban-hop-nhat-20260727.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "EU-2026-1744",
+      "doc_number": "Regulation (EU) 2026/1744",
+      "title": "Regulation (EU) 2026/1744 sửa đổi Regulation (EU) 2024/1689, (EU) 2018/1139 và (EU) 2023/1230 (Digital Omnibus on AI)",
+      "doc_type": "Quy định (Regulation) của EU",
+      "jurisdiction": "EU",
+      "category": "ai",
+      "date_issued": "2026-07-08",
+      "date_effective": "2026-07-27",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [
+        "Regulation (EU) 2024/1689",
+        "Regulation (EU) 2018/1139",
+        "Regulation (EU) 2023/1230"
+      ],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/EU-2026-1744_sua-doi-eu-ai-act.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "NIST-AI-100-1",
+      "doc_number": "NIST AI 100-1",
+      "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+      "doc_type": "Framework kỹ thuật (không phải văn bản quy phạm pháp luật)",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "2023-01",
+      "date_effective": "2023-01",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/NIST-AI-100-1_ai-risk-management-framework.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "NIST-AI-RMF-overview",
+      "doc_number": "",
+      "title": "NIST - AI Risk Management Framework (trang tổng quan)",
+      "doc_type": "Trang thông tin của cơ quan liên bang Mỹ",
+      "jurisdiction": "US",
+      "category": "ai",
+      "date_issued": "",
+      "date_effective": "",
+      "date_expired": "",
+      "status": "không áp dụng",
+      "in_force": null,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/NIST-AI-RMF_trang-tong-quan-nist.html"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "OECD-LEGAL-0449",
+      "doc_number": "OECD/LEGAL/0449",
+      "title": "OECD Recommendation of the Council on Artificial Intelligence (OECD AI Principles)",
+      "doc_type": "Khuyến nghị (soft law)",
+      "jurisdiction": "quốc tế",
+      "category": "ai",
+      "date_issued": "2019-05-22",
+      "date_effective": "2019-05-22",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/OECD-LEGAL-0449_oecd-ai-principles.pdf"
+      ],
+      "text_extractable": true
+    },
+    {
+      "doc_id": "SHS-BIO-PI-2021-1",
+      "doc_number": "SHS/BIO/PI/2021/1",
+      "title": "UNESCO Recommendation on the Ethics of Artificial Intelligence",
+      "doc_type": "Khuyến nghị (soft law)",
+      "jurisdiction": "quốc tế",
+      "category": "ai",
+      "date_issued": "2021-11-23",
+      "date_effective": "2021-11-23",
+      "date_expired": "",
+      "status": "còn hiệu lực",
+      "in_force": true,
+      "supersedes": [],
+      "superseded_by": [],
+      "amends": [],
+      "amended_by": [],
+      "implements": [],
+      "implemented_by": [],
+      "raw_files": [
+        "data/raw/quoc_te_ai/SHS-BIO-PI-2021-1_unesco-recommendation-ethics-of-ai.pdf"
+      ],
+      "text_extractable": true
+    }
+  ]
+}
