@@ -20,7 +20,7 @@ quan hệ phải được khai ĐÚNG TRÊN TYPE CỦA s. Ví dụ `imposes` ch�
 có trên LegalDocument — dạy planner cạnh không tồn tại thì bước đó tra rỗng. _self_check_cases()
 ở cuối file đọc thẳng Legal.schema để tự bắt loại lỗi này.
 
-Bộ 5 case dạy đủ bốn toán tử mà kag_config.yaml đang bật:
+Bộ 6 case dạy đủ bốn toán tử mà kag_config.yaml đang bật:
   Retrieval (kg_hybrid_executor), Math (py_code_based_math_executor),
   Deduce (kag_deduce_executor), Output (kag_output_executor).
 
@@ -71,6 +71,15 @@ DEFAULT_CASE_EN = [
     {
         "query": "Nghị định 53/2022/NĐ-CP có ban hành cùng ngày với Nghị định 13/2023/NĐ-CP không?",
         "answer": "Trước tiên tra ngày ban hành của Nghị định 53/2022/NĐ-CP\n```\nStep1:Nghị định 53/2022/NĐ-CP ban hành ngày nào?\nAction1:Retrieval(s=s1:LegalDocument[`Nghị định 53/2022/NĐ-CP`], p=p1:dateIssued, o=o1)\n```\nTra ngày ban hành của Nghị định 13/2023/NĐ-CP\n```\nStep2:Nghị định 13/2023/NĐ-CP ban hành ngày nào?\nAction2:Retrieval(s=s2:LegalDocument[`Nghị định 13/2023/NĐ-CP`], p=p2:dateIssued, o=o2)\n```\nSau đó suy luận phán đoán xem hai ngày có trùng nhau không\n```\nStep3:Hai nghị định có ban hành cùng ngày không?\nAction3:Deduce(op=judgement, content=[`o1`,`o2`], target=`Hai nghị định có ban hành cùng ngày không?`)->deduce3\n```\nCuối cùng xuất kết quả suy luận\n```\nStep4:Xuất kết quả ở Step3\nAction4:output(deduce3)\n```",
+    },
+    # --- Câu hỏi KHÔNG nêu văn bản: cấm tự thêm số hiệu, phải tra ngược ra văn bản ---
+    # Bốn case trên đều có số hiệu văn bản ngay trong query, nên planner học nhầm rằng
+    # mọi Step đều phải mang tên một văn bản; gặp query không nêu văn bản nó tự bịa một
+    # số hiệu vào Step và kéo retrieval sang văn bản khác. Case này dạy chiều ngược lại:
+    # danh tính văn bản là KẾT QUẢ của belongsTo, không phải đầu vào của kế hoạch.
+    {
+        "query": "Hành vi giả mạo giọng nói của người khác trên không gian mạng bị nghiêm cấm ở điều nào, thuộc văn bản nào?",
+        "answer": "Câu hỏi không nêu số hiệu văn bản nào, nên tuyệt đối không được tự thêm tên hay số hiệu văn bản vào bất kỳ Step nào; phải tra từ nội dung ra điều, rồi từ điều ra văn bản. Trước tiên tìm điều nghiêm cấm hành vi này\n```\nStep1:Hành vi giả mạo giọng nói của người khác trên không gian mạng bị nghiêm cấm ở điều nào?\nAction1:Retrieval(s=s1:ProhibitedAct[`giả mạo giọng nói của người khác trên không gian mạng`], p=p1:prohibitedBy, o=o1:Article)\n```\nSau đó tra văn bản chứa điều tìm được, thay vì đoán số hiệu văn bản\n```\nStep2:Điều tìm được ở Step1 thuộc văn bản nào?\nAction2:Retrieval(s=o1, p=p2:belongsTo, o=o2:LegalDocument)\n```\nCuối cùng xuất cả điều và văn bản\n```\nStep3:Xuất kết quả ở Step1 và Step2\nAction3:output(o1, o2)\n```",
     },
 ]
 
@@ -183,7 +192,18 @@ def _self_check_cases():
     Bắt được: khuôn Step/Action, toán tử lạ, alias chưa khai, và QUAN HỆ GẮN SAI TYPE
     (ví dụ LegalDocument -imposes-> Sanction, cạnh không tồn tại trong schema).
     """
-    assert len(DEFAULT_CASE_EN) == 5, f"phải đúng 5 case, đang có {len(DEFAULT_CASE_EN)}"
+    assert len(DEFAULT_CASE_EN) == 6, f"phải đúng 6 case, đang có {len(DEFAULT_CASE_EN)}"
+
+    # D2.3 — phải luôn còn đúng một case có query KHÔNG nêu số hiệu văn bản, và mọi Step
+    # của case đó cũng không được nêu số hiệu. Mất case này là planner quay lại bịa văn bản.
+    _DOC_NUM = re.compile(r"\b\d{1,3}/\d{4}/[A-ZĐ\-]+\b")
+    doc_free = [c for c in DEFAULT_CASE_EN if not _DOC_NUM.search(c["query"])]
+    assert doc_free, "thiếu case dạy query không nêu văn bản: planner sẽ tự bịa số hiệu"
+    for case in doc_free:
+        for step in re.findall(r"^Step\d+:(.*)$", case["answer"], flags=re.MULTILINE):
+            assert not _DOC_NUM.search(step), (
+                f"case query không nêu văn bản nhưng Step lại nêu số hiệu: {step}"
+            )
 
     operators_used = set()
     for case in DEFAULT_CASE_EN:
