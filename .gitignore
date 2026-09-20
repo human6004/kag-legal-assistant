@@ -2,7 +2,7 @@
 *.env
 .env
 venv/
-.venv/
+*.venv/
 *.key
 # chua khoa API that; dung kag/kag_config.example.yaml lam mau
 kag/kag_config.yaml
