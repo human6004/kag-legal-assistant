@@ -1,0 +1,21 @@
+# ==========================================
+# THƯ VIỆN CỐT LÕI CHO HỆ THỐNG RAG PHÁP LUẬT
+# ==========================================
+
+# Web API & Server
+fastapi>=0.110.0
+uvicorn>=0.28.0
+
+# Cấu hình & Môi trường
+pydantic>=2.7.0
+pydantic-settings>=2.2.0
+python-dotenv>=1.0.0
+
+# Tương thích chuẩn OpenAI (LLM & Embeddings)
+openai>=1.20.0
+langchain-core>=0.2.0
+langchain-community>=0.2.0
+langchain-openai>=0.1.0
+
+# Vector Database
+chromadb>=0.4.22
