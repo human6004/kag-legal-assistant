@@ -26,6 +26,11 @@ dist/
 *.log
 *.out
 
+# scratch dir cho probe/cypher/pdf tam; sinh lai moi phien, khong thuoc ve repo
+/tmp/
+# pytest tu ghi .gitignore ben trong, nhung khai bao tuong minh cho chac
+.pytest_cache/
+
 # bao cao ra soat sinh tu dong, khong thuoc ve repo
 /_AUDIT*.md
 
