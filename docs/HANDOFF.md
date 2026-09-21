@@ -10,21 +10,17 @@ Tài liệu này KHÔNG chứa secret. Mọi API key được ghi dưới dạng
 
 ```text
 branch        = master
-origin/master = c30ab91a3fd24a0b3bf6c107ad35000b0d8bc3a2
 working tree  = clean
+đồng bộ       = local master == origin/master, đã push, không còn gì pending
 ```
 
-`origin/master` là mốc đã publish. Local master nằm trên mốc đó cộng đúng một commit
-cleanup (`chore: clean repository handoff artifacts`, chính commit chứa bản sửa này) —
-**chưa push, chờ reviewer duyệt**. Không có thay đổi nào khác chờ commit.
-
-Ba commit được tạo SAU giai đoạn smoke test, cả ba đều là handoff / docs, không đụng
+Các commit được tạo SAU giai đoạn smoke test — đều là handoff / docs / cleanup, không đụng
 builder, solver, schema hay graph:
 
 ```text
 9c9dc65  docs: add final graph handoff
 c30ab91  feat: add portable final graph export and restore
-(local)  chore: clean repository handoff artifacts
+         chore: clean repository handoff artifacts   (dọn artifact local, .gitignore, doc này)
 ```
 
 Trạng thái "không có commit nào được tạo" là mô tả của giai đoạn smoke test / đóng gói,
@@ -419,8 +415,8 @@ không có `__init__.py` — đó là script, không phải package.
 [x] builder pass               D2.1 PASS, D2.2 PASS (verify cả runtime, không chỉ tầng graph)
 [x] solver baseline works      8/8 FINISH, 0 exception, 3/3 control bắt buộc đúng evidence
 [x] no graph write during smoke fingerprint IDENTICAL, 4 DB, 11 label, 19 relation type
-[x] repo clean                 origin/master c30ab91, working tree clean, không artifact
-                               thí nghiệm nào còn tracked; 1 commit cleanup local chưa push
+[x] repo clean                 working tree clean, local == origin/master, không artifact
+                               thí nghiệm nào còn tracked
 [x] portable handoff versioned dump + 2 script + 2 doc đã commit (c30ab91); export → restore
                                → verify chạy thật, ra đúng 15888/32655, vector dim 3072
 ```
