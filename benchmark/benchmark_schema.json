@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kag-legal-assistant.local/benchmark/benchmark_schema.json",
+  "title": "Common benchmark dataset",
+  "$comment": "B1 defines this schema. The 150-question dataset itself does not exist yet; this file only fixes the shape any future dataset author (or generator) must follow, mirroring benchmark/evaluator/models.py (BenchmarkItem, EvidenceRef) exactly.",
+  "description": "A benchmark dataset is either a bare JSON array of items, or an object carrying that array under 'items' or 'questions'.",
+  "anyOf": [
+    { "type": "array", "items": { "$ref": "#/$defs/benchmarkItem" } },
+    {
+      "type": "object",
+      "properties": {
+        "items": { "type": "array", "items": { "$ref": "#/$defs/benchmarkItem" } },
+        "questions": { "type": "array", "items": { "$ref": "#/$defs/benchmarkItem" } }
+      },
+      "anyOf": [
+        { "required": ["items"] },
+        { "required": ["questions"] }
+      ]
+    }
+  ],
+  "$defs": {
+    "forbiddenKeys": {
+      "description": "System-internal identifiers that must never appear in the common ground truth. Allowing chunk_id / vector_id / node_id (or any per-system alias of them) here would let one system's chunking or indexing decisions leak into the shared gold standard, making cross-system comparison unfair. Mirrors models.FORBIDDEN_DATASET_KEYS exactly.",
+      "not": {
+        "required": [
+          "chunk_id",
+          "chunk_ids",
+          "gold_chunks",
+          "gold_chunk_ids",
+          "vector_id",
+          "vector_ids",
+          "embedding_id",
+          "node_id",
+          "kag_chunk_id",
+          "hybridrag_chunk_id",
+          "nativerag_chunk_id"
+        ]
+      }
+    },
+    "benchmarkItem": {
+      "type": "object",
+      "description": "One benchmark question plus its architecture-neutral ground truth. Ground truth is expressed only as document/article/clause/point/text, never as a system-internal id.",
+      "allOf": [
+        { "$ref": "#/$defs/forbiddenKeys" }
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "description": "Unique question id. Must be non-empty and unique across the dataset." },
+        "category": { "type": "string", "description": "Question category, used for macro-averaging. No fixed enum: the evaluator reads categories from the data." },
+        "answerable": { "type": "boolean", "description": "Whether the question has a correct, answerable response in-scope (false marks a deliberately unanswerable / out-of-scope question)." },
+        "question": { "type": "string", "description": "The question text shown to systems under test." },
+        "gold_markers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Free-text markers a correct answer should contain. Placeholder strings starting with '<' (e.g. '<fill in the correct answer>') are dropped by the loader and should be treated as absent."
+        },
+        "gold_claims": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Atomic gold claims the answer should support, for claim-level scoring."
+        },
+        "gold_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceRef" },
+          "description": "Authoritative evidence a correct answer must rest on. Entries with required=false are acceptable but not necessary."
+        },
+        "source_url": { "type": ["string", "null"] },
+        "source_name": { "type": ["string", "null"] },
+        "notes": { "type": ["string", "null"] },
+        "verification_status": { "type": ["string", "null"] }
+      },
+      "required": ["id", "category", "answerable", "question"]
+    },
+    "evidenceRef": {
+      "type": "object",
+      "description": "One piece of evidence, located by document/article/clause/point rather than by any system's internal chunk or node id.",
+      "allOf": [
+        { "$ref": "#/$defs/forbiddenKeys" }
+      ],
+      "properties": {
+        "document_id": { "type": "string", "minLength": 1, "description": "Identifier of the legal document (e.g. a law/decree number), not a system chunk id." },
+        "evidence_id": { "type": ["string", "null"] },
+        "article": {
+          "type": ["string", "integer", "null"],
+          "description": "Article ('Điều'). Integers are accepted here for authoring convenience and are coerced to strings by the Python loader (models._as_opt_str)."
+        },
+        "clause": {
+          "type": ["string", "integer", "null"],
+          "description": "Clause ('khoản'). Integers are accepted and coerced to strings by the Python loader."
+        },
+        "point": {
+          "type": ["string", "integer", "null"],
+          "description": "Point ('điểm'). Integers are accepted and coerced to strings by the Python loader."
+        },
+        "text": { "type": ["string", "null"] },
+        "required": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this evidence is necessary (true, default) or merely acceptable (false). Hit@k and MRR use required evidence only; Evidence Recall reports both."
+        }
+      },
+      "required": ["document_id"]
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kag-legal-assistant.local/benchmark/system_output_schema.json",
+  "title": "System output file",
+  "$comment": "Mirrors benchmark/evaluator/models.py (SystemOutput, RetrievedContext, Citation) exactly. Describes the output of one system (KAG / HybridRAG / NativeRAG / ...) after its adapter has mapped native output onto this common shape.",
+  "description": "A system output file is either a bare JSON array of outputs, or an object carrying that array under 'outputs' or 'results'.",
+  "anyOf": [
+    { "type": "array", "items": { "$ref": "#/$defs/systemOutput" } },
+    {
+      "type": "object",
+      "properties": {
+        "outputs": { "type": "array", "items": { "$ref": "#/$defs/systemOutput" } },
+        "results": { "type": "array", "items": { "$ref": "#/$defs/systemOutput" } }
+      },
+      "anyOf": [
+        { "required": ["outputs"] },
+        { "required": ["results"] }
+      ]
+    }
+  ],
+  "$defs": {
+    "systemOutput": {
+      "type": "object",
+      "description": "One system's answer to one question. Additional properties are allowed: adapters may carry extra debug fields beyond this contract, and the evaluator keeps them in an 'extra' bag and ignores them for scoring.",
+      "additionalProperties": true,
+      "properties": {
+        "question_id": { "type": "string", "minLength": 1, "description": "Must match a BenchmarkItem.id from the benchmark dataset." },
+        "system": { "type": "string", "minLength": 1, "description": "Name of the system under test (e.g. 'kag', 'hybridrag', 'nativerag')." },
+        "answer": { "type": ["string", "null"] },
+        "retrieved_contexts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/retrievedContext" }
+        },
+        "citations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/citation" }
+        },
+        "latency_ms": { "type": ["number", "null"] },
+        "error": { "type": ["string", "null"], "description": "Non-null marks this output as failed (see SystemOutput.failed)." },
+        "answer_claims": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["question_id", "system"]
+    },
+    "retrievedContext": {
+      "type": "object",
+      "description": "One retrieved passage as reported by a system's adapter.",
+      "properties": {
+        "rank": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "1-based rank. Optional: when omitted, the loader falls back to the passage's position in the retrieved_contexts array (1-based)."
+        },
+        "text": { "type": ["string", "null"] },
+        "document_id": { "type": ["string", "null"] },
+        "article": { "type": ["string", "integer", "null"], "description": "Coerced to a string by the Python loader if given as an integer." },
+        "clause": { "type": ["string", "integer", "null"], "description": "Coerced to a string by the Python loader if given as an integer." },
+        "point": { "type": ["string", "integer", "null"], "description": "Coerced to a string by the Python loader if given as an integer." },
+        "score": {
+          "type": ["number", "null"],
+          "description": "Retrieval score in whatever scale the system uses (graph score, vector distance, BM25, ...). Never compared across systems by the evaluator - only rank, text and location metadata are used for scoring."
+        },
+        "token_count": { "type": ["integer", "null"] }
+      }
+    },
+    "citation": {
+      "type": "object",
+      "description": "A source the answer points at.",
+      "properties": {
+        "document_id": { "type": ["string", "null"] },
+        "article": { "type": ["string", "integer", "null"], "description": "Coerced to a string by the Python loader if given as an integer." },
+        "clause": { "type": ["string", "integer", "null"], "description": "Coerced to a string by the Python loader if given as an integer." },
+        "point": { "type": ["string", "integer", "null"], "description": "Coerced to a string by the Python loader if given as an integer." },
+        "text": { "type": ["string", "null"] },
+        "claim_index": {
+          "type": ["integer", "null"],
+          "description": "Index into answer_claims this citation supports, when the adapter can tell. Enables claim-wise citation precision; falls back to location correctness when null."
+        },
+        "claim": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
