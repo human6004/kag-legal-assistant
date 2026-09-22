@@ -1,88 +1,117 @@
-
-#Goi buoc load file vo, roi chuan hoa, lam sach may file markdown 
+import os
+from pathlib import Path
 from ingestion.loader.load_markdown import MarkdownLoader
 from ingestion.processes.clean_text import TextCleaner
 from ingestion.processes.normalize import TextNormalizer
 
-#Phan tich file markdown ra kem theo metadata nguyen thuy
-from indexing.parser.markdown_parser import MarkdownParser
-from indexing.metadata.extractor import MetadataExtractor
-
-#Goi model embedding de chuyen may cai data vua phantich ra thanh graph theo mqh trong 
-#schema quy dinh roi luu vao chroma
-from indexing.embedding.bge_m3 import BGE_M3_Embedding
-from indexing.embedding.embeddMD import NVIDIAEmbeddingWrapper
+from indexing.parser.legal_parser import LegalStructureAwareParser
+from indexing.embedding.custom_model_embedding import CustomModelEmbedding
 from indexing.graph.graph_builder import GraphBuilder
 from indexing.vector.chroma import ChromaStore
 from indexing.graph.graph_store import GraphStore
-# from llm.gemini import GeminiLLM
+from retrieval.search.bm25_search import BM25Search
 
-from llama_index.core import Settings
-from llm.ollama import OllamaLLM
-from llm.nvidia import NvidiaNimLLM
-from llama_index.core import VectorStoreIndex
+from llama_index.core import Settings, VectorStoreIndex
+from llm.config import get_default_llm
+
 
 class BuildIndex:
+    """
+    Quy trình xây dựng toàn diện bộ chỉ mục đa kênh cho Legal HybridRAG:
+    1. Tiền xử lý & làm sạch văn bản luật
+    2. Phân tích cú pháp chuyên sâu (LegalStructureAwareParser)
+    3. Xây dựng BM25 Sparse Index (BM25Search)
+    4. Xây dựng Dense Vector Index (ChromaDB)
+    5. Xây dựng Knowledge Graph Index (Neo4j)
+    """
 
-    def __init__(self):
-
-        self.loader = MarkdownLoader("../data/processed")
+    def __init__(
+        self,
+        data_dir: str = "knowledge/markdown",
+        build_graph: bool = True,
+        recreate_vector_store: bool = True
+    ):
+        self.loader = MarkdownLoader(data_dir)
         self.cleaner = TextCleaner()
         self.normalizer = TextNormalizer()
+        self.parser = LegalStructureAwareParser(max_chunk_size=1200, chunk_overlap=150)
 
-        self.parser = MarkdownParser()
-        
-        self.graph_store = GraphStore().get_store()
-        self.llm = NvidiaNimLLM().get_llm()
-        
-        print(type(Settings.llm))
-        print(Settings.llm.metadata.model_name)
-        
-        self.embed_model = NVIDIAEmbeddingWrapper(input_type="passage").get_model()
-        
-        self.metadata_extractor = MetadataExtractor()
-        self.graph_builder = GraphBuilder(
-            llm=self.llm,
-            embed_model=self.embed_model,
-            graph_store=self.graph_store
-        )
+        self.build_graph = build_graph
+        try:
+            self.llm = get_default_llm()
+        except Exception:
+            self.llm = None
 
-        self.chroma_store = ChromaStore()
+        self.embed_model = CustomModelEmbedding().get_model()
+        self.chroma_store = ChromaStore(recreate=recreate_vector_store)
+
+        if self.build_graph and self.llm is not None:
+            try:
+                self.graph_store = GraphStore().get_store()
+                self.graph_builder = GraphBuilder(
+                    llm=self.llm,
+                    embed_model=self.embed_model,
+                    graph_store=self.graph_store
+                )
+            except Exception as e:
+                print(f"[CẢNH BÁO] Không thể kết nối Neo4j GraphStore: {e}. Sẽ bỏ qua nhánh Graph.")
+                self.graph_builder = None
+        else:
+            self.graph_builder = None
 
     def run(self):
-
-        print("Dang load file markdown")
+        print("\n" + "=" * 60)
+        print("1. LOAD VÀ TIỀN XỬ LÝ VĂN BẢN QUY PHẠM PHÁP LUẬT")
+        print("=" * 60)
         documents = self.loader.load()
+        print(f"-> Đã load thành công {len(documents)} văn bản.")
 
-        print("Lam sach va chuan hoa")
         for doc in documents:
-            cleaned_text = self.cleaner.clean(doc.text)
-            normalized_text = self.normalizer.normalize(cleaned_text)
-            doc.set_content(normalized_text)
-        print("Phan tich")
-        nodes = self.parser.parse(documents)
+            cleaned = self.cleaner.clean(doc.text)
+            normalized = self.normalizer.normalize(cleaned)
+            doc.set_content(normalized)
 
-        print("Giai nen metadata")
-        # Trước dòng: nodes = self.metadata_extractor.extract(nodes)
-        print(f"[DEBUG] Số document load được: {len(documents)}")   # nếu có biến documents
-        print(f"[DEBUG] Số node sau khi parse/chunk: {len(nodes)}")  # trước khi vào metadata extractor
-        nodes = self.metadata_extractor.extract(nodes)
-        print("So luong node metadata: ", len(nodes))
-        print(f"Metadata node đầu tiên: {nodes[0].metadata}")
-        print("Xay graph theo may cai mqh da quy dinh")
-        graph_index = self.graph_builder.build(nodes)
+        print("\n" + "=" * 60)
+        print("2. PHÂN TÍCH CẤU TRÚC PHÁP LUẬT & TẠO CHUNKS GIÀU METADATA")
+        print("=" * 60)
+        nodes = self.parser.parse_documents(documents)
+        print(f"-> Tổng số Legal Nodes được tạo: {len(nodes)}")
+        if nodes:
+            print(f"-> Metadata mẫu node đầu tiên: {nodes[0].metadata}")
 
-        print("Lap chi muc vector")
+        print("\n" + "=" * 60)
+        print("3. XÂY DỰNG CHỈ MỤC TỪ KHÓA BM25 (SPARSE RETRIEVAL)")
+        print("=" * 60)
+        bm25_search = BM25Search(nodes=nodes, cache_path="./database/bm25_index.pkl")
+        print(f"-> Đã huấn luyện và lưu BM25 index ({bm25_search.corpus_size} chunks) thành công!")
+
+        print("\n" + "=" * 60)
+        print("4. XÂY DỰNG CHỈ MỤC VECTOR (DENSE RETRIEVAL - CHROMADB)")
+        print("=" * 60)
         storage_context = self.chroma_store.get_storage_context()
-        
         vector_index = VectorStoreIndex(
             nodes=nodes,
             storage_context=storage_context,
-            embed_model=self.embed_model
+            embed_model=self.embed_model,
+            show_progress=True
         )
+        print("-> Đã nạp nodes vào ChromaDB thành công!")
 
-        print("Yeahhh hoan thanh, ngon chim luon")
+        graph_index = None
+        if self.graph_builder is not None:
+            print("\n" + "=" * 60)
+            print("5. XÂY DỰNG KNOWLEDGE GRAPH (NEO4J)")
+            print("=" * 60)
+            try:
+                graph_index = self.graph_builder.build(nodes)
+                print("-> Đã xây dựng Knowledge Graph thành công!")
+            except Exception as e:
+                print(f"[CẢNH BÁO] Lỗi khi dựng graph: {e}")
+        else:
+            print("\n[INFO] Bỏ qua nhánh Graph vì chưa cấu hình Neo4j hoặc LLM.")
 
-        return graph_index, vector_index #Cho nay tra ve graph index voi vector index
-    #dung 2 cai nay de bo sung cho nhau, moi cai co diem manh, yeu rieng
-    
+        print("\n" + "=" * 60)
+        print("HOÀN THÀNH TOÀN BỘ TIẾN TRÌNH INDEXING HYBRIDRAG PHÁP LÝ!")
+        print("=" * 60)
+
+        return vector_index, bm25_search, graph_index

@@ -11,7 +11,7 @@ class MarkdownLoader:
 
         documents = []
 
-        for md_file in sorted(self.markdown_folder.rglob("*.md")):
+        for md_file in sorted(self.markdown_folder.glob("*.md")):
 
             text = md_file.read_text(encoding="utf-8")
 
@@ -24,7 +24,7 @@ class MarkdownLoader:
                         "file_path": str(md_file),
                         "file_type": "markdown",
                         "language": "vi",
-                        "knowledge_base": "legal"
+                        "knowledge_base": "mai_vang"
                     } # phan tao keywords, node gi do thi de cho buoc metadata xu ly rieng
                 )
             )

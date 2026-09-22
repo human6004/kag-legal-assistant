@@ -15,7 +15,7 @@ class GraphStore:
             username=os.getenv("NEO4J_USERNAME"),
             password=os.getenv("NEO4J_PASSWORD"),
             url=os.getenv("NEO4J_URI"),
-            # database=os.getenv("NEO4J_DATABASE"),
+            database=os.getenv("NEO4J_DATABASE"),
         )
 
     def get_store(self):

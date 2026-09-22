@@ -7,11 +7,17 @@ class HyDE:
         self.llm = llm
 
     def generate(self, question: str) -> str:
-        print("Buoc hyde (cau hoi gia dinh)")
-        prompt = HYDE_PROMPT.format(
-            question=question
-        )
+        print("[PIPELINE] Bước 2: HyDE (Sinh văn bản quy phạm pháp luật giả định)")
+        if self.llm is None:
+            return question
 
-        response = self.llm.complete(prompt)
+        try:
+            prompt = HYDE_PROMPT.format(question=question)
+            response = self.llm.complete(prompt)
+            hypothetical_doc = response.text.strip()
+            if hypothetical_doc:
+                return hypothetical_doc
+        except Exception as e:
+            print(f"[CẢNH BÁO] HyDE gặp lỗi LLM ({e}), fallback về câu hỏi gốc.")
 
-        return response.text.strip()
+        return question
