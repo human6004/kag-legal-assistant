@@ -72,7 +72,7 @@
     },
     "evidenceRef": {
       "type": "object",
-      "description": "One piece of evidence, located by document/article/clause/point rather than by any system's internal chunk or node id.",
+      "description": "One piece of evidence, located by document/article/clause/point rather than by any system's internal chunk or node id. 'text' is mandatory; 'clause' and 'point' are diagnostic labels and do not participate in comparative scoring.",
       "allOf": [
         { "$ref": "#/$defs/forbiddenKeys" }
       ],
@@ -81,24 +81,28 @@
         "evidence_id": { "type": ["string", "null"] },
         "article": {
           "type": ["string", "integer", "null"],
-          "description": "Article ('Điều'). Integers are accepted here for authoring convenience and are coerced to strings by the Python loader (models._as_opt_str)."
+          "description": "Article ('Điều'). Integers are accepted here for authoring convenience and are coerced to strings by the Python loader (models._as_opt_str). Together with document_id this is the scoring depth: a declared mismatch here is a hard negative."
         },
         "clause": {
           "type": ["string", "integer", "null"],
-          "description": "Clause ('khoản'). Integers are accepted and coerced to strings by the Python loader."
+          "description": "Clause ('khoản'). Integers are accepted and coerced to strings by the Python loader. Recorded for error analysis only: a clause mismatch never makes evidence support false, because systems declare clause metadata at different granularities and penalising the ones that declare it would be an unfair asymmetry."
         },
         "point": {
           "type": ["string", "integer", "null"],
-          "description": "Point ('điểm'). Integers are accepted and coerced to strings by the Python loader."
+          "description": "Point ('điểm'). Integers are accepted and coerced to strings by the Python loader. Diagnostic only, exactly like 'clause'."
         },
-        "text": { "type": ["string", "null"] },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Verbatim evidence text, required. It is the common arbiter every system can reach: a system that declares no article or clause metadata can still be credited through text matching, so gold without text would silently favour whichever system reports the richest metadata."
+        },
         "required": {
           "type": "boolean",
           "default": true,
           "description": "Whether this evidence is necessary (true, default) or merely acceptable (false). Hit@k and MRR use required evidence only; Evidence Recall reports both."
         }
       },
-      "required": ["document_id"]
+      "required": ["document_id", "text"]
     }
   }
 }

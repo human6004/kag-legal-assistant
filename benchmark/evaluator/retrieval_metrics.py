@@ -24,6 +24,11 @@ Metrics (formula, direction):
     the search was decided); `None` when there is no gold evidence or the
     system errored.
   * `first_relevant_rank`          - the raw rank behind `mrr`, or `None`.
+  * `topk_evidence_recall[k]` (↑)  - `evidence_recall` recomputed over the top
+    `k` contexts only. This is the headline retrieval number: full-list recall
+    rewards a system for returning more, and `hit@k` collapses several pieces
+    of evidence into one bit, whereas recall at a fixed cut-off asks all three
+    systems the same question at the same list length.
   * `budget_evidence_recall[b]` (↑) - `evidence_recall` recomputed after
     truncating contexts to a `b`-token budget (`contexts_within_budget`), so
     systems that pack more/less per chunk are compared on equal context size.
@@ -62,6 +67,7 @@ class RetrievalMetrics:
     hit_at_k: Dict[int, Optional[float]]
     mrr: Optional[float]
     first_relevant_rank: Optional[int]
+    topk_evidence_recall: Dict[int, Optional[float]]
     budget_evidence_recall: Dict[int, Optional[float]]
     n_gold_evidence: int
     n_required_evidence: int
@@ -79,6 +85,7 @@ class RetrievalMetrics:
             "hit_at_k": {int(k): v for k, v in self.hit_at_k.items()},
             "mrr": self.mrr,
             "first_relevant_rank": self.first_relevant_rank,
+            "topk_evidence_recall": {int(k): v for k, v in self.topk_evidence_recall.items()},
             "budget_evidence_recall": {int(b): v for b, v in self.budget_evidence_recall.items()},
             "n_gold_evidence": self.n_gold_evidence,
             "n_required_evidence": self.n_required_evidence,
@@ -203,6 +210,7 @@ def evaluate_retrieval(
             hit_at_k=empty_hit_at_k,
             mrr=None,
             first_relevant_rank=None,
+            topk_evidence_recall={k: None for k in k_values},
             budget_evidence_recall=empty_budget,
             n_gold_evidence=0,
             n_required_evidence=0,
@@ -267,6 +275,23 @@ def evaluate_retrieval(
         output, target_evidence, judge, policy, usage, k_values, notes
     )
 
+    # -- evidence recall at a fixed list length ------------------------------
+    # Recomputed per k rather than derived from `supports`, because a support
+    # decision carries the rank of the *best* context that supported it and a
+    # cheaper rank filter would quietly assume that rank is the only one.
+    topk_evidence_recall: Dict[int, Optional[float]] = {}
+    for k in k_values:
+        topk_evidence_recall[k] = _recall_over(
+            gold_evidence,
+            output.top_k(k),
+            judge,
+            policy,
+            usage,
+            output,
+            notes,
+            label=f"evidence_recall@{k}",
+        )
+
     # -- budgeted evidence recall --------------------------------------------
     budget_evidence_recall: Dict[int, Optional[float]] = {}
     for budget in budgets:
@@ -289,6 +314,7 @@ def evaluate_retrieval(
         hit_at_k=hit_at_k,
         mrr=mrr,
         first_relevant_rank=first_relevant_rank,
+        topk_evidence_recall=topk_evidence_recall,
         budget_evidence_recall=budget_evidence_recall,
         n_gold_evidence=n_gold,
         n_required_evidence=len(required_evidence),

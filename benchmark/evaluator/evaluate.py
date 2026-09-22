@@ -11,7 +11,8 @@ Metric naming is flat and stable, because the aggregation layer and the paper
 tables key on these strings:
 
     retrieval   evidence_recall, evidence_recall_required, context_precision,
-                mrr, hit@1, hit@3, hit@5, hit@10, evidence_recall@<N>tok
+                mrr, hit@1, hit@3, hit@5, hit@10, evidence_recall@<k>,
+                evidence_recall@<N>tok
     answer      hit_rate, hit_all, claim_precision, claim_recall, claim_f1
     grounding   faithfulness, hallucination_rate, retrieval_gap_rate,
                 unsupported_claim_rate
@@ -59,10 +60,11 @@ from .answer_metrics import AnswerMetrics, answer_claims, evaluate_answer
 from .citation_metrics import CitationMetrics, evaluate_citations
 from .evidence_matching import DEFAULT_POLICY, MatchingPolicy, default_token_counter
 from .grounding_metrics import GroundingMetrics, evaluate_grounding
-from .judge import Judge, JudgeUsage, NullJudge, RuleBasedJudge
+from .judge import Judge, JudgeUsage, NullJudge
 from .models import (
     BenchmarkItem,
     SystemOutput,
+    citations_mirror_contexts,
     index_outputs,
     load_benchmark,
     load_system_outputs,
@@ -73,48 +75,49 @@ from .retrieval_metrics import (
     evaluate_retrieval,
 )
 
+#: List length the headline retrieval number is read at. Every system answers
+#: the same question at the same cut-off, so it must not be tuned per system.
+PRIMARY_K = 5
+
+#: The single context-token budget the equal-budget comparison is read at.
+#: One budget, fixed in advance: picking it per system, or reading several and
+#: reporting the best, would be the same thing as tuning on the test set.
+PAPER_CONTEXT_BUDGET = 2000
+
 # Metrics that go into the paper's main table. Diagnostics are still computed
 # and reported; this list only says which rows are headline rows.
+#
+# Every name here is decidable without a judge, so the main table has no empty
+# cells on a `NullJudge` run. Judge-dependent numbers (claim_*, faithfulness,
+# hallucination_rate, retrieval_gap_rate, unsupported_claim_rate,
+# false_answer_rate) are still computed and still land in `per_question`; they
+# are off the publication path until a judge exists that is independent of all
+# three systems under test, prompted in Vietnamese legal terms, and calibrated
+# against human labels. See README.md, "Judge".
 PRIMARY_METRICS: Tuple[str, ...] = (
     "evidence_recall",
-    "context_precision",
-    "mrr",
-    "claim_f1",
+    f"evidence_recall@{PRIMARY_K}",
+    f"evidence_recall@{PAPER_CONTEXT_BUDGET}tok",
+    "hit_rate",
     "hit_all",
-    "faithfulness",
-    "hallucination_rate",
-    "citation_precision",
+    "citation_article_accuracy",
     "citation_recall",
     "correct_abstention",
+    "latency_ms",
 )
 
 DIAGNOSTIC_METRICS: Tuple[str, ...] = (
-    "hit@1",
-    "hit@3",
-    "hit@5",
-    "hit@10",
-    "hit_rate",
-    "claim_precision",
-    "claim_recall",
-    "evidence_recall_required",
-    "retrieval_gap_rate",
-    "unsupported_claim_rate",
+    "mrr",
+    f"hit@{PRIMARY_K}",
+    "context_precision",
+    "citation_precision",
     "citation_document_accuracy",
-    "citation_article_accuracy",
-    "citation_clause_accuracy",
-    "citation_point_accuracy",
-    "false_answer_rate",
-    "latency_ms",
     "error_rate",
 )
 
 #: Metrics where a lower number is better. Kept here so report readers and
 #: table generators do not have to guess.
 LOWER_IS_BETTER: Tuple[str, ...] = (
-    "hallucination_rate",
-    "retrieval_gap_rate",
-    "unsupported_claim_rate",
-    "false_answer_rate",
     "latency_ms",
     "error_rate",
 )
@@ -125,10 +128,10 @@ class EvaluationConfig:
     """Run configuration. Freeze this next to the results."""
 
     k_values: Tuple[int, ...] = tuple(DEFAULT_K_VALUES)
-    #: Context-token budgets for the equal-budget recall comparison. Empty by
-    #: default: no single budget is privileged, the caller chooses (e.g. 2000,
-    #: 4000) and the same budgets are used for every system in a comparison.
-    context_budgets: Tuple[int, ...] = ()
+    #: Context-token budgets for the equal-budget recall comparison. Defaults to
+    #: the single budget the main table is read at; a caller may add more (e.g.
+    #: 4000) as long as the same list is used for every system in a comparison.
+    context_budgets: Tuple[int, ...] = (PAPER_CONTEXT_BUDGET,)
     policy: MatchingPolicy = DEFAULT_POLICY
     bootstrap: BootstrapConfig = BootstrapConfig()
     token_counter: Callable[[Optional[str]], int] = default_token_counter
@@ -142,6 +145,7 @@ class EvaluationConfig:
                 "use_structural": self.policy.use_structural,
                 "use_text": self.policy.use_text,
                 "use_judge": self.policy.use_judge,
+                "hard_negative_levels": list(self.policy.hard_negative_levels),
                 "undecided_counts_as": self.policy.undecided_counts_as,
                 "coarse_metadata_counts": self.policy.coarse_metadata_counts,
                 "verify_text_when_available": self.policy.verify_text_when_available,
@@ -197,6 +201,8 @@ class QuestionResult:
         }
         for k, v in sorted(self.retrieval.hit_at_k.items()):
             values[f"hit@{k}"] = v
+        for k, v in sorted(self.retrieval.topk_evidence_recall.items()):
+            values[f"evidence_recall@{k}"] = v
         for budget, v in sorted(self.retrieval.budget_evidence_recall.items()):
             values[f"evidence_recall@{budget}tok"] = v
         return values
@@ -242,6 +248,8 @@ class QuestionResult:
         }
         for k in self.retrieval.hit_at_k:
             applicable[f"hit@{k}"] = has_gold_evidence
+        for k in self.retrieval.topk_evidence_recall:
+            applicable[f"evidence_recall@{k}"] = has_gold_evidence
         for budget in self.retrieval.budget_evidence_recall:
             applicable[f"evidence_recall@{budget}tok"] = has_gold_evidence
 
@@ -418,6 +426,7 @@ def evaluate_system(
 
     results: List[QuestionResult] = []
     missing: List[str] = []
+    mirrored: List[str] = []
     systems: Dict[str, int] = {}
     for item in items:
         output = by_id.get(item.id)
@@ -425,9 +434,18 @@ def evaluate_system(
             missing.append(item.id)
             continue
         systems[output.system] = systems.get(output.system, 0) + 1
+        if citations_mirror_contexts(output):
+            mirrored.append(item.id)
         results.append(evaluate_question(item, output, judge=judge, config=config, usage=usage))
 
     notes: List[str] = []
+    if mirrored:
+        notes.append(
+            f"{len(mirrored)} output(s) report citations that exactly mirror their "
+            f"retrieved contexts (first: {mirrored[:3]}); citations must be parsed "
+            f"from the answer, not copied from retrieval - check the adapter against "
+            f"benchmark/adapters/citation_parser.py"
+        )
     if missing:
         notes.append(
             f"{len(missing)} question(s) had no system output and were excluded "
@@ -464,9 +482,13 @@ def evaluate_system(
 # CLI
 # --------------------------------------------------------------------------
 
+#: Judges the CLI may build. `RuleBasedJudge` is deliberately absent: it never
+#: returns CONTRADICTED, so every judge-dependent number it produces is biased
+#: in one direction (hallucination_rate drifts to 0) while looking complete on
+#: the page. It stays importable for unit tests, which is where a lexical
+#: stand-in belongs.
 JUDGE_FACTORIES: Dict[str, Callable[[], Judge]] = {
     "null": NullJudge,
-    "rule_based": RuleBasedJudge,
 }
 
 
@@ -547,7 +569,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--k", default=",".join(str(k) for k in DEFAULT_K_VALUES), help="Hit@k values")
     parser.add_argument(
         "--budgets",
-        default="",
+        default=str(PAPER_CONTEXT_BUDGET),
         help="context-token budgets for equal-budget Evidence Recall, e.g. 2000,4000",
     )
     parser.add_argument("--judge", default="null", choices=sorted(JUDGE_FACTORIES))

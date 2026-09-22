@@ -20,6 +20,7 @@ from benchmark.evaluator.models import (
     BenchmarkItem,
     SchemaError,
     SystemOutput,
+    citations_mirror_contexts,
     index_outputs,
     load_benchmark,
     load_system_outputs,
@@ -94,6 +95,18 @@ def test_answerable_false_is_a_first_class_item() -> None:
 def test_missing_document_id_on_evidence_is_refused() -> None:
     with pytest.raises(SchemaError):
         item(gold_evidence=[{"article": "53"}])
+
+
+def test_evidence_without_text_is_rejected() -> None:
+    """Gold text is what lets a system with no article metadata still score."""
+    with pytest.raises(SchemaError) as exc:
+        item(gold_evidence=[{"document_id": DOC, "article": "53"}])
+    assert "text" in str(exc.value)
+
+
+def test_evidence_with_blank_text_is_rejected() -> None:
+    with pytest.raises(SchemaError):
+        item(gold_evidence=[{"document_id": DOC, "article": "53", "text": "   "}])
 
 
 def test_placeholder_markers_are_dropped() -> None:
@@ -171,6 +184,45 @@ def test_error_and_latency_round_trip() -> None:
         output(latency_ms="fast")
 
 
+# -- citations may not be a copy of the retrieval result --------------------
+
+
+def test_citations_mirroring_retrieved_contexts_is_detected() -> None:
+    """NativeRAG's engine returns its retrieved docs under the name 'citations'."""
+    contexts = [
+        context(1, "a", article="53"),
+        context(2, "b", article="54"),
+        context(3, "c", article="55"),
+    ]
+    copied = output(
+        contexts=contexts,
+        citations=[citation(article="53"), citation(article="54"), citation(article="55")],
+    )
+    assert citations_mirror_contexts(copied) is True
+
+
+def test_citing_a_subset_of_what_was_retrieved_is_not_flagged() -> None:
+    contexts = [
+        context(1, "a", article="53"),
+        context(2, "b", article="54"),
+        context(3, "c", article="55"),
+    ]
+    honest = output(
+        contexts=contexts,
+        citations=[citation(article="53"), citation(article="54"), citation(article="70")],
+    )
+    assert citations_mirror_contexts(honest) is False
+
+
+def test_a_short_citation_list_is_never_flagged() -> None:
+    """Two articles retrieved and two articles cited is what a good answer does."""
+    out = output(
+        contexts=[context(1, "a", article="53"), context(2, "b", article="54")],
+        citations=[citation(article="53"), citation(article="54")],
+    )
+    assert citations_mirror_contexts(out) is False
+
+
 def test_duplicate_question_ids_are_refused_on_both_sides() -> None:
     with pytest.raises(SchemaError):
         parse_benchmark(
@@ -241,3 +293,11 @@ def test_json_schema_files_exist_and_forbid_the_same_keys() -> None:
         text = fin.read()
     for key in FORBIDDEN_DATASET_KEYS:
         assert key in text, f"benchmark_schema.json must name {key} as forbidden"
+
+
+def test_the_json_schema_requires_evidence_text_like_the_loader_does() -> None:
+    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    with io.open(os.path.join(here, "benchmark_schema.json"), "r", encoding="utf-8") as fin:
+        schema = json.load(fin)
+    required = schema["$defs"]["evidenceRef"]["required"]
+    assert sorted(required) == ["document_id", "text"]

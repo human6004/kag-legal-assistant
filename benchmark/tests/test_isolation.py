@@ -22,6 +22,10 @@ import benchmark.evaluator as evaluator_pkg
 SYSTEM_PACKAGES = ("kag", "hybridRAG", "nativeRAG", "hybridrag", "nativerag")
 EVALUATOR_DIR = Path(evaluator_pkg.__file__).parent
 BENCHMARK_DIR = EVALUATOR_DIR.parent
+#: Adapter helpers are shared by all three systems, so they are held to the
+#: same rule as the evaluator: no system package, no third-party dependency.
+ADAPTERS_DIR = BENCHMARK_DIR / "adapters"
+SHARED_DIRS = (EVALUATOR_DIR, ADAPTERS_DIR)
 
 
 def python_files(root: Path) -> List[Path]:
@@ -59,9 +63,17 @@ def test_the_evaluator_uses_only_the_standard_library() -> None:
     """No third-party dependency: the evaluator must run in a bare interpreter."""
     allowed = {"benchmark", "__future__"}
     stdlib = set(sys.stdlib_module_names)
-    for path in python_files(EVALUATOR_DIR):
-        for root in imported_roots(path):
-            assert root in stdlib or root in allowed, f"{path.name} imports {root!r}"
+    for root_dir in SHARED_DIRS:
+        for path in python_files(root_dir):
+            for root in imported_roots(path):
+                assert root in stdlib or root in allowed, f"{path.name} imports {root!r}"
+
+
+def test_the_adapter_helpers_are_shared_and_system_free() -> None:
+    """A rule implemented once per system is a rule applied three ways."""
+    assert (ADAPTERS_DIR / "citation_parser.py").is_file()
+    for path in python_files(ADAPTERS_DIR):
+        assert not imported_roots(path) & set(SYSTEM_PACKAGES), path.name
 
 
 def test_importing_every_evaluator_module_pulls_in_no_system_package() -> None:

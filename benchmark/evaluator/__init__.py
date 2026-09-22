@@ -54,6 +54,8 @@ from .citation_metrics import CitationMetrics, evaluate_citations, level_accurac
 from .evaluate import (
     DIAGNOSTIC_METRICS,
     LOWER_IS_BETTER,
+    PAPER_CONTEXT_BUDGET,
+    PRIMARY_K,
     PRIMARY_METRICS,
     EvaluationConfig,
     QuestionResult,
@@ -64,6 +66,7 @@ from .evaluate import (
 )
 from .evidence_matching import (
     DEFAULT_POLICY,
+    HARD_NEGATIVE_LEVELS,
     LEVELS,
     EvidenceSupport,
     MatchingPolicy,
@@ -107,6 +110,7 @@ from .models import (
     RetrievedContext,
     SchemaError,
     SystemOutput,
+    citations_mirror_contexts,
     index_benchmark,
     index_outputs,
     load_benchmark,
@@ -162,6 +166,7 @@ __all__ = [
     "load_system_outputs",
     "index_benchmark",
     "index_outputs",
+    "citations_mirror_contexts",
     # judge
     "JudgeVerdict",
     "JudgeResult",
@@ -180,6 +185,7 @@ __all__ = [
     "MatchingPolicy",
     "DEFAULT_POLICY",
     "LEVELS",
+    "HARD_NEGATIVE_LEVELS",
     "EvidenceSupport",
     "context_supports_evidence",
     "context_supports_any",
@@ -229,6 +235,8 @@ __all__ = [
     "PRIMARY_METRICS",
     "DIAGNOSTIC_METRICS",
     "LOWER_IS_BETTER",
+    "PRIMARY_K",
+    "PAPER_CONTEXT_BUDGET",
     "evaluate_question",
     "evaluate_system",
     "format_report",

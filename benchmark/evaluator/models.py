@@ -113,14 +113,19 @@ class EvidenceRef:
     `required=False` marks evidence that is acceptable but not necessary (for
     example a second document stating the same rule). Hit@k and MRR consider
     required evidence only; Evidence Recall reports both.
+
+    `text` is mandatory. It is the one route into support matching that every
+    system can reach regardless of how much legal metadata its adapter reports,
+    so gold evidence without it would quietly score the systems that declare
+    articles and clauses above the ones that only declare a document.
     """
 
     document_id: str
+    text: str
     evidence_id: Optional[str] = None
     article: Optional[str] = None
     clause: Optional[str] = None
     point: Optional[str] = None
-    text: Optional[str] = None
     required: bool = True
 
     @classmethod
@@ -133,11 +138,11 @@ class EvidenceRef:
             raise SchemaError(f"{ctx}: 'required' must be a boolean")
         return cls(
             document_id=_as_req_str(payload.get("document_id"), ctx, "document_id"),
+            text=_as_req_str(payload.get("text"), ctx, "text"),
             evidence_id=_as_opt_str(payload.get("evidence_id"), ctx, "evidence_id"),
             article=_as_opt_str(payload.get("article"), ctx, "article"),
             clause=_as_opt_str(payload.get("clause"), ctx, "clause"),
             point=_as_opt_str(payload.get("point"), ctx, "point"),
-            text=_as_opt_str(payload.get("text"), ctx, "text"),
             required=required,
         )
 
@@ -534,6 +539,43 @@ def load_system_outputs(path: str) -> List[SystemOutput]:
 
 def index_benchmark(items: Iterable[BenchmarkItem]) -> Dict[str, BenchmarkItem]:
     return {item.id: item for item in items}
+
+
+# --------------------------------------------------------------------------
+# Adapter guard
+# --------------------------------------------------------------------------
+
+#: Below this many citations, an exact overlap with the retrieved contexts is
+#: ordinary: a two-article answer citing the two articles it retrieved is what
+#: a good answer looks like.
+MIRROR_GUARD_MIN_CITATIONS = 3
+
+
+def _location_keys(items: Iterable[Any]) -> set:
+    keys = set()
+    for it in items:
+        key = (it.norm_document_id, it.norm_article, it.norm_clause, it.norm_point)
+        if any(part is not None for part in key):
+            keys.add(key)
+    return keys
+
+
+def citations_mirror_contexts(output: SystemOutput) -> bool:
+    """Do these citations look like a copy of the retrieval result?
+
+    `citations[]` must be parsed from the answer (see
+    `benchmark/adapters/citation_parser.py`). An adapter that fills it from
+    `retrieved_contexts` instead - which is exactly what NativeRAG's engine
+    hands back under that name - would make Citation Recall a second copy of
+    retrieval recall, for free. This cannot be rejected outright, because a
+    system that cites precisely what it retrieved is a legitimate case; it is
+    reported as a note so a reader can go and check the adapter.
+    """
+    if len(output.citations) < MIRROR_GUARD_MIN_CITATIONS:
+        return False
+    cited = _location_keys(output.citations)
+    retrieved = _location_keys(output.retrieved_contexts)
+    return bool(cited) and cited == retrieved
 
 
 def index_outputs(outputs: Iterable[SystemOutput]) -> Dict[str, SystemOutput]:

@@ -13,10 +13,15 @@ from benchmark.evaluator.models import BenchmarkItem, SystemOutput
 
 DOC = "330/2026/NĐ-CP"
 
+#: Gold evidence must carry text (see EvidenceRef), so tests that do not care
+#: about the text route still need one. It is deliberately unlike every other
+#: fixture string, so it can never accidentally match a context.
+DEFAULT_EVIDENCE_TEXT = "Nội dung bằng chứng mặc định của fixture kiểm thử."
+
 
 def evidence(
     article: Optional[str] = None,
-    text: Optional[str] = None,
+    text: str = DEFAULT_EVIDENCE_TEXT,
     clause: Optional[str] = None,
     point: Optional[str] = None,
     document_id: str = DOC,

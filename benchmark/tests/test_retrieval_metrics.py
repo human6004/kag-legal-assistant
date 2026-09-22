@@ -127,12 +127,63 @@ def test_partial_coverage_scores_the_same_fraction_either_way() -> None:
     assert evaluate_retrieval(it, small).evidence_recall == pytest.approx(0.5)
 
 
+def test_context_without_article_still_recalls_via_text() -> None:
+    """A system that reports no article must not lose to one that does.
+
+    HybridRAG's adapter can often name only the document, KAG can name the
+    clause. Both retrieved the same passage, so both must score it: gold text
+    is the route every system can reach, which is why it is mandatory.
+    """
+    it = item(gold_evidence=[evidence(article="53", clause="3", text=E1_TEXT)])
+    kag_like = output(system="kag", contexts=[context(1, E1_TEXT, article="53", clause="3")])
+    hybrid_like = output(system="hybridrag", contexts=[context(1, E1_TEXT)])
+
+    assert evaluate_retrieval(it, kag_like).evidence_recall == 1.0
+    assert evaluate_retrieval(it, hybrid_like).evidence_recall == 1.0
+
+
 def test_metadata_only_matching_also_survives_different_chunking() -> None:
     """A system that reports locations but no text is scored structurally."""
     it = two_evidence_item()
     merged = output(contexts=[context(1, None, article="53"), context(2, None, article="54")])
     m = evaluate_retrieval(it, merged)
     assert m.evidence_recall == 1.0
+
+
+# -- evidence recall at a fixed list length ---------------------------------
+
+
+def test_recall_at_k_truncates_by_rank() -> None:
+    """The headline retrieval metric asks all systems for the same list length."""
+    it = item(gold_evidence=[evidence(article="53", text=E1_TEXT)])
+    contexts = [
+        context(r, "Không liên quan.", article=str(20 + r)) for r in range(1, 7)
+    ] + [context(7, E1_TEXT, article="53")]
+    m = evaluate_retrieval(it, output(contexts=contexts), k_values=(5, 10))
+    assert m.topk_evidence_recall[5] == 0.0
+    assert m.topk_evidence_recall[10] == 1.0
+    assert m.evidence_recall == 1.0, "the full-list number is unchanged"
+
+
+def test_recall_at_k_counts_partial_coverage_like_full_recall() -> None:
+    it = two_evidence_item()
+    out = output(contexts=[context(1, E1_TEXT), context(2, "Nội dung khác."), context(3, E2_TEXT)])
+    m = evaluate_retrieval(it, out, k_values=(2, 5))
+    assert m.topk_evidence_recall[2] == pytest.approx(0.5)
+    assert m.topk_evidence_recall[5] == 1.0
+
+
+def test_recall_at_k_is_not_applicable_without_gold_evidence() -> None:
+    it = item(qid="q9", answerable=False, gold_evidence=[])
+    m = evaluate_retrieval(it, output(qid="q9", contexts=[context(1, "Bất kỳ.")]))
+    assert all(v is None for v in m.topk_evidence_recall.values())
+
+
+def test_recall_at_k_is_zero_not_none_when_a_healthy_system_returns_nothing() -> None:
+    it = item(gold_evidence=[evidence(article="53", text=E1_TEXT)])
+    assert evaluate_retrieval(it, output(contexts=[])).topk_evidence_recall[5] == 0.0
+    errored = evaluate_retrieval(it, output(error="timeout", contexts=[]))
+    assert errored.topk_evidence_recall[5] is None, "an errored run is unavailable, not 0"
 
 
 # -- context precision ------------------------------------------------------
@@ -203,8 +254,12 @@ def test_error_makes_metrics_unavailable_not_zero() -> None:
 
 
 def test_undecided_stays_out_of_the_numerator_with_a_null_judge() -> None:
-    """Gold declares a point; the context declares only the article, no text."""
-    it = item(gold_evidence=[evidence(article="53", clause="3", point="b")])
+    """Gold declares a point; the context declares only the article, no text.
+
+    Gold always carries text, but a context that carries none leaves the text
+    route nothing to arbitrate with, so nothing decides.
+    """
+    it = item(gold_evidence=[evidence(article="53", clause="3", point="b", text=E1_TEXT)])
     out = output(contexts=[context(1, None, article="53")])
     m = evaluate_retrieval(it, out, judge=NullJudge())
     assert m.evidence_recall == 0.0
@@ -213,7 +268,7 @@ def test_undecided_stays_out_of_the_numerator_with_a_null_judge() -> None:
 
 
 def test_coarse_metadata_can_be_opted_into() -> None:
-    it = item(gold_evidence=[evidence(article="53", clause="3", point="b")])
+    it = item(gold_evidence=[evidence(article="53", clause="3", point="b", text=E1_TEXT)])
     out = output(contexts=[context(1, None, article="53")])
     lenient = MatchingPolicy(coarse_metadata_counts=True)
     assert evaluate_retrieval(it, out, policy=lenient).evidence_recall == 1.0

@@ -33,7 +33,8 @@
         },
         "citations": {
           "type": "array",
-          "items": { "$ref": "#/$defs/citation" }
+          "items": { "$ref": "#/$defs/citation" },
+          "description": "The citations the ANSWER makes, parsed from the answer text by benchmark/adapters/citation_parser.py. Never build this from retrieved_contexts, from chunk metadata, or from any other channel: a system whose citations are a copy of its retrieval result scores Citation Recall equal to its retrieval recall without the answer pointing at anything. The evaluator flags an exact mirror of retrieved_contexts as a note on the report."
         },
         "latency_ms": { "type": ["number", "null"] },
         "error": { "type": ["string", "null"], "description": "Non-null marks this output as failed (see SystemOutput.failed)." },
@@ -67,7 +68,7 @@
     },
     "citation": {
       "type": "object",
-      "description": "A source the answer points at.",
+      "description": "A source the answer points at, as extracted from the answer text.",
       "properties": {
         "document_id": { "type": ["string", "null"] },
         "article": { "type": ["string", "integer", "null"], "description": "Coerced to a string by the Python loader if given as an integer." },

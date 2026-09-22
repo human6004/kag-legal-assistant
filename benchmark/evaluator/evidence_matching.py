@@ -10,8 +10,13 @@ Three routes decide support, in this order:
 
 1. **structural** - the context's declared legal location matches every level
    the gold evidence declares (document, and article/clause/point when given).
-   A declared mismatch is a hard negative: citing Điều 52 for Điều 53 evidence
-   cannot be rescued by a judge.
+   A declared mismatch is a hard negative *at the scoring depth only*
+   (`MatchingPolicy.hard_negative_levels`, document and article): citing Điều 52
+   for Điều 53 evidence cannot be rescued by a judge. A clause or point
+   mismatch is recorded and then handed on to the text route, because the three
+   systems label clauses at different granularities and a hard negative there
+   would punish the system that declares a clause while letting the system that
+   declares none through - the asymmetry runs the wrong way round.
 2. **text** - the gold evidence text is contained in the context text after
    marker normalization, or covers enough of its tokens. This is what makes
    different chunkings comparable: one 2000-token chunk holding E1 and E2
@@ -26,7 +31,7 @@ makes that choice explicit and reportable instead of hidden.
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from enum import Enum
 from typing import Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -53,6 +58,9 @@ class SupportDecision:
     method: SupportMethod
     score: Optional[float] = None
     detail: str = ""
+    #: Levels the context declared differently from the gold evidence without
+    #: that costing it support (clause / point). Diagnostic only.
+    soft_mismatch: Tuple[str, ...] = ()
 
     @property
     def decided(self) -> bool:
@@ -76,6 +84,11 @@ class MatchingPolicy:
     use_structural: bool = True
     use_text: bool = True
     use_judge: bool = True
+    #: Levels where a declared mismatch is a hard negative. This is the scoring
+    #: depth of the comparison: right content at the wrong address is wrong down
+    #: to the article, and no other route may overturn it. Deeper levels stay
+    #: diagnostic (see the module docstring).
+    hard_negative_levels: Tuple[str, ...] = ("document", "article")
     #: How an undecided decision is counted by metrics. `None` keeps it out of
     #: the numerator *and* records it, so a reader can see how much was unknown.
     undecided_counts_as: Optional[bool] = None
@@ -91,6 +104,7 @@ class MatchingPolicy:
 DEFAULT_POLICY = MatchingPolicy()
 
 LEVELS = ("document", "article", "clause", "point")
+HARD_NEGATIVE_LEVELS = DEFAULT_POLICY.hard_negative_levels
 
 
 def _levels(evidence: EvidenceRef) -> Dict[str, Optional[str]]:
@@ -123,17 +137,23 @@ def _citation_levels(citation: Citation) -> Dict[str, Optional[str]]:
 def structural_decision(
     context_levels: Dict[str, Optional[str]],
     gold_levels: Dict[str, Optional[str]],
-) -> Tuple[Optional[bool], List[str], Optional[str]]:
+    hard_negative_levels: Sequence[str] = HARD_NEGATIVE_LEVELS,
+) -> Tuple[Optional[bool], List[str], Optional[str], List[str]]:
     """Compare declared legal locations.
 
-    Returns `(verdict, missing_levels, mismatch_level)`:
+    Returns `(verdict, missing_levels, mismatch_level, soft_mismatches)`:
 
-      * `(False, [], level)`  - both sides declare `level` and they differ.
-      * `(True, [], None)`    - every level the gold declares is matched.
-      * `(None, missing, None)` - no mismatch, but the context stays silent on
-        `missing` levels, so structure alone cannot decide.
+      * `(False, [], level, soft)`  - both sides declare `level`, it is one of
+        `hard_negative_levels`, and they differ.
+      * `(True, [], None, [])`      - every level the gold declares is matched.
+      * `(None, missing, None, soft)` - no hard mismatch, but the context either
+        stays silent on `missing` levels or disagrees on the diagnostic `soft`
+        ones, so structure alone must not decide. The caller falls through to
+        the text route, which is the same route a context declaring nothing
+        below the article already takes.
     """
     missing: List[str] = []
+    soft: List[str] = []
     for level in LEVELS:
         gold = gold_levels.get(level)
         if gold is None:
@@ -142,10 +162,24 @@ def structural_decision(
         if got is None:
             missing.append(level)
         elif got != gold:
-            return False, [], level
-    if missing:
-        return None, missing, None
-    return True, [], None
+            if level in hard_negative_levels:
+                return False, [], level, soft
+            soft.append(level)
+    if missing or soft:
+        return None, missing, None, soft
+    return True, [], None, []
+
+
+def _annotate(decision: SupportDecision, soft_mismatch: Sequence[str]) -> SupportDecision:
+    """Carry the diagnostic clause/point mismatches onto whatever decided."""
+    if not soft_mismatch:
+        return decision
+    note = f"soft mismatch on {list(soft_mismatch)}"
+    return replace(
+        decision,
+        detail=f"{decision.detail}; {note}" if decision.detail else note,
+        soft_mismatch=tuple(soft_mismatch),
+    )
 
 
 def _text_decision(
@@ -196,8 +230,11 @@ def context_supports_evidence(
 ) -> SupportDecision:
     """Does this retrieved context support this gold evidence?"""
     gold_levels = _levels(evidence)
+    soft: List[str] = []
     if policy.use_structural:
-        verdict, missing, mismatch = structural_decision(_context_levels(context), gold_levels)
+        verdict, missing, mismatch, soft = structural_decision(
+            _context_levels(context), gold_levels, policy.hard_negative_levels
+        )
         if verdict is False:
             return SupportDecision(
                 False,
@@ -216,16 +253,16 @@ def context_supports_evidence(
     if policy.use_text:
         text_decision = _text_decision(evidence.text, context.text, policy)
         if text_decision.supported is True:
-            return text_decision
+            return _annotate(text_decision, soft)
     else:
         text_decision = UNDECIDED
 
     if policy.use_judge:
         judged = _judge_decision(judge, context.text, evidence.text, usage)
         if judged.decided:
-            return judged
+            return _annotate(judged, soft)
 
-    if policy.coarse_metadata_counts:
+    if policy.coarse_metadata_counts and not soft:
         # No level mismatched; the context is merely coarser than the gold
         # (declares the article, gold declares a point). Opt-in only.
         return SupportDecision(
@@ -235,7 +272,9 @@ def context_supports_evidence(
             f"coarse metadata accepted (context silent on {missing})" if missing else "coarse metadata accepted",
         )
     detail = text_decision.detail or "no route decided"
-    return SupportDecision(None, SupportMethod.UNDECIDED, text_decision.score, detail)
+    return _annotate(
+        SupportDecision(None, SupportMethod.UNDECIDED, text_decision.score, detail), soft
+    )
 
 
 @dataclass(frozen=True)
@@ -256,6 +295,7 @@ class EvidenceSupport:
             "rank": self.rank,
             "method": self.decision.method.value,
             "detail": self.decision.detail,
+            "soft_mismatch": list(self.decision.soft_mismatch),
         }
 
 
