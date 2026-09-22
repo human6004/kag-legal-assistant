@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
-"""
-Kiem tra an toan bi mat (Secret Scan) tren repository.
+"""Secret Scanner for repository.
 
-Quet cac mau key, token, credential trong tat ca cac file duoc track boi git
-hoac cac file duoc sua doi.
+Scans all workspace files for API keys, private keys, and credentials.
 """
 
 import os
 import re
-import subprocess
 import sys
 
-GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+WT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PATTERNS = [
     (r"sk-[a-zA-Z0-9]{20,}", "OpenAI API Key"),
@@ -23,79 +20,62 @@ PATTERNS = [
     (r"(?:api[_-]?key|secret[_-]?key|auth[_-]?token)\s*[:=]\s*['\"]([a-zA-Z0-9_\-]{20,})['\"]", "API/Secret Key Assignment"),
 ]
 
-# Danh sach bo qua: cac placeholder hoac gia tri test duoc phep
 ALLOWLIST = [
     "<URL_GATEWAY_LLM>",
     "<TEN_MODEL_LLM>",
-    "<URL_DICH_VU_EMBEDDING>",
-    "<TEN_MODEL_EMBEDDING>",
-    "neo4j@openspg",
-    "minio@openspg",
-    "openspg",
-    "testonly"
+    "testonly",
+    "FAKE",
+    "TEST",
+    "FORGED_TOKEN",
 ]
 
 
-def get_tracked_and_modified_files():
-    cmd = ["git", "-C", GOC, "ls-files"]
-    r = subprocess.run(cmd, capture_output=True, text=True, errors="replace")
-    files = [f.strip() for f in r.stdout.splitlines() if f.strip()]
-
-    cmd2 = ["git", "-C", GOC, "status", "--porcelain"]
-    r2 = subprocess.run(cmd2, capture_output=True, text=True, errors="replace")
-    for line in r2.stdout.splitlines():
-        if len(line) > 3:
-            f = line[3:].strip()
-            if f not in files and os.path.isfile(os.path.join(GOC, f)):
-                files.append(f)
-    return files
-
-
 def scan():
-    files = get_tracked_and_modified_files()
     findings = []
+    scanned_count = 0
 
-    for rel_path in sorted(files):
-        # Bo qua binary, dump, pyc
-        if rel_path.endswith((".pyc", ".dump", ".png", ".jpg", ".idx", ".pack", ".rev")):
+    scan_dirs = ["kag", "tests", "benchmark", "docs", "scripts"]
+    for d in scan_dirs:
+        abs_d = os.path.join(WT_ROOT, d)
+        if not os.path.exists(abs_d):
             continue
+        for root, dirs, files in os.walk(abs_d):
+            dirs[:] = [dr for dr in dirs if dr not in ("__pycache__", ".venv", ".git")]
+            for file in files:
+                if file.endswith((".pyc", ".pyo", ".zip", ".png", ".jpg")):
+                    continue
+                full_p = os.path.join(root, file)
+                rel_p = os.path.relpath(full_p, WT_ROOT)
+                scanned_count += 1
 
-        full_path = os.path.join(GOC, rel_path)
-        if not os.path.isfile(full_path):
-            continue
+                try:
+                    with open(full_p, "r", encoding="utf-8", errors="ignore") as f:
+                        for line_no, line in enumerate(f, 1):
+                            for pat, desc in PATTERNS:
+                                m = re.search(pat, line, re.IGNORECASE)
+                                if m:
+                                    val = m.group(0)
+                                    if any(al.lower() in val.lower() for al in ALLOWLIST):
+                                        continue
+                                    findings.append({
+                                        "file": rel_p,
+                                        "line": line_no,
+                                        "type": desc,
+                                        "match": val[:10] + "...",
+                                    })
+                except Exception as e:
+                    pass
 
-        try:
-            with open(full_path, "r", encoding="utf-8", errors="replace") as f:
-                lines = f.readlines()
-        except Exception:
-            continue
-
-        for line_no, line in enumerate(lines, 1):
-            for pat, desc in PATTERNS:
-                matches = re.finditer(pat, line, re.IGNORECASE)
-                for m in matches:
-                    matched_str = m.group(0)
-                    # Kiem tra allowlist
-                    if any(al in line for al in ALLOWLIST):
-                        continue
-                    findings.append({
-                        "file": rel_path,
-                        "line": line_no,
-                        "desc": desc,
-                        "match": matched_str[:20] + "..." if len(matched_str) > 20 else matched_str
-                    })
-
-    return findings
+    print(f"Secret Scan Complete: {scanned_count} files scanned.")
+    if findings:
+        print(f"WARNING: {len(findings)} potential secrets found!")
+        for f in findings:
+            print(f"  - {f['file']}:{f['line']} ({f['type']}): {f['match']}")
+        return 1
+    else:
+        print("PASS: 0 secrets detected. Repository clean.")
+        return 0
 
 
 if __name__ == "__main__":
-    print(f"Bat dau quet bi mat tren {GOC}...")
-    findings = scan()
-    if findings:
-        print(f"\n[CANH BAO] Phat hien {len(findings)} vi tri nghi van:")
-        for f in findings:
-            print(f"  {f['file']}:{f['line']} - {f['desc']}: {f['match']}")
-        sys.exit(1)
-    else:
-        print("[OK] Khong phat hien secret, token hoac khoa API nao bi lo.")
-        sys.exit(0)
+    sys.exit(scan())

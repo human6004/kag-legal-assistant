@@ -1,0 +1,29 @@
+--- a/kag/common/conf.py
++++ b/kag/common/conf.py
+@@ -148,7 +148,8 @@ def get_kag_config(config_file=None):
+         if os.path.exists(config_file) and os.path.isfile(config_file):
+             logger.debug(f"found config file: {config_file}")
+-            with open(config_file, "r") as reader:
++            # kag-legal patch: force utf-8, Windows default (cp1252) cannot read Vietnamese.
++            with open(config_file, "r", encoding="utf-8") as reader:
+                 config = reader.read()
+                 config = Template(config).render(**dict(os.environ))
+             return yaml.safe_load(config)
+--- a/knext/common/env.py
++++ b/knext/common/env.py
+@@ -118,7 +118,8 @@ class Environment:
+         local_cfg_path = self._closest_config()
+         try:
+-            with open(local_cfg_path) as f:
++            # kag-legal patch: force utf-8, Windows default (cp1252) cannot read Vietnamese.
++            with open(local_cfg_path, encoding="utf-8") as f:
+                 local_cfg = yaml.load(f)
+         except Exception as e:
+             raise Exception(f"failed to load config from {local_cfg_path}, error: {e}")
+@@ -156,6 +157,6 @@ class Environment:
+         return self._closest_config(path.parent, path)
+
+     def dump(self, path=None, **kwargs):
+-        with open(path or self._config_path, "w") as f:
++        with open(path or self._config_path, "w", encoding="utf-8", newline="\n") as f:
+             yaml.dump(self._config, f)

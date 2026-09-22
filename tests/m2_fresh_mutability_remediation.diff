@@ -1,0 +1,156 @@
+--- a/kag/solver/evidence_aware/models.py
++++ b/kag/solver/evidence_aware/models.py
+@@ -946,6 +946,7 @@
+     requirement_verification_receipts: Dict[str, List[Stage4VerificationReceipt]] = field(default_factory=dict)
+     mutated_evidence_ids: Set[str] = field(default_factory=set)
+     evidence_content_hashes: Dict[str, str] = field(default_factory=dict)
++    graph_evidences: Dict[str, Evidence] = field(default_factory=dict)
+ 
+     @property
+     def query_hash(self) -> str:
+@@ -1113,6 +1114,9 @@
+                 source_task_id=task_id,
+             )
+             self.evidences[evidence.id] = evidence
++            if not hasattr(self, "graph_evidences"):
++                self.graph_evidences = {}
++            self.graph_evidences[evidence.id] = evidence
+ 
+         self.retrieval_records.append({
+             "task_id": task_id,
+@@ -1196,64 +1200,80 @@
+             if unsatisfied:
+                 return False, f"Còn các yêu cầu chứng cứ chưa thỏa mãn: {unsatisfied}."
+ 
+-        # BUG 2 Fix: Fail-closed Finish Gate verification against trusted verifier ledger
++        # BUG 2 & ACTIVE INTEGRITY Fix: Fail-closed Finish Gate verification against trusted verifier ledger
+         # Every SATISFIED requirement MUST have at least one active, valid ENTAILMENT receipt
+-        # matching query, requirement, and current live content hash from verifier ledger.
+-        for req_id, req in self.requirements.items():
++        # matching query, requirement, and current live content AND provenance from verifier ledger.
++        for req_id, receipts in list(self.requirement_verification_receipts.items()):
++            req = self.requirements.get(req_id)
++            if req and req.status == RequirementStatus.SATISFIED:
++                entailment_receipts = [r for r in receipts if r.relation == EntailmentRelation.ENTAILMENT]
++                if not entailment_receipts:
++                    req.status = RequirementStatus.UNSATISFIED
++                    return False, f"Yêu cầu '{req_id}' được đánh dấu SATISFIED nhưng không có receipt ENTAILMENT nào hợp lệ."
++
++                valid_active_receipts = []
++                for r in entailment_receipts:
++                    ledger_entry = FourStageEvidenceVerifier._issued_receipts_ledger.get(r.token)
++                    if not ledger_entry or not ledger_entry.get("issued_by_verifier"):
++                        continue
++
++                    # Validate query and requirement bindings if present in ledger
++                    ledger_q_hash = ledger_entry.get("query_hash")
++                    if ledger_q_hash and self.query_hash and ledger_q_hash != self.query_hash:
++                        continue
++
++                    ledger_req_id = ledger_entry.get("requirement_id")
++                    if ledger_req_id and ledger_req_id != req_id:
++                        continue
++
++                    ledger_content_hash = ledger_entry.get("evidence_content_hash")
++                    modality = getattr(r.evidence, "modality", ModalityType.TEXT)
++
++                    # Locate live evidence across active collections
++                    live_ev = None
++                    if r.evidence_id in self.evidences:
++                        live_ev = self.evidences[r.evidence_id]
++                    elif modality == ModalityType.GRAPH_TRIPLE and hasattr(self, "graph_evidences"):
++                        live_ev = self.graph_evidences.get(r.evidence_id)
++
++                    # Counterexample 2: If TEXT evidence is not in active state (self.evidences), reject!
++                    if modality == ModalityType.TEXT and live_ev is None:
++                        continue
++
++                    if live_ev is not None:
++                        live_hash = hashlib.sha256(live_ev.content.encode("utf-8")).hexdigest()
++                        content_matches = bool(
++                            ledger_content_hash and
++                            live_hash == ledger_content_hash and
++                            live_ev.content == getattr(r.evidence, "content", None)
++                        )
++                        # Counterexample 1: Check that live provenance matches verified receipt snapshot
++                        provenance_matches = bool(
++                            live_ev.provenance == r.evidence.provenance or
++                            live_ev.provenance.to_dict() == r.evidence.provenance.to_dict()
++                        )
++
++                        if content_matches and provenance_matches:
++                            valid_active_receipts.append(r)
++                        else:
++                            if not hasattr(self, "mutated_evidence_ids"):
++                                self.mutated_evidence_ids = set()
++                            self.mutated_evidence_ids.add(r.evidence_id)
++                    elif modality == ModalityType.GRAPH_TRIPLE:
++                        # Graph evidence not found in active collections
++                        continue
++
++                if not valid_active_receipts:
++                    req.status = RequirementStatus.UNSATISFIED
++                    return False, f"Yêu cầu '{req_id}' có bằng chứng đã bị đột biến hoặc không còn trong active state tại Finish Gate."
++
++        # Verify that any SATISFIED requirement linked to active evidences is backed by receipts
++        for req in self.requirements.values():
+             if req.status == RequirementStatus.SATISFIED:
+-                receipts = self.requirement_verification_receipts.get(req_id, [])
+-                if not receipts and hasattr(req, "verification_receipts") and req.verification_receipts:
+-                    receipts = req.verification_receipts
+-                    self.requirement_verification_receipts[req_id] = receipts
+-
+-                if receipts:
+-                    entailment_receipts = [r for r in receipts if r.relation == EntailmentRelation.ENTAILMENT]
+-                    if not entailment_receipts:
++                if req.linked_evidence_ids and any(eid in self.evidences for eid in req.linked_evidence_ids):
++                    if req.id not in self.requirement_verification_receipts:
+                         req.status = RequirementStatus.UNSATISFIED
+-                        return False, f"Yêu cầu '{req_id}' được đánh dấu SATISFIED nhưng không có receipt ENTAILMENT nào hợp lệ."
+-
+-                    valid_active_receipts = []
+-                    for r in entailment_receipts:
+-                        ledger_entry = FourStageEvidenceVerifier._issued_receipts_ledger.get(r.token)
+-                        if not ledger_entry or not ledger_entry.get("issued_by_verifier"):
+-                            continue
+-
+-                        # Validate query and requirement bindings if present in ledger
+-                        ledger_q_hash = ledger_entry.get("query_hash")
+-                        if ledger_q_hash and self.query_hash and ledger_q_hash != self.query_hash:
+-                            continue
+-
+-                        ledger_req_id = ledger_entry.get("requirement_id")
+-                        if ledger_req_id and ledger_req_id != req_id:
+-                            continue
+-
+-                        ledger_content_hash = ledger_entry.get("evidence_content_hash")
+-
+-                        # If live evidence is in self.evidences, check live content hash against ledger
+-                        if r.evidence_id in self.evidences:
+-                            live_ev = self.evidences[r.evidence_id]
+-                            live_hash = hashlib.sha256(live_ev.content.encode("utf-8")).hexdigest()
+-                            if (
+-                                ledger_content_hash and
+-                                live_hash == ledger_content_hash and
+-                                live_ev.content == getattr(r.evidence, "content", None)
+-                            ):
+-                                valid_active_receipts.append(r)
+-                            else:
+-                                if not hasattr(self, "mutated_evidence_ids"):
+-                                    self.mutated_evidence_ids = set()
+-                                self.mutated_evidence_ids.add(r.evidence_id)
+-                        else:
+-                            # If evidence not in state.evidences, check receipt snapshot against ledger
+-                            if ledger_content_hash and r.evidence_content_hash == ledger_content_hash:
+-                                valid_active_receipts.append(r)
+-
+-                    if not valid_active_receipts:
+-                        req.status = RequirementStatus.UNSATISFIED
+-                        return False, f"Yêu cầu '{req_id}' có bằng chứng đã bị đột biến hoặc hủy hiệu lực tại Finish Gate."
+-                elif req.linked_evidence_ids and any(eid in self.evidences for eid in req.linked_evidence_ids):
+-                    req.status = RequirementStatus.UNSATISFIED
+-                    return False, f"Yêu cầu '{req_id}' liên kết với bằng chứng nhưng chưa có receipt hợp lệ."
++                        return False, f"Yêu cầu '{req.id}' liên kết với bằng chứng nhưng chưa có receipt hợp lệ trong active state."
+ 
+         return True, "Toàn bộ yêu cầu bắt buộc đã được thỏa mãn đầy đủ và không có xung đột."
+ 

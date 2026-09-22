@@ -1,0 +1,276 @@
+--- a/kag/solver/evidence_aware/planner_adapter.py
++++ b/kag/solver/evidence_aware/planner_adapter.py
+@@ -53,10 +53,12 @@
+                 })
+ 
+         # Inject rejection feedback into formatted prompt payload if present
++        feedback_str: Optional[str] = None
+         if self.last_rejection_feedback:
++            feedback_str = f"[FINISH_GATE_REJECTED]: {self.last_rejection_feedback}"
+             formatted_context.append({
+                 "action": {"name": "FinishGateFeedback", "argument": {"decision": "REPLAN"}},
+-                "result": f"[FINISH_GATE_REJECTED]: {self.last_rejection_feedback}",
++                "result": feedback_str,
+             })
+             # Clear after injecting so it is consumed exactly once per rejection
+             self.last_rejection_feedback = None
+@@ -77,5 +79,10 @@
+                 **kwargs,
+             )
+ 
+-        # Fallback to direct ainvoke
++        # Fallback to direct ainvoke for PlannerABC: deliver rejection feedback via kwargs
++        if feedback_str:
++            kwargs["rejection_feedback"] = feedback_str
++            if hasattr(self.planner, "set_rejection_feedback"):
++                getattr(self.planner, "set_rejection_feedback")(feedback_str)
++
+         return await self.planner.ainvoke(query, context=context, **kwargs)
+--- a/kag/solver/evidence_aware/models.py
++++ b/kag/solver/evidence_aware/models.py
+@@ -182,6 +182,7 @@
+     covered_aspects: List[str] = field(default_factory=list)
+     status: RequirementStatus = RequirementStatus.PENDING
+     linked_evidence_ids: List[str] = field(default_factory=list)
++    query_hash: Optional[str] = None
+ 
+     def to_dict(self) -> Dict[str, Any]:
+         res = dict(self.__dict__)
+@@ -510,23 +511,25 @@
+                         )
+                 else:
+                     has_legal_coords = bool(prov.article and str(prov.article).strip() and str(prov.article) != "UNKNOWN")
+-                    has_span = bool(prov.span or prov.page is not None)
+-
+-                    # Defect 2 Fix: Do NOT verify provenance simply because caller declared article/span
+-                    # under a valid document ID. Must cross-reference against authoritative coordinates.
+-                    # If no authoritative coordinates source is provided, provenance remains PROVENANCE_INVALID.
++
++                    # F2 Fix: Do NOT use OR condition across declared coordinates.
++                    # All declared coordinates (article, page, span) must be reconciled consistently
++                    # against authoritative coordinates. Any false or unverified declared coordinate invalidates provenance.
+                     authoritative_coords = None
+                     if valid_corpus_coords_by_doc is not None:
+                         authoritative_coords = valid_corpus_coords_by_doc.get(prov.doc_id)
+ 
++                    declared_coords = []
++                    if has_legal_coords:
++                        declared_coords.append(str(prov.article).strip())
++                    if prov.page is not None and str(prov.page).strip() and str(prov.page) != "UNKNOWN":
++                        declared_coords.append(str(prov.page).strip())
++                    if prov.span and str(prov.span).strip() and str(prov.span) != "UNKNOWN":
++                        declared_coords.append(str(prov.span).strip())
++
+                     is_coords_verified = False
+-                    if authoritative_coords is not None:
+-                        if has_legal_coords and str(prov.article) in authoritative_coords:
+-                            is_coords_verified = True
+-                        if prov.span and str(prov.span) in authoritative_coords:
+-                            is_coords_verified = True
+-                        if prov.page is not None and str(prov.page) in authoritative_coords:
+-                            is_coords_verified = True
++                    if declared_coords and authoritative_coords is not None:
++                        is_coords_verified = all(c in authoritative_coords for c in declared_coords)
+ 
+                     if is_coords_verified:
+                         status = ProvenanceValidationStatus.PROVENANCE_VERIFIED
+@@ -668,6 +671,7 @@
+         cls,
+         requirement: EvidenceRequirement,
+         entailment_results: List[Union[Stage4VerificationReceipt, Tuple[Claim, Evidence, Any]]],
++        current_query_hash: Optional[str] = None,
+     ) -> RequirementStatus:
+         """Stage 4: Evaluates Requirement coverage using only verified receipts.
+ 
+@@ -721,12 +725,34 @@
+                         f"Receipt integrity token mismatch for evidence '{item.evidence_id}'! Lineage tampering detected!"
+                     )
+ 
+-                # ADV-D1 fix: Verify requirement lineage binding
++                # ADV-D1 & I4b fix: Verify requirement lineage binding
+                 if item.requirement_id and item.requirement_id != requirement.id:
+                     raise SchemaValidationError(
+                         f"Receipt lineage query mismatch: receipt was issued for requirement "
+                         f"'{item.requirement_id}', but presented for requirement '{requirement.id}'!"
+                     )
++
++                # F4 Fix: Verify query_hash binding against current query context
++                target_q_hash = current_query_hash or requirement.query_hash
++                if item.query_hash is not None:
++                    if target_q_hash and item.query_hash != target_q_hash:
++                        raise SchemaValidationError(
++                            f"Cross-query receipt replay attack detected! Receipt query_hash '{item.query_hash}' "
++                            f"does not match requirement query_hash '{target_q_hash}'!"
++                        )
++                    if not target_q_hash:
++                        raise SchemaValidationError(
++                            f"Receipt query lineage mismatch: receipt was issued for query hash "
++                            f"'{item.query_hash}', but presented for an unbound requirement without query hash!"
++                        )
++
++                # Lineage statement binding: claim statement must match requirement description
++                if item.claim and item.claim.statement and requirement.description:
++                    if item.requirement_id == requirement.id and item.claim.statement != requirement.description:
++                        raise SchemaValidationError(
++                            f"Receipt claim statement mismatch: receipt was issued for statement "
++                            f"'{item.claim.statement}', but presented for requirement with description '{requirement.description}'!"
++                        )
+ 
+                 # Verify token integrity
+                 if item.stage1_receipt.status != PresenceStatus.PRESENCE_CONFIRMED:
+@@ -820,6 +846,9 @@
+                 f"Existing: (scope={existing.doc_scope}, desc={existing.description}) vs "
+                 f"New: (scope={req.doc_scope}, desc={req.description}). Silent overwrite strictly forbidden!"
+             )
++
++        if self.original_query and not req.query_hash:
++            req.query_hash = hashlib.sha256(self.original_query.encode("utf-8")).hexdigest()
+ 
+         self.requirements[req.id] = req
+         self._record_audit(
+@@ -886,10 +915,47 @@
+                 chunk_id = f"{task_id}_chunk_{idx}"
+                 doc_id = "UNKNOWN"
+ 
++            chunk_id_str = str(chunk_id)
++
++            # F3 Fix: Content mutation detection & fail-closed invalidation
++            # If chunk_id was already present and content changes, previous receipts are invalidated.
++            if chunk_id_str in self.evidences:
++                existing_ev = self.evidences[chunk_id_str]
++                if existing_ev.content != content:
++                    old_hash = hashlib.sha256(existing_ev.content.encode("utf-8")).hexdigest()
++                    new_hash = hashlib.sha256(content.encode("utf-8")).hexdigest()
++
++                    # Invalidate old receipts referencing mutated content
++                    for r_id, receipts in list(self.requirement_verification_receipts.items()):
++                        self.requirement_verification_receipts[r_id] = [
++                            r for r in receipts
++                            if not (r.evidence_id == chunk_id_str and getattr(r.evidence, "content", "") != content)
++                        ]
++
++                    # Reset requirements linked to this chunk to UNSATISFIED
++                    for req in self.requirements.values():
++                        is_linked = False
++                        if req.linked_evidence_ids and chunk_id_str in req.linked_evidence_ids:
++                            is_linked = True
++                        elif not req.linked_evidence_ids:
++                            is_linked = True
++
++                        if is_linked:
++                            old_st = req.status.value
++                            req.status = RequirementStatus.UNSATISFIED
++                            self._record_audit(
++                                entity_id=req.id,
++                                from_status=old_st,
++                                to_status=RequirementStatus.UNSATISFIED.value,
++                                actor="EvidenceMutationGuard",
++                                trigger_evidence_ids=[chunk_id_str],
++                                rationale=f"Evidence chunk '{chunk_id_str}' content mutated from {old_hash[:8]} to {new_hash[:8]}; invalidated stale receipts.",
++                            )
++
+             evidence = Evidence(
+-                id=str(chunk_id),
++                id=chunk_id_str,
+                 content=content,
+-                provenance=Provenance(doc_id=doc_id, chunk_id=str(chunk_id)),
++                provenance=Provenance(doc_id=doc_id, chunk_id=chunk_id_str),
+                 modality=ModalityType.TEXT,
+                 aspects=aspects,
+                 source_task_id=task_id,
+@@ -998,6 +1064,20 @@
+             if unsatisfied:
+                 return False, f"Còn các yêu cầu chứng cứ chưa thỏa mãn: {unsatisfied}."
+ 
++        # F3 Fix: Verify that no SATISFIED requirement is backed by mutated/poisoned evidence
++        for req_id, receipts in self.requirement_verification_receipts.items():
++            req = self.requirements.get(req_id)
++            if req and req.status == RequirementStatus.SATISFIED:
++                entailment_receipts = [r for r in receipts if r.relation == EntailmentRelation.ENTAILMENT]
++                if entailment_receipts:
++                    valid_active = any(
++                        r.evidence_id in self.evidences and self.evidences[r.evidence_id].content == r.evidence.content
++                        for r in entailment_receipts
++                    )
++                    if not valid_active:
++                        req.status = RequirementStatus.UNSATISFIED
++                        return False, f"Yêu cầu '{req_id}' có bằng chứng đã bị đột biến hoặc hủy hiệu lực."
++
+         return True, "Toàn bộ yêu cầu bắt buộc đã được thỏa mãn đầy đủ và không có xung đột."
+ 
+     def auto_verify_retrieval(
+@@ -1018,6 +1098,7 @@
+         """
+         new_receipts: List[Stage4VerificationReceipt] = []
+         q_hash = hashlib.sha256(self.original_query.encode("utf-8")).hexdigest()
++        consumed_oracle_keys: Set[Any] = set()
+ 
+         # R8 & C2 fix: Determine evidence IDs belonging strictly to current task run
+         if retrieved_chunk_ids_in_current_run is not None:
+@@ -1078,27 +1159,49 @@
+                 claim_id = f"CLAIM_{req.id}_{ev_id}"
+                 claim = Claim(id=claim_id, statement=req.description)
+ 
+-                # Stage 3: Semantic Verification via Oracle (Defect 1 Fix: Strictly bound pairs only)
+-                # Completely eliminate evidence-only fallback. Entailment MUST be bound to the exact
+-                # (requirement/claim, evidence) pair. No evidence-only alias is permitted.
++                # Stage 3: Semantic Verification via Oracle (F1 & Defect 1 Fix: Strictly bound pairs only)
++                # Entailment MUST be bound to requirement/claim identity and evidence version.
++                # Description keys (claim.statement) are consumable and cannot be shared across multiple requirements.
+                 gt_relation = None
++                matched_oracle_key = None
+                 if semantic_oracle:
+-                    exact_claim_keys = {
++                    exact_claim_keys = [
+                         req.id,
+                         claim_id,
+-                        claim.statement,
+                         f"{req.id}_CLAIM",
+-                    }
++                    ]
+                     for ck in exact_claim_keys:
+-                        if (ck, ev_id) in semantic_oracle:
++                        if (ck, ev_id) in semantic_oracle and (ck, ev_id) not in consumed_oracle_keys:
+                             gt_relation = semantic_oracle[(ck, ev_id)]
++                            matched_oracle_key = (ck, ev_id)
+                             break
+                         for k, v in semantic_oracle.items():
+                             if isinstance(k, tuple) and len(k) == 3 and k[0] == ck and k[1] == ev_id:
+-                                gt_relation = v
+-                                break
++                                content_hash = hashlib.sha256(ev.content.encode("utf-8")).hexdigest()
++                                if k[2] == content_hash and k not in consumed_oracle_keys:
++                                    gt_relation = v
++                                    matched_oracle_key = k
++                                    break
+                         if gt_relation is not None:
+                             break
++
++                    # Fallback to claim.statement (description) ONLY if not already consumed by another requirement
++                    if gt_relation is None and claim.statement:
++                        ck = claim.statement
++                        if (ck, ev_id) in semantic_oracle and (ck, ev_id) not in consumed_oracle_keys:
++                            gt_relation = semantic_oracle[(ck, ev_id)]
++                            matched_oracle_key = (ck, ev_id)
++                        else:
++                            for k, v in semantic_oracle.items():
++                                if isinstance(k, tuple) and len(k) == 3 and k[0] == ck and k[1] == ev_id:
++                                    content_hash = hashlib.sha256(ev.content.encode("utf-8")).hexdigest()
++                                    if k[2] == content_hash and k not in consumed_oracle_keys:
++                                        gt_relation = v
++                                        matched_oracle_key = k
++                                        break
++
++                    if matched_oracle_key is not None:
++                        consumed_oracle_keys.add(matched_oracle_key)
+ 
+                 matching_proposal = None
+                 if semantic_proposals:
+@@ -1157,6 +1260,7 @@
+                     cov_status = FourStageEvidenceVerifier.stage4_evaluate_requirement_coverage(
+                         requirement=req,
+                         entailment_results=all_req_receipts,
++                        current_query_hash=q_hash,
+                     )
+ 
+                     # Check if there are open conflicts for this requirement

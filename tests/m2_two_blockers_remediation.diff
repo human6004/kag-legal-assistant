@@ -1,0 +1,398 @@
+--- a/kag/solver/evidence_aware/models.py
++++ b/kag/solver/evidence_aware/models.py
+@@ -12,6 +12,7 @@
+ 
+ from dataclasses import dataclass, field
+ from enum import Enum
++import copy
+ import hashlib
+ import time
+ from typing import Any, Dict, List, Optional, Set, Tuple, Union
+@@ -183,6 +184,7 @@
+     status: RequirementStatus = RequirementStatus.PENDING
+     linked_evidence_ids: List[str] = field(default_factory=list)
+     query_hash: Optional[str] = None
++    verification_receipts: List[Any] = field(default_factory=list)
+ 
+     def to_dict(self) -> Dict[str, Any]:
+         res = dict(self.__dict__)
+@@ -245,6 +247,7 @@
+     token: Optional[str] = None
+     requirement_id: Optional[str] = None
+     query_hash: Optional[str] = None
++    evidence_content_hash: Optional[str] = None
+ 
+ 
+ @dataclass
+@@ -432,8 +435,93 @@
+             status=status,
+         )
+ 
+-    @staticmethod
++    @classmethod
++    def _verify_declared_coords(
++        cls,
++        declared_coords: List[str],
++        declared_article: Optional[str],
++        declared_clause: Optional[str],
++        declared_point: Optional[str],
++        authoritative_coords: Any,
++        chunk_id: Optional[str] = None,
++        is_chunk_scoped: bool = False,
++    ) -> bool:
++        """Validates declared coordinates against authoritative corpus records.
++
++        Enforces:
++        1. Every declared coordinate must be grounded in authoritative source.
++        2. If authoritative coordinates are chunk-scoped, coordinates must match the specific chunk.
++        3. If multiple hierarchical legal levels (article, clause, point) are declared,
++           a flat unstructured set of document tokens cannot excuse missing co-occurrence proof;
++           they must be bound to the same authoritative record or chunk mapping.
++        4. Missing or ungrounded coordinates fail-closed.
++        """
++        # 1. If authoritative_coords is a dict keyed by chunk_id
++        if isinstance(authoritative_coords, dict):
++            if chunk_id and chunk_id in authoritative_coords:
++                target_coords = authoritative_coords[chunk_id]
++                return cls._verify_declared_coords(
++                    declared_coords=declared_coords,
++                    declared_article=declared_article,
++                    declared_clause=declared_clause,
++                    declared_point=declared_point,
++                    authoritative_coords=target_coords,
++                    chunk_id=None,
++                    is_chunk_scoped=True,
++                )
++            elif all(isinstance(k, str) and (k.startswith("C") or "chunk" in k.lower()) for k in authoritative_coords.keys()):
++                # Explicit chunk mapping, but this chunk_id is not mapped or absent
++                return False
++
++        # Helper to check if a token matches within a set/record
++        def _match_token(token: str, record: Any) -> bool:
++            if isinstance(record, (set, list, tuple)):
++                return any(str(token).strip() == str(x).strip() for x in record)
++            elif isinstance(record, dict):
++                return (
++                    any(str(token).strip() == str(k).strip() for k in record.keys()) or
++                    any(str(token).strip() == str(v).strip() for v in record.values())
++                )
++            return str(token).strip() == str(record).strip()
++
++        # 2. Check if authoritative_coords contains structured records (tuples, sets, dicts)
++        if isinstance(authoritative_coords, (set, list, tuple)):
++            structured_records = [
++                rec for rec in authoritative_coords
++                if isinstance(rec, (set, list, tuple, dict))
++            ]
++            if structured_records:
++                for rec in structured_records:
++                    if all(_match_token(c, rec) for c in declared_coords):
++                        return True
++
++        # 3. Check individual token presence
++        all_tokens_present = all(_match_token(c, authoritative_coords) for c in declared_coords)
++        if not all_tokens_present:
++            return False
++
++        # 4. Check hierarchical co-occurrence constraint:
++        # If multiple legal levels (article, clause, point) are declared:
++        legal_levels = [c for c in (declared_article, declared_clause, declared_point) if c is not None]
++        if len(legal_levels) > 1:
++            if is_chunk_scoped:
++                return True
++            # Must be bound in a structured record or compound token, not a flat bag of words
++            compound_tokens = [
++                " ".join(legal_levels),
++                ", ".join(legal_levels),
++                "_".join(legal_levels),
++            ]
++            if any(_match_token(comp, authoritative_coords) for comp in compound_tokens):
++                return True
++            # Flat set alone without co-occurrence record fails-closed
++            return False
++
++        return True
++
++    @classmethod
+     def stage2_verify_provenance(
++        cls,
+         evidence: Evidence,
+         valid_corpus_doc_ids: Set[str],
+         valid_corpus_chunk_ids_by_doc: Optional[Dict[str, Set[str]]] = None,
+@@ -489,14 +577,37 @@
+                 verified_doc = prov.doc_id
+                 has_chunk = bool(prov.chunk_id and str(prov.chunk_id).strip() and str(prov.chunk_id) != "UNKNOWN")
+ 
+-                # Extract all declared coordinates (article, page, span)
+-                declared_coords = []
+-                if prov.article and str(prov.article).strip() and str(prov.article) != "UNKNOWN":
+-                    declared_coords.append(str(prov.article).strip())
+-                if prov.page is not None and str(prov.page).strip() and str(prov.page) != "UNKNOWN":
+-                    declared_coords.append(str(prov.page).strip())
+-                if prov.span and str(prov.span).strip() and str(prov.span) != "UNKNOWN":
+-                    declared_coords.append(str(prov.span).strip())
++                # BUG 1 Fix: Extract ALL declared coordinates (article, clause, point, page, span)
++                declared_article = (
++                    str(prov.article).strip()
++                    if (prov.article and str(prov.article).strip() and str(prov.article) != "UNKNOWN")
++                    else None
++                )
++                declared_clause = (
++                    str(prov.clause).strip()
++                    if (prov.clause and str(prov.clause).strip() and str(prov.clause) != "UNKNOWN")
++                    else None
++                )
++                declared_point = (
++                    str(prov.point).strip()
++                    if (prov.point and str(prov.point).strip() and str(prov.point) != "UNKNOWN")
++                    else None
++                )
++                declared_page = (
++                    str(prov.page).strip()
++                    if (prov.page is not None and str(prov.page).strip() and str(prov.page) != "UNKNOWN")
++                    else None
++                )
++                declared_span = (
++                    str(prov.span).strip()
++                    if (prov.span and str(prov.span).strip() and str(prov.span) != "UNKNOWN")
++                    else None
++                )
++
++                declared_coords = [
++                    c for c in (declared_article, declared_clause, declared_point, declared_page, declared_span)
++                    if c is not None
++                ]
+                 has_coords = bool(declared_coords)
+ 
+                 # Validate chunk_id against authoritative chunks
+@@ -507,13 +618,24 @@
+                         authoritative_chunks = valid_corpus_chunk_ids_by_doc.get(prov.doc_id)
+                     is_chunk_valid = bool(authoritative_chunks is not None and prov.chunk_id in authoritative_chunks)
+ 
+-                # Validate coordinates: valid chunk_id does NOT excuse invalid declared coordinates (Bug A fix)
++                # Validate coordinates: valid chunk_id does NOT excuse invalid declared coordinates (Bug 1 fix)
+                 is_coords_valid = True
+                 if has_coords:
+                     authoritative_coords = None
+                     if valid_corpus_coords_by_doc is not None:
+                         authoritative_coords = valid_corpus_coords_by_doc.get(prov.doc_id)
+-                    is_coords_valid = bool(authoritative_coords is not None and all(c in authoritative_coords for c in declared_coords))
++
++                    if authoritative_coords is None:
++                        is_coords_valid = False
++                    else:
++                        is_coords_valid = cls._verify_declared_coords(
++                            declared_coords=declared_coords,
++                            declared_article=declared_article,
++                            declared_clause=declared_clause,
++                            declared_point=declared_point,
++                            authoritative_coords=authoritative_coords,
++                            chunk_id=prov.chunk_id if has_chunk else None,
++                        )
+ 
+                 # Must have at least one anchor (chunk or coords) and ALL declared anchors must be valid
+                 if (has_chunk or has_coords) and is_chunk_valid and is_coords_valid:
+@@ -615,7 +737,9 @@
+         if stage1_receipt.run_id != run_id or stage2_receipt.run_id != run_id or stage3_receipt.run_id != run_id:
+             raise SchemaValidationError("Receipt integrity failure: run_id mismatch across verification stages!")
+ 
+-        # Issue verifiable lineage token registered in verifier trusted ledger
++        # BUG 2 Fix: Snapshot evidence immutably so that in-place mutations of state.evidences
++        # cannot alter the evidence object and content referenced by this verification receipt
++        ev_snapshot = copy.deepcopy(evidence)
+         ev_content_hash = hashlib.sha256(evidence.content.encode("utf-8")).hexdigest()
+         token_payload = (
+             f"{query_hash or ''}:{requirement_id or ''}:{run_id}:{claim.id}:{evidence.id}:"
+@@ -646,11 +770,12 @@
+             stage2_receipt=stage2_receipt,
+             stage3_receipt=stage3_receipt,
+             claim=claim,
+-            evidence=evidence,
++            evidence=ev_snapshot,
+             relation=stage3_receipt.relation,
+             token=receipt_token,
+             requirement_id=requirement_id,
+             query_hash=query_hash,
++            evidence_content_hash=ev_content_hash,
+         )
+ 
+     @classmethod
+@@ -753,6 +878,10 @@
+                     "Stage 1-3 Bypass Attempt Detected! All inputs to Stage 4 must be verified via Stage4VerificationReceipt; "
+                     f"unverified tuples or partial receipts without Stage 1/2 are strictly forbidden (got {type(item)})."
+                 )
++
++        requirement.verification_receipts = [
++            item for item in entailment_results if isinstance(item, Stage4VerificationReceipt)
++        ]
+ 
+         has_contradiction = any(rel == EntailmentRelation.CONTRADICTION for _, _, rel in verified_items)
+         if has_contradiction:
+@@ -816,6 +945,13 @@
+     evaluation_history: List[EvaluatorOutput] = field(default_factory=list)
+     requirement_verification_receipts: Dict[str, List[Stage4VerificationReceipt]] = field(default_factory=dict)
+     mutated_evidence_ids: Set[str] = field(default_factory=set)
++    evidence_content_hashes: Dict[str, str] = field(default_factory=dict)
++
++    @property
++    def query_hash(self) -> str:
++        if self.original_query:
++            return hashlib.sha256(self.original_query.encode("utf-8")).hexdigest()
++        return ""
+ 
+     def add_requirement(self, req: EvidenceRequirement) -> None:
+         """Registers an EvidenceRequirement with collision detection against silent overwrite."""
+@@ -954,6 +1090,9 @@
+                 source_task_id=task_id,
+             )
+             self.evidences[evidence.id] = evidence
++            if not hasattr(self, "evidence_content_hashes"):
++                self.evidence_content_hashes = {}
++            self.evidence_content_hashes[evidence.id] = hashlib.sha256(content.encode("utf-8")).hexdigest()
+ 
+         # Ingest graph triples
+         for idx, g in enumerate(graphs):
+@@ -1057,19 +1196,64 @@
+             if unsatisfied:
+                 return False, f"Còn các yêu cầu chứng cứ chưa thỏa mãn: {unsatisfied}."
+ 
+-        # F3 Fix: Verify that no SATISFIED requirement is backed by mutated/poisoned evidence
+-        for req_id, receipts in self.requirement_verification_receipts.items():
+-            req = self.requirements.get(req_id)
+-            if req and req.status == RequirementStatus.SATISFIED:
+-                entailment_receipts = [r for r in receipts if r.relation == EntailmentRelation.ENTAILMENT]
+-                if entailment_receipts:
+-                    valid_active = any(
+-                        r.evidence_id in self.evidences and self.evidences[r.evidence_id].content == r.evidence.content
+-                        for r in entailment_receipts
+-                    )
+-                    if not valid_active:
++        # BUG 2 Fix: Fail-closed Finish Gate verification against trusted verifier ledger
++        # Every SATISFIED requirement MUST have at least one active, valid ENTAILMENT receipt
++        # matching query, requirement, and current live content hash from verifier ledger.
++        for req_id, req in self.requirements.items():
++            if req.status == RequirementStatus.SATISFIED:
++                receipts = self.requirement_verification_receipts.get(req_id, [])
++                if not receipts and hasattr(req, "verification_receipts") and req.verification_receipts:
++                    receipts = req.verification_receipts
++                    self.requirement_verification_receipts[req_id] = receipts
++
++                if receipts:
++                    entailment_receipts = [r for r in receipts if r.relation == EntailmentRelation.ENTAILMENT]
++                    if not entailment_receipts:
+                         req.status = RequirementStatus.UNSATISFIED
+-                        return False, f"Yêu cầu '{req_id}' có bằng chứng đã bị đột biến hoặc hủy hiệu lực."
++                        return False, f"Yêu cầu '{req_id}' được đánh dấu SATISFIED nhưng không có receipt ENTAILMENT nào hợp lệ."
++
++                    valid_active_receipts = []
++                    for r in entailment_receipts:
++                        ledger_entry = FourStageEvidenceVerifier._issued_receipts_ledger.get(r.token)
++                        if not ledger_entry or not ledger_entry.get("issued_by_verifier"):
++                            continue
++
++                        # Validate query and requirement bindings if present in ledger
++                        ledger_q_hash = ledger_entry.get("query_hash")
++                        if ledger_q_hash and self.query_hash and ledger_q_hash != self.query_hash:
++                            continue
++
++                        ledger_req_id = ledger_entry.get("requirement_id")
++                        if ledger_req_id and ledger_req_id != req_id:
++                            continue
++
++                        ledger_content_hash = ledger_entry.get("evidence_content_hash")
++
++                        # If live evidence is in self.evidences, check live content hash against ledger
++                        if r.evidence_id in self.evidences:
++                            live_ev = self.evidences[r.evidence_id]
++                            live_hash = hashlib.sha256(live_ev.content.encode("utf-8")).hexdigest()
++                            if (
++                                ledger_content_hash and
++                                live_hash == ledger_content_hash and
++                                live_ev.content == getattr(r.evidence, "content", None)
++                            ):
++                                valid_active_receipts.append(r)
++                            else:
++                                if not hasattr(self, "mutated_evidence_ids"):
++                                    self.mutated_evidence_ids = set()
++                                self.mutated_evidence_ids.add(r.evidence_id)
++                        else:
++                            # If evidence not in state.evidences, check receipt snapshot against ledger
++                            if ledger_content_hash and r.evidence_content_hash == ledger_content_hash:
++                                valid_active_receipts.append(r)
++
++                    if not valid_active_receipts:
++                        req.status = RequirementStatus.UNSATISFIED
++                        return False, f"Yêu cầu '{req_id}' có bằng chứng đã bị đột biến hoặc hủy hiệu lực tại Finish Gate."
++                elif req.linked_evidence_ids and any(eid in self.evidences for eid in req.linked_evidence_ids):
++                    req.status = RequirementStatus.UNSATISFIED
++                    return False, f"Yêu cầu '{req_id}' liên kết với bằng chứng nhưng chưa có receipt hợp lệ."
+ 
+         return True, "Toàn bộ yêu cầu bắt buộc đã được thỏa mãn đầy đủ và không có xung đột."
+ 
+@@ -1152,16 +1336,51 @@
+                 claim_id = f"CLAIM_{req.id}_{ev_id}"
+                 claim = Claim(id=claim_id, statement=req.description)
+ 
+-                # Stage 3: Semantic Verification via Oracle (F1, Defect 1 & BUG B Fix: Strictly bound pairs & versioned oracle)
++                # Stage 3: Semantic Verification via Oracle (F1, Defect 1, BUG B & BUG 2 Fix: Strictly bound pairs & versioned oracle)
+                 # Entailment MUST be bound to requirement/claim identity and evidence version.
+                 # Mutated evidence MUST strictly require a 3-tuple key matching current content hash.
+                 gt_relation = None
+                 matched_oracle_key = None
+                 if semantic_oracle:
+                     content_hash = hashlib.sha256(ev.content.encode("utf-8")).hexdigest()
++                    if not hasattr(self, "evidence_content_hashes"):
++                        self.evidence_content_hashes = {}
++                    if not hasattr(self, "mutated_evidence_ids"):
++                        self.mutated_evidence_ids = set()
++
++                    # BUG 2 Fix: Detect in-place mutation against recorded evidence hash or existing receipts
++                    is_in_place_mutated = False
++                    if ev_id in self.evidence_content_hashes:
++                        if content_hash != self.evidence_content_hashes[ev_id]:
++                            is_in_place_mutated = True
++                    else:
++                        for r_list in self.requirement_verification_receipts.values():
++                            for r in r_list:
++                                if r.evidence_id == ev_id:
++                                    ledger_entry = FourStageEvidenceVerifier._issued_receipts_ledger.get(r.token)
++                                    prev_h = (
++                                        ledger_entry.get("evidence_content_hash")
++                                        if ledger_entry else getattr(r, "evidence_content_hash", None)
++                                    )
++                                    if prev_h and prev_h != content_hash:
++                                        is_in_place_mutated = True
++                                        break
++                            if is_in_place_mutated:
++                                break
++
++                    if is_in_place_mutated:
++                        self.mutated_evidence_ids.add(ev_id)
++                        for r_id in list(self.requirement_verification_receipts.keys()):
++                            self.requirement_verification_receipts[r_id] = [
++                                r for r in self.requirement_verification_receipts[r_id]
++                                if r.evidence_id != ev_id
++                            ]
++                        for r_obj in self.requirements.values():
++                            if (r_obj.linked_evidence_ids and ev_id in r_obj.linked_evidence_ids) or (not r_obj.linked_evidence_ids):
++                                r_obj.status = RequirementStatus.UNSATISFIED
++
+                     is_mutated_evidence = (
+-                        hasattr(self, "mutated_evidence_ids")
+-                        and ev_id in self.mutated_evidence_ids
++                        ev_id in self.mutated_evidence_ids
+                     )
+ 
+                     exact_claim_keys = [
+@@ -1216,6 +1435,11 @@
+ 
+                     if matched_oracle_key is not None:
+                         consumed_oracle_keys.add(matched_oracle_key)
++                        if isinstance(matched_oracle_key, tuple) and len(matched_oracle_key) == 3:
++                            self.evidence_content_hashes[ev_id] = content_hash
++                            self.mutated_evidence_ids.discard(ev_id)
++                        elif isinstance(matched_oracle_key, tuple) and len(matched_oracle_key) == 2:
++                            self.evidence_content_hashes[ev_id] = content_hash
+ 
+                 matching_proposal = None
+                 if semantic_proposals:

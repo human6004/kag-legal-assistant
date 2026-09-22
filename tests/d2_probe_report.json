@@ -1,0 +1,178 @@
+{
+  "option_a": {
+    "option": "A",
+    "planner_received_feedback": true,
+    "generator_contaminated": true,
+    "dag_node_ids": [
+      "a92403c1-ba74-4063-9b59-942591a1046c",
+      "7b87cbf9-ef9d-4394-b0b1-54e695404910",
+      "602ba514-2c8e-4dfa-b22a-36ec203a1cee"
+    ],
+    "call_history": [
+      {
+        "iteration": 0,
+        "query": "Sa thải lao động mang thai",
+        "context_payload": [],
+        "executors": []
+      },
+      {
+        "iteration": 1,
+        "query": "Sa thải lao động mang thai",
+        "context_payload": [
+          {
+            "action": {
+              "name": "Retriever",
+              "argument": {
+                "query": "Điều kiện sa thải lao động mang thai"
+              }
+            },
+            "result": "Điều 37 BLLĐ: Cấm sa thải lao động nữ vì lý do mang thai."
+          }
+        ],
+        "executors": []
+      },
+      {
+        "iteration": 2,
+        "query": "Sa thải lao động mang thai",
+        "context_payload": [
+          {
+            "action": {
+              "name": "Retriever",
+              "argument": {
+                "query": "Điều kiện sa thải lao động mang thai"
+              }
+            },
+            "result": "Điều 37 BLLĐ: Cấm sa thải lao động nữ vì lý do mang thai."
+          },
+          {
+            "action": {
+              "name": "FeedbackEvent",
+              "argument": {
+                "rejection": "THIẾU CHỨNG CỨ: Chưa có khung xử phạt R2 theo Nghị định 12/2022/NĐ-CP."
+              }
+            },
+            "result": "[FINISH_GATE_REJECTED] THIẾU CHỨNG CỨ: Chưa có khung xử phạt R2 theo Nghị định 12/2022/NĐ-CP."
+          }
+        ],
+        "executors": []
+      },
+      {
+        "iteration": 3,
+        "query": "Sa thải lao động mang thai",
+        "context_payload": [
+          {
+            "action": {
+              "name": "Retriever",
+              "argument": {
+                "query": "Điều kiện sa thải lao động mang thai"
+              }
+            },
+            "result": "Điều 37 BLLĐ: Cấm sa thải lao động nữ vì lý do mang thai."
+          },
+          {
+            "action": {
+              "name": "FeedbackEvent",
+              "argument": {
+                "rejection": "THIẾU CHỨNG CỨ: Chưa có khung xử phạt R2 theo Nghị định 12/2022/NĐ-CP."
+              }
+            },
+            "result": "[FINISH_GATE_REJECTED] THIẾU CHỨNG CỨ: Chưa có khung xử phạt R2 theo Nghị định 12/2022/NĐ-CP."
+          },
+          {
+            "action": {
+              "name": "Retriever",
+              "argument": {
+                "query": "Khung xử phạt sa thải lao động mang thai"
+              }
+            },
+            "result": "Điều 28 NĐ 12/2022: Phạt tiền từ 10 đến 20 triệu đồng."
+          }
+        ],
+        "executors": []
+      }
+    ]
+  },
+  "option_b": {
+    "option": "B",
+    "planner_received_feedback": true,
+    "generator_contaminated": false,
+    "dag_node_ids": [
+      "104f53b8-7b8d-4d69-bc87-9fa31c80d640",
+      "a3eb50ab-a377-48d3-b03b-70cd9c6d09b1"
+    ],
+    "call_history": [
+      {
+        "iteration": 0,
+        "query": "Sa thải lao động mang thai",
+        "context_payload": [],
+        "executors": []
+      },
+      {
+        "iteration": 1,
+        "query": "Sa thải lao động mang thai",
+        "context_payload": [
+          {
+            "action": {
+              "name": "Retriever",
+              "argument": {
+                "query": "Điều kiện sa thải lao động mang thai"
+              }
+            },
+            "result": "Điều 37 BLLĐ: Cấm sa thải lao động nữ vì lý do mang thai."
+          }
+        ],
+        "executors": []
+      },
+      {
+        "iteration": 2,
+        "query": "Sa thải lao động mang thai",
+        "context_payload": [
+          {
+            "action": {
+              "name": "Retriever",
+              "argument": {
+                "query": "Điều kiện sa thải lao động mang thai"
+              }
+            },
+            "result": "Điều 37 BLLĐ: Cấm sa thải lao động nữ vì lý do mang thai."
+          },
+          {
+            "action": {
+              "name": "FinishGateFeedback",
+              "argument": {
+                "decision": "REPLAN"
+              }
+            },
+            "result": "[FINISH_GATE_REJECTED]: THIẾU CHỨNG CỨ: Chưa có khung xử phạt R2 theo Nghị định 12/2022/NĐ-CP."
+          }
+        ],
+        "executors": []
+      },
+      {
+        "iteration": 3,
+        "query": "Sa thải lao động mang thai",
+        "context_payload": [
+          {
+            "action": {
+              "name": "Retriever",
+              "argument": {
+                "query": "Điều kiện sa thải lao động mang thai"
+              }
+            },
+            "result": "Điều 37 BLLĐ: Cấm sa thải lao động nữ vì lý do mang thai."
+          },
+          {
+            "action": {
+              "name": "Retriever",
+              "argument": {
+                "query": "Khung xử phạt sa thải lao động mang thai"
+              }
+            },
+            "result": "Điều 28 NĐ 12/2022: Phạt tiền từ 10 đến 20 triệu đồng."
+          }
+        ],
+        "executors": []
+      }
+    ]
+  }
+}

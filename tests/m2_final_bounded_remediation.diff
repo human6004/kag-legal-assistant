@@ -1,0 +1,190 @@
+--- a/kag/solver/evidence_aware/models.py
++++ b/kag/solver/evidence_aware/models.py
+@@ -489,52 +489,39 @@
+                 verified_doc = prov.doc_id
+                 has_chunk = bool(prov.chunk_id and str(prov.chunk_id).strip() and str(prov.chunk_id) != "UNKNOWN")
+ 
+-                authoritative_chunks = None
+-                if valid_corpus_chunk_ids_by_doc is not None:
+-                    authoritative_chunks = valid_corpus_chunk_ids_by_doc.get(prov.doc_id)
+-
+-                # Authoritative doc-chunk mapping verification (C1 & RED-2 fix)
+-                # An arbitrary chunk cannot be verified simply because doc_id exists.
+-                # Without authoritative mapping provided, provenance remains PROVENANCE_INVALID.
++                # Extract all declared coordinates (article, page, span)
++                declared_coords = []
++                if prov.article and str(prov.article).strip() and str(prov.article) != "UNKNOWN":
++                    declared_coords.append(str(prov.article).strip())
++                if prov.page is not None and str(prov.page).strip() and str(prov.page) != "UNKNOWN":
++                    declared_coords.append(str(prov.page).strip())
++                if prov.span and str(prov.span).strip() and str(prov.span) != "UNKNOWN":
++                    declared_coords.append(str(prov.span).strip())
++                has_coords = bool(declared_coords)
++
++                # Validate chunk_id against authoritative chunks
++                is_chunk_valid = True
+                 if has_chunk:
+-                    if authoritative_chunks is not None and prov.chunk_id in authoritative_chunks:
+-                        status = ProvenanceValidationStatus.PROVENANCE_VERIFIED
+-                        verified_chunk = prov.chunk_id
+-                    else:
+-                        status = ProvenanceValidationStatus.PROVENANCE_INVALID
+-                        return Stage2ProvenanceReceipt(
+-                            evidence_id=evidence.id,
+-                            run_id=run_id,
+-                            status=status,
+-                            modality=ModalityType.TEXT,
+-                            verified_corpus_doc_id=verified_doc,
+-                        )
+-                else:
+-                    has_legal_coords = bool(prov.article and str(prov.article).strip() and str(prov.article) != "UNKNOWN")
+-
+-                    # F2 Fix: Do NOT use OR condition across declared coordinates.
+-                    # All declared coordinates (article, page, span) must be reconciled consistently
+-                    # against authoritative coordinates. Any false or unverified declared coordinate invalidates provenance.
++                    authoritative_chunks = None
++                    if valid_corpus_chunk_ids_by_doc is not None:
++                        authoritative_chunks = valid_corpus_chunk_ids_by_doc.get(prov.doc_id)
++                    is_chunk_valid = bool(authoritative_chunks is not None and prov.chunk_id in authoritative_chunks)
++
++                # Validate coordinates: valid chunk_id does NOT excuse invalid declared coordinates (Bug A fix)
++                is_coords_valid = True
++                if has_coords:
+                     authoritative_coords = None
+                     if valid_corpus_coords_by_doc is not None:
+                         authoritative_coords = valid_corpus_coords_by_doc.get(prov.doc_id)
+-
+-                    declared_coords = []
+-                    if has_legal_coords:
+-                        declared_coords.append(str(prov.article).strip())
+-                    if prov.page is not None and str(prov.page).strip() and str(prov.page) != "UNKNOWN":
+-                        declared_coords.append(str(prov.page).strip())
+-                    if prov.span and str(prov.span).strip() and str(prov.span) != "UNKNOWN":
+-                        declared_coords.append(str(prov.span).strip())
+-
+-                    is_coords_verified = False
+-                    if declared_coords and authoritative_coords is not None:
+-                        is_coords_verified = all(c in authoritative_coords for c in declared_coords)
+-
+-                    if is_coords_verified:
+-                        status = ProvenanceValidationStatus.PROVENANCE_VERIFIED
+-                    else:
+-                        status = ProvenanceValidationStatus.PROVENANCE_INVALID
++                    is_coords_valid = bool(authoritative_coords is not None and all(c in authoritative_coords for c in declared_coords))
++
++                # Must have at least one anchor (chunk or coords) and ALL declared anchors must be valid
++                if (has_chunk or has_coords) and is_chunk_valid and is_coords_valid:
++                    status = ProvenanceValidationStatus.PROVENANCE_VERIFIED
++                    if has_chunk:
++                        verified_chunk = prov.chunk_id
++                else:
++                    status = ProvenanceValidationStatus.PROVENANCE_INVALID
+ 
+             return Stage2ProvenanceReceipt(
+                 evidence_id=evidence.id,
+@@ -828,6 +815,7 @@
+     audit_trail: List[StateTransitionReceipt] = field(default_factory=list)
+     evaluation_history: List[EvaluatorOutput] = field(default_factory=list)
+     requirement_verification_receipts: Dict[str, List[Stage4VerificationReceipt]] = field(default_factory=dict)
++    mutated_evidence_ids: Set[str] = field(default_factory=set)
+ 
+     def add_requirement(self, req: EvidenceRequirement) -> None:
+         """Registers an EvidenceRequirement with collision detection against silent overwrite."""
+@@ -925,11 +913,16 @@
+                     old_hash = hashlib.sha256(existing_ev.content.encode("utf-8")).hexdigest()
+                     new_hash = hashlib.sha256(content.encode("utf-8")).hexdigest()
+ 
++                    # Bug B Fix: Mark evidence as mutated to invalidate unversioned stale oracle labels
++                    if not hasattr(self, "mutated_evidence_ids"):
++                        self.mutated_evidence_ids = set()
++                    self.mutated_evidence_ids.add(chunk_id_str)
++
+                     # Invalidate old receipts referencing mutated content
+                     for r_id, receipts in list(self.requirement_verification_receipts.items()):
+                         self.requirement_verification_receipts[r_id] = [
+                             r for r in receipts
+-                            if not (r.evidence_id == chunk_id_str and getattr(r.evidence, "content", "") != content)
++                            if r.evidence_id != chunk_id_str
+                         ]
+ 
+                     # Reset requirements linked to this chunk to UNSATISFIED
+@@ -1159,46 +1152,67 @@
+                 claim_id = f"CLAIM_{req.id}_{ev_id}"
+                 claim = Claim(id=claim_id, statement=req.description)
+ 
+-                # Stage 3: Semantic Verification via Oracle (F1 & Defect 1 Fix: Strictly bound pairs only)
++                # Stage 3: Semantic Verification via Oracle (F1, Defect 1 & BUG B Fix: Strictly bound pairs & versioned oracle)
+                 # Entailment MUST be bound to requirement/claim identity and evidence version.
+-                # Description keys (claim.statement) are consumable and cannot be shared across multiple requirements.
++                # Mutated evidence MUST strictly require a 3-tuple key matching current content hash.
+                 gt_relation = None
+                 matched_oracle_key = None
+                 if semantic_oracle:
++                    content_hash = hashlib.sha256(ev.content.encode("utf-8")).hexdigest()
++                    is_mutated_evidence = (
++                        hasattr(self, "mutated_evidence_ids")
++                        and ev_id in self.mutated_evidence_ids
++                    )
++
+                     exact_claim_keys = [
+                         req.id,
+                         claim_id,
+                         f"{req.id}_CLAIM",
+                     ]
+                     for ck in exact_claim_keys:
+-                        if (ck, ev_id) in semantic_oracle and (ck, ev_id) not in consumed_oracle_keys:
+-                            gt_relation = semantic_oracle[(ck, ev_id)]
+-                            matched_oracle_key = (ck, ev_id)
++                        # 1. Check versioned 3-tuple key: (ck, ev_id, content_hash)
++                        three_tuple_key = (ck, ev_id, content_hash)
++                        if three_tuple_key in semantic_oracle and three_tuple_key not in consumed_oracle_keys:
++                            gt_relation = semantic_oracle[three_tuple_key]
++                            matched_oracle_key = three_tuple_key
+                             break
+                         for k, v in semantic_oracle.items():
+                             if isinstance(k, tuple) and len(k) == 3 and k[0] == ck and k[1] == ev_id:
+-                                content_hash = hashlib.sha256(ev.content.encode("utf-8")).hexdigest()
+-                                if k[2] == content_hash and k not in consumed_oracle_keys:
++                                if str(k[2]).lower() == content_hash.lower() and k not in consumed_oracle_keys:
+                                     gt_relation = v
+                                     matched_oracle_key = k
+                                     break
+                         if gt_relation is not None:
+                             break
+ 
++                        # 2. Check unversioned 2-tuple key: ONLY permitted if evidence never mutated
++                        if not is_mutated_evidence:
++                            two_tuple_key = (ck, ev_id)
++                            if two_tuple_key in semantic_oracle and two_tuple_key not in consumed_oracle_keys:
++                                gt_relation = semantic_oracle[two_tuple_key]
++                                matched_oracle_key = two_tuple_key
++                                break
++
+                     # Fallback to claim.statement (description) ONLY if not already consumed by another requirement
+                     if gt_relation is None and claim.statement:
+                         ck = claim.statement
+-                        if (ck, ev_id) in semantic_oracle and (ck, ev_id) not in consumed_oracle_keys:
+-                            gt_relation = semantic_oracle[(ck, ev_id)]
+-                            matched_oracle_key = (ck, ev_id)
++                        three_tuple_key = (ck, ev_id, content_hash)
++                        if three_tuple_key in semantic_oracle and three_tuple_key not in consumed_oracle_keys:
++                            gt_relation = semantic_oracle[three_tuple_key]
++                            matched_oracle_key = three_tuple_key
+                         else:
+                             for k, v in semantic_oracle.items():
+                                 if isinstance(k, tuple) and len(k) == 3 and k[0] == ck and k[1] == ev_id:
+-                                    content_hash = hashlib.sha256(ev.content.encode("utf-8")).hexdigest()
+-                                    if k[2] == content_hash and k not in consumed_oracle_keys:
++                                    if str(k[2]).lower() == content_hash.lower() and k not in consumed_oracle_keys:
+                                         gt_relation = v
+                                         matched_oracle_key = k
+                                         break
++
++                        if gt_relation is None and not is_mutated_evidence:
++                            two_tuple_key = (ck, ev_id)
++                            if two_tuple_key in semantic_oracle and two_tuple_key not in consumed_oracle_keys:
++                                gt_relation = semantic_oracle[two_tuple_key]
++                                matched_oracle_key = two_tuple_key
+ 
+                     if matched_oracle_key is not None:
+                         consumed_oracle_keys.add(matched_oracle_key)
