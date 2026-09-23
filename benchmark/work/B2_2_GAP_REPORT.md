@@ -43,7 +43,7 @@ Gap âm = pool nhiều hơn đích. B2.2 không cắt. B2.3 không viết thêm 
 
 `multi_hop` chỉ khi hai evidence độc lập, khác điều hoặc khác văn bản, và notes có evidence A, evidence B, vì sao một evidence không đủ. Hai khoản cùng một điều không tính multi_hop.
 
-## Document coverage 23/23
+## Document coverage 22/23
 
 Có mặt 22/23. Đếm theo số câu có ít nhất một evidence của văn bản đó (một câu nhiều văn bản được tính mỗi văn bản một lần).
 
