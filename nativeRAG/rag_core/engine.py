@@ -72,7 +72,7 @@ class LegalRAGEngine:
         except Exception as e:
             print(f"Cảnh báo: Không thể khởi tạo ChatOpenAI cho model Gemini trên 9router: {e}")
 
-    def generate(self, question: str) -> Dict[str, Any]:
+    def generate(self, question: str, include_retrieved: bool = False) -> Dict[str, Any]:
         """Trả lời câu hỏi và trả về câu trả lời kèm citations"""
         docs = self.retriever.retrieve(question)
 
@@ -111,12 +111,15 @@ class LegalRAGEngine:
         response = self.llm.invoke(prompt)
         answer_text = response.content if hasattr(response, "content") else str(response)
 
-        return {
+        result = {
             "question": question,
             "answer": answer_text,
             "citations": citations,
             "context_found": len(docs) > 0
         }
+        if include_retrieved:
+            result["retrieved_contexts"] = docs
+        return result
 
     def generate_stream(self, question: str) -> Generator[str, None, None]:
         """Streaming câu trả lời qua token generator từ 9router (chuẩn OpenAI)"""

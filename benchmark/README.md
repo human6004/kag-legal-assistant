@@ -51,11 +51,11 @@ python -m pytest benchmark/tests -q
 | **B1** — protocol, schema, evaluator, metrics, unit tests | **DONE** |
 | **B2** — xây dựng bộ câu hỏi | **DONE** |
 | **B2.5C** — đóng / xác minh corpus | **DONE** |
-| **B3** — freeze runner/adapter + so sánh 3 hệ thống | **CHƯA** (chưa freeze) |
+| **B3.1** — common runner/adapter | **CÓ CODE, CHƯA FREEZE** (chưa chạy 150 câu) |
 
 - Canonical dataset: `benchmark/work/final_150_corpus_verified.json`
 - **Chưa** có kết quả benchmark 3 hệ thống trong repo từ evaluator này; đừng giả định `benchmark/runs/*.json` đã tồn tại.
-- System runner / adapter xuất ra `system_output_schema.json` **chưa được freeze**; sẽ hoàn thiện ở **B3**.
+- Runner/adapter B3.1 đã có; cấu hình và kết quả vẫn chờ B3.2.
 
 ---
 
@@ -196,7 +196,7 @@ benchmark/runs/hybridrag.json
 benchmark/runs/nativerag.json
 ```
 
-Thư mục `benchmark/runs/` **có thể chưa tồn tại** — đây chỉ là vị trí đề xuất khi bạn xuất kết quả. README này **không** tạo folder/results giúp bạn.
+Runner tạo thư mục output khi chạy. B3.1 chưa sinh kết quả chính thức.
 
 ---
 
@@ -316,17 +316,15 @@ Cùng workflow mục 4-9.
 
 ## 14. Entrypoints hệ thống (runners)
 
-Đã rà soát `kag/`, `hybridRAG/`, `nativeRAG/`, `scripts/`, `benchmark/adapters/`:
+Runner B3.1 dùng chung `benchmark/runners/common.py`: đọc đúng `id` + `question`, đo thời gian query đến answer + retrieval, ghi một output cho mỗi câu (lỗi ghi `error`). Citation luôn parse từ answer. Ba lệnh CLI thực tế (chạy từ root repo, sau khi chuẩn bị dependencies, API key và index của từng hệ thống):
 
-| Hệ thống | Runner chung xuất `system_output_schema.json` cho 150 câu |
-|---|---|
-| **KAG** | **Chưa có** (có `kag/solver/eval.py` + `gold_chunks` — legacy, không phải common output) |
-| **HybridRAG** | **Chưa có** (có `hybridRAG/evaluation/run_*.py` — dataset/metric riêng, không emit schema chung) |
-| **NativeRAG** | **Chưa có** (có `nativeRAG/test_query.py`, `nativeRAG/app/main.py` — interactive/API, không batch 150 sang schema chung) |
-| **Adapters** | Hiện chỉ có `benchmark/adapters/citation_parser.py` (parser chung); chưa có adapter per-system đã freeze |
+```powershell
+python -m benchmark.runners.kag_runner --dataset benchmark/work/final_150_corpus_verified.json --out benchmark/runs/kag.json
+python -m benchmark.runners.hybridrag_runner --dataset benchmark/work/final_150_corpus_verified.json --out benchmark/runs/hybridrag.json
+python -m benchmark.runners.nativerag_runner --dataset benchmark/work/final_150_corpus_verified.json --out benchmark/runs/nativerag.json
+```
 
-**Kết luận:** System runner/adapters **chưa được freeze**; sẽ hoàn thiện ở **B3**.  
-README này **không** bịa lệnh runner. Cho đến B3, mỗi team tự chạy hệ thống rồi map thủ công/script tạm sang `system_output_schema.json`, rồi evaluate như mục 9.
+**Chưa chạy các lệnh này trên 150 câu trong B3.1.** KAG cần OpenSPG/config và prompt trong `kag/`; HybridRAG cần các dependency của API và index; NativeRAG cần LLM key. HybridRAG `load_vector_index()` hiện ưu tiên Chroma NativeRAG nếu có. NativeRAG đang cấu hình embedding `text-embedding-3-small` trong khi Chroma lưu chiều 3072; cần xác minh/sửa cấu hình trước khi chạy chính thức. B3.2 phải xác nhận index/config runtime và thống nhất generator. CLI `--help` và adapter contract đã được kiểm offline; chưa kiểm pipeline thật trên môi trường này.
 
 ---
 
@@ -337,7 +335,7 @@ python -m pytest benchmark/tests -q
 ```
 
 - Test **evaluator / schema / citation_parser / isolation** trên dữ liệu synthetic.
-- **Không** chạy KAG / HybridRAG / NativeRAG.
+- Unit test offline **không** gọi KAG / HybridRAG / NativeRAG.
 - Package `benchmark` cố ý nằm ngoài `kag/` và không import ba hệ thống (`tests/test_isolation.py`).
 
 ---
@@ -356,6 +354,7 @@ benchmark/
     ...                          metrics / models / matching / ...
   adapters/
     citation_parser.py           parser citation chung
+  runners/                       common.py + 3 adapter/CLI
   tests/                         unit tests offline
   runs/                          (khuyến nghị) chỗ để system output — có thể chưa có
 ```
@@ -372,7 +371,7 @@ Phần dưới giữ lại hợp đồng kỹ thuật của harness. Đọc khi 
 
 **Có:** protocol đánh giá, 2 JSON schema, evaluator dùng chung, định nghĩa metric, unit test offline.
 
-**Không có (trong package này):** runner ba hệ thống đã freeze, retriever/generator/prompt của từng hệ thống, hay file kết quả so sánh đã chạy xong.
+**Chưa có:** runner ba hệ thống đã freeze, retriever/generator/prompt dùng chung, hay file kết quả so sánh đã chạy xong.
 
 Gold truth dùng ngôn ngữ của văn bản pháp luật:
 
