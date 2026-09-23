@@ -1,430 +1,447 @@
-# Common Benchmark Evaluator (B1)
+# Common Benchmark — Hướng dẫn sử dụng
 
-Shared, architecture-neutral evaluation harness for comparing **KAG**,
-**HybridRAG** and **NativeRAG** on Vietnamese legal question answering.
+Harness đánh giá chung, trung lập kiến trúc, để so sánh **KAG**, **HybridRAG** và **NativeRAG** trên bài toán hỏi–đáp pháp luật tiếng Việt.
 
-> **Status**
->
-> * **B1 — evaluation protocol, schemas, evaluator, metrics, unit tests: complete.**
-> * **B2 — benchmark construction (the question set itself): NOT YET DONE.**
-> * **B3 — benchmark freeze: NOT YET DONE.**
->
-> No benchmark question set exists in this directory yet. Nothing here has been
-> run against any of the three systems, and no result in this repository was
-> produced by this evaluator.
+Tài liệu này ưu tiên phần **cách chạy / nộp kết quả**. Chi tiết metric và evaluator nằm ở cuối.
 
 ---
 
-## 1. What this is, and what it is not
-
-This package defines **how a comparison is scored**, not what is being scored.
-It contains:
-
-* the evaluation protocol (what counts as a correct retrieval, answer, citation
-  or refusal),
-* two JSON schemas — one for the benchmark dataset, one for a system's output,
-* a single shared evaluator every system is scored by, byte-identically,
-* metric definitions with explicit formulas and directions,
-* unit tests on tiny synthetic data.
-
-It does **not** contain: benchmark questions, gold answers for real legal texts,
-system runners, retrievers, generators, prompts, or any result.
-
-## 2. Why the gold truth is architecture-neutral
-
-The three systems chunk, index and retrieve differently. KAG works over a
-knowledge graph with its own chunk and node ids; HybridRAG and NativeRAG use
-vector stores with their own ids. **A chunk id of any one system can never be
-the gold truth of a comparison between all three** — scoring against KAG chunk
-ids would mean asking the other two systems to reproduce KAG's segmentation.
-
-The gold truth is therefore expressed in the vocabulary of the law itself:
-
-```
-document → article → clause → point → evidence text → gold claim
-```
-
-`benchmark_schema.json` actively **rejects** dataset files that carry
-system-internal identifiers. `evaluator/models.py` enforces the same list at
-load time (`FORBIDDEN_DATASET_KEYS`), so a legacy `gold_chunks.json`-shaped file
-cannot be loaded as common gold truth even by accident. The legacy KAG-only
-evaluator under `kag/solver/` is untouched and keeps working on its own terms;
-it is simply not this.
-
-## 3. Directory layout
-
-```
-benchmark/
-  README.md                     this file
-  benchmark_schema.json         dataset contract (architecture-neutral gold truth)
-  system_output_schema.json     what a system must emit to be scored
-  evaluator/
-    normalization.py            text/marker/number/location normalization
-    models.py                   dataset + output parsing, forbidden-key rejection
-    evidence_matching.py        structural → text → judge support routes
-    retrieval_metrics.py        Evidence Recall, Context Precision, Hit@k, MRR
-    answer_metrics.py           Hit Rate, Hit All, Claim P/R/F1
-    grounding_metrics.py        Faithfulness, Hallucination Rate, retrieval gap
-    citation_metrics.py         Document/Article accuracy, Citation P/R
-    abstention_metrics.py       Correct Abstention, False Answer Rate
-    aggregate.py                micro / macro-by-category / bootstrap CI
-    judge.py                    vendor-free semantic-judge abstraction
-    evaluate.py                 orchestration + CLI
-  adapters/
-    citation_parser.py          the one citation parser all three adapters use
-  tests/                        offline unit tests on synthetic data
-```
-
-The evaluator lives **outside** `kag/` on purpose and imports none of `kag`,
-`hybridRAG` or `nativeRAG`. `tests/test_isolation.py` enforces that
-structurally, and also that the package depends on the standard library only.
-
-## 4. Dataset contract (`benchmark_schema.json`)
-
-One item per question:
-
-| field | required | meaning |
-|---|---|---|
-| `id` | yes | unique question id |
-| `question` | yes | the question text |
-| `category` | yes | free-form label; macro averaging groups by it |
-| `answerable` | yes | `false` = the corpus genuinely cannot answer this |
-| `gold_evidence[]` | for answerable items | `{document_id, text, article, clause, point, required, evidence_id}` |
-| `gold_markers[]` | optional | strings the answer must contain (amounts, durations, sanctions) |
-| `gold_claims[]` | optional | atomic statements the answer should express |
-| `source_url`, `source_name`, `notes`, `verification_status` | optional | provenance, for auditing |
-
-`required: false` marks supporting-but-not-mandatory evidence; recall is
-reported both over all gold evidence and over required evidence only.
-
-### Labelling convention for gold evidence
-
-Inside one evidence entry, `document_id` and `text` are **mandatory**, `article`
-is strongly expected, and `clause` / `point` are optional labels:
-
-* **`text` is mandatory** because it is the only support route every system can
-  reach. A system whose adapter reports rich metadata (KAG can often name the
-  clause) would otherwise be matched structurally while a system that can name
-  only the document (HybridRAG, frequently) would end up undecided on the very
-  same passage. Verbatim text puts all three on the same footing.
-* **The comparison is scored at the article.** A wrong document or a wrong
-  article is a hard negative nothing can overturn; see §7.
-* **`clause` and `point` are recorded for error analysis, never for scoring.**
-  Write them when you know them — they make failure analysis far sharper — but
-  they cannot make a system lose a point, because the three systems label
-  clauses at different granularities and penalising the one that declares a
-  clause would simply reverse the unfairness.
-
-`gold_claims[]` is optional and B2 does not need it: every headline metric is
-decidable without it.
-
-## 5. System output contract (`system_output_schema.json`)
-
-One record per question, per system:
-
-```json
-{
-  "question_id": "…",
-  "system": "kag | hybridrag | nativerag",
-  "answer": "…",
-  "retrieved_contexts": [
-    {"rank": 1, "document_id": "…", "article": "53", "clause": "3",
-     "point": "b", "text": "…", "score": null}
-  ],
-  "citations": [{"document_id": "…", "article": "53", "clause": "3", "point": "b"}],
-  "latency_ms": 1234,
-  "error": null
-}
-```
-
-`rank` is 1-based and defaults to list position. `score` is optional and
-nullable, and **is never compared across architectures** — a graph traversal
-score and a cosine similarity are not the same quantity. `error` marks a failed
-run: its metrics become *unavailable*, never zero. `answer_claims` may be
-supplied by an adapter to skip judge-side claim extraction.
-
-### Citation contract
-
-`citations[]` is **what the answer text says**, extracted by
-`adapters/citation_parser.py`, and nothing else. In particular an adapter may
-not build it from `retrieved_contexts`, from chunk metadata, or from any other
-channel. This is not hypothetical: `nativeRAG/rag_core/engine.py::generate`
-returns the retrieved documents under the name `citations`, so copying that
-field across would make NativeRAG's Citation Recall equal to its retrieval
-recall for free, without the answer pointing at anything.
-
-All three prompts already require an inline Vietnamese prose citation
-(`khoản 2 Điều 8 Nghị định 13/2023/NĐ-CP`), which is the only channel the three
-have in common, so that is the only thing parsed. KAG's
-`<reference id="chunk:1_2">` tags index its own trace log rather than a legal
-location and are ignored. A citation naming no document inherits the nearest
-document mentioned before it — the same rule for every system.
-
-The loader cannot enforce this, so it watches for it: when an output's
-citations mirror its retrieved contexts exactly (three or more, identical
-location sets), the report carries a note saying so. It is a note and not a
-rejection, because citing exactly what you retrieved is legitimate.
-
-## 6. Metric catalogue
-
-Retrieval (`retrieval_metrics.py`):
-
-| metric | direction | formula |
-|---|---|---|
-| `evidence_recall` | ↑ | supported gold evidence / all gold evidence |
-| `evidence_recall@k` | ↑ | same, over the top *k* contexts only (`k = 5` in the main table) |
-| `evidence_recall_required` | ↑ | same, over required evidence only |
-| `context_precision` | ↑ | contexts supporting some gold evidence / all contexts |
-| `hit@k` | ↑ | 1 if some context in the top *k* supports required evidence |
-| `mrr` | ↑ | 1 / rank of first supporting context, else 0 |
-| `evidence_recall@Ntok` | ↑ | Evidence Recall using only the top-ranked contexts that fit an *N*-token budget |
-
-The two `@` suffixes mean different things and the `tok` suffix is what tells
-them apart: `evidence_recall@5` cuts the list at five contexts,
-`evidence_recall@2000tok` cuts it at a 2000-token context budget.
-
-Answer (`answer_metrics.py`): `hit_rate` ↑ (fraction of gold markers found),
-`hit_all` ↑ (all-or-nothing over markers), `claim_precision` / `claim_recall` /
-`claim_f1` ↑.
-
-Grounding (`grounding_metrics.py`): `faithfulness` ↑ (claims supported by *that
-system's own* retrieved contexts), `hallucination_rate` ↓ (claims unsupported or
-contradicted per gold), `retrieval_gap_rate` ↓ (claims true per gold that the
-system's own retriever never surfaced), `unsupported_claim_rate` ↓.
-
-Citation (`citation_metrics.py`): `document_accuracy` ↑, `article_accuracy` ↑,
-`clause_accuracy` / `point_accuracy` ↑ (diagnostic), `citation_precision` ↑,
-`citation_recall` ↑.
-
-Unanswerable (`abstention_metrics.py`): `correct_abstention` ↑,
-`false_answer_rate` ↓, `unsupported_claim_rate` ↓.
-
-Operational: `latency_ms` ↓, `error_rate` ↓.
-
-### The paper profile
-
-Everything above is computed and lands in `per_question`. Only a small profile
-is *reported*, and the rule for being in it is that the number must be
-decidable on a run with no judge at all:
-
-| headline (`PRIMARY_METRICS`) | error analysis (`DIAGNOSTIC_METRICS`) |
-|---|---|
-| `evidence_recall` | `mrr` |
-| `evidence_recall@5` | `hit@5` |
-| `evidence_recall@2000tok` | `context_precision` |
-| `hit_rate` | `citation_precision` |
-| `hit_all` | `citation_document_accuracy` |
-| `citation_article_accuracy` | `error_rate` |
-| `citation_recall` | |
-| `correct_abstention` | |
-| `latency_ms` ↓ | |
-
-Computed, kept in `per_question`, not printed in either table:
-`citation_clause_accuracy`, `citation_point_accuracy`,
-`evidence_recall_required`, `hit@1`, `hit@3`, `hit@10`, `first_relevant_rank`,
-`n_undecided`, `n_unavailable`.
-
-Computed but off the publication path until a calibrated judge exists (see §9):
-`claim_precision`, `claim_recall`, `claim_f1`, `faithfulness`,
-`hallucination_rate`, `retrieval_gap_rate`, `unsupported_claim_rate`,
-`false_answer_rate`. The code that computes them is untouched, so switching
-them back on is a change to one list in `evaluate.py`.
-
-`k = 5` and the 2000-token budget are fixed in advance and identical for all
-three systems; both are written into `report["config"]`. Reading several
-cut-offs and reporting the best one per system would be tuning on the test set.
-
-**There is no overall score.** Retrieval quality, answer correctness,
-grounding, citation accuracy and abstention behaviour trade off against each
-other; averaging them would hide the one thing a reader wants to know, which is
-*which* capability is weak. `aggregate.py` refuses to synthesise one, and the
-printed report has no total line.
-
-### Faithfulness and Hallucination Rate are not complements
-
-`hallucination_rate` is **not** `1 - faithfulness`. Each claim in an answer
-lands in exactly one bucket:
-
-| bucket | faithfulness | hallucination |
-|---|---|---|
-| supported by the system's own context | counts | — |
-| true per gold, absent from context (**retrieval gap**) | — | — |
-| unsupported or contradicted per gold | — | counts |
-| undecided (no route could decide) | — | — |
-
-A system whose generator is sound but whose retriever is starving it loses
-faithfulness without being accused of fabricating. Collapsing the two would
-report a retrieval failure as a hallucination, which is the fastest way to make
-a RAG comparison say the wrong thing.
-
-## 7. How a context or claim is judged to support evidence
-
-`evidence_matching.py` tries three routes, in order:
-
-1. **structural** — the declared legal location matches (document → article →
-   clause → point, as deep as both sides declare);
-2. **text** — the evidence text is contained in the context, or token coverage
-   reaches the policy threshold (0.8 by default);
-3. **judge** — semantic entailment, only if a judge is configured.
-
-Three rules make this safe:
-
-* A **declared mismatch at the scoring depth is a hard negative.** The scoring
-  depth is `("document", "article")` — `MatchingPolicy.hard_negative_levels`,
-  frozen into `report["config"]["policy"]`. Điều 52 text offered for Điều 53
-  evidence is rejected and the judge cannot rescue it
-  (`SupportMethod.LOCATION_MISMATCH`). Right answer, wrong pointer is a distinct
-  failure that the citation metrics report separately.
-* **A clause or point mismatch decides nothing.** It is recorded in
-  `soft_mismatch` for error analysis and then handed to the text route — the
-  same route a context that declares no clause at all already takes. Without
-  this, a system that labels a multi-clause chunk by its first clause would
-  fail hard while a system that declares no clause would be rescued by text:
-  declaring more would score worse than declaring less, which is the reverse of
-  the asymmetry the harness exists to remove.
-* **Undecided is not False.** When no route can decide, support is `None`; the
-  claim leaves both numerators and is counted in `n_undecided`.
-
-## 8. Normalization policy
-
-`normalization.py` is deliberately separate and deliberately conservative. It
-does: Unicode NFC, markdown stripping, whitespace collapsing, thousand-separator
-tolerance (`100.000.000` ≡ `100 000 000 đồng`), and diacritic folding **only**
-on structural labels (`Điều`, `Khoản`, `Điểm`).
-
-It does **not** merge things that differ in law:
-
-* `Điều 13` ≠ `Điều 31` (no digit reordering),
-* `30,5%` ≠ `305%` (separator stripping applies inside digit groups only),
-* `330/2026/NĐ-CP` ≠ `331/2026/NĐ-CP` (document numbers are never merged),
-* negation is preserved (`không bị xử phạt` ≠ `bị xử phạt`),
-* money units and rates are preserved (`triệu` ≠ `tỷ`).
-
-Two profiles exist: `TEXT_PROFILE` for prose comparison, `MARKER_PROFILE`
-(whitespace-free) for substring marker matching. Both are unit-tested directly.
-
-## 9. Deterministic metrics vs judge-dependent metrics
-
-| deterministic | judge-dependent (falls back to deterministic first) |
-|---|---|
-| structural evidence matching, `hit@k`, `mrr`, `hit_rate`, `hit_all`, citation accuracies, abstention cue detection | paraphrase-level evidence support, claim precision/recall, faithfulness, hallucination, contradiction detection, citation entailment, unclear-phrasing abstention |
-
-`judge.py` defines a `Judge` interface with **no vendor and no model name
-anywhere**. Three judges ship, all offline: `NullJudge` (default — answers
-UNKNOWN to everything, so judge-dependent metrics report `None` rather than a
-fabricated 0), `RuleBasedJudge` (lexical, deterministic), `ScriptedJudge` (fixed
-answers, for tests and frozen replays). A real LLM judge is an adapter written
-outside this package.
-
-**The CLI can only build `NullJudge`.** `RuleBasedJudge` is importable — it is a
-useful stand-in in unit tests — but it is not a `--judge` choice, because it
-never returns CONTRADICTED. Every number it produces is therefore biased in one
-direction (`hallucination_rate` drifts towards 0) while looking complete on the
-page, and a complete-looking wrong number is worse than a missing one.
-
-Conditions a judge must meet before any judge-dependent metric goes into the
-paper:
-
-1. **Independent of all three systems under test.** A judge that shares a
-   generator with one of the contestants is that contestant marking its own
-   work.
-2. **A purpose-written Vietnamese legal prompt.** Do not port KAG's upstream
-   `JudgerPrompt`: it is a Chinese-language few-shot prompt on medical
-   multiple-choice questions, and upstream `getBenchMark` defaults to letting
-   the system judge itself.
-3. **Calibration against human labels** — at minimum 50 human-labelled pairs,
-   with the agreement reported next to the results.
-4. **A frozen `JudgeConfig`** (model, version, temperature 0, prompt version,
-   seed) whose `fingerprint()` is published with the numbers.
-
-Until all four hold, the judge-dependent metrics stay out of both tables and
-the comparison rests on the deterministic profile in §6.
-
-`JudgeConfig` freezes a judge for publication — model, model version,
-temperature (0), prompt version, seed — and its `fingerprint()` goes into the
-report so two runs can be told apart. **B1 calls no API; the whole test suite
-runs offline.**
-
-## 10. `None` is not zero
-
-Every metric may be `None`, and each `None` is labelled:
-
-* `not_applicable` — the ground truth does not pose that question (no
-  abstention score for an answerable item, no Evidence Recall for an item with
-  no gold evidence, no clause accuracy when neither side declares a clause);
-* `unavailable` — it does pose the question, but the run could not answer it
-  (the system errored, or a judge-dependent metric ran with a judge that decides
-  nothing).
-
-Aggregation counts `n`, `n_not_applicable` and `n_unavailable` separately, and a
-question with no system output at all is **excluded from every mean** rather
-than scored 0 — a crashed run must not be able to look like a wrong answer.
-
-## 11. Aggregation and confidence intervals
-
-* **micro** — plain mean over every question with a real value.
-* **macro** — mean over categories of each category's micro mean, so a large
-  category cannot swamp a small one. Categories are read from the dataset;
-  neither the category list nor the dataset size is hard-coded anywhere.
-* **95% CI** — percentile bootstrap over the pooled per-question values, with a
-  configurable sample count and a fixed seed (`BootstrapConfig`). A fresh
-  `random.Random(seed)` is created per call, so results do not depend on global
-  random state: same seed and same inputs give identical bounds. Fewer than two
-  values yields `(None, None)` instead of a degenerate interval.
-* The CI belongs to **micro only**. Macro is not bootstrapped, because doing it
-  honestly needs stratified resampling within categories, which is not
-  implemented.
-
-## 12. Running it
+## 1. Quick start
+
+1. Đọc bộ câu hỏi chuẩn: `benchmark/work/final_150_corpus_verified.json` (đúng **150** câu).
+2. Cho hệ thống của bạn chạy retrieval + generation trên **đúng 150 câu đó** (không sửa câu hỏi; không dùng gold để “giúp” trả lời).
+3. Chuyển output gốc của hệ thống sang đúng shape `benchmark/system_output_schema.json`.
+4. **Citations** chỉ được parse từ **nội dung `answer`** bằng `benchmark/adapters/citation_parser.py` — **không** copy từ `retrieved_contexts`.
+5. Chạy evaluator:
 
 ```bash
 python -m benchmark.evaluator.evaluate \
-  --dataset  <benchmark dataset>.json \
-  --system-output <one system's outputs>.json \
-  --out report.json \
+  --dataset benchmark/work/final_150_corpus_verified.json \
+  --system-output <system-output.json> \
+  --out <report.json> \
   --k 1,3,5,10 \
   --budgets 2000 \
   --judge null
 ```
 
-`--k` must include 5 and `--budgets` must include 2000, or the main table loses
-a headline row. Both default to exactly that, and `--judge null` is the only
-judge the CLI offers.
+PowerShell (dùng backtick để xuống dòng):
 
-Tests:
+```powershell
+python -m benchmark.evaluator.evaluate `
+  --dataset benchmark/work/final_150_corpus_verified.json `
+  --system-output <system-output.json> `
+  --out <report.json> `
+  --k 1,3,5,10 `
+  --budgets 2000 `
+  --judge null
+```
+
+6. Kiểm tra unit test evaluator (không chạy hệ thống RAG):
 
 ```bash
 python -m pytest benchmark/tests -q
 ```
 
-Fairness rules for an actual comparison, once B2/B3 exist: run every system
-through **this** evaluator with the **same** dataset file, the same `--k`, the
-same `--budgets`, the same judge configuration and the same bootstrap seed, and
-publish that configuration next to the numbers. Comparing budgeted Evidence
-Recall at an equal context-token budget is what keeps a system that dumps 8k
-tokens of context from looking better than one that retrieves 500 useful ones.
+---
 
-## 13. Known limits
+## 2. Trạng thái canonical dataset
 
-* `RuleBasedJudge` never reports a contradiction; telling contradiction apart
-  from absence needs a real entailment model, and guessing would turn a
-  retrieval gap into a fake hallucination. That is why it is not a CLI choice.
-* `claim_*`, `faithfulness` and `hallucination_rate` need claim extraction. With
-  the default `NullJudge` and no adapter-supplied `answer_claims`, they are
-  reported as unavailable, not as 0 — and they are off the publication path
-  until §9's four conditions are met.
-* Clause- and point-level agreement is diagnostic only. The comparison cannot
-  currently distinguish "retrieved the right article, wrong clause" from
-  "retrieved the right clause" when the evidence text matches; buying that
-  distinction back would require every system's adapter to label clauses at the
-  same granularity, which is exactly the assumption this harness refuses.
-* The citation parser reads prose citations only. A citation whose article is
-  named before its document inherits the nearest document mentioned *before*
-  it; a list such as "Điều 8 và Điều 9 Nghị định X" therefore attaches the
-  document to Điều 9 and leaves Điều 8 without one. The rule is identical for
-  all three systems, which is what matters for a comparison, but it is not the
-  rule a human reader would apply.
-* Token counting uses a tokenizer-free estimate (`max(words, ceil(chars/4))`),
-  injectable via `EvaluationConfig.token_counter`. Budget comparisons are
-  therefore consistent across systems but not identical to a specific model's
-  tokenizer.
+| Mốc | Trạng thái |
+|---|---|
+| **B1** — protocol, schema, evaluator, metrics, unit tests | **DONE** |
+| **B2** — xây dựng bộ câu hỏi | **DONE** |
+| **B2.5C** — đóng / xác minh corpus | **DONE** |
+| **B3** — freeze runner/adapter + so sánh 3 hệ thống | **CHƯA** (chưa freeze) |
+
+- Canonical dataset: `benchmark/work/final_150_corpus_verified.json`
+- **Chưa** có kết quả benchmark 3 hệ thống trong repo từ evaluator này; đừng giả định `benchmark/runs/*.json` đã tồn tại.
+- System runner / adapter xuất ra `system_output_schema.json` **chưa được freeze**; sẽ hoàn thiện ở **B3**.
+
+---
+
+## 3. Canonical dataset
+
+**Đường dẫn:** `benchmark/work/final_150_corpus_verified.json`
+
+- **150** câu hỏi
+- Corpus cố định **23** văn bản (cùng tập tài liệu pháp lý dùng chung; gold evidence trong file phủ các văn bản được trích dẫn)
+- Mọi item có `verification_status: CORPUS_VERIFIED`
+- 7 categories (đếm thực tế trong file):
+
+| `category` | Số câu |
+|---|---|
+| `definition` | 20 |
+| `obligation` | 25 |
+| `sanction_numeric` | 25 |
+| `effectiveness_metadata` | 20 |
+| `inter_document` | 20 |
+| `multi_hop` | 25 |
+| `unanswerable` | 15 |
+| **Tổng** | **150** |
+
+Mỗi item tối thiểu gồm: `id`, `question`, `category`, `answerable`, cùng gold trung lập kiến trúc (`gold_evidence`, `gold_markers`, …) theo `benchmark/benchmark_schema.json`. Gold **không** chứa `chunk_id` / `vector_id` / `node_id` của bất kỳ hệ thống nào.
+
+---
+
+## 4. Workflow — “Tôi cần làm gì?”
+
+### STEP 1 — Đọc dataset, chạy đúng 150 câu
+
+- Load `benchmark/work/final_150_corpus_verified.json`.
+- Chạy **đúng** 150 câu (`id` + `question` như trong file).
+- Không rút gọn, không thay wording, không bỏ câu `unanswerable`.
+
+### STEP 2 — Hệ thống tự retrieval + generation
+
+- Hệ thống dùng pipeline của mình (index / graph / vector / LLM).
+- **Không** đọc `gold_evidence` / `gold_markers` / `gold_claims` để soạn câu trả lời.
+- Gold chỉ dùng khi **evaluate**, không dùng khi **sinh** answer.
+
+### STEP 3 — Map sang `system_output_schema.json`
+
+- Output gốc của KAG / HybridRAG / NativeRAG khác nhau.
+- Adapter (hoặc script chuyển đổi) phải emit đúng contract trong `benchmark/system_output_schema.json`.
+- File có thể là mảng JSON thuần, hoặc object có key `outputs` / `results`.
+
+### STEP 4 — Một record / một câu hỏi
+
+Mỗi record cần các field sau (xem schema để biết kiểu đầy đủ):
+
+| Field | Ý nghĩa |
+|---|---|
+| `question_id` | Khớp `BenchmarkItem.id` trong dataset |
+| `system` | Tên hệ thống: `"kag"` / `"hybridrag"` / `"nativerag"` (thống nhất trong một file) |
+| `answer` | Câu trả lời (string hoặc `null` nếu lỗi) |
+| `retrieved_contexts` | Danh sách context đã retrieve (xem mục 6) |
+| `citations` | Trích dẫn **trong answer** — xem mục 5 (CRITICAL) |
+| `latency_ms` | Thời gian end-to-end (ms), hoặc `null` |
+| `error` | `null` nếu OK; string mô tả lỗi nếu fail (metric sẽ *unavailable*, không bị coi là 0) |
+
+Ví dụ tối thiểu:
+
+```json
+{
+  "question_id": "…",
+  "system": "hybridrag",
+  "answer": "…",
+  "retrieved_contexts": [
+    {
+      "rank": 1,
+      "document_id": "13/2023/NĐ-CP",
+      "article": "8",
+      "clause": "2",
+      "point": null,
+      "text": "…",
+      "score": null
+    }
+  ],
+  "citations": [
+    {"document_id": "13/2023/NĐ-CP", "article": "8", "clause": "2", "point": null}
+  ],
+  "latency_ms": 1234,
+  "error": null
+}
+```
+
+---
+
+## 5. CITATIONS — CRITICAL
+
+`citations[]` = những gì **câu trả lời thực sự chỉ ra**, parse từ **`answer` text**.
+
+- Dùng `benchmark/adapters/citation_parser.py` (`parse_citations` / `parse_citation_payloads`).
+- **CẤM** copy từ `retrieved_contexts`, metadata chunk, hay field “citations” kiểu danh sách tài liệu retrieve của engine.
+- Nếu retrieve được Điều 5 nhưng **answer không trích** Điều 5 → **không** thêm citation Điều 5.
+- Lý do: NativeRAG `rag_core/engine.py` có thể trả retrieved docs dưới tên `citations`; copy nguyên field đó sẽ làm Citation Recall ≈ retrieval recall mà answer không hề trỏ nguồn.
+- Tag kiểu `<reference id="chunk:…">` của KAG bị parser bỏ qua (trỏ trace log, không phải vị trí pháp lý).
+- Citation không ghi số hiệu văn bản sẽ kế thừa document gần nhất xuất hiện **trước** nó trong cùng answer — cùng một rule cho cả ba hệ thống.
+
+Evaluator có thể ghi **note** nếu `citations` trùng hệt `retrieved_contexts` (mirror); đó là cảnh báo, không phải reject cứng.
+
+---
+
+## 6. Định dạng `retrieved_contexts`
+
+Mỗi phần tử map:
+
+| Field | Ghi chú |
+|---|---|
+| `rank` | 1-based; nếu bỏ trống, loader lấy vị trí trong list |
+| `document_id` | Số hiệu / id văn bản pháp lý (không phải chunk id nội bộ) |
+| `article` / `clause` / `point` | Nhãn cấu trúc; thiếu thì `null` — **không bịa** |
+| `text` | Nội dung passage đã retrieve |
+| `score` | Được phép `null`; **không** so sánh score giữa các kiến trúc |
+
+Đừng bịa metadata. Đừng dùng id chunk/vector/node của một hệ thống làm `document_id` chung.
+
+---
+
+## 7. Tên hệ thống (`system`)
+
+Trong một file output, dùng nhất quán một trong:
+
+- `"kag"`
+- `"hybridrag"`
+- `"nativerag"`
+
+---
+
+## 8. File output khuyến nghị
+
+Khuyến nghị (chưa bắt buộc tạo sẵn thư mục):
+
+```text
+benchmark/runs/kag.json
+benchmark/runs/hybridrag.json
+benchmark/runs/nativerag.json
+```
+
+Thư mục `benchmark/runs/` **có thể chưa tồn tại** — đây chỉ là vị trí đề xuất khi bạn xuất kết quả. README này **không** tạo folder/results giúp bạn.
+
+---
+
+## 9. Lệnh evaluate (đã đối chiếu CLI)
+
+Entry: `python -m benchmark.evaluator.evaluate`  
+File: `benchmark/evaluator/evaluate.py`
+
+Flag thực tế (đã verify trong code):
+
+| Flag | Bắt buộc | Mặc định / ghi chú |
+|---|---|---|
+| `--dataset` | yes | JSON dataset (`benchmark_schema.json`) |
+| `--system-output` | yes | JSON output (`system_output_schema.json`) |
+| `--out` | no | Ghi full JSON report |
+| `--system` | no | Override tên hệ thống trong report |
+| `--k` | no | mặc định `1,3,5,10` (`DEFAULT_K_VALUES`) |
+| `--budgets` | no | mặc định `2000` (`PAPER_CONTEXT_BUDGET`) |
+| `--judge` | no | chỉ `"null"` trên CLI |
+| `--bootstrap-samples` / `--seed` / `--no-bootstrap` | no | CI |
+| `--no-per-question` | no | Bỏ per-question khi ghi `--out` |
+
+Lệnh chuẩn để so sánh công bằng:
+
+```bash
+python -m benchmark.evaluator.evaluate \
+  --dataset benchmark/work/final_150_corpus_verified.json \
+  --system-output <system-output.json> \
+  --out <report.json> \
+  --k 1,3,5,10 \
+  --budgets 2000 \
+  --judge null
+```
+
+PowerShell:
+
+```powershell
+python -m benchmark.evaluator.evaluate `
+  --dataset benchmark/work/final_150_corpus_verified.json `
+  --system-output <system-output.json> `
+  --out <report.json> `
+  --k 1,3,5,10 `
+  --budgets 2000 `
+  --judge null
+```
+
+`--k` nên gồm `5` và `--budgets` nên gồm `2000` (đây cũng là default) để bảng headline đủ hàng.
+
+---
+
+## 10. Rules everyone must follow (công bằng)
+
+1. Cùng một file dataset: `benchmark/work/final_150_corpus_verified.json`.
+2. Cùng evaluator: `python -m benchmark.evaluator.evaluate` (package `benchmark/`, không import `kag` / `hybridRAG` / `nativeRAG`).
+3. Cùng `--k`, `--budgets`, `--judge`, cùng cấu hình bootstrap khi công bố số.
+4. Không sửa câu hỏi; không dùng gold lúc sinh answer.
+5. `citations` chỉ từ answer text qua `citation_parser.py`.
+6. Không bịa `document_id` / `article` / `clause` / `point`.
+7. Không so sánh `score` giữa kiến trúc khác nhau.
+8. Run lỗi: ghi `error` (không “điền” metric = 0 giả).
+9. Kết quả 3 hệ thống chỉ được so khi cả ba đi qua **cùng** pipeline evaluate ở trên.
+
+---
+
+## 11. Phân biệt Dataset / System output / Evaluation report
+
+```text
++-------------------------------------+
+|  Dataset (gold)                     |
+|  final_150_corpus_verified.json     |
+|  schema: benchmark_schema.json      |
++------------------+------------------+
+                   |
+                   |  hệ thống chạy 150 câu
+                   v
++-------------------------------------+
+|  System output                      |
+|  ví dụ: benchmark/runs/<system>.json|
+|  schema: system_output_schema.json  |
++------------------+------------------+
+                   |
+                   |  python -m benchmark.evaluator.evaluate
+                   v
++-------------------------------------+
+|  Evaluation report                  |
+|  <report.json>                      |
+|  (micro / macro / per_question / CI)|
++-------------------------------------+
+```
+
+- **Dataset** = câu hỏi + gold trung lập kiến trúc.
+- **System output** = answer + retrieved_contexts + citations (+ latency/error) của **một** hệ thống.
+- **Report** = điểm số từ evaluator chung.
+
+---
+
+## 12. Nếu bạn chỉ phụ trách HybridRAG hoặc NativeRAG
+
+1. Chạy đúng 150 câu từ canonical dataset bằng pipeline hệ thống của bạn.
+2. Viết / dùng adapter map sang `system_output_schema.json`.
+3. Parse citations bằng `benchmark/adapters/citation_parser.py` từ `answer`.
+4. Xuất file (khuyến nghị `benchmark/runs/hybridrag.json` hoặc `benchmark/runs/nativerag.json`).
+5. Chạy lệnh evaluate ở mục 9.
+6. **Không** dùng bộ evaluate riêng của HybridRAG (`hybridRAG/evaluation/...`, RAGAS / production eval) làm số liệu so sánh 3 hệ thống — đó là harness nội bộ, khác contract chung.
+
+---
+
+## 13. Nếu bạn phụ trách KAG
+
+Cùng workflow mục 4-9.
+
+- **Không** dùng evaluator legacy KAG (`kag/solver/eval.py`, `gold_chunks`, marker/chunk nội bộ KAG) để so sánh 3 hệ thống.
+- Legacy KAG vẫn có thể phục vụ nghiên cứu nội bộ KAG; so sánh chung **chỉ** qua `benchmark.evaluator.evaluate` + dataset canonical.
+- Tag `<reference id="chunk:...">` không thay cho prose citation pháp lý trong `citations[]`.
+
+---
+
+## 14. Entrypoints hệ thống (runners)
+
+Đã rà soát `kag/`, `hybridRAG/`, `nativeRAG/`, `scripts/`, `benchmark/adapters/`:
+
+| Hệ thống | Runner chung xuất `system_output_schema.json` cho 150 câu |
+|---|---|
+| **KAG** | **Chưa có** (có `kag/solver/eval.py` + `gold_chunks` — legacy, không phải common output) |
+| **HybridRAG** | **Chưa có** (có `hybridRAG/evaluation/run_*.py` — dataset/metric riêng, không emit schema chung) |
+| **NativeRAG** | **Chưa có** (có `nativeRAG/test_query.py`, `nativeRAG/app/main.py` — interactive/API, không batch 150 sang schema chung) |
+| **Adapters** | Hiện chỉ có `benchmark/adapters/citation_parser.py` (parser chung); chưa có adapter per-system đã freeze |
+
+**Kết luận:** System runner/adapters **chưa được freeze**; sẽ hoàn thiện ở **B3**.  
+README này **không** bịa lệnh runner. Cho đến B3, mỗi team tự chạy hệ thống rồi map thủ công/script tạm sang `system_output_schema.json`, rồi evaluate như mục 9.
+
+---
+
+## 15. Pytest
+
+```bash
+python -m pytest benchmark/tests -q
+```
+
+- Test **evaluator / schema / citation_parser / isolation** trên dữ liệu synthetic.
+- **Không** chạy KAG / HybridRAG / NativeRAG.
+- Package `benchmark` cố ý nằm ngoài `kag/` và không import ba hệ thống (`tests/test_isolation.py`).
+
+---
+
+## 16. Layout thư mục (liên quan benchmark)
+
+```text
+benchmark/
+  README.md                      file này
+  benchmark_schema.json          contract dataset
+  system_output_schema.json      contract system output
+  work/
+    final_150_corpus_verified.json   canonical 150 câu (B2 + B2.5C)
+  evaluator/
+    evaluate.py                  CLI + orchestration
+    ...                          metrics / models / matching / ...
+  adapters/
+    citation_parser.py           parser citation chung
+  tests/                         unit tests offline
+  runs/                          (khuyến nghị) chỗ để system output — có thể chưa có
+```
+
+Không tham chiếu các file work B2 tạm đã xóa (audit/gap/authoring/selection/candidate, ...). Canonical duy nhất cần cho chạy benchmark là `final_150_corpus_verified.json`.
+
+---
+
+# Phụ lục — Protocol & metrics (sau hướng dẫn thực dụng)
+
+Phần dưới giữ lại hợp đồng kỹ thuật của harness. Đọc khi cần hiểu cách chấm; không cần để “chạy một lượt” lần đầu.
+
+## A. Harness này là gì / không phải gì
+
+**Có:** protocol đánh giá, 2 JSON schema, evaluator dùng chung, định nghĩa metric, unit test offline.
+
+**Không có (trong package này):** runner ba hệ thống đã freeze, retriever/generator/prompt của từng hệ thống, hay file kết quả so sánh đã chạy xong.
+
+Gold truth dùng ngôn ngữ của văn bản pháp luật:
+
+```text
+document -> article -> clause -> point -> evidence text -> gold claim
+```
+
+`benchmark_schema.json` và `evaluator/models.py` (`FORBIDDEN_DATASET_KEYS`) từ chối dataset mang id nội bộ hệ thống (`chunk_id`, `gold_chunks`, `vector_id`, `node_id`, ...).
+
+## B. Dataset contract (tóm tắt)
+
+| Field | Bắt buộc | Ý nghĩa |
+|---|---|---|
+| `id` | yes | id câu hỏi |
+| `question` | yes | nội dung câu hỏi |
+| `category` | yes | nhãn macro-average |
+| `answerable` | yes | `false` = cố ý không trả lời được từ corpus |
+| `gold_evidence[]` | với câu answerable | `{document_id, text, article, clause, point, required, ...}` |
+| `gold_markers[]` / `gold_claims[]` | optional | marker / claim |
+
+`clause` / `point` ghi để phân tích lỗi; độ sâu so sánh chính là **document + article**. `text` trong evidence là bắt buộc để cả ba hệ thống cùng có đường text-match.
+
+## C. Catalogue metric (tóm tắt)
+
+**Retrieval:** `evidence_recall`, `evidence_recall@k`, `evidence_recall_required`, `context_precision`, `hit@k`, `mrr`, `evidence_recall@Ntok` (ví dụ `@2000tok`).
+
+**Answer:** `hit_rate`, `hit_all`, `claim_precision` / `claim_recall` / `claim_f1`.
+
+**Grounding:** `faithfulness`, `hallucination_rate`, `retrieval_gap_rate`, `unsupported_claim_rate`.
+
+**Citation:** `document_accuracy`, `article_accuracy`, `clause_accuracy` / `point_accuracy` (diagnostic), `citation_precision`, `citation_recall`.
+
+**Unanswerable:** `correct_abstention`, `false_answer_rate`.
+
+**Operational:** `latency_ms`, `error_rate`.
+
+Paper profile ưu tiên metric **deterministic** (không cần LLM judge). Với `--judge null`, các metric phụ thuộc judge báo `None` / unavailable chứ không bịa 0.
+
+`hallucination_rate` **không** phải `1 - faithfulness` (còn bucket retrieval gap và undecided).
+
+## D. Evidence matching
+
+Thứ tự: **structural** -> **text** -> **judge** (nếu có).  
+Mismatch cứng ở `(document, article)` là hard negative. Mismatch `clause`/`point` không quyết định scoring so sánh — chuyển sang text route. Undecided != False.
+
+## E. Normalization
+
+`normalization.py`: NFC, strip markdown, collapse whitespace, dung sai dấu ngăn nghìn, fold dấu chỉ trên nhãn cấu trúc (`Điều`/`Khoản`/`Điểm`). **Không** gộp số điều khác nhau, không gộp số hiệu văn bản khác nhau, giữ phủ định và đơn vị tiền/tỷ lệ.
+
+## F. Judge
+
+CLI chỉ build `NullJudge` (`--judge null`). `RuleBasedJudge` / `ScriptedJudge` dùng nội bộ/test, không phải lựa chọn CLI công bố. Metric phụ thuộc judge chỉ vào paper khi đủ điều kiện độc lập / prompt pháp lý Việt / calibrate / `JudgeConfig` đóng băng — xem code `judge.py`.
+
+## G. `None` không phải 0
+
+- `not_applicable` — gold không đặt câu hỏi đó.
+- `unavailable` — run lỗi hoặc thiếu judge.
+
+Câu không có system output bị **loại khỏi trung bình**, không chấm 0.
+
+## H. Aggregation
+
+- **micro** — trung bình trên câu có giá trị thật.
+- **macro** — trung bình theo category rồi trung bình các category.
+- **95% CI** — bootstrap trên micro (seed cố định); macro không bootstrap.
+
+## I. Giới hạn đã biết
+
+- Không có contradiction từ `RuleBasedJudge` trên CLI.
+- `claim_*` / `faithfulness` / `hallucination_rate` thường unavailable với `NullJudge` nếu adapter không cung cấp `answer_claims`.
+- Clause/point agreement chỉ diagnostic.
+- Đếm token budget là ước lượng không tokenizer (`max(words, ceil(chars/4))`) — nhất quán giữa hệ thống, không trùng tokenizer model cụ thể.
