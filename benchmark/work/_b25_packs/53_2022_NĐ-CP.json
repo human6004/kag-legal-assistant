@@ -1,0 +1,129 @@
+[
+  {
+    "id": "Q030",
+    "source_id": "C047",
+    "category": "obligation",
+    "answerable": true,
+    "question": "Nghị định 53/2022/NĐ-CP quy định những mốc thời gian nào về lưu trữ dữ liệu và nhật ký hệ thống?",
+    "markers": [
+      "bắt đầu từ khi doanh nghiệp nhận được yêu cầu lưu trữ dữ liệu đến khi kết thúc yêu cầu",
+      "Thời gian lưu trữ tối thiểu là 24 tháng",
+      "Nhật ký hệ thống để phục vụ điều tra, xử lý hành vi vi phạm pháp luật về an ninh mạng được quy định tại điểm b khoản 2 Điều 26 của Luật An ninh mạng được lưu trữ tối thiểu là 12 tháng"
+    ],
+    "notes": "Bỏ mốc 12 tháng kể từ quyết định của Bộ trưởng (Điều 26 khoản 6 điểm c): đó là hạn hoàn thành lưu trữ hoặc đặt chi nhánh, không phải thời hạn lưu. Không lấy Điều 27 khoản 2 vì đó là thời gian đặt chi nhánh.\nevidence A: Điều 27 khoản 1 — thời gian lưu trữ dữ liệu, tối thiểu 24 tháng.\nevidence B: Điều 27 khoản 3 — nhật ký hệ thống lưu tối thiểu 12 tháng.\nvì sao một evidence không đủ: thời hạn lưu dữ liệu và thời hạn lưu nhật ký là hai khoản; thiếu một khoản thì không đủ các mốc câu hỏi đòi. Cùng một điều, không tính multi_hop.",
+    "evidence": [
+      {
+        "document_id": "53/2022/NĐ-CP",
+        "article": "27",
+        "clause": "1",
+        "point": null,
+        "text": "1. Thời gian lưu trữ dữ liệu theo quy định tại Điều 26 Nghị định này bắt đầu từ khi doanh nghiệp nhận được yêu cầu lưu trữ dữ liệu đến khi kết thúc yêu cầu. Thời gian lưu trữ tối thiểu là 24 tháng."
+      },
+      {
+        "document_id": "53/2022/NĐ-CP",
+        "article": "27",
+        "clause": "3",
+        "point": null,
+        "text": "3. Nhật ký hệ thống để phục vụ điều tra, xử lý hành vi vi phạm pháp luật về an ninh mạng được quy định tại điểm b khoản 2 Điều 26 của Luật An ninh mạng được lưu trữ tối thiểu là 12 tháng."
+      }
+    ]
+  },
+  {
+    "id": "Q069",
+    "source_id": "N011",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Khi cần xác thực hồ sơ đề nghị đưa hệ thống thông tin vào Danh mục hệ thống thông tin quan trọng về an ninh quốc gia, thời gian khảo sát, kiểm tra thực tế không được quá bao lâu?",
+    "markers": [
+      "không quá 20 ngày",
+      "khảo sát, kiểm tra thực tế",
+      "Danh mục hệ thống thông tin quan trọng về an ninh quốc gia"
+    ],
+    "notes": "Điều 5 khoản 6 Nghị định 53/2022/NĐ-CP. Trần thời gian khảo sát thực địa, không phải hạn lưu trữ dữ liệu.",
+    "evidence": [
+      {
+        "document_id": "53/2022/NĐ-CP",
+        "article": "5",
+        "clause": "6",
+        "point": null,
+        "text": "6. Trường hợp cần xác thực thông tin trong hồ sơ và hiện trạng thực tế của hệ thống thông tin được nêu trong hồ sơ, cơ quan thẩm định quy định tại khoản 1, khoản 2, khoản 3 Điều này tổ chức khảo sát, kiểm tra thực tế để thẩm định đề nghị đưa hệ thống thông tin vào Danh mục hệ thống thông tin quan trọng về an ninh quốc gia. Thời gian khảo sát, kiểm tra thực tế không quá 20 ngày. Kết quả khảo sát được lập thành biên bản có xác nhận của cơ quan thẩm định và chủ quản hệ thống thông tin."
+      }
+    ]
+  },
+  {
+    "id": "Q086",
+    "source_id": "N013",
+    "category": "effectiveness_metadata",
+    "answerable": true,
+    "question": "Nghị định 53/2022/NĐ-CP có hiệu lực từ ngày nào?",
+    "markers": [
+      "01 tháng 10 năm 2022"
+    ],
+    "notes": "Điều 29 Nghị định 53/2022/NĐ-CP, điều không đánh khoản. Ngày hiệu lực ghi trong điều, không lấy nhãn đầu file.",
+    "evidence": [
+      {
+        "document_id": "53/2022/NĐ-CP",
+        "article": "29",
+        "clause": null,
+        "point": null,
+        "text": "Nghị định này có hiệu lực từ ngày 01 tháng 10 năm 2022."
+      }
+    ]
+  },
+  {
+    "id": "Q103",
+    "source_id": "N018",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Nghị định 53/2022/NĐ-CP quy định chi tiết những điểm, khoản nào của Luật An ninh mạng?",
+    "markers": [
+      "quy định chi tiết",
+      "điểm a, b, c, d, đ, g, i, k, l khoản 1 Điều 5",
+      "khoản 4 Điều 10",
+      "khoản 5 Điều 12",
+      "khoản 1 Điều 23",
+      "khoản 7 Điều 24",
+      "khoản 2, 4 Điều 26",
+      "khoản 5 Điều 36"
+    ],
+    "notes": "Điều 1 Nghị định 53/2022/NĐ-CP tự nêu quan hệ quy định chi tiết. Marker phủ cả danh sách trong câu đó. Thiếu một khoản thì không đủ hit_all. Tiêu đề Điều 1 chỉ có một lần trong file.",
+    "evidence": [
+      {
+        "document_id": "53/2022/NĐ-CP",
+        "article": "1",
+        "clause": null,
+        "point": null,
+        "text": "Nghị định này quy định chi tiết điểm a, b, c, d, đ, g, i, k, l khoản 1 Điều 5, khoản 4 Điều 10, khoản 5 Điều 12, khoản 1 Điều 23, khoản 7 Điều 24, khoản 2, 4 Điều 26, khoản 5 Điều 36 Luật An ninh mạng, gồm các nội dung sau:"
+      }
+    ]
+  },
+  {
+    "id": "Q120",
+    "source_id": "C056",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Việc lưu trữ dữ liệu và đặt chi nhánh hoặc văn phòng đại diện tại Việt Nam được quy định tại điều nào, và thời gian lưu trữ dữ liệu tối thiểu là bao lâu?",
+    "markers": [
+      "Điều 26",
+      "Điều 27",
+      "Thời gian lưu trữ tối thiểu là 24 tháng"
+    ],
+    "notes": "Draft chỉ có Điều 27. Nghĩa vụ lưu trữ và đặt chi nhánh là tiêu đề Điều 26; 24 tháng là khoản 1 Điều 27. evidence A: 53/2022 Điều 26 (lưu trữ dữ liệu và đặt chi nhánh, văn phòng đại diện). evidence B: 53/2022 Điều 27 khoản 1 (thời gian lưu trữ tối thiểu 24 tháng). vì sao một evidence không đủ: điều thời hạn không phải điều đặt ra nghĩa vụ lưu trữ và đặt chi nhánh.",
+    "evidence": [
+      {
+        "document_id": "53/2022/NĐ-CP",
+        "article": "26",
+        "clause": null,
+        "point": null,
+        "text": "Điều 26. Lưu trữ dữ liệu, đặt chi nhánh hoặc văn phòng đại diện tại Việt Nam"
+      },
+      {
+        "document_id": "53/2022/NĐ-CP",
+        "article": "27",
+        "clause": "1",
+        "point": null,
+        "text": "1. Thời gian lưu trữ dữ liệu theo quy định tại Điều 26 Nghị định này bắt đầu từ khi doanh nghiệp nhận được yêu cầu lưu trữ dữ liệu đến khi kết thúc yêu cầu. Thời gian lưu trữ tối thiểu là 24 tháng."
+      }
+    ]
+  }
+]

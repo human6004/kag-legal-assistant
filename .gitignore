@@ -34,6 +34,14 @@ dist/
 # bao cao ra soat sinh tu dong, khong thuoc ve repo
 /_AUDIT*.md
 
+# B2.5: ban tai ve tu congbao/vanban chinh thuc chi de doi chieu.
+# Giu .txt/.url (trich xuat + nguon) de session sau resume duoc; PDF/DOC goc
+# thuong la ban scan nang 40+ MB va da co ban tuong ung trong data/raw.
+benchmark/work/_b25_src/**/*.pdf
+benchmark/work/_b25_src/**/*.doc
+benchmark/work/_b25_src/**/*.docx
+benchmark/work/_b25_src/**/*.anti.err
+
 # editor
 .idea/
 *.vscode/

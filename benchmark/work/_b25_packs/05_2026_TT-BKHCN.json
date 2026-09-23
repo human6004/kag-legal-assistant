@@ -1,0 +1,142 @@
+[
+  {
+    "id": "Q017",
+    "source_id": "C137",
+    "category": "definition",
+    "answerable": true,
+    "question": "Thông tư 05/2026/TT-BKHCN giải thích thế nào là đạo đức trí tuệ nhân tạo, đầu độc dữ liệu và đầu độc mô hình?",
+    "markers": [
+      "hệ giá trị, nguyên tắc và chuẩn mực",
+      "bảo đảm tôn trọng con người, quyền con người, lợi ích công cộng và phát triển bền vững",
+      "sửa đổi, thao túng tập dữ liệu huấn luyện",
+      "các thành phần tiền huấn luyện của mô hình"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "2",
+        "clause": "1",
+        "point": null,
+        "text": "1. Đạo đức trí tuệ nhân tạo là hệ giá trị, nguyên tắc và chuẩn mực định hướng việc nghiên cứu, phát triển, cung cấp, triển khai và sử dụng trí tuệ nhân tạo nhằm bảo đảm tôn trọng con người, quyền con người, lợi ích công cộng và phát triển bền vững."
+      },
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "2",
+        "clause": "2",
+        "point": null,
+        "text": "2. Đầu độc dữ liệu là các cuộc tấn công nhằm sửa đổi, thao túng tập dữ liệu huấn luyện."
+      },
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "2",
+        "clause": "3",
+        "point": null,
+        "text": "3. Đầu độc mô hình là tấn công nhắm vào các thành phần tiền huấn luyện của mô hình được dùng trong quá trình huấn luyện."
+      }
+    ]
+  },
+  {
+    "id": "Q018",
+    "source_id": "C138",
+    "category": "definition",
+    "answerable": true,
+    "question": "Khung đạo đức trí tuệ nhân tạo quốc gia ban hành kèm Thông tư 05/2026/TT-BKHCN gồm những nguyên tắc đạo đức nào?",
+    "markers": [
+      "Bảo đảm an toàn, độ tin cậy và không gây hại",
+      "bảo đảm công bằng, minh bạch và không phân biệt đối xử",
+      "Thúc đẩy hạnh phúc, thịnh vượng và sự phát triển bền vững",
+      "Khuyến khích đổi mới sáng tạo và trách nhiệm xã hội"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "3",
+        "clause": "1",
+        "point": null,
+        "text": "1. Bảo đảm an toàn, độ tin cậy và không gây hại đến tính mạng, sức khỏe, danh dự, nhân phẩm và đời sống tinh thần của con người."
+      },
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "3",
+        "clause": "2",
+        "point": null,
+        "text": "2. Tôn trọng quyền con người, quyền công dân, bảo đảm công bằng, minh bạch và không phân biệt đối xử trong phát triển và sử dụng trí tuệ nhân tạo."
+      },
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "3",
+        "clause": "3",
+        "point": null,
+        "text": "3. Thúc đẩy hạnh phúc, thịnh vượng và sự phát triển bền vững của con người, cộng đồng và xã hội."
+      },
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "3",
+        "clause": "4",
+        "point": null,
+        "text": "4. Khuyến khích đổi mới sáng tạo và trách nhiệm xã hội trong nghiên cứu, phát triển và ứng dụng trí tuệ nhân tạo."
+      }
+    ]
+  },
+  {
+    "id": "Q019",
+    "source_id": "C139",
+    "category": "definition",
+    "answerable": true,
+    "question": "Theo Khung đạo đức trí tuệ nhân tạo quốc gia, nguyên tắc an toàn và không gây hại yêu cầu cụ thể gì về thiết kế an toàn ngay từ đầu và về kiểm soát của con người?",
+    "markers": [
+      "Thiết kế an toàn ngay từ đầu",
+      "xác định trước các kịch bản gây hại",
+      "cơ chế giám sát và can thiệp của con người",
+      "duy trì sự kiểm soát và khả năng can thiệp của con người"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "3",
+        "clause": "1",
+        "point": "a",
+        "text": "a) Thiết kế an toàn ngay từ đầu: Tổ chức, cá nhân có trách nhiệm xác định trước các kịch bản gây hại có thể xảy ra đối với tính mạng, sức khỏe, danh dự, nhân phẩm và xây dựng biện pháp phòng ngừa."
+      },
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "3",
+        "clause": "1",
+        "point": "c",
+        "text": "c) Kiểm soát của con người: Tổ chức, cá nhân có trách nhiệm xây dựng cơ chế giám sát và can thiệp của con người phù hợp với mức độ ảnh hưởng của hệ thống; bảo đảm duy trì sự kiểm soát và khả năng can thiệp của con người đối với mọi quyết định và hành vi của hệ thống trí tuệ nhân tạo."
+      }
+    ]
+  },
+  {
+    "id": "Q134",
+    "source_id": "C140",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Thông tư 05/2026/TT-BKHCN có hiệu lực thi hành từ ngày nào và Khung đạo đức trí tuệ nhân tạo quốc gia được rà soát, cập nhật định kỳ bao lâu?",
+    "markers": [
+      "có hiệu lực thi hành kể từ ngày 10 tháng 3 năm 2026",
+      "định kỳ 03 năm một lần",
+      "khi có thay đổi lớn về công nghệ, pháp luật và thực tiễn quản lý"
+    ],
+    "notes": "evidence A: 05/2026 Điều 4 (hiệu lực 10/3/2026). evidence B: 05/2026 Điều 5 khoản 1 (rà soát khung đạo đức 03 năm một lần). vì sao một evidence không đủ: ngày hiệu lực và chu kỳ rà soát ở hai điều.",
+    "evidence": [
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "4",
+        "clause": null,
+        "point": null,
+        "text": "Thông tư này có hiệu lực thi hành kể từ ngày 10 tháng 3 năm 2026."
+      },
+      {
+        "document_id": "05/2026/TT-BKHCN",
+        "article": "5",
+        "clause": "1",
+        "point": null,
+        "text": "1. Khung đạo đức trí tuệ nhân tạo quốc gia được rà soát, cập nhật định kỳ 03 năm một lần hoặc khi có thay đổi lớn về công nghệ, pháp luật và thực tiễn quản lý."
+      }
+    ]
+  }
+]

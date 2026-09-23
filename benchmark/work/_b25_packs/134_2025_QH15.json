@@ -1,0 +1,586 @@
+[
+  {
+    "id": "Q014",
+    "source_id": "C116",
+    "category": "definition",
+    "answerable": true,
+    "question": "Luật Trí tuệ nhân tạo 134/2025/QH15 giải thích thế nào là trí tuệ nhân tạo và thế nào là hệ thống trí tuệ nhân tạo?",
+    "markers": [
+      "việc thực hiện bằng điện tử các năng lực trí tuệ của con người",
+      "hiểu ngôn ngữ tự nhiên",
+      "có khả năng tự thích nghi sau khi được triển khai",
+      "dự đoán, nội dung, khuyến nghị hoặc quyết định"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "134/2025/QH15",
+        "article": "3",
+        "clause": "1",
+        "point": null,
+        "text": "1. Trí tuệ nhân tạo là việc thực hiện bằng điện tử các năng lực trí tuệ của con người, bao gồm học tập, suy luận, nhận thức, phán đoán và hiểu ngôn ngữ tự nhiên."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "3",
+        "clause": "2",
+        "point": null,
+        "text": "2. Hệ thống trí tuệ nhân tạo là hệ thống dựa trên máy, được thiết kế để thực hiện các năng lực trí tuệ nhân tạo với các mức độ tự chủ khác nhau, có khả năng tự thích nghi sau khi được triển khai; căn cứ vào các mục tiêu được xác định rõ ràng hoặc được hình thành một cách ngầm định, hệ thống suy luận từ dữ liệu đầu vào để tạo ra các đầu ra như dự đoán, nội dung, khuyến nghị hoặc quyết định có thể gây ảnh hưởng tới môi trường vật lý hoặc môi trường số."
+      }
+    ]
+  },
+  {
+    "id": "Q015",
+    "source_id": "C117",
+    "category": "definition",
+    "answerable": true,
+    "question": "Hệ thống trí tuệ nhân tạo được phân loại theo những mức độ rủi ro nào, mỗi mức được hiểu ra sao, căn cứ vào tiêu chí nào để xác định và quy định tại điều nào?",
+    "markers": [
+      "Điều 9",
+      "rủi ro cao là hệ thống có thể gây thiệt hại đáng kể đến tính mạng, sức khỏe",
+      "rủi ro trung bình là hệ thống có khả năng gây nhầm lẫn, tác động hoặc thao túng người sử dụng",
+      "rủi ro thấp là hệ thống không thuộc trường hợp quy định tại điểm a và điểm b khoản này",
+      "mức độ tác động đến quyền con người, an toàn, an ninh",
+      "lĩnh vực sử dụng của hệ thống",
+      "phạm vi người sử dụng và quy mô ảnh hưởng của hệ thống"
+    ],
+    "notes": "evidence A: Điều 9 khoản 1 Luật 134 — đủ ba mức: rủi ro cao, rủi ro trung bình, rủi ro thấp. Gold cũ không ghi tên mức và bỏ mức thấp chỉ còn mảnh 'không thuộc điểm a và điểm b'.\nevidence B: Điều 9 khoản 2 — tiêu chí xác định: mức độ tác động đến quyền con người, an toàn, an ninh; lĩnh vực sử dụng; phạm vi người sử dụng và quy mô ảnh hưởng.\nvì sao một evidence không đủ: khoản 1 không nêu tiêu chí; khoản 2 không định nghĩa từng mức. Số điều nằm ở tiêu đề Điều 9. Cùng một điều, không tính multi_hop.",
+    "evidence": [
+      {
+        "document_id": "134/2025/QH15",
+        "article": "9",
+        "clause": null,
+        "point": null,
+        "text": "Điều 9. Phân loại mức độ rủi ro của hệ thống trí tuệ nhân tạo"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "9",
+        "clause": "1",
+        "point": null,
+        "text": "1. Hệ thống trí tuệ nhân tạo được phân loại theo các mức độ rủi ro sau đây:"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "9",
+        "clause": "1",
+        "point": "a",
+        "text": "a) Hệ thống trí tuệ nhân tạo có rủi ro cao là hệ thống có thể gây thiệt hại đáng kể đến tính mạng, sức khỏe, quyền và lợi ích hợp pháp của tổ chức, cá nhân, lợi ích quốc gia, lợi ích công cộng, an ninh quốc gia;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "9",
+        "clause": "1",
+        "point": "b",
+        "text": "b) Hệ thống trí tuệ nhân tạo có rủi ro trung bình là hệ thống có khả năng gây nhầm lẫn, tác động hoặc thao túng người sử dụng do không nhận biết được chủ thể tương tác là hệ thống trí tuệ nhân tạo hoặc nội dung do hệ thống tạo ra;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "9",
+        "clause": "1",
+        "point": "c",
+        "text": "c) Hệ thống trí tuệ nhân tạo có rủi ro thấp là hệ thống không thuộc trường hợp quy định tại điểm a và điểm b khoản này."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "9",
+        "clause": "2",
+        "point": null,
+        "text": "2. Việc phân loại rủi ro của hệ thống trí tuệ nhân tạo được xác định trên cơ sở các tiêu chí về mức độ tác động đến quyền con người, an toàn, an ninh; lĩnh vực sử dụng của hệ thống, đặc biệt là lĩnh vực thiết yếu hoặc liên quan trực tiếp đến lợi ích công cộng; phạm vi người sử dụng và quy mô ảnh hưởng của hệ thống."
+      }
+    ]
+  },
+  {
+    "id": "Q016",
+    "source_id": "C118",
+    "category": "definition",
+    "answerable": true,
+    "question": "Luật Trí tuệ nhân tạo phân biệt nhà phát triển, nhà cung cấp và bên triển khai hệ thống trí tuệ nhân tạo khác nhau ở điểm nào?",
+    "markers": [
+      "thiết kế, xây dựng, huấn luyện, kiểm thử hoặc tinh chỉnh",
+      "có quyền kiểm soát trực tiếp đối với phương pháp kỹ thuật",
+      "dưới tên, thương hiệu hoặc nhãn hiệu của mình",
+      "không bao gồm trường hợp sử dụng cho mục đích cá nhân, phi thương mại"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "134/2025/QH15",
+        "article": "3",
+        "clause": "3",
+        "point": null,
+        "text": "3. Nhà phát triển là tổ chức, cá nhân thực hiện việc thiết kế, xây dựng, huấn luyện, kiểm thử hoặc tinh chỉnh toàn bộ hoặc một phần mô hình, thuật toán hoặc hệ thống trí tuệ nhân tạo và có quyền kiểm soát trực tiếp đối với phương pháp kỹ thuật, dữ liệu huấn luyện hoặc tham số mô hình."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "3",
+        "clause": "4",
+        "point": null,
+        "text": "4. Nhà cung cấp là tổ chức, cá nhân đưa hệ thống trí tuệ nhân tạo ra thị trường hoặc đưa vào sử dụng dưới tên, thương hiệu hoặc nhãn hiệu của mình, không phụ thuộc hệ thống đó do họ tự phát triển hay được phát triển bởi bên thứ ba."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "3",
+        "clause": "5",
+        "point": null,
+        "text": "5. Bên triển khai là tổ chức, cá nhân sử dụng hệ thống trí tuệ nhân tạo thuộc phạm vi kiểm soát của mình trong hoạt động nghề nghiệp, thương mại hoặc cung cấp dịch vụ; không bao gồm trường hợp sử dụng cho mục đích cá nhân, phi thương mại."
+      }
+    ]
+  },
+  {
+    "id": "Q042",
+    "source_id": "C120",
+    "category": "obligation",
+    "answerable": true,
+    "question": "Nhà cung cấp hệ thống trí tuệ nhân tạo có rủi ro cao phải thực hiện những nghĩa vụ bắt buộc nào theo Luật Trí tuệ nhân tạo?",
+    "markers": [
+      "Thiết lập và duy trì biện pháp quản lý rủi ro",
+      "Quản trị dữ liệu huấn luyện, kiểm thử và vận hành",
+      "Lập, cập nhật, lưu giữ hồ sơ kỹ thuật và nhật ký hoạt động",
+      "Thiết kế hệ thống bảo đảm khả năng giám sát và can thiệp của con người",
+      "Thực hiện nghĩa vụ minh bạch và xử lý sự cố theo quy định tại Điều 11 và Điều 12 của Luật này",
+      "Thực hiện trách nhiệm giải trình đối với cơ quan nhà nước có thẩm quyền về mục đích sử dụng",
+      "Phối hợp với cơ quan nhà nước có thẩm quyền và bên triển khai"
+    ],
+    "notes": "Câu hỏi nhà cung cấp, nên chỉ khoản 1 Điều 14 Luật 134, đủ điểm a, b, c, d, đ, e, g. Không lấy nghĩa vụ của bên triển khai ở khoản 2 hay người sử dụng ở khoản 3. Gold cũ thiếu quản trị dữ liệu, minh bạch và xử lý sự cố, phối hợp với cơ quan nhà nước.",
+    "evidence": [
+      {
+        "document_id": "134/2025/QH15",
+        "article": "14",
+        "clause": "1",
+        "point": null,
+        "text": "1. Nhà cung cấp hệ thống trí tuệ nhân tạo có rủi ro cao có trách nhiệm sau đây:"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "14",
+        "clause": "1",
+        "point": "a",
+        "text": "a) Thiết lập và duy trì biện pháp quản lý rủi ro và thường xuyên rà soát khi hệ thống có thay đổi đáng kể hoặc phát sinh rủi ro mới;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "14",
+        "clause": "1",
+        "point": "b",
+        "text": "b) Quản trị dữ liệu huấn luyện, kiểm thử và vận hành bảo đảm chất lượng trong phạm vi khả năng kỹ thuật và phù hợp với mục đích sử dụng của hệ thống;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "14",
+        "clause": "1",
+        "point": "c",
+        "text": "c) Lập, cập nhật, lưu giữ hồ sơ kỹ thuật và nhật ký hoạt động ở mức cần thiết cho việc đánh giá sự phù hợp và kiểm tra sau khi đưa vào sử dụng; cung cấp các thông tin này cho cơ quan nhà nước có thẩm quyền theo nguyên tắc cần thiết, tương xứng với mục đích kiểm tra và không làm lộ bí mật kinh doanh;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "14",
+        "clause": "1",
+        "point": "d",
+        "text": "d) Thiết kế hệ thống bảo đảm khả năng giám sát và can thiệp của con người đối với hệ thống;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "14",
+        "clause": "1",
+        "point": "đ",
+        "text": "đ) Thực hiện nghĩa vụ minh bạch và xử lý sự cố theo quy định tại Điều 11 và Điều 12 của Luật này;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "14",
+        "clause": "1",
+        "point": "e",
+        "text": "e) Thực hiện trách nhiệm giải trình đối với cơ quan nhà nước có thẩm quyền về mục đích sử dụng, nguyên lý hoạt động ở mức mô tả chức năng, loại dữ liệu đầu vào chủ yếu, biện pháp quản lý và kiểm soát rủi ro cùng các nội dung cần thiết phục vụ thanh tra, kiểm tra; cung cấp cho người sử dụng và người bị ảnh hưởng các thông tin công khai ở mức mô tả chức năng, cách thức vận hành và cảnh báo rủi ro để bảo đảm an toàn trong sử dụng. Việc giải trình và cung cấp thông tin không được yêu cầu tiết lộ mã nguồn, thuật toán chi tiết, bộ tham số hoặc thông tin thuộc bí mật kinh doanh, bí mật công nghệ;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "14",
+        "clause": "1",
+        "point": "g",
+        "text": "g) Phối hợp với cơ quan nhà nước có thẩm quyền và bên triển khai trong kiểm tra, đánh giá, hậu kiểm và khắc phục sự cố liên quan đến hệ thống."
+      }
+    ]
+  },
+  {
+    "id": "Q043",
+    "source_id": "C121",
+    "category": "obligation",
+    "answerable": true,
+    "question": "Nhà cung cấp và bên triển khai hệ thống trí tuệ nhân tạo phải làm gì để bảo đảm trách nhiệm minh bạch, đặc biệt là với nội dung do trí tuệ nhân tạo tạo ra?",
+    "markers": [
+      "người sử dụng nhận biết khi đang tương tác với hệ thống",
+      "được đánh dấu ở định dạng máy đọc",
+      "gắn nhãn dễ nhận biết để phân biệt với nội dung thật"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "134/2025/QH15",
+        "article": "11",
+        "clause": "1",
+        "point": null,
+        "text": "1. Nhà cung cấp bảo đảm hệ thống trí tuệ nhân tạo tương tác trực tiếp với con người được thiết kế và vận hành để người sử dụng nhận biết khi đang tương tác với hệ thống, trừ trường hợp pháp luật có quy định khác."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "11",
+        "clause": "2",
+        "point": null,
+        "text": "2. Nhà cung cấp bảo đảm các nội dung âm thanh, hình ảnh, video do hệ thống trí tuệ nhân tạo tạo ra được đánh dấu ở định dạng máy đọc theo quy định của Chính phủ."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "11",
+        "clause": "4",
+        "point": null,
+        "text": "4. Bên triển khai có trách nhiệm bảo đảm âm thanh, hình ảnh, video được tạo ra hoặc chỉnh sửa bằng hệ thống trí tuệ nhân tạo nhằm mô phỏng, giả lập ngoại hình, giọng nói của người thật hoặc tái hiện sự kiện thực tế phải được gắn nhãn dễ nhận biết để phân biệt với nội dung thật."
+      }
+    ]
+  },
+  {
+    "id": "Q091",
+    "source_id": "C041",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Luật Trí tuệ nhân tạo 2025 bãi bỏ một số quy định của luật nào, và luật đó có phải là Luật Công nghiệp công nghệ số không?",
+    "markers": [
+      "Luật Công nghiệp công nghệ số số 71/2025/QH15",
+      "Bãi bỏ khoản 9 Điều 3, khoản 7 Điều 4, khoản 6 Điều 12, điểm đ khoản 2 Điều 34 và Chương IV của Luật Công nghiệp công nghệ số"
+    ],
+    "notes": "Câu cũ nói 'sửa đổi'. Điều 33 Luật 134 chỉ bãi bỏ một số khoản, điểm và cả Chương IV của Luật Công nghiệp công nghệ số số 71/2025/QH15, không sửa đổi luật đó nói chung. Hai đoạn là tiêu đề và câu bãi bỏ của cùng Điều 33.",
+    "evidence": [
+      {
+        "document_id": "134/2025/QH15",
+        "article": "33",
+        "clause": null,
+        "point": null,
+        "text": "Điều 33. Bãi bỏ một số chương, điều, khoản, điểm của Luật Công nghiệp công nghệ số số 71/2025/QH15"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "33",
+        "clause": null,
+        "point": null,
+        "text": "Bãi bỏ khoản 9 Điều 3, khoản 7 Điều 4, khoản 6 Điều 12, điểm đ khoản 2 Điều 34 và Chương IV của Luật Công nghiệp công nghệ số."
+      }
+    ]
+  },
+  {
+    "id": "Q111",
+    "source_id": "C001",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Trước khi đưa vào sử dụng, hệ thống trí tuệ nhân tạo có rủi ro cao bắt buộc phải qua thủ tục gì và nhà cung cấp phải thông báo kết quả phân loại cho cơ quan nào?",
+    "markers": [
+      "đánh giá sự phù hợp",
+      "trước khi đưa vào sử dụng",
+      "thông báo kết quả phân loại cho Bộ Khoa học và Công nghệ"
+    ],
+    "notes": "evidence A: Điều 13 khoản 1 Luật 134, hệ thống rủi ro cao phải được đánh giá sự phù hợp trước khi đưa vào sử dụng.\nevidence B: Điều 10 khoản 3, nhà cung cấp phải thông báo kết quả phân loại cho Bộ Khoa học và Công nghệ.\nvì sao một evidence không đủ: Điều 13 không nêu cơ quan nhận thông báo; Điều 10 khoản 3 không phải thủ tục đánh giá sự phù hợp.",
+    "evidence": [
+      {
+        "document_id": "134/2025/QH15",
+        "article": "13",
+        "clause": "1",
+        "point": null,
+        "text": "1. Hệ thống trí tuệ nhân tạo có rủi ro cao phải được đánh giá sự phù hợp theo quy định của Luật này trước khi đưa vào sử dụng hoặc khi có thay đổi đáng kể trong quá trình sử dụng. Trường hợp có tiêu chuẩn, quy chuẩn kỹ thuật về hệ thống trí tuệ nhân tạo thì còn phải thực hiện đánh giá sự phù hợp theo quy định của pháp luật về tiêu chuẩn, quy chuẩn kỹ thuật."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "10",
+        "clause": "3",
+        "point": null,
+        "text": "3. Đối với hệ thống được phân loại là rủi ro trung bình hoặc rủi ro cao, nhà cung cấp phải thông báo kết quả phân loại cho Bộ Khoa học và Công nghệ thông qua Cổng thông tin điện tử một cửa về trí tuệ nhân tạo trước khi đưa vào sử dụng. Khuyến khích tổ chức, cá nhân phát triển hệ thống trí tuệ nhân tạo có rủi ro thấp công khai thông tin cơ bản của hệ thống nhằm tăng tính minh bạch."
+      }
+    ]
+  },
+  {
+    "id": "Q128",
+    "source_id": "C123",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Luật Trí tuệ nhân tạo có hiệu lực thi hành từ ngày nào và quy định tại điều nào? Hệ thống trí tuệ nhân tạo đã đưa vào hoạt động trước ngày luật có hiệu lực phải hoàn thành nghĩa vụ tuân thủ trong bao lâu đối với lĩnh vực y tế, giáo dục và tài chính, và trong bao lâu đối với các hệ thống còn lại?",
+    "markers": [
+      "Điều 34",
+      "có hiệu lực thi hành từ ngày 01 tháng 3 năm 2026",
+      "18 tháng kể từ ngày Luật này có hiệu lực thi hành đối với hệ thống trí tuệ nhân tạo trong lĩnh vực y tế, giáo dục và tài chính",
+      "12 tháng kể từ ngày Luật này có hiệu lực thi hành đối với các hệ thống trí tuệ nhân tạo không thuộc trường hợp quy định tại điểm a khoản này"
+    ],
+    "notes": "evidence A: Điều 34 Luật 134 — hiệu lực từ ngày 01 tháng 3 năm 2026, trừ nội dung liên quan Điều 35. Gold cũ cụt còn 'tháng 3 năm 2026'.\nevidence B: Điều 35 khoản 1 điểm a và điểm b — 18 tháng với y tế, giáo dục, tài chính; 12 tháng với hệ thống còn lại.\nvì sao một evidence không đủ: Điều 34 không ấn định 18 tháng hay 12 tháng; Điều 35 không ấn định ngày luật có hiệu lực. Câu cũ hỏi như thể chỉ có một thời hạn.",
+    "evidence": [
+      {
+        "document_id": "134/2025/QH15",
+        "article": "34",
+        "clause": null,
+        "point": null,
+        "text": "Điều 34. Hiệu lực thi hành"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "34",
+        "clause": null,
+        "point": null,
+        "text": "Luật này có hiệu lực thi hành từ ngày 01 tháng 3 năm 2026, trừ các nội dung liên quan quy định tại Điều 35 của Luật này."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "35",
+        "clause": "1",
+        "point": null,
+        "text": "1. Đối với các hệ thống trí tuệ nhân tạo đã được đưa vào hoạt động trước ngày Luật này có hiệu lực thi hành, nhà cung cấp và bên triển khai có trách nhiệm thực hiện các nghĩa vụ tuân thủ theo quy định của Luật này trong thời hạn sau đây:"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "35",
+        "clause": "1",
+        "point": "a",
+        "text": "a) 18 tháng kể từ ngày Luật này có hiệu lực thi hành đối với hệ thống trí tuệ nhân tạo trong lĩnh vực y tế, giáo dục và tài chính;"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "35",
+        "clause": "1",
+        "point": "b",
+        "text": "b) 12 tháng kể từ ngày Luật này có hiệu lực thi hành đối với các hệ thống trí tuệ nhân tạo không thuộc trường hợp quy định tại điểm a khoản này."
+      }
+    ]
+  },
+  {
+    "id": "Q129",
+    "source_id": "C124",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Khoản 9 Điều 3 Luật Công nghiệp công nghệ số định nghĩa hệ thống trí tuệ nhân tạo như thế nào, và Luật Trí tuệ nhân tạo số 134/2025/QH15 đã bãi bỏ khoản đó chưa?",
+    "markers": [
+      "Hệ thống trí tuệ nhân tạo là hệ thống dựa trên máy móc được thiết kế để hoạt động với các mức độ tự chủ khác nhau",
+      "có khả năng thích ứng sau khi triển khai",
+      "sản phẩm công nghệ số tích hợp giữa phần cứng, phần mềm và dữ liệu",
+      "Bãi bỏ khoản 9 Điều 3"
+    ],
+    "notes": "evidence A: Điều 3 khoản 9 Luật 71 — nguyên văn định nghĩa. Chữ vẫn còn trong file.\nevidence B: Điều 33 Luật 134 — bãi bỏ đúng khoản 9 Điều 3 của Luật Công nghiệp công nghệ số.\nvì sao một evidence không đủ: khoản 9 không tự nói đã bị bãi bỏ; câu bãi bỏ không chép định nghĩa. Không trình bày khoản 9 như định nghĩa đang áp dụng. Không đổi câu sang định nghĩa của Luật 134.",
+    "evidence": [
+      {
+        "document_id": "71/2025/QH15",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "Điều 3. Giải thích từ ngữ"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "3",
+        "clause": "9",
+        "point": null,
+        "text": "9. Hệ thống trí tuệ nhân tạo là hệ thống dựa trên máy móc được thiết kế để hoạt động với các mức độ tự chủ khác nhau và có khả năng thích ứng sau khi triển khai nhằm đạt được những mục tiêu rõ ràng hoặc ngầm định, suy luận từ dữ liệu đầu vào mà hệ thống này nhận được để tạo ra dự đoán, nội dung, khuyến nghị, quyết định có thể ảnh hưởng đến môi trường thực hoặc môi trường điện tử. Hệ thống trí tuệ nhân tạo là sản phẩm công nghệ số tích hợp giữa phần cứng, phần mềm và dữ liệu."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "33",
+        "clause": null,
+        "point": null,
+        "text": "Bãi bỏ khoản 9 Điều 3, khoản 7 Điều 4, khoản 6 Điều 12, điểm đ khoản 2 Điều 34 và Chương IV của Luật Công nghiệp công nghệ số."
+      }
+    ]
+  },
+  {
+    "id": "Q130",
+    "source_id": "C125",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Điều 43 Luật Công nghiệp công nghệ số hiểu thế nào là hệ thống trí tuệ nhân tạo rủi ro cao và hệ thống trí tuệ nhân tạo tác động lớn, những trường hợp nào không bị coi là rủi ro cao, và điều này còn hiệu lực không khi Luật Trí tuệ nhân tạo số 134/2025/QH15 bãi bỏ Chương IV của luật đó?",
+    "markers": [
+      "Hệ thống trí tuệ nhân tạo rủi ro cao là hệ thống trí tuệ nhân tạo trong một số trường hợp sử dụng có khả năng gây ra rủi ro, tổn hại nghiêm trọng",
+      "Nhằm thực hiện một hoặc một số công việc cụ thể, tác động trong phạm vi hẹp",
+      "Nhằm hỗ trợ con người trong việc tối ưu hóa kết quả công việc",
+      "không nhằm mục đích thay thế quyết định của con người",
+      "Hệ thống trí tuệ nhân tạo tác động lớn là hệ thống trí tuệ nhân tạo được sử dụng đa mục đích, có số lượng người sử dụng lớn, số lượng tham số lớn, khối lượng dữ liệu lớn",
+      "Chương IV",
+      "và Chương IV của Luật Công nghiệp công nghệ số"
+    ],
+    "notes": "evidence A: Điều 43 khoản 1 (kèm đủ điểm a, b, c loại trừ) và khoản 2 Luật 71 — định nghĩa rủi ro cao, tác động lớn, và mọi trường hợp không bị coi là rủi ro cao.\nevidence B: Điều 33 Luật 134 bãi bỏ Chương IV của Luật Công nghiệp công nghệ số. Câu bãi bỏ không nêu số Điều 43.\nvì sao một evidence không đủ: Điều 43 không nói mình bị bãi bỏ; câu bãi bỏ không chép định nghĩa. Heading 'Chương IV' nằm ở cuối span Điều 40 và 'Chương V' nằm ở cuối span Điều 45 vì parser không tách dòng chương; nội dung Điều 41 đến Điều 45 đứng giữa hai heading nên Điều 43 thuộc Chương IV đã bị bãi bỏ. Không dùng Điều 43 như luật hiện hành. Nhãn article 40 và 45 chỉ là span parser nuốt heading, không phải khoản của hai điều đó.",
+    "evidence": [
+      {
+        "document_id": "71/2025/QH15",
+        "article": "43",
+        "clause": null,
+        "point": null,
+        "text": "Điều 43. Quản lý hệ thống trí tuệ nhân tạo"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "43",
+        "clause": "1",
+        "point": null,
+        "text": "1. Hệ thống trí tuệ nhân tạo rủi ro cao là hệ thống trí tuệ nhân tạo trong một số trường hợp sử dụng có khả năng gây ra rủi ro, tổn hại nghiêm trọng tới sức khỏe con người, quyền con người, quyền công dân, quyền và lợi ích hợp pháp của tổ chức, cá nhân, lợi ích công cộng và trật tự, an toàn xã hội, trừ một trong các trường hợp sau:"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "43",
+        "clause": "1",
+        "point": "a",
+        "text": "a) Nhằm thực hiện một hoặc một số công việc cụ thể, tác động trong phạm vi hẹp;"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "43",
+        "clause": "1",
+        "point": "b",
+        "text": "b) Nhằm hỗ trợ con người trong việc tối ưu hóa kết quả công việc;"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "43",
+        "clause": "1",
+        "point": "c",
+        "text": "c) Nhằm thực hiện kiểm tra lỗi của các công việc do con người hoàn thành trước đó và không nhằm mục đích thay thế quyết định của con người."
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "43",
+        "clause": "2",
+        "point": null,
+        "text": "2. Hệ thống trí tuệ nhân tạo tác động lớn là hệ thống trí tuệ nhân tạo được sử dụng đa mục đích, có số lượng người sử dụng lớn, số lượng tham số lớn, khối lượng dữ liệu lớn."
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "40",
+        "clause": null,
+        "point": null,
+        "text": "Chương IV"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "45",
+        "clause": null,
+        "point": null,
+        "text": "Chương V"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "33",
+        "clause": null,
+        "point": null,
+        "text": "Bãi bỏ khoản 9 Điều 3, khoản 7 Điều 4, khoản 6 Điều 12, điểm đ khoản 2 Điều 34 và Chương IV của Luật Công nghiệp công nghệ số."
+      }
+    ]
+  },
+  {
+    "id": "Q131",
+    "source_id": "C127",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Hành vi giả mạo, gian dối để được hưởng chính sách ưu đãi, hỗ trợ của Nhà nước trong hoạt động công nghiệp công nghệ số bị nghiêm cấm tại khoản nào của Điều 12 Luật Công nghiệp công nghệ số, và khoản cấm sử dụng hệ thống trí tuệ nhân tạo để phá hoại thuần phong mỹ tục còn hiệu lực không?",
+    "markers": [
+      "Giả mạo, gian dối để được hưởng chính sách ưu đãi, hỗ trợ của Nhà nước",
+      "Sử dụng, cung cấp, triển khai hệ thống trí tuệ nhân tạo",
+      "phá hoại thuần phong mỹ tục",
+      "Bãi bỏ khoản 9 Điều 3, khoản 7 Điều 4, khoản 6 Điều 12"
+    ],
+    "notes": "evidence A: Điều 12 khoản 4 Luật 71 — giả mạo, gian dối để hưởng ưu đãi, hỗ trợ của Nhà nước. Khoản 4 không nằm trong danh sách Điều 33 Luật 134 bãi bỏ, nên còn hiệu lực.\nevidence B: Điều 33 Luật 134 bãi bỏ khoản 6 Điều 12. Nguyên văn khoản 6 (dùng hệ thống trí tuệ nhân tạo, phá hoại thuần phong mỹ tục) chỉ để nhận diện nội dung đã bị bãi bỏ, không phải điều cấm đang áp dụng.\nvì sao một evidence không đủ: khoản 4 không nói gì về hệ thống trí tuệ nhân tạo; câu bãi bỏ không chứa hành vi giả mạo ưu đãi và không chép cụm 'phá hoại thuần phong mỹ tục'. Đã đối khoản 2 'Vi phạm quyền sở hữu trí tuệ trong công nghiệp công nghệ số': vẫn còn vì Điều 33 chỉ bãi bỏ khoản 6 Điều 12, nhưng câu sau khi tách không hỏi khoản 2 nên không đưa vào gold. Câu cũ mở 'những hành vi nào' và trộn khoản đã chết với khoản còn.",
+    "evidence": [
+      {
+        "document_id": "71/2025/QH15",
+        "article": "12",
+        "clause": null,
+        "point": null,
+        "text": "Điều 12. Các hành vi bị nghiêm cấm"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "12",
+        "clause": "4",
+        "point": null,
+        "text": "4. Giả mạo, gian dối để được hưởng chính sách ưu đãi, hỗ trợ của Nhà nước; để được loại trừ trách nhiệm trong thử nghiệm có kiểm soát sản phẩm, dịch vụ ứng dụng công nghệ số."
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "12",
+        "clause": "6",
+        "point": null,
+        "text": "6. Sử dụng, cung cấp, triển khai hệ thống trí tuệ nhân tạo để xâm phạm lợi ích quốc gia, dân tộc, quốc phòng, an ninh quốc gia, trật tự, an toàn xã hội, lợi ích công cộng; quyền con người, quyền công dân, quyền và lợi ích hợp pháp của tổ chức, cá nhân và phá hoại thuần phong mỹ tục."
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "33",
+        "clause": null,
+        "point": null,
+        "text": "Bãi bỏ khoản 9 Điều 3, khoản 7 Điều 4, khoản 6 Điều 12, điểm đ khoản 2 Điều 34 và Chương IV của Luật Công nghiệp công nghệ số."
+      }
+    ]
+  },
+  {
+    "id": "Q132",
+    "source_id": "C128",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Quy định về thông báo khi tương tác với hệ thống trí tuệ nhân tạo và dấu hiệu nhận dạng đối với sản phẩm công nghệ số tạo ra bởi trí tuệ nhân tạo nằm ở điều nào của Luật Công nghiệp công nghệ số, ai có trách nhiệm ban hành Danh mục sản phẩm công nghệ số tạo ra bởi trí tuệ nhân tạo, và điều đó còn hiệu lực không sau khi Luật Trí tuệ nhân tạo số 134/2025/QH15 bãi bỏ Chương IV?",
+    "markers": [
+      "Điều 44",
+      "phải có thông báo cho người sử dụng biết việc đang tương tác với hệ thống trí tuệ nhân tạo",
+      "phải có dấu hiệu nhận dạng để người sử dụng hoặc máy nhận biết",
+      "Bộ trưởng Bộ Khoa học và Công nghệ có trách nhiệm",
+      "Ban hành Danh mục sản phẩm công nghệ số tạo ra bởi trí tuệ nhân tạo",
+      "và Chương IV của Luật Công nghiệp công nghệ số"
+    ],
+    "notes": "evidence A: Điều 44 khoản 1, khoản 2, khoản 3 và điểm a Luật 71 — thông báo khi tương tác, dấu hiệu nhận dạng, Bộ trưởng Bộ Khoa học và Công nghệ ban hành danh mục.\nevidence B: Điều 33 Luật 134 bãi bỏ Chương IV. Điều 44 đứng sau heading Chương IV (cuối span Điều 40) và trước heading Chương V (cuối span Điều 45), nên thuộc Chương IV đã bị bãi bỏ.\nvì sao một evidence không đủ: Điều 44 không nói mình bị bãi bỏ; câu bãi bỏ không nói nội dung thông báo, dấu hiệu nhận dạng hay ai ban hành danh mục. Không trình bày Điều 44 như quy định còn hiệu lực. Không chuyển câu sang Luật 134.",
+    "evidence": [
+      {
+        "document_id": "71/2025/QH15",
+        "article": "44",
+        "clause": null,
+        "point": null,
+        "text": "Điều 44. Quy định dấu hiệu nhận dạng đối với hệ thống trí tuệ nhân tạo"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "44",
+        "clause": "1",
+        "point": null,
+        "text": "1. Hệ thống trí tuệ nhân tạo tương tác trực tiếp với con người phải có thông báo cho người sử dụng biết việc đang tương tác với hệ thống trí tuệ nhân tạo, trừ trường hợp người sử dụng hiển nhiên biết về việc đang tương tác với hệ thống trí tuệ nhân tạo."
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "44",
+        "clause": "2",
+        "point": null,
+        "text": "2. Sản phẩm công nghệ số thuộc Danh mục sản phẩm công nghệ số tạo ra bởi trí tuệ nhân tạo phải có dấu hiệu nhận dạng để người sử dụng hoặc máy nhận biết."
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "44",
+        "clause": "3",
+        "point": null,
+        "text": "3. Bộ trưởng Bộ Khoa học và Công nghệ có trách nhiệm:"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "44",
+        "clause": "3",
+        "point": "a",
+        "text": "a) Ban hành Danh mục sản phẩm công nghệ số tạo ra bởi trí tuệ nhân tạo quy định tại khoản 2 Điều này;"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "40",
+        "clause": null,
+        "point": null,
+        "text": "Chương IV"
+      },
+      {
+        "document_id": "71/2025/QH15",
+        "article": "45",
+        "clause": null,
+        "point": null,
+        "text": "Chương V"
+      },
+      {
+        "document_id": "134/2025/QH15",
+        "article": "33",
+        "clause": null,
+        "point": null,
+        "text": "Bãi bỏ khoản 9 Điều 3, khoản 7 Điều 4, khoản 6 Điều 12, điểm đ khoản 2 Điều 34 và Chương IV của Luật Công nghiệp công nghệ số."
+      }
+    ]
+  }
+]

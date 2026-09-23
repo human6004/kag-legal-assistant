@@ -1,0 +1,4529 @@
+{
+  "task": "B2.5_official_verification",
+  "dataset": "benchmark/work/final_150_candidate.json",
+  "baseline_head": "00d58a93cd0a2a8aa00653280876442fe7bddfdb",
+  "status_vocabulary": [
+    "BLOCKER",
+    "MINOR_REPAIR",
+    "OFFICIAL_VERIFIED",
+    "REPLACE_REQUIRED"
+  ],
+  "records": [
+    {
+      "id": "Q001",
+      "source_id": "C006",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "8",
+        "clause": "1",
+        "point": "đ"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Cong bao 116/2025/QH15 D8.1 verbatim khop gold, gom 5 cap do a-d va diem d. Marker 'phan loai theo 5 cap do' va 'Cap do 5 ... an ninh quoc gia' deu duoc nguon chinh thuc ho tro. Cau hoi khong rong hon evidence."
+    },
+    {
+      "id": "Q002",
+      "source_id": "C009",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "2",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Dinh nghia an ninh mang tai D2.1 dung nguyen van. Marker 'Dieu 2' dung: D2 la 'Giai thich tu ngu', khoan 1 la dinh nghia an ninh mang."
+    },
+    {
+      "id": "Q003",
+      "source_id": "C016",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "2",
+        "clause": "5",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Khong gian mang tai D2.5 dung nguyen van, gom ca ve 'khong bi gioi han boi khong gian va thoi gian' khop marker."
+    },
+    {
+      "id": "Q004",
+      "source_id": "C032",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "2",
+        "clause": "9",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Khung bo mang tai D2.9 dung nguyen van trong Cong bao 24/2018/QH14."
+    },
+    {
+      "id": "Q005",
+      "source_id": "C033",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "2",
+        "clause": "5",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D2.5 dinh nghia co so ha tang khong gian mang quoc gia; diem a liet ke dung 4 he thong truyen dan khop ca 5 marker. Article-level evidence (clause 5) va point-level evidence (diem a) deu co trong nguon chinh thuc."
+    },
+    {
+      "id": "Q006",
+      "source_id": "C048",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "2",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Dinh nghia du lieu ca nhan tai D2.1 dung nguyen van, bao gom ca cau 'sau khi khu nhan dang khong con la du lieu ca nhan' khop marker."
+    },
+    {
+      "id": "Q007",
+      "source_id": "C049",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-13-2023-nd-cp-39228.htm",
+          "source_name": "Nghị định số 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân",
+          "document_id": "13/2023/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "2",
+        "clause": "4",
+        "point": "a-k"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D2.4 va toan bo diem a den k deu khop nguyen van voi Cong bao 13/2023/ND-CP. 11 evidence point tuong ung 11 marker liet ke loai du lieu ca nhan nhay cam."
+    },
+    {
+      "id": "Q008",
+      "source_id": "C060",
+      "category": "definition",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": {
+        "article": "3",
+        "clause": "4",
+        "point": null
+      },
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "86/2015/QH13",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=183196",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q009",
+      "source_id": "C061",
+      "category": "definition",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": {
+        "article": "3",
+        "clause": "11",
+        "point": null
+      },
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "86/2015/QH13",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=183196",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q010",
+      "source_id": "C076",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-328-2026-nd-cp-470333.htm",
+          "source_name": "Nghị định số 328/2026/NĐ-CP về phòng, chống tin giả, tin sai sự thật",
+          "document_id": "328/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3.1 Nghi dinh 328/2026/ND-CP dung nguyen van, liet ke du 7 loai thong tin khop marker thu hai."
+    },
+    {
+      "id": "Q011",
+      "source_id": "C077",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-329-2026-nd-cp-470328.htm",
+          "source_name": "Nghị định số 329/2026/NĐ-CP về lực lượng bảo vệ an ninh mạng",
+          "document_id": "329/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "4",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D4.1 Nghi dinh 329/2026/ND-CP dung nguyen van, liet ke dung 3 luc luong (chuyen trach, thuong truc, du bi) khop ca 2 marker."
+    },
+    {
+      "id": "Q012",
+      "source_id": "C104",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-341-2026-nd-cp-470382.htm",
+          "source_name": "Nghị định số 341/2026/NĐ-CP quy định chi tiết Luật An ninh mạng về mật mã dân sự",
+          "document_id": "341/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3.1 Nghi dinh 341/2026/ND-CP dung nguyen van. Luu y: cau hoi neu chung 'nghi dinh ve hoat dong mat ma dan su' - dung la 341/2026/ND-CP."
+    },
+    {
+      "id": "Q013",
+      "source_id": "C109",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-332-2026-nd-cp-470329.htm",
+          "source_name": "Nghị định số 332/2026/NĐ-CP về kinh doanh sản phẩm, dịch vụ an ninh mạng",
+          "document_id": "332/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "2, 4",
+        "point": "đ"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3.2 (san pham giam sat an ninh mang) va D3.4 diem d (san pham che giau dia chi IP) deu khop nguyen van Cong bao 332/2026/ND-CP."
+    },
+    {
+      "id": "Q014",
+      "source_id": "C116",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "1, 2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3.1 (tri tue nhan tao) va D3.2 (he thong tri tue nhan tao) khop nguyen van; 4 marker deu nam trong hai khoan nay."
+    },
+    {
+      "id": "Q015",
+      "source_id": "C117",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "9",
+        "clause": "1, 2",
+        "point": "a-c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D9 gom khoan 1 diem a/b/c (rui ro cao, trung binh, thap) va khoan 2 (tieu chi). Marker 'Dieu 9' dung. Ca 7 marker khop nguyen van."
+    },
+    {
+      "id": "Q016",
+      "source_id": "C118",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "3, 4, 5",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3 khoan 3/4/5 dinh nghia nha phat trien, nha cung cap, ben trien khai - khop nguyen van. Marker 3 ('duoi ten, thuong hieu hoac nhan hieu cua minh') thuoc khoan 4; marker 4 ('khong bao gom truong hop su dung cho muc dich ca nhan, phi thuong mai') thuoc khoan 5. Tat ca deu duoc nguon chinh thuc ho tro."
+    },
+    {
+      "id": "Q017",
+      "source_id": "C137",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-05-2026-tt-bkhcn-469079.htm",
+          "source_name": "Thông tư số 05/2026/TT-BKHCN - Khung đạo đức trí tuệ nhân tạo quốc gia",
+          "document_id": "05/2026/TT-BKHCN"
+        }
+      ],
+      "verified_location": {
+        "article": "2",
+        "clause": "1, 2, 3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D2 khoan 1/2/3 Thong tu 05/2026/TT-BKHCN khop nguyen van ca 3 dinh nghia."
+    },
+    {
+      "id": "Q018",
+      "source_id": "C138",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-05-2026-tt-bkhcn-469079.htm",
+          "source_name": "Thông tư số 05/2026/TT-BKHCN - Khung đạo đức trí tuệ nhân tạo quốc gia",
+          "document_id": "05/2026/TT-BKHCN"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "1, 2, 3, 4",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3 khoan 1/2/3/4 la 4 nguyen tac dao duc, khop nguyen van 4 marker."
+    },
+    {
+      "id": "Q019",
+      "source_id": "C139",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-05-2026-tt-bkhcn-469079.htm",
+          "source_name": "Thông tư số 05/2026/TT-BKHCN - Khung đạo đức trí tuệ nhân tạo quốc gia",
+          "document_id": "05/2026/TT-BKHCN"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "1",
+        "point": "a, c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3.1 diem a (thiet ke an toan ngay tu dau) va diem c (kiem soat cua con nguoi) khop nguyen van ca 4 marker."
+    },
+    {
+      "id": "Q020",
+      "source_id": "C145",
+      "category": "definition",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/quyet-dinh-so-1528-qd-ttg-470264.htm",
+          "source_name": "Quyết định số 1528/QĐ-TTg về Chương trình quốc gia phát triển nhân lực AI",
+          "document_id": "1528/QĐ-TTg"
+        }
+      ],
+      "verified_location": {
+        "article": "1",
+        "clause": "1, 2",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D1.2 (03 tang nhan luc: pho cap, ung dung, chuyen sau) va D1.1 diem a (Khung nang luc AI quoc gia) khop nguyen van 6 marker."
+    },
+    {
+      "id": "Q021",
+      "source_id": "C004",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "25",
+        "clause": "2",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D25.2 diem a dung nguyen van: 24 gio (co yeu cau bang van ban/thu dien tu/...), 03 gio khi khan cap. Ca 2 marker khop."
+    },
+    {
+      "id": "Q022",
+      "source_id": "C005",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "16",
+        "clause": "3",
+        "point": "a-đ"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D16 (tieu de Dieu) va D16.3 cac diem a-den-d khop nguyen van 6 marker. Article-level evidence cite dung tieu de Dieu 16."
+    },
+    {
+      "id": "Q023",
+      "source_id": "C008",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "7",
+        "clause": "2",
+        "point": "g"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D7 (tieu de 'Cac hanh vi bi nghiem cam ve an ninh mang') va D7.2 diem g khop nguyen van, tra loi dung CAU HOI CO/KHONG kem can cu."
+    },
+    {
+      "id": "Q024",
+      "source_id": "C011",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "25",
+        "clause": "2",
+        "point": "b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D25.2 diem b dung nguyen van: 24 gio (kem 'luu nhat ky he thong'), 06 gio khi khan cap. Ca 3 marker khop."
+    },
+    {
+      "id": "Q025",
+      "source_id": "C012",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "38",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D38.1 dung nguyen van: toi thieu 15% tong kinh phi chuong trinh/de an/du an dau tu chuyen doi so. Marker 'Dieu 38' dung."
+    },
+    {
+      "id": "Q026",
+      "source_id": "C014",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "25",
+        "clause": "3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D25.3 dung nguyen van, gom ca nghia vu dat chi nhanh/van phong dai dien. Cau hoi chi hoi bien phap + noi luu tru + thoi gian, deu nam trong khoan 3."
+    },
+    {
+      "id": "Q027",
+      "source_id": "C020",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "13",
+        "clause": "5",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D13.5 diem a dung nguyen van: 12 gio (su co/xam pham) va 72 gio (yeu cau quan ly nha nuoc hoac het thoi han khac phuc). Cau hoi hoi dung nhanh 72 gio. Marker 'Dieu 13' dung."
+    },
+    {
+      "id": "Q028",
+      "source_id": "C022",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "13",
+        "clause": "5",
+        "point": "a, b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D13.5 (article), diem a (12 gio) va diem b (30 ngay) khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q029",
+      "source_id": "C026",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "26",
+        "clause": "3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D26.3 dung nguyen van gom ca cau 'Doanh nghiep ngoai nuoc ... phai dat chi nhanh hoac van phong dai dien tai Viet Nam'. Evidence thu 2 la trich article-level nhung noi dung cau do nam trong khoan 3 - da xac nhan bang nguon chinh thuc. Marker 'Dieu 26' dung."
+    },
+    {
+      "id": "Q030",
+      "source_id": "C047",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-53-2022-nd-cp-39253.htm",
+          "source_name": "Nghị định số 53/2022/NĐ-CP quy định chi tiết Luật An ninh mạng",
+          "document_id": "53/2022/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "27",
+        "clause": "1, 3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D27.1 (thoi gian luu tru toi thieu 24 thang, tinh tu khi nhan yeu cau) va D27.3 (nhat ky he thong toi thieu 12 thang) khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q031",
+      "source_id": "C052",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "7",
+        "clause": "5",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D7.5 Luat 91/2025/QH15 dung nguyen van, tra loi dung CAU HOI CO/KHONG."
+    },
+    {
+      "id": "Q032",
+      "source_id": "C062",
+      "category": "obligation",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "86/2015/QH13",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=183196",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q033",
+      "source_id": "C071",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-328-2026-nd-cp-470333.htm",
+          "source_name": "Nghị định số 328/2026/NĐ-CP về phòng, chống tin giả, tin sai sự thật",
+          "document_id": "328/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "10",
+        "clause": "1, 4",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D10.1 (trach nhiem gan nhan) va D10.4 diem a (thoi han 24 gio) khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q034",
+      "source_id": "C073",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-328-2026-nd-cp-470333.htm",
+          "source_name": "Nghị định số 328/2026/NĐ-CP về phòng, chống tin giả, tin sai sự thật",
+          "document_id": "328/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "22",
+        "clause": "2",
+        "point": "đ"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D22.2 diem d dung nguyen van, gom 'dau moi phoi hop 24/7' va 'khoa tam thoi hoac vinh vien cac tai khoan mang xa hoi' khop ca 2 marker."
+    },
+    {
+      "id": "Q035",
+      "source_id": "C079",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-329-2026-nd-cp-470328.htm",
+          "source_name": "Nghị định số 329/2026/NĐ-CP về lực lượng bảo vệ an ninh mạng",
+          "document_id": "329/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "7",
+        "clause": "5",
+        "point": "c, d"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D7.5 diem c (khong loi dung) va diem d (chiu trach nhiem truoc phap luat) khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q036",
+      "source_id": "C082",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-356-2025-nd-cp-468371.htm",
+          "source_name": "Nghị định số 356/2025/NĐ-CP quy định chi tiết Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "356/2025/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "29",
+        "clause": "1",
+        "point": "a, c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D29.1 diem a (72 gio) va diem c (luu ho so toi thieu 5 nam) khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q037",
+      "source_id": "C083",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-356-2025-nd-cp-468371.htm",
+          "source_name": "Nghị định số 356/2025/NĐ-CP quy định chi tiết Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "356/2025/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "19",
+        "clause": "2, 4, 5",
+        "point": "a-c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D19.2 (article + diem a/b/c) va D19.4 (60 ngay) va D19.5 (15 ngay) deu khop nguyen van. Marker 'trong thoi han 15 ngay' thuoc khoan 5, khong phai khoan 4; evidence da tach dung 2 khoan nen khong co mismatch."
+    },
+    {
+      "id": "Q038",
+      "source_id": "C098",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-331-2026-nd-cp-470334.htm",
+          "source_name": "Nghị định số 331/2026/NĐ-CP về bảo vệ an ninh mạng đối với hệ thống thông tin",
+          "document_id": "331/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "31",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D31 Nghi dinh 331/2026/ND-CP khop nguyen van ca 2 marker (72 gio bao cao su co; 24 gio thong bao ban dau voi su co nghiem trong). Day la Dieu quy dinh che do bao cao dang bang liet ke, khong chia khoan."
+    },
+    {
+      "id": "Q039",
+      "source_id": "C103",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-341-2026-nd-cp-470382.htm",
+          "source_name": "Nghị định số 341/2026/NĐ-CP quy định chi tiết Luật An ninh mạng về mật mã dân sự",
+          "document_id": "341/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "8",
+        "clause": "2",
+        "point": "a-e"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D8.2 (article + cac diem a-den-e) khop nguyen van 6 marker."
+    },
+    {
+      "id": "Q040",
+      "source_id": "C106",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-332-2026-nd-cp-470329.htm",
+          "source_name": "Nghị định số 332/2026/NĐ-CP về kinh doanh sản phẩm, dịch vụ an ninh mạng",
+          "document_id": "332/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "8",
+        "clause": "2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D8.2 dung nguyen van: it nhat 12 nguoi co trinh do dai hoc hoac chung chi an ninh mang; nguoi dai dien theo phap luat phai co quoc tich Viet Nam."
+    },
+    {
+      "id": "Q041",
+      "source_id": "C113",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-333-2026-nd-cp-470335.htm",
+          "source_name": "Nghị định số 333/2026/NĐ-CP quy định chi tiết biện pháp thi hành Luật An ninh mạng",
+          "document_id": "333/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "16",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D16 Nghi dinh 333/2026/ND-CP khop nguyen van 4 marker (30 ngay/03 lan -> toi da 60 ngay; 90 ngay/10 lan -> toi da 180 ngay)."
+    },
+    {
+      "id": "Q042",
+      "source_id": "C120",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "14",
+        "clause": "1",
+        "point": "a-g"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D14.1 (article + cac diem a-den-g) khop nguyen van 7 marker."
+    },
+    {
+      "id": "Q043",
+      "source_id": "C121",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "11",
+        "clause": "1, 2, 4",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D11 khoan 1 (nhan biet dang tuong tac), khoan 2 (danh dau dinh dang may doc), khoan 4 (gan nhan de nhan biet) khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q044",
+      "source_id": "C130",
+      "category": "obligation",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-142-2026-nd-cp-469480.htm",
+          "source_name": "Nghị định số 142/2026/NĐ-CP quy định chi tiết Luật Trí tuệ nhân tạo",
+          "document_id": "142/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "19",
+        "clause": "1, 3",
+        "point": "a-d"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D19.1 diem a-den-d (dinh nghia su co nghiem trong) va D19.3 diem a/b (72 gio voi diem a+d va truong hop khong the kiem soat voi diem c; 05 ngay lam viec cho cac su co con lai) khop nguyen van 7 marker."
+    },
+    {
+      "id": "Q045",
+      "source_id": "C147",
+      "category": "obligation",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren vanban.chinhphu.vn (docid=210020) nhung ban dinh kem signed PDF la anh scan, khong co text layer; may khong co OCR. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "367/QĐ-TTg",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=210020&classid=2",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren vanban.chinhphu.vn (docid=210020) nhung ban dinh kem signed PDF la anh scan, khong co text layer; may khong co OCR. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q046",
+      "source_id": "C002",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "53",
+        "clause": "3",
+        "point": "b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D53.3 va D53.3 diem b khop nguyen van. Kiem so nghiep vu: 300 chu the du lieu NHAY CAM roi vao khung 'tu 200 den duoi 400' -> 100.000.000 den 300.000.000 dong. Cau hoi neu dung 'khong thu duoc khoan tien nao' khop khoan 3. Marker 'Dieu 53' dung."
+    },
+    {
+      "id": "Q047",
+      "source_id": "C043",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "8",
+        "clause": "3, 5, 6",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D8.3 (10 lan khoan thu), D8.5 (toi da 03 ty dong), D8.6 (ca nhan bang mot phan hai muc phat cua to chuc) khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q048",
+      "source_id": "C044",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "8",
+        "clause": "4, 5",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D8.4 (5% doanh thu nam truoc lien ke; neu khong co doanh thu hoac thap hon thi ap dung khoan 5 = 03 ty dong) khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q049",
+      "source_id": "C087",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "34",
+        "clause": "2",
+        "point": "c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D34.2 (khung 30.000.000 - 50.000.000 dong) va D34.2 diem c (AI/Deepfake gia mao du lieu sinh trac hoc) khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q050",
+      "source_id": "C088",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "53",
+        "clause": "3",
+        "point": "d"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D53.3 (dan nhap) va D53.3 diem d (500.000.000 - 1.000.000.000 dong voi du lieu co ban tu 10.000 chu the tro len) khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q051",
+      "source_id": "C089",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "9",
+        "clause": "2",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D9.2 (khung 10-20 trieu, dieu kien 'chua den muc truy cuu TNHS') va D9.2 diem a khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q052",
+      "source_id": "C090",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "23",
+        "clause": "1",
+        "point": "c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D23.1 (khung 20-30 trieu) va D23.1 diem c (dua HTTT vao van hanh khi chua duoc phe duyet cap do, cap do 3 den 5) khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q053",
+      "source_id": "C091",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "37",
+        "clause": "3",
+        "point": "o"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D37.3 (khung 30-50 trieu) va D37.3 diem o (tin nhan quang cao ngoai khoang 07h-22h) khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q054",
+      "source_id": "C092",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "36",
+        "clause": "1, 2",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D36.1 (khung 75-100 trieu), D36.1 diem a (nhap khau khong giay phep) va D36.2 (hinh phat bo sung: tuoc quyen su dung Giay phep 01-03 thang) khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q055",
+      "source_id": "C093",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "4",
+        "clause": "2",
+        "point": "a-d"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D4.2 diem a/b/c/d khop nguyen van 4 marker hinh thuc xu phat bo sung."
+    },
+    {
+      "id": "Q056",
+      "source_id": "C102",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-341-2026-nd-cp-470382.htm",
+          "source_name": "Nghị định số 341/2026/NĐ-CP quy định chi tiết Luật An ninh mạng về mật mã dân sự",
+          "document_id": "341/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "8",
+        "clause": "1",
+        "point": "a-c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D8.1 (article + cac diem a/b/c, thoi han khong qua 06 thang) khop nguyen van 4 marker."
+    },
+    {
+      "id": "Q057",
+      "source_id": "C108",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-332-2026-nd-cp-470329.htm",
+          "source_name": "Nghị định số 332/2026/NĐ-CP về kinh doanh sản phẩm, dịch vụ an ninh mạng",
+          "document_id": "332/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "14",
+        "clause": "2",
+        "point": "a-đ"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D14.2 (article + cac diem a-den-d, thoi han 03-06 thang) khop nguyen van 6 marker."
+    },
+    {
+      "id": "Q058",
+      "source_id": "C126",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-71-2025-qh15-45555.htm",
+          "source_name": "Luật số 71/2025/QH15 - Luật Công nghiệp công nghệ số",
+          "document_id": "71/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "28",
+        "clause": "2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D28.2 Luat 71/2025/QH15 dung nguyen van: phat trien he thong AI va dau tu xay dung trung tam du lieu AI la nganh, nghe dac biet uu dai dau tu. Marker 'Dieu 28' dung."
+    },
+    {
+      "id": "Q059",
+      "source_id": "N001",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "14",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D14.1 dung nguyen van: 5.000.000 - 10.000.000 dong, kem liet ke loai tai khoan."
+    },
+    {
+      "id": "Q060",
+      "source_id": "N002",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "48",
+        "clause": "3",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D48.3 (dan nhap ve bien phap cong nghe, ky thuat) va D48.3 diem a (100-200 trieu voi du lieu co ban duoi 500 chu the hoac du lieu nhay cam duoi 100 chu the) khop nguyen van 4 marker."
+    },
+    {
+      "id": "Q061",
+      "source_id": "N003",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "56",
+        "clause": "3",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D56.3 (dan nhap ve chuyen du lieu xuyen bien gioi, phat theo % doanh thu) va D56.3 diem a (1%-2% voi 10.000 den duoi 100.000 chu the la cong dan Viet Nam) khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q062",
+      "source_id": "N004",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "60",
+        "clause": "3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D60.3 dung nguyen van: 100.000.000 - 200.000.000 dong, 'khong the khoi phuc', du lieu ca nhan cua tre em, gom ca truong hop cha me/nguoi giam ho rut lai dong y. Khop 3 marker."
+    },
+    {
+      "id": "Q063",
+      "source_id": "N005",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-341-2026-nd-cp-470382.htm",
+          "source_name": "Nghị định số 341/2026/NĐ-CP quy định chi tiết Luật An ninh mạng về mật mã dân sự",
+          "document_id": "341/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "9",
+        "clause": "2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D9.2 dung nguyen van: Giay phep xuat khau, nhap khau san pham mat ma dan su co thoi han 03 nam."
+    },
+    {
+      "id": "Q064",
+      "source_id": "N006",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-331-2026-nd-cp-470334.htm",
+          "source_name": "Nghị định số 331/2026/NĐ-CP về bảo vệ an ninh mạng đối với hệ thống thông tin",
+          "document_id": "331/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "23",
+        "clause": "3",
+        "point": "b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D23.3 diem b dung nguyen van: 25 ngay lam viec cho cap do 4 hoac cap do 5 (diem a la 15 ngay cho cap do 3 - khong bi lan). Khop 3 marker."
+    },
+    {
+      "id": "Q065",
+      "source_id": "N007",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-333-2026-nd-cp-470335.htm",
+          "source_name": "Nghị định số 333/2026/NĐ-CP quy định chi tiết biện pháp thi hành Luật An ninh mạng",
+          "document_id": "333/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "24",
+        "clause": "8",
+        "point": "b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D24.8 diem b dung nguyen van: 36 thang ke tu ngay Nghi dinh co hieu luc thi hanh (diem a la 24 thang cho doi tuong khac - khong bi lan). Khop 4 marker."
+    },
+    {
+      "id": "Q066",
+      "source_id": "N008",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-142-2026-nd-cp-469480.htm",
+          "source_name": "Nghị định số 142/2026/NĐ-CP quy định chi tiết Luật Trí tuệ nhân tạo",
+          "document_id": "142/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "26",
+        "clause": "3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D26.3 dung nguyen van: ho tro toi da khong vuot qua 50% tong chi phi hop le thuc te phat sinh."
+    },
+    {
+      "id": "Q067",
+      "source_id": "N009",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "86/2015/QH13",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=183196",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q068",
+      "source_id": "N010",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-13-2023-nd-cp-39228.htm",
+          "source_name": "Nghị định số 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân",
+          "document_id": "13/2023/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "43",
+        "clause": "2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D43.2 dung nguyen van: mien tru quy dinh chi dinh ca nhan va bo phan bao ve du lieu ca nhan trong thoi gian 02 nam dau ke tu khi thanh lap doanh nghiep. Khop 4 marker."
+    },
+    {
+      "id": "Q069",
+      "source_id": "N011",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-53-2022-nd-cp-39253.htm",
+          "source_name": "Nghị định số 53/2022/NĐ-CP quy định chi tiết Luật An ninh mạng",
+          "document_id": "53/2022/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "5",
+        "clause": "6",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D5.6 dung nguyen van: thoi gian khao sat, kiem tra thuc te khong qua 20 ngay. Khop 3 marker."
+    },
+    {
+      "id": "Q070",
+      "source_id": "N012",
+      "category": "sanction_numeric",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-356-2025-nd-cp-468371.htm",
+          "source_name": "Nghị định số 356/2025/NĐ-CP quy định chi tiết Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "356/2025/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "5",
+        "clause": "4",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D5.4 dung nguyen van: phan hoi trong 02 ngay lam viec; thuc hien trong 20 ngay; truong hop can ben xu ly/ben thu ba thi 30 ngay. Khop 4 marker (ca 3 moc thoi gian nam trong cung khoan 4)."
+    },
+    {
+      "id": "Q071",
+      "source_id": "C010",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "44",
+        "clause": "1, 2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D44.1 (hieu luc 01/7/2026) va D44.2 (Luat An ninh mang 24/2018/QH14 het hieu luc ke tu ngay Luat nay co hieu luc) khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q072",
+      "source_id": "C013",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "45",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D45.1 (12 thang ke tu ngay Luat co hieu luc) va D45 (tieu de 'Dieu khoan chuyen tiep') khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q073",
+      "source_id": "C019",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "1",
+        "clause": "2",
+        "point": "a-c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D1 (tieu de), D1.2 va cac diem a/b/c khop nguyen van 4 marker."
+    },
+    {
+      "id": "Q074",
+      "source_id": "C024",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "43",
+        "clause": "3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D43.3 dung nguyen van: 12 thang ke tu ngay duoc bo sung."
+    },
+    {
+      "id": "Q075",
+      "source_id": "C036",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "43",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D43.1 (hieu luc 01/01/2019) va doan ket thuc D43 (Quoc hoi khoa XIV, ky hop thu 5) khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q076",
+      "source_id": "C037",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "43",
+        "clause": "2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D43.2 dung nguyen van: 12 thang ke tu ngay Luat nay co hieu luc; bao dam du dieu kien an ninh mang; danh gia dieu kien an ninh mang. Khop 3 marker."
+    },
+    {
+      "id": "Q077",
+      "source_id": "C038",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-328-2026-nd-cp-470333.htm",
+          "source_name": "Nghị định số 328/2026/NĐ-CP về phòng, chống tin giả, tin sai sự thật",
+          "document_id": "328/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "23",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D23 dung nguyen van: hieu luc tu ngay 05 thang 10 nam 2026."
+    },
+    {
+      "id": "Q078",
+      "source_id": "C039",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/quyet-dinh-so-1671-qd-ttg-470384.htm",
+          "source_name": "Quyết định số 1671/QĐ-TTg phê duyệt Chiến lược quốc gia về trí tuệ nhân tạo đến năm 2030",
+          "document_id": "1671/QĐ-TTg"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3.1 dung nguyen van: hieu luc ke tu ngay ky ban hanh. Dong thoi xac nhan D3.2: Quyet dinh nay thay the Quyet dinh 127/QD-TTg ngay 26/01/2021."
+    },
+    {
+      "id": "Q079",
+      "source_id": "C040",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "44",
+        "clause": "2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D44.2 dung nguyen van: ca Luat 86/2015/QH13 (da sua doi theo Luat 35/2018/QH14) va Luat 24/2018/QH14 deu het hieu luc ke tu ngay Luat nay co hieu luc. Khop 3 marker."
+    },
+    {
+      "id": "Q080",
+      "source_id": "C042",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-142-2026-nd-cp-469480.htm",
+          "source_name": "Nghị định số 142/2026/NĐ-CP quy định chi tiết Luật Trí tuệ nhân tạo",
+          "document_id": "142/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "45",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D45 dung nguyen van: hieu luc tu ngay 01 thang 5 nam 2026."
+    },
+    {
+      "id": "Q081",
+      "source_id": "C057",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "38",
+        "clause": "1, 2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D38.1 (hieu luc 01/01/2026) va D38.2 (mien tru 05 nam cho doanh nghiep nho/khoi nghiep, kem ngoai le) khop nguyen van 3 marker. Nguon Cong bao 91/2025/QH15 co chen header trang giua cau nhung noi dung phap ly nguyen ven."
+    },
+    {
+      "id": "Q082",
+      "source_id": "C094",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "1",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D1.1 dung nguyen van, gom ca 'hanh vi vi pham hanh chinh da ket thuc va hanh vi vi pham hanh chinh dang thuc hien' khop marker va tra loi dung CAU HOI CO.Khop 3 marker."
+    },
+    {
+      "id": "Q083",
+      "source_id": "C105",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-341-2026-nd-cp-470382.htm",
+          "source_name": "Nghị định số 341/2026/NĐ-CP quy định chi tiết Luật An ninh mạng về mật mã dân sự",
+          "document_id": "341/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "4",
+        "clause": "3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D4.3 dung nguyen van: Giay phep kinh doanh san pham, dich vu mat ma dan su co thoi han 10 nam."
+    },
+    {
+      "id": "Q084",
+      "source_id": "C115",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-333-2026-nd-cp-470335.htm",
+          "source_name": "Nghị định số 333/2026/NĐ-CP quy định chi tiết biện pháp thi hành Luật An ninh mạng",
+          "document_id": "333/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "30",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D30 dung nguyen van: hieu luc tu ngay 19 thang 8 nam 2026."
+    },
+    {
+      "id": "Q085",
+      "source_id": "C135",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-142-2026-nd-cp-469480.htm",
+          "source_name": "Nghị định số 142/2026/NĐ-CP quy định chi tiết Luật Trí tuệ nhân tạo",
+          "document_id": "142/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": null,
+        "clause": null,
+        "point": "cấu trúc văn bản: Chương I-VIII, Chương VIII, Phụ lục"
+      },
+      "checks": {
+        "document": true,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Cau hoi ve KET CAU van ban (khong phai quy pham cu the), nen evidence khong co article/clause - da ghi null dung quy uoc, khong gia true. Da doi chieu truc tiep Cong bao 142/2026/ND-CP: co dung 8 Chuong I-VIII; Chuong VIII ten 'DIEU KHOAN THI HANH'; Phu luc ten 'DANH MUC BIEU MAU'. Khop ca 3 marker. Checks article/clause/point = null vi not applicable."
+    },
+    {
+      "id": "Q086",
+      "source_id": "N013",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-53-2022-nd-cp-39253.htm",
+          "source_name": "Nghị định số 53/2022/NĐ-CP quy định chi tiết Luật An ninh mạng",
+          "document_id": "53/2022/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "29",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D29 dung nguyen van: hieu luc tu ngay 01 thang 10 nam 2022."
+    },
+    {
+      "id": "Q087",
+      "source_id": "N014",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "86/2015/QH13",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=183196",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q088",
+      "source_id": "N015",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-341-2026-nd-cp-470382.htm",
+          "source_name": "Nghị định số 341/2026/NĐ-CP quy định chi tiết Luật An ninh mạng về mật mã dân sự",
+          "document_id": "341/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "17",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D17 dung nguyen van: hieu luc ke tu ngay 01 thang 9 nam 2026."
+    },
+    {
+      "id": "Q089",
+      "source_id": "N016",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-329-2026-nd-cp-470328.htm",
+          "source_name": "Nghị định số 329/2026/NĐ-CP về lực lượng bảo vệ an ninh mạng",
+          "document_id": "329/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "20",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D20.1 dung nguyen van: hieu luc tu ngay 19 thang 8 nam 2026."
+    },
+    {
+      "id": "Q090",
+      "source_id": "N017",
+      "category": "effectiveness_metadata",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "45",
+        "clause": "2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D45.2 dung nguyen van: giay phep da cap truoc ngay Luat co hieu luc co gia tri den het thoi han ghi tren giay phep. Cau hoi mang nghia chuyen tiep nen kiem dung dieu khoan chuyen tiep. Khop 2 marker."
+    },
+    {
+      "id": "Q091",
+      "source_id": "C041",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "33",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D33 Luat 134/2025/QH15 dung nguyen van: bai bo khoan 9 D3, khoan 7 D4, khoan 6 D12, diem d khoan 2 D34 va Chuong IV cua Luat Cong nghiep cong nghe so so 71/2025/QH15. Kiem CHIEU sua doi: dung la Luat AI bai bo mot phan Luat 71, khong phai nguoc lai. Khop 2 marker."
+    },
+    {
+      "id": "Q092",
+      "source_id": "C064",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "35/2018/QH14",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=206103&classid=1&typegroupid=3",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q093",
+      "source_id": "C067",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "35/2018/QH14",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=206103&classid=1&typegroupid=3",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q094",
+      "source_id": "C068",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "35/2018/QH14",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=206103&classid=1&typegroupid=3",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q095",
+      "source_id": "C070",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.; Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "86/2015/QH13",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=183196",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        },
+        {
+          "document_id": "35/2018/QH14",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=206103&classid=1&typegroupid=3",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q096",
+      "source_id": "C084",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-356-2025-nd-cp-468371.htm",
+          "source_name": "Nghị định số 356/2025/NĐ-CP quy định chi tiết Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "356/2025/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "1",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D1 dung nguyen van: liet ke day du cac dieu/khoan cua Luat Bao ve du lieu ca nhan duoc quy dinh chi tiet."
+    },
+    {
+      "id": "Q097",
+      "source_id": "C086",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "MINOR_REPAIR",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-356-2025-nd-cp-468371.htm",
+          "source_name": "Nghị định số 356/2025/NĐ-CP quy định chi tiết Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "356/2025/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "42",
+        "clause": "1, 2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": {
+        "issue": "gold_evidence thieu khoan 1 Dieu 42, trong khi cau hoi hoi ca ngay hieu luc cua Nghi dinh 356/2025/ND-CP.",
+        "before": "gold_evidence = [D42 khoan 2]",
+        "after": "gold_evidence = [D42 khoan 1 (hieu luc 01/01/2026), D42 khoan 2 (ND 13/2023 het hieu luc)]",
+        "not_applied": true
+      },
+      "notes": "FACT dung: D42.2 xac nhan Nghi dinh 13/2023/ND-CP het hieu luc ke tu ngay Nghi dinh nay co hieu luc; D42.1 cho ngay hieu luc 01/01/2026. NHUNG cau hoi hoi 2 y (ngay hieu luc + so phan ND 13/2023) trong khi gold_evidence chi co khoan 2. Phan 'hieu luc tu ngay nao' khong duoc evidence bao phu."
+    },
+    {
+      "id": "Q098",
+      "source_id": "C111",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-333-2026-nd-cp-470335.htm",
+          "source_name": "Nghị định số 333/2026/NĐ-CP quy định chi tiết biện pháp thi hành Luật An ninh mạng",
+          "document_id": "333/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "1",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D1.1 dung nguyen van: quy dinh chi tiet diem a,b,c,d,đ,g,k,l,m khoan 1 Dieu 5, khoan 4 Dieu 25, khoan 5 Dieu 34 Luat An ninh mang."
+    },
+    {
+      "id": "Q099",
+      "source_id": "C112",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-333-2026-nd-cp-470335.htm",
+          "source_name": "Nghị định số 333/2026/NĐ-CP quy định chi tiết biện pháp thi hành Luật An ninh mạng",
+          "document_id": "333/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "31",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D31 dung nguyen van: ho so tiep nhan hop le theo Nghi dinh 53/2022/ND-CP truoc ngay Nghi dinh nay co hieu luc ma chua co ket qua thi tiep tuc giai quyet theo Nghi dinh 53/2022/ND-CP. Khop 2 marker. Kiem chieu chuyen tiep dung."
+    },
+    {
+      "id": "Q100",
+      "source_id": "C136",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-142-2026-nd-cp-469480.htm",
+          "source_name": "Nghị định số 142/2026/NĐ-CP quy định chi tiết Luật Trí tuệ nhân tạo",
+          "document_id": "142/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "1",
+        "clause": "1",
+        "point": "b, e"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D1.1 diem b (Dieu 9 ve phan loai muc do rui ro) va diem e (Dieu 13 ve danh gia su phu hop voi he thong AI co rui ro cao) khop nguyen van 2 marker. Nghi dinh 142 quy dinh chi tiet Luat Tri tue nhan tao 134/2025/QH15."
+    },
+    {
+      "id": "Q101",
+      "source_id": "C142",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/quyet-dinh-so-1671-qd-ttg-470384.htm",
+          "source_name": "Quyết định số 1671/QĐ-TTg phê duyệt Chiến lược quốc gia về trí tuệ nhân tạo đến năm 2030",
+          "document_id": "1671/QĐ-TTg"
+        }
+      ],
+      "verified_location": {
+        "article": "3",
+        "clause": "2, 3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D3.2 (thay the Quyet dinh 127/QD-TTg ngay 26/01/2021) va D3.3 (cac nhiem vu dang trien khai tiep tuc thuc hien den khi hoan thanh hoac duoc dieu chinh, tich hop) khop nguyen van 3 marker. Kiem chieu quan he: 1671 THAY THE 127, dung chieu."
+    },
+    {
+      "id": "Q102",
+      "source_id": "C146",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren vanban.chinhphu.vn (docid=210020) nhung ban dinh kem signed PDF la anh scan, khong co text layer; may khong co OCR. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "367/QĐ-TTg",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=210020&classid=2",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren vanban.chinhphu.vn (docid=210020) nhung ban dinh kem signed PDF la anh scan, khong co text layer; may khong co OCR. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q103",
+      "source_id": "N018",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-53-2022-nd-cp-39253.htm",
+          "source_name": "Nghị định số 53/2022/NĐ-CP quy định chi tiết Luật An ninh mạng",
+          "document_id": "53/2022/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "1",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D1 dung nguyen van, liet ke day du cac diem/khoan cua Luat An ninh mang duoc quy dinh chi tiet. Khop 8 marker."
+    },
+    {
+      "id": "Q104",
+      "source_id": "N019",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-116-2025-qh15-468678.htm",
+          "source_name": "Luật số 116/2025/QH15 - Luật An ninh mạng",
+          "document_id": "116/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "43",
+        "clause": "17",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D43.17 dung nguyen van: bai bo khoan 3 Dieu 49 cua Luat Thu vien so 46/2019/QH14. Khop 3 marker."
+    },
+    {
+      "id": "Q105",
+      "source_id": "N020",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-71-2025-qh15-45555.htm",
+          "source_name": "Luật số 71/2025/QH15 - Luật Công nghiệp công nghệ số",
+          "document_id": "71/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "49",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D49 (Chuong VI, muc 'Sua doi, bo sung, thay the, bai bo mot so dieu cua cac luat co lien quan') khoan 1 dung nguyen van: bai bo khoan 9,10,11,12 Dieu 4; Muc 3 va Muc 4 Chuong III cua Luat Cong nghe thong tin so 67/2006/QH11. Khop 4 marker."
+    },
+    {
+      "id": "Q106",
+      "source_id": "N021",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-356-2025-nd-cp-468371.htm",
+          "source_name": "Nghị định số 356/2025/NĐ-CP quy định chi tiết Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "356/2025/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "42",
+        "clause": "3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D42.3 dung nguyen van: sua doi khoan 2 Dieu 16 cua Nghi dinh so 165/2025/ND-CP. Khop 3 marker."
+    },
+    {
+      "id": "Q107",
+      "source_id": "N022",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "39",
+        "clause": "2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D39.2 dung nguyen van: ho so da tiep nhan theo Nghi dinh 13/2023/ND-CP truoc ngay Luat co hieu luc thi tiep tuc duoc su dung va khong phai lap lai. Khop 3 marker. Tra loi dung CAU HOI KHONG (khong phai lap lai)."
+    },
+    {
+      "id": "Q108",
+      "source_id": "N023",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-142-2026-nd-cp-469480.htm",
+          "source_name": "Nghị định số 142/2026/NĐ-CP quy định chi tiết Luật Trí tuệ nhân tạo",
+          "document_id": "142/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "21",
+        "clause": "6",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D21.6 dung nguyen van: trach nhiem dan su, hinh su, hanh chinh theo Dieu 22 va Dieu 23 cua Luat Khoa hoc, cong nghe va doi moi sang tao. Khop 3 marker. Kiem chieu dan chieu dung."
+    },
+    {
+      "id": "Q109",
+      "source_id": "N024",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-341-2026-nd-cp-470382.htm",
+          "source_name": "Nghị định số 341/2026/NĐ-CP quy định chi tiết Luật An ninh mạng về mật mã dân sự",
+          "document_id": "341/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "1",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "D1 dung nguyen van: quy dinh chi tiet diem a khoan 1, diem c khoan 2, khoan 3 Dieu 28, khoan 3 Dieu 29 Luat An ninh mang ve mat ma dan su. Khop 6 marker."
+    },
+    {
+      "id": "Q110",
+      "source_id": "N025",
+      "category": "inter_document",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "35/2018/QH14",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=206103&classid=1&typegroupid=3",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (khong co text layer); may khong co OCR. Corpus raw HTML la ban sao noi bo, khong co provenance chinh thuc. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q111",
+      "source_id": "C001",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "13, 10",
+        "clause": "1, 3",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg, ca 2 da verify doc lap: (A) D13.1 - he thong AI rui ro cao phai duoc danh gia su phu hop truoc khi dua vao su dung; (B) D10.3 - nha cung cap phai thong bao ket qua phan loai cho Bo Khoa hoc va Cong nghe qua Cong thong tin dien tu mot cua. Cau hoi thuc su can A+B (thu tuc + co quan nhan thong bao)."
+    },
+    {
+      "id": "Q112",
+      "source_id": "C003",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-330-2026-nd-cp-470339.htm",
+          "source_name": "Nghị định số 330/2026/NĐ-CP quy định xử phạt vi phạm hành chính lĩnh vực an ninh mạng",
+          "document_id": "330/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "11, 7",
+        "clause": "3, 5",
+        "point": "b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 3 leg: (A) D11.3 khung 20-30 trieu; (B) D7.1 to chuc vi pham cung hanh vi phat bang hai lan muc phat cua ca nhan; (C) D11.5 diem b dinh chi hoat dong 01-03 thang voi doanh nghiep vi pham khoan 3. Cau hoi can ca 3 leg - da verify du."
+    },
+    {
+      "id": "Q113",
+      "source_id": "C030",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "8, 9",
+        "clause": "5",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D8.5 hanh vi bi nghiem cam (loi dung hoac lam dung hoat dong bao ve an ninh mang ... hoac de truc loi); (B) D9 che tai xu ly (ky luat, xu ly vi pham hanh chinh hoac truy cuu TNHS; neu gay thiet hai thi phai boi thuong). Ca 2 leg deu khop nguyen van."
+    },
+    {
+      "id": "Q114",
+      "source_id": "C035",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-24-2018-qh14-39318.htm",
+          "source_name": "Luật số 24/2018/QH14 - Luật An ninh mạng",
+          "document_id": "24/2018/QH14"
+        }
+      ],
+      "verified_location": {
+        "article": "41, 26",
+        "clause": "1, 3",
+        "point": "a, b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D41.1 diem a/b (canh bao kha nang mat an ninh mang; xay dung phuong an phan ung nhanh) tai Dieu 41; (B) D26.3 (doanh nghiep ngoai nuoc phai dat chi nhanh hoac van phong dai dien tai Viet Nam). Ca 2 leg verify du."
+    },
+    {
+      "id": "Q115",
+      "source_id": "C045",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "23, 21",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D23.1 - thong bao cho co quan chuyen trach cham nhat 72 gio ke tu khi phat hien; (B) D21.1 - gui ho so danh gia tac dong trong 60 ngay ke tu ngay dau tien xu ly. Ca 2 leg khop nguyen van."
+    },
+    {
+      "id": "Q116",
+      "source_id": "C046",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-13-2023-nd-cp-39228.htm",
+          "source_name": "Nghị định số 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân",
+          "document_id": "13/2023/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "9, 16",
+        "clause": "6, 5",
+        "point": "b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D9.6 diem b - han che xu ly trong 72 gio; (B) D16.5 - xoa du lieu trong 72 gio. Ca 2 leg khop nguyen van."
+    },
+    {
+      "id": "Q117",
+      "source_id": "C051",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-13-2023-nd-cp-39228.htm",
+          "source_name": "Nghị định số 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân",
+          "document_id": "13/2023/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "2, 9",
+        "clause": "6, 1-11",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D2.6 dinh nghia chu the du lieu; (B) D9 khoan 1-11 liet ke 11 nhom quyen. 16 evidence item bao phu day du 12 marker."
+    },
+    {
+      "id": "Q118",
+      "source_id": "C054",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "20, 8",
+        "clause": "6, 1",
+        "point": "a-d"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D20.6 (dan nhap + diem a/b/c/d - cac truong hop khong phai danh gia tac dong); (B) D8.1 (che tai xu ly vi pham). Ca 2 leg khop nguyen van 7 marker."
+    },
+    {
+      "id": "Q119",
+      "source_id": "C055",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-13-2023-nd-cp-39228.htm",
+          "source_name": "Nghị định số 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân",
+          "document_id": "13/2023/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "9, 22",
+        "clause": null,
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D9 'Quyen cua chu the du lieu'; (B) D22 'Thu thap, chuyen giao, mua, ban trai phep du lieu ca nhan'. Ca 2 tieu de Dieu khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q120",
+      "source_id": "C056",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-53-2022-nd-cp-39253.htm",
+          "source_name": "Nghị định số 53/2022/NĐ-CP quy định chi tiết Luật An ninh mạng",
+          "document_id": "53/2022/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "26, 27",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D26 'Luu tru du lieu, dat chi nhanh hoac van phong dai dien tai Viet Nam'; (B) D27.1 thoi gian luu tru toi thieu 24 thang. Ca 2 leg khop nguyen van 3 marker."
+    },
+    {
+      "id": "Q121",
+      "source_id": "C058",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-356-2025-nd-cp-468371.htm",
+          "source_name": "Nghị định số 356/2025/NĐ-CP quy định chi tiết Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "356/2025/NĐ-CP"
+        },
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+          "source_name": "Luật số 91/2025/QH15 - Luật Bảo vệ dữ liệu cá nhân",
+          "document_id": "91/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "42 (NĐ 356), 38+39 (Luật 91)",
+        "clause": "1, 2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 3 leg, khac van ban: (A) ND 356 D42.1 - hieu luc 01/01/2026; (B) ND 356 D42.2 - ND 13/2023 het hieu luc ke tu ngay ND nay co hieu luc; (C) Luat 91/2025/QH15 D38.1 - hieu luc 01/01/2026; (D) Luat 91 D39.1 - xu ly da duoc dong y theo ND 13/2023 truoc ngay Luat co hieu luc thi tiep tuc thuc hien, khong phai xin dong y lai. Ca 4 leg khop nguyen van 4 marker."
+    },
+    {
+      "id": "Q122",
+      "source_id": "C065",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "86/2015/QH13",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=183196",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren congbao/vanban chinh thuc, nhung ban dinh kem signed PDF la anh scan (1 XObject /Im0, khong co font) nen khong co text layer; may khong co OCR (tesseract/gs/pdftoppm deu khong co). Corpus markdown va raw HTML la ban sao noi bo (class 'prov-*'), khong co dau hieu nguon chinh thuc, nen theo quy tac B2.5 KHONG duoc dung de nang len OFFICIAL_VERIFIED. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q123",
+      "source_id": "C072",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-328-2026-nd-cp-470333.htm",
+          "source_name": "Nghị định số 328/2026/NĐ-CP về phòng, chống tin giả, tin sai sự thật",
+          "document_id": "328/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "11, 4",
+        "clause": "4, 1",
+        "point": "b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D11.4 diem b - cong bo, canh bao trong 12 gio lam viec ke tu khi duoc gan nhan; (B) D4.1 diem b - dinh nghia 'tin gia, tin sai su that nguy hai'. Ca 2 leg khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q124",
+      "source_id": "C096",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-331-2026-nd-cp-470334.htm",
+          "source_name": "Nghị định số 331/2026/NĐ-CP về bảo vệ an ninh mạng đối với hệ thống thông tin",
+          "document_id": "331/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "12, 13",
+        "clause": "2",
+        "point": "b, c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D12.2 diem b - cap do 2 voi dich vu truc tuyen khac xu ly du lieu ca nhan nhay cam cua duoi 10.000 chu the; (B) D13.2 diem c - cap do 3 voi tu 10.000 chu the du lieu nhay cam tro len. Ca 2 leg khop nguyen van 6 marker."
+    },
+    {
+      "id": "Q125",
+      "source_id": "C099",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-331-2026-nd-cp-470334.htm",
+          "source_name": "Nghị định số 331/2026/NĐ-CP về bảo vệ an ninh mạng đối với hệ thống thông tin",
+          "document_id": "331/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "3, 16",
+        "clause": "4",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D3.4 - cap do an ninh mang he thong thong tin duoc hieu la cap do he thong thong tin; (B) D16.4 - he thong thong tin cap do 5 la he thong thong tin quan trong ve an ninh quoc gia. Ca 2 leg khop nguyen van 2 marker."
+    },
+    {
+      "id": "Q126",
+      "source_id": "C100",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-331-2026-nd-cp-470334.htm",
+          "source_name": "Nghị định số 331/2026/NĐ-CP về bảo vệ an ninh mạng đối với hệ thống thông tin",
+          "document_id": "331/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "38, 39",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D38 - hieu luc 19/8/2026; (B) D39.1 - he thong dang dau tu, xay dung truoc 01/7/2026: 06 thang de hoan thanh tham dinh/phe duyet cap do theo ND 85/2016/ND-CP, va 12 thang de bao dam dieu kien theo ND nay. Ca 2 leg khop nguyen van 4 marker."
+    },
+    {
+      "id": "Q127",
+      "source_id": "C110",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-332-2026-nd-cp-470329.htm",
+          "source_name": "Nghị định số 332/2026/NĐ-CP về kinh doanh sản phẩm, dịch vụ an ninh mạng",
+          "document_id": "332/2026/NĐ-CP"
+        }
+      ],
+      "verified_location": {
+        "article": "1, 19",
+        "clause": "1, 3",
+        "point": "a, b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D1.1 - quy dinh chi tiet khoan 3 Dieu 28, khoan 3 Dieu 29 Luat An ninh mang 116/2025/QH15; (B) D19.3 diem a/b - tham quyen kiem tra cua Bo Cong an va UBND tinh tro len. Ca 2 leg khop nguyen van 4 marker."
+    },
+    {
+      "id": "Q128",
+      "source_id": "C123",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "34, 35",
+        "clause": "1",
+        "point": "a, b"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D34 - hieu luc 01/3/2026 (kem ngoai le theo D35); (B) D35.1 diem a - 18 thang voi linh vuc y te, giao duc, tai chinh; diem b - 12 thang voi cac he thong con lai. Ca 2 leg khop nguyen van 4 marker."
+    },
+    {
+      "id": "Q129",
+      "source_id": "C124",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-71-2025-qh15-45555.htm",
+          "source_name": "Luật số 71/2025/QH15 - Luật Công nghiệp công nghệ số",
+          "document_id": "71/2025/QH15"
+        },
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "3 (Luật 71), 33 (Luật 134)",
+        "clause": "9",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 van ban: (A) Luat 71/2025/QH15 D3.9 - dinh nghia he thong AI (khop 3 marker dau); (B) Luat 134/2025/QH15 D33 - bai bo khoan 9 Dieu 3 cua Luat Cong nghiep cong nghe so (khop marker 'Bai bo khoan 9 Dieu 3'). Tra loi dung CAU HOI CO: khoan do DA bi bai bo. Kiem chieu: Luat 134 bai bo Luat 71, dung chieu."
+    },
+    {
+      "id": "Q130",
+      "source_id": "C125",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-71-2025-qh15-45555.htm",
+          "source_name": "Luật số 71/2025/QH15 - Luật Công nghiệp công nghệ số",
+          "document_id": "71/2025/QH15"
+        },
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "43 (Luật 71), 33 (Luật 134)",
+        "clause": "1, 2",
+        "point": "a-c"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 van ban: (A) Luat 71/2025/QH15 D43 khoan 1 (rui ro cao + 3 ngoai le a/b/c) va khoan 2 (tac dong lon) khop nguyen van; (B) Luat 134/2025/QH15 D33 bai bo Chuong IV cua Luat 71. Da kiem truc tiep tren Cong bao 71/2025/QH15: Chuong IV 'TRI TUE NHAN TAO' bat dau tai offset 52028, Chuong V tai 57855, va Dieu 43 nam trong khoang do => Dieu 43 THUOC Chuong IV nen DA bi bai bo. Cau hoi hoi co/khong kem kiem chung hieu luc - tra loi dung. Khop 7 marker."
+    },
+    {
+      "id": "Q131",
+      "source_id": "C127",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-71-2025-qh15-45555.htm",
+          "source_name": "Luật số 71/2025/QH15 - Luật Công nghiệp công nghệ số",
+          "document_id": "71/2025/QH15"
+        },
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "12 (Luật 71), 33 (Luật 134)",
+        "clause": "4, 6",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 van ban: (A) Luat 71/2025/QH15 D12.4 (gia mao, gian doi de huong chinh sach uu dai) va D12.6 (su dung, cung cap, trien khai he thong AI ... pha hoai thuan phong my tuc) khop nguyen van; (B) Luat 134/2025/QH15 D33 bai bo khoan 6 Dieu 12 cua Luat 71. => Khoan cam su dung AI pha hoai thuan phong my tuc DA bi bai bo; khoan 4 (gia mao, gian doi) VAN con hieu luc vi khong nam trong danh muc bai bo. Tra loi dung ca 2 ve cua cau hoi. Khop 4 marker."
+    },
+    {
+      "id": "Q132",
+      "source_id": "C128",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-71-2025-qh15-45555.htm",
+          "source_name": "Luật số 71/2025/QH15 - Luật Công nghiệp công nghệ số",
+          "document_id": "71/2025/QH15"
+        },
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-134-2025-qh15-468694.htm",
+          "source_name": "Luật số 134/2025/QH15 - Luật Trí tuệ nhân tạo",
+          "document_id": "134/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "44 (Luật 71), 33 (Luật 134)",
+        "clause": "1, 2, 3",
+        "point": "a"
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": true,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 van ban: (A) Luat 71/2025/QH15 D44 khoan 1, 2, 3 diem a khop nguyen van; (B) Luat 134/2025/QH15 D33 bai bo Chuong IV cua Luat 71. Da kiem truc tiep tren Cong bao: Chuong IV 'TRI TUE NHAN TAO' bat dau offset 52028, Chuong V tai 57855, Dieu 44 tai 57310 => THUOC Chuong IV nen DA bi bai bo. Khop 6 marker."
+    },
+    {
+      "id": "Q133",
+      "source_id": "C129",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/luat-so-71-2025-qh15-45555.htm",
+          "source_name": "Luật số 71/2025/QH15 - Luật Công nghiệp công nghệ số",
+          "document_id": "71/2025/QH15"
+        }
+      ],
+      "verified_location": {
+        "article": "50, 51",
+        "clause": "1, 2",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg trong cung van ban: (A) D50.1 (hieu luc 01/01/2026) va D50.2 (cac Dieu 11, 28, 29 co hieu luc tu 01/7/2025); (B) D51.1 (khu cong nghe thong tin tap trung tu dong chuyen thanh khu cong nghe so tap trung). Khop 4 marker."
+    },
+    {
+      "id": "Q134",
+      "source_id": "C140",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [
+        {
+          "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-05-2026-tt-bkhcn-469079.htm",
+          "source_name": "Thông tư số 05/2026/TT-BKHCN - Khung đạo đức trí tuệ nhân tạo quốc gia",
+          "document_id": "05/2026/TT-BKHCN"
+        }
+      ],
+      "verified_location": {
+        "article": "4, 5",
+        "clause": "1",
+        "point": null
+      },
+      "checks": {
+        "document": true,
+        "article": true,
+        "clause": true,
+        "point": null,
+        "evidence": true,
+        "question_supported": true,
+        "markers_supported": true
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "MULTI-HOP 2 leg: (A) D4 - hieu luc ke tu ngay 10/3/2026; (B) D5.1 - ra soat, cap nhat dinh ky 03 nam mot lan hoac khi co thay doi lon ve cong nghe, phap luat va thuc tien quan ly. Khop 3 marker."
+    },
+    {
+      "id": "Q135",
+      "source_id": "C148",
+      "category": "multi_hop",
+      "answerable": true,
+      "status": "BLOCKER",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": null,
+      "proposed_fix": null,
+      "notes": "Van ban DA dinh vi duoc tren vanban.chinhphu.vn (docid=210020) nhung ban dinh kem signed PDF la anh scan, khong co text layer; may khong co OCR. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc.",
+      "blocked_documents": [
+        {
+          "document_id": "367/QĐ-TTg",
+          "located_at": "https://vanban.chinhphu.vn/?pageid=27160&docid=210020&classid=2",
+          "usable_text": false,
+          "reason": "Van ban DA dinh vi duoc tren vanban.chinhphu.vn (docid=210020) nhung ban dinh kem signed PDF la anh scan, khong co text layer; may khong co OCR. CAN: OCR ban signed PDF hoac lay .doc/.docx chinh thuc."
+        }
+      ]
+    },
+    {
+      "id": "Q136",
+      "source_id": "N026",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "CORPUS-UNANSWERABLE dung nghia (khong phai 'phap luat VN khong co dap an'). PREMISE verified: Luat 134/2025/QH15 D13.2 diem a giao danh muc he thong AI phai chung nhan su phu hop truoc khi dua vao su dung; ND 142/2026/ND-CP D1.1 liet ke Dieu 9/Dieu 13 nhu noi dung duoc quy dinh chi tiet, va D7/D8 chi mo ta tieu chi + quy trinh de xuat. Da doi chieu Cong bao 134/2025/QH15 va 142/2026/ND-CP: KHONG co ban than danh muc. outside_corpus_answer_exists=true: danh muc nay do Thut tuong ban hanh bang quyet dinh rieng (ngoai 23 van ban). => giu answerable=false vi benchmark co dinh tren corpus 23 van ban."
+    },
+    {
+      "id": "Q137",
+      "source_id": "N027",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 134/2025/QH15 D17.5 'Thu tuong Chinh phu ban hanh Danh muc bo du lieu phuc vu phat trien tri tue nhan tao trong cac linh vuc thiet yeu, trong do uu tien du lieu van hoa, ngon ngu tieng Viet...' - chi neu linh vuc uu tien, khong liet ke ten bo du lieu. ND 142 cung chi giao Bo KHCN trinh danh muc. outside_corpus_answer_exists=true (quyet dinh cua Thu tuong ban hanh danh muc la van ban rieng, khong nam trong 23 van ban)."
+    },
+    {
+      "id": "Q138",
+      "source_id": "N028",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 134/2025/QH15 D16 quy dinh ve ha tang AI quoc gia; nghia vu trien khai tren ha tang quoc gia gan voi 'danh muc ung dung AI quan trong trong cac linh vuc thiet yeu' chua duoc ban hanh trong corpus. Da doi chieu Cong bao 134/2025/QH15: khong co danh muc kem theo. outside_corpus_answer_exists=true (danh muc do Thu tuong ban hanh rieng)."
+    },
+    {
+      "id": "Q139",
+      "source_id": "N029",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 134/2025/QH15 D22 'Quy Phat trien tri tue nhan tao quoc gia' - khoan 1 noi Chinh phu thanh lap, khoan 5 giao Chinh phu quy dinh to chuc, quan ly, su dung va giam sat quy. Da doi chieu Cong bao: khong neu co quan quan ly cu the hay co che giam sat. outside_corpus_answer_exists=true (nghi dinh cua Chinh phu ve to chuc va giam sat quy)."
+    },
+    {
+      "id": "Q140",
+      "source_id": "N030",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 134/2025/QH15 D29.5 giao Chinh phu quy dinh xu phat hanh vi vi pham do he thong AI gay ra, KHONG kem khung tien. ND 330/2026/ND-CP D67 chi xu phat mot so hanh vi bao ve du lieu ca nhan khi dung AI, khong phai khung phat theo D29.5. outside_corpus_answer_exists=true (nghi dinh xu phat VPHC thi hanh Luat Tri tue nhan tao chua co trong corpus)."
+    },
+    {
+      "id": "Q141",
+      "source_id": "N031",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 71/2025/QH15 D19 quy dinh uu dai dac biet voi nhan luc cong nghiep cong nghe so chat luong cao nhung tieu chi cu the giao Chinh phu quy dinh; D20 dan chieu tieu chi nhan tai sang linh vuc khoa hoc cong nghe. Da doi chieu Cong bao 71/2025/QH15: khong co ban tieu chi. outside_corpus_answer_exists=true (nghi dinh quy dinh tieu chi)."
+    },
+    {
+      "id": "Q142",
+      "source_id": "N032",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 71/2025/QH15 D48 khoan 1 diem d va khoan 2 giao Chinh phu quy dinh tham quyen va noi dung quan ly ve dieu kien kinh doanh dich vu tai san ma hoa; D3 chi dinh nghia 'tai san ma hoa'. Khong co dieu kien, ho so hay co quan cap phep trong corpus. outside_corpus_answer_exists=true (nghi dinh ve kinh doanh dich vu tai san ma hoa)."
+    },
+    {
+      "id": "Q143",
+      "source_id": "N033",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 71/2025/QH15 D23.1 diem b neu tieu chi 'quy mo dien tich' nhung khong co con so; khoan 3 giao Chinh phu quy dinh chi tiet khoan 1 va trinh tu, thu tuc; D3.6 dinh nghia khu cong nghe so tap trung. Da doi chieu Cong bao: khong co nguong dien tich hay danh muc giay to. outside_corpus_answer_exists=true (nghi dinh quy dinh chi tiet Dieu 23)."
+    },
+    {
+      "id": "Q144",
+      "source_id": "N034",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 116/2025/QH15 D25.2 diem d yeu cau luu ten tai khoan, thoi gian su dung dich vu, thong tin thanh toan, dia chi IP 'trong thoi gian theo quy dinh cua phap luat' sau khi nguoi dung ket thuc su dung dich vu, va khoan 4 giao Chinh phu quy dinh chi tiet - KHONG co so. ND 53/2022/ND-CP D26/D27 co 24 thang va 12 thang nhung dong ho la 'tu khi nhan duoc yeu cau luu tru' va nhat ky dieu tra, khac nghia. outside_corpus_answer_exists=true (van ban an dinh thoi han do)."
+    },
+    {
+      "id": "Q145",
+      "source_id": "N035",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 116/2025/QH15 D27.5 'Bo truong Bo Cong an ban hanh quy chuan ky thuat quoc gia ve an ninh mang' - giao ban hanh nhung khong kem so hieu QCVN hay bang chi tieu. Da kiem toan bo 23 van ban: khong co chuoi QCVN nao. outside_corpus_answer_exists=true (Thong tu ban hanh QCVN la van ban rieng)."
+    },
+    {
+      "id": "Q146",
+      "source_id": "N036",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: ND 333/2026/ND-CP D24.6 giao Bo truong Bo Cong an ban hanh khung chuong trinh tap huan va chuan kien thuc, ky nang, khong kem thoi luong hay thang diem; D28.1 diem a chi yeu cau tham du toi thieu 80% thoi luong va diem c noi 'dat yeu cau' khong co diem so. outside_corpus_answer_exists=true (khung chuong trinh do Bo Cong an ban hanh rieng)."
+    },
+    {
+      "id": "Q147",
+      "source_id": "N037",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 116/2025/QH15 D33.1 noi kien thuc an ninh mang duoc dua vao mon giao duc quoc phong va an ninh theo quy dinh cua Luat Giao duc quoc phong va an ninh - dan chieu, khong liet ke bai hoc hay khoi lop. outside_corpus_answer_exists=true: Luat Giao duc quoc phong va an ninh la van ban ngoai corpus va quy dinh noi dung mon hoc o tung cap."
+    },
+    {
+      "id": "Q148",
+      "source_id": "N038",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 116/2025/QH15 D22 'Ngan chan xung dot thong tin tren khong gian mang' khoan 1 dinh nghia xung dot thong tin, khoan 4 giao Chinh phu quy dinh chi tiet ca dieu - khong neu co quan chu tri hay han bao cao. ND 330 D25 chi dat muc phat. outside_corpus_answer_exists=true (nghi dinh quy dinh chi tiet Dieu 22)."
+    },
+    {
+      "id": "Q149",
+      "source_id": "N039",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: Luat 116/2025/QH15 D5.1 diem n neu bien phap 'khoi to, dieu tra, truy to, xet xu theo quy dinh cua Bo luat To tung hinh su'; khoan 2 xac nhan Chinh phu khong quy dinh chi tiet diem nay. Ket qua la dan chieu, khong co so thang. outside_corpus_answer_exists=true: Bo luat To tung hinh su (van ban ngoai corpus) quy dinh thoi han dieu tra; da xac nhan 3 van ban trong corpus co dan chieu sang bo luat nay."
+    },
+    {
+      "id": "Q150",
+      "source_id": "N040",
+      "category": "unanswerable",
+      "answerable": false,
+      "status": "OFFICIAL_VERIFIED",
+      "official_sources": [],
+      "verified_location": null,
+      "checks": {
+        "document": null,
+        "article": null,
+        "clause": null,
+        "point": null,
+        "evidence": null,
+        "question_supported": null,
+        "markers_supported": null
+      },
+      "outside_corpus_answer_exists": true,
+      "proposed_fix": null,
+      "notes": "PREMISE verified: ND 356/2025/ND-CP D34.4 giao Bo Cong an phoi hop xay dung quy chuan ky thuat ve khu nhan dang - tuc quy chuan CHUA duoc ban hanh trong corpus; Luat 91/2025/QH15 D2.1 va D14 chi neu dinh nghia, cam tai nhan dang, khong co phuong phap hay nguong. outside_corpus_answer_exists=true (quy chuan ky thuat khu nhan dang du lieu ca nhan la van ban rieng, chua ban hanh)."
+    }
+  ]
+}

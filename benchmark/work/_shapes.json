@@ -1,0 +1,26 @@
+{
+  "summary": {
+    "shapes": {
+      "list:str,str,str:n3": 92,
+      "list:str,str,str:n4": 65,
+      "list:str,str:n2": 9
+    },
+    "shape_examples": {
+      "list:str,str,str:n3": [
+        0,
+        1
+      ],
+      "list:str,str,str:n4": [
+        2,
+        44
+      ],
+      "list:str,str:n2": [
+        10,
+        46
+      ]
+    },
+    "nguon_types": {
+      "str": 166
+    }
+  }
+}

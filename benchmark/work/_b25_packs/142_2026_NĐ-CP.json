@@ -1,0 +1,239 @@
+[
+  {
+    "id": "Q044",
+    "source_id": "C130",
+    "category": "obligation",
+    "answerable": true,
+    "question": "Báo cáo sơ bộ sự cố nghiêm trọng của hệ thống trí tuệ nhân tạo phải nộp trong thời hạn bao lâu kể từ thời điểm xác nhận sự cố đối với thiệt hại về tính mạng hoặc tổn hại nghiêm trọng đến sức khỏe, đối với gián đoạn nghiêm trọng việc cung cấp dịch vụ công, dịch vụ thiết yếu hoặc ảnh hưởng an ninh quốc gia, trật tự, an toàn xã hội, đối với trường hợp không thể kiểm soát khi xâm phạm nghiêm trọng quyền con người, và đối với các sự cố nghiêm trọng còn lại?",
+    "markers": [
+      "Thiệt hại về tính mạng hoặc tổn hại nghiêm trọng đến sức khỏe của con người",
+      "Thiệt hại đáng kể về tài sản hoặc ảnh hưởng nghiêm trọng đến hoạt động của tổ chức",
+      "Xâm phạm nghiêm trọng quyền con người, quyền và lợi ích hợp pháp của cơ quan, tổ chức, cá nhân",
+      "Gây gián đoạn nghiêm trọng việc cung cấp dịch vụ công, dịch vụ thiết yếu",
+      "điểm a, điểm d khoản 1 Điều này và trường hợp không thể kiểm soát đối với quy định tại điểm c khoản 1 Điều này",
+      "72 giờ kể từ thời điểm xác nhận sự cố",
+      "05 ngày làm việc kể từ thời điểm xác nhận sự cố"
+    ],
+    "notes": "evidence A: Điều 19 khoản 1 điểm a, b, c, d Nghị định 142/2026 — bốn hậu quả được gọi là sự cố nghiêm trọng. Điểm a là tính mạng, sức khỏe; điểm d là dịch vụ công, dịch vụ thiết yếu, an ninh, trật tự; điểm c là xâm phạm quyền; điểm b là tài sản, hoạt động của tổ chức.\nevidence B: Điều 19 khoản 3 điểm a và điểm b — 72 giờ cho sự cố khẩn cấp thuộc điểm a, điểm d khoản 1 và trường hợp không thể kiểm soát của điểm c; 05 ngày làm việc cho sự cố nghiêm trọng còn lại.\nvì sao một evidence không đủ: khoản 1 không có hạn giờ; khoản 3 chỉ trỏ 'điểm a, điểm d, điểm c' chứ không mô tả thiệt hại tính mạng hay dịch vụ công. Câu cũ gán 72 giờ chỉ cho thiệt hại tính mạng và gán mọi sự cố nghiêm trọng khác vào 05 ngày, nuốt điểm d và phần không kiểm soát được của điểm c. Nhãn điểm lấy theo đầu đoạn, không ghi thêm khoản. Cùng một điều, không tính multi_hop.",
+    "evidence": [
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "19",
+        "clause": "1",
+        "point": "a",
+        "text": "a) Thiệt hại về tính mạng hoặc tổn hại nghiêm trọng đến sức khỏe của con người;"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "19",
+        "clause": "1",
+        "point": "b",
+        "text": "b) Thiệt hại đáng kể về tài sản hoặc ảnh hưởng nghiêm trọng đến hoạt động của tổ chức;"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "19",
+        "clause": "1",
+        "point": "c",
+        "text": "c) Xâm phạm nghiêm trọng quyền con người, quyền và lợi ích hợp pháp của cơ quan, tổ chức, cá nhân;"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "19",
+        "clause": "1",
+        "point": "d",
+        "text": "d) Gây gián đoạn nghiêm trọng việc cung cấp dịch vụ công, dịch vụ thiết yếu theo quy định của pháp luật hoặc ảnh hưởng đến an ninh quốc gia, trật tự, an toàn xã hội."
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "19",
+        "clause": "3",
+        "point": "a",
+        "text": "a) Đối với các sự cố nghiêm trọng có tính khẩn cấp quy định tại điểm a, điểm d khoản 1 Điều này và trường hợp không thể kiểm soát đối với quy định tại điểm c khoản 1 Điều này: thực hiện báo cáo sơ bộ trong thời hạn 72 giờ kể từ thời điểm xác nhận sự cố;"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "19",
+        "clause": "3",
+        "point": "b",
+        "text": "b) Đối với các sự cố nghiêm trọng còn lại: thực hiện báo cáo sơ bộ trong thời hạn 05 ngày làm việc kể từ thời điểm xác nhận sự cố;"
+      }
+    ]
+  },
+  {
+    "id": "Q066",
+    "source_id": "N008",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Phiếu hỗ trợ phát triển trí tuệ nhân tạo thanh toán cho các dịch vụ thử nghiệm có kiểm soát tại khoản 3 Điều 26 Nghị định 142/2026/NĐ-CP thì mức hỗ trợ tối đa không được vượt quá bao nhiêu phần trăm tổng chi phí hợp lệ?",
+    "markers": [
+      "50%",
+      "tổng chi phí hợp lệ thực tế phát sinh"
+    ],
+    "notes": "Câu trần nằm trong khoản 3 Điều 26 Nghị định 142/2026/NĐ-CP, sau điểm c, không phải một điểm riêng. Point để null.",
+    "evidence": [
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "26",
+        "clause": "3",
+        "point": null,
+        "text": "Mức hỗ trợ tối đa không vượt quá 50% tổng chi phí hợp lệ thực tế phát sinh đối với các dịch vụ quy định tại khoản này."
+      }
+    ]
+  },
+  {
+    "id": "Q080",
+    "source_id": "C042",
+    "category": "effectiveness_metadata",
+    "answerable": true,
+    "question": "Nghị định 142/2026/NĐ-CP quy định chi tiết một số điều và biện pháp thi hành Luật Trí tuệ nhân tạo có hiệu lực thi hành từ ngày nào?",
+    "markers": [
+      "có hiệu lực thi hành từ ngày 01 tháng 5 năm 2026"
+    ],
+    "notes": "Audit: gold phải là câu Điều 45. Còn hiệu lực trong Điều 5 là hiệu lực kết quả đánh giá, không phải của nghị định. Không dùng nhãn header. Câu cũ hỏi đã có hiệu lực chưa nên phụ thuộc ngày chấm; đổi thành hỏi mốc.",
+    "evidence": [
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "45",
+        "clause": null,
+        "point": null,
+        "text": "Nghị định này có hiệu lực thi hành từ ngày 01 tháng 5 năm 2026."
+      }
+    ]
+  },
+  {
+    "id": "Q085",
+    "source_id": "C135",
+    "category": "effectiveness_metadata",
+    "answerable": true,
+    "question": "Nghị định 142/2026/NĐ-CP có kết cấu thế nào: văn bản được chia thành mấy chương, chương cuối cùng có tên là gì và phần Phụ lục kèm theo có tiêu đề gì?",
+    "markers": [
+      "Chương VIII",
+      "ĐIỀU KHOẢN THI HÀNH",
+      "DANH MỤC BIỂU MẪU"
+    ],
+    "notes": "Tiêu đề chương và phụ lục không thuộc Điều. Draft gán nhầm 'ĐIỀU KHOẢN THI HÀNH' cho Điều 44 và 'DANH MỤC BIỂU MẪU' cho Điều 46.",
+    "evidence": [
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "Chương I"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "Chương II"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "Chương III"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "Chương IV"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "Chương V"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "Chương VI"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "Chương VII"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "Chương VIII"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "ĐIỀU KHOẢN THI HÀNH"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": null,
+        "clause": null,
+        "point": null,
+        "text": "DANH MỤC BIỂU MẪU"
+      }
+    ]
+  },
+  {
+    "id": "Q100",
+    "source_id": "C136",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Nghị định 142/2026/NĐ-CP được ban hành để quy định chi tiết Luật nào, và cụ thể hoá Điều 9 cùng Điều 13 của Luật đó về những nội dung gì?",
+    "markers": [
+      "phân loại mức độ rủi ro",
+      "đánh giá sự phù hợp đối với hệ thống trí tuệ nhân tạo"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "1",
+        "clause": "1",
+        "point": "b",
+        "text": "b) Điều 9 về phân loại mức độ rủi ro của hệ thống trí tuệ nhân tạo;"
+      },
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "1",
+        "clause": "1",
+        "point": "e",
+        "text": "e) Điều 13 về đánh giá sự phù hợp đối với hệ thống trí tuệ nhân tạo có rủi ro cao;"
+      }
+    ]
+  },
+  {
+    "id": "Q108",
+    "source_id": "N023",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Trách nhiệm dân sự, hình sự và hành chính của tổ chức, cá nhân tham gia thử nghiệm có kiểm soát được dẫn chiếu sang điều nào của luật nào?",
+    "markers": [
+      "Điều 22 và Điều 23",
+      "Luật Khoa học, công nghệ và đổi mới sáng tạo",
+      "trách nhiệm dân sự, hình sự và hành chính"
+    ],
+    "notes": "Điều 21 khoản 6 Nghị định 142/2026/NĐ-CP gọi thẳng Điều 22 và Điều 23 của Luật Khoa học, công nghệ và đổi mới sáng tạo.",
+    "evidence": [
+      {
+        "document_id": "142/2026/NĐ-CP",
+        "article": "21",
+        "clause": "6",
+        "point": null,
+        "text": "6. Tổ chức, cá nhân tham gia thử nghiệm được miễn, loại trừ và phải chịu trách nhiệm dân sự, hình sự và hành chính phát sinh trong quá trình thử nghiệm theo quy định tại Điều 22 và Điều 23 của Luật Khoa học, công nghệ và đổi mới sáng tạo."
+      }
+    ]
+  }
+]

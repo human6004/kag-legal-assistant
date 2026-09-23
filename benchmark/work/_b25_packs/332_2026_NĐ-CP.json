@@ -1,0 +1,149 @@
+[
+  {
+    "id": "Q013",
+    "source_id": "C109",
+    "category": "definition",
+    "answerable": true,
+    "question": "Sản phẩm giám sát an ninh mạng là gì và sản phẩm che giấu địa chỉ IP được hiểu như thế nào?",
+    "markers": [
+      "Sản phẩm giám sát an ninh mạng là các thiết bị phần cứng, phần mềm",
+      "phát hiện và đưa ra cảnh báo sự kiện bất thường, có nguy cơ gây mất an ninh mạng",
+      "Sản phẩm che giấu địa chỉ IP là sản phẩm kết nối mạng giữa thiết bị và không gian mạng thông qua máy chủ từ xa nhằm che giấu địa chỉ IP thật của thiết bị trên không gian mạng"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "3",
+        "clause": "2",
+        "point": null,
+        "text": "2. Sản phẩm giám sát an ninh mạng là các thiết bị phần cứng, phần mềm có các tính năng hoặc được thiết kế để tích hợp các tính năng sau: Giám sát, phân tích dữ liệu, địa chỉ mạng, lưu lượng mạng; thu thập, phân tích dữ liệu nhật ký theo thời gian thực; phát hiện và đưa ra cảnh báo sự kiện bất thường, có nguy cơ gây mất an ninh mạng."
+      },
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "3",
+        "clause": "4",
+        "point": "đ",
+        "text": "đ) Sản phẩm che giấu địa chỉ IP là sản phẩm kết nối mạng giữa thiết bị và không gian mạng thông qua máy chủ từ xa nhằm che giấu địa chỉ IP thật của thiết bị trên không gian mạng."
+      }
+    ]
+  },
+  {
+    "id": "Q040",
+    "source_id": "C106",
+    "category": "obligation",
+    "answerable": true,
+    "question": "Dịch vụ giám sát an ninh mạng phải có ít nhất bao nhiêu người có trình độ đại học hoặc chứng chỉ về an ninh mạng trở lên, và người đại diện theo pháp luật phải có quốc tịch nào?",
+    "markers": [
+      "ít nhất 12 người có trình độ đại học hoặc chứng chỉ về an ninh mạng trở lên",
+      "người đại diện theo pháp luật phải là người có quốc tịch Việt Nam"
+    ],
+    "notes": "Thu về một loại dịch vụ: giám sát an ninh mạng, Điều 8 khoản 2. Ít nhất 12 người có trình độ đại học hoặc chứng chỉ về an ninh mạng trở lên; người đại diện theo pháp luật là người có quốc tịch Việt Nam. Không gộp mức 05 người của dịch vụ kiểm tra, tư vấn ở khoản 1, cũng không gộp bằng cấp chung nhiều ngành ở Điều 6 khoản 2 điểm b. Cùng đoạn còn yêu cầu nhân sự quản trị hệ thống, bảo mật thông tin; câu không hỏi mở danh sách đó.",
+    "evidence": [
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "8",
+        "clause": "2",
+        "point": null,
+        "text": "2. Đối với dịch vụ giám sát an ninh mạng, phải có ít nhất 12 người có trình độ đại học hoặc chứng chỉ về an ninh mạng trở lên và có nhân sự chịu trách nhiệm quản trị hệ thống, bảo mật thông tin; người đại diện theo pháp luật phải là người có quốc tịch Việt Nam."
+      }
+    ]
+  },
+  {
+    "id": "Q057",
+    "source_id": "C108",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Cho tôi hỏi những trường hợp nào doanh nghiệp bị tạm đình chỉ sử dụng giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng, và thời hạn tạm đình chỉ là bao lâu?",
+    "markers": [
+      "có thời hạn từ 03 tháng đến 06 tháng",
+      "Không làm thủ tục cấp đổi Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng",
+      "Không làm thủ tục cấp lại giấy phép",
+      "Không ngừng hoặc tạm ngừng cung cấp sản phẩm, dịch vụ an ninh mạng theo yêu cầu của cơ quan có thẩm quyền",
+      "Không báo cáo Bộ Công an về tình hình kinh doanh, xuất khẩu, nhập khẩu sản phẩm, dịch vụ an ninh mạng",
+      "đã bị xử phạt vi phạm hành chính từ 02 lần trở lên trong thời gian 12 tháng"
+    ],
+    "notes": "Giữ nguyên câu. Chapeau khoản 2: tạm đình chỉ có thời hạn từ 03 tháng đến 06 tháng. Đủ 5 điểm a, b, c, d, đ. Gold cũ thiếu điểm c, không ngừng hoặc tạm ngừng theo yêu cầu của cơ quan có thẩm quyền, và điểm đ, bị xử phạt hành chính từ 02 lần trở lên trong 12 tháng.",
+    "evidence": [
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "14",
+        "clause": "2",
+        "point": null,
+        "text": "2. Các trường hợp tạm đình chỉ sử dụng giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng có thời hạn từ 03 tháng đến 06 tháng:"
+      },
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "14",
+        "clause": "2",
+        "point": "a",
+        "text": "a) Không làm thủ tục cấp đổi Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng trong trường hợp tổ chức, doanh nghiệp thay đổi tên tổ chức, doanh nghiệp hoặc thay đổi người đại diện theo pháp luật;"
+      },
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "14",
+        "clause": "2",
+        "point": "b",
+        "text": "b) Không làm thủ tục cấp lại giấy phép trong trường hợp Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng bị mất hoặc hư hỏng;"
+      },
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "14",
+        "clause": "2",
+        "point": "c",
+        "text": "c) Không ngừng hoặc tạm ngừng cung cấp sản phẩm, dịch vụ an ninh mạng theo yêu cầu của cơ quan có thẩm quyền;"
+      },
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "14",
+        "clause": "2",
+        "point": "d",
+        "text": "d) Không báo cáo Bộ Công an về tình hình kinh doanh, xuất khẩu, nhập khẩu sản phẩm, dịch vụ an ninh mạng theo quy định;"
+      },
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "14",
+        "clause": "2",
+        "point": "đ",
+        "text": "đ) Vi phạm quy định về kinh doanh sản phẩm, dịch vụ an ninh mạng đã bị xử phạt vi phạm hành chính từ 02 lần trở lên trong thời gian 12 tháng."
+      }
+    ]
+  },
+  {
+    "id": "Q127",
+    "source_id": "C110",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Nghị định 332/2026/NĐ-CP quy định chi tiết những khoản nào của Luật An ninh mạng, và cơ quan nào có thẩm quyền kiểm tra việc kinh doanh sản phẩm, dịch vụ an ninh mạng?",
+    "markers": [
+      "quy định chi tiết khoản 3 Điều 28, khoản 3 Điều 29 Luật An ninh mạng",
+      "116/2025/QH15",
+      "Bộ Công an có thẩm quyền kiểm tra định kỳ hàng năm hoặc đột xuất",
+      "Ủy ban nhân dân tỉnh, thành phố trở lên được tiến hành kiểm tra tổ chức, doanh nghiệp trên địa bàn quản lý"
+    ],
+    "notes": "evidence A: 332/2026 Điều 1 khoản 1 (quy định chi tiết khoản 3 Điều 28, khoản 3 Điều 29 Luật 116). evidence B: 332/2026 Điều 19 điểm a và b (Bộ Công an và UBND tỉnh kiểm tra). vì sao một evidence không đủ: phạm vi nghị định và thẩm quyền kiểm tra nằm ở hai điều.",
+    "evidence": [
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "1",
+        "clause": "1",
+        "point": null,
+        "text": "1. Nghị định này quy định chi tiết khoản 3 Điều 28, khoản 3 Điều 29 Luật An ninh mạng số 116/2025/QH15 gồm:"
+      },
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "19",
+        "clause": "3",
+        "point": "a",
+        "text": "a) Bộ Công an có thẩm quyền kiểm tra định kỳ hàng năm hoặc đột xuất theo quy định của khoản 1 Điều này;"
+      },
+      {
+        "document_id": "332/2026/NĐ-CP",
+        "article": "19",
+        "clause": "3",
+        "point": "b",
+        "text": "b) Ủy ban nhân dân tỉnh, thành phố trở lên được tiến hành kiểm tra tổ chức, doanh nghiệp trên địa bàn quản lý khi phát hiện tổ chức, doanh nghiệp có vi phạm hoặc có dấu hiệu vi phạm pháp luật liên quan đến kinh doanh sản phẩm, dịch vụ an ninh mạng; có đơn khiếu nại, tố cáo của tổ chức hoặc cá nhân liên quan đến an ninh, trật tự tại tổ chức, doanh nghiệp trên địa bàn do mình quản lý. Sau khi kiểm tra phải có văn bản thông báo kết quả kiểm tra và xử lý vi phạm cho Bộ Công an."
+      }
+    ]
+  }
+]

@@ -1,0 +1,131 @@
+[
+  {
+    "id": "Q092",
+    "source_id": "C064",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Luật số 35/2018/QH14 sửa đổi, bổ sung khoản 12 Điều 12 của Bộ luật Hàng hải Việt Nam thành nội dung gì?",
+    "markers": [
+      "khoản 12 Điều 12",
+      "Xây dựng và khai thác trái phép các công trình cảng biển",
+      "quy hoạch tổng thể phát triển hệ thống cảng biển"
+    ],
+    "notes": "Bỏ đoạn sửa khoản 2 (ưu tiên phát triển kết cấu hạ tầng) vì cùng cụm 'quy hoạch tổng thể' nhưng không phải khoản 12.",
+    "evidence": [
+      {
+        "document_id": "35/2018/QH14",
+        "article": "2",
+        "clause": "2",
+        "point": null,
+        "text": "2. Sửa đổi, bổ sung khoản 12 Điều 12 như sau:"
+      },
+      {
+        "document_id": "35/2018/QH14",
+        "article": "2",
+        "clause": null,
+        "point": null,
+        "text": "“12. Xây dựng và khai thác trái phép các công trình cảng biển, công trình khác trong phạm vi quy hoạch tổng thể phát triển hệ thống cảng biển, quy hoạch chi tiết nhóm cảng biển, bến cảng, cầu cảng, bến phao, khu nước, vùng nước, quy hoạch chi tiết phát triển vùng đất, vùng nước cảng biển, quy hoạch phát triển hệ thống cảng cạn và các quy hoạch khác có liên quan theo quy định của pháp luật về quy hoạch, trong luồng hàng hải và phạm vi bảo vệ công trình hàng hải.”."
+      }
+    ]
+  },
+  {
+    "id": "Q093",
+    "source_id": "C067",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Luật nào đã sửa đổi, bổ sung một số điều của Luật An toàn thông tin mạng số 86/2015/QH13, và việc sửa đổi đó nằm ở điều nào của luật sửa đổi?",
+    "markers": [
+      "Điều 18",
+      "sửa đổi, bổ sung một số điều của Luật An toàn thông tin mạng"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "35/2018/QH14",
+        "article": "18",
+        "clause": null,
+        "point": null,
+        "text": "Điều 18. Sửa đổi, bổ sung một số điều của Luật An toàn thông tin mạng"
+      }
+    ]
+  },
+  {
+    "id": "Q094",
+    "source_id": "C068",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Luật số 35/2018/QH14 sửa đổi, bổ sung Điều 11 của Luật Khoáng sản thành nội dung gì?",
+    "markers": [
+      "Quy hoạch điều tra cơ bản địa chất về khoáng sản là quy hoạch ngành quốc gia",
+      "Luật Khoáng sản"
+    ],
+    "notes": "Câu về quy hoạch điều tra cơ bản là khoản 1 của Điều 11 Luật Khoáng sản được sửa lại. Chữ đó nằm trong khoản 4 Điều 8 Luật 35/2018, nên clause = 4. Không phải khoản 1 Điều 8.",
+    "evidence": [
+      {
+        "document_id": "35/2018/QH14",
+        "article": "8",
+        "clause": "4",
+        "point": null,
+        "text": "1. Quy hoạch điều tra cơ bản địa chất về khoáng sản là quy hoạch ngành quốc gia."
+      },
+      {
+        "document_id": "35/2018/QH14",
+        "article": "8",
+        "clause": null,
+        "point": null,
+        "text": "Điều 8. Sửa đổi, bổ sung một số điều của Luật Khoáng sản"
+      }
+    ]
+  },
+  {
+    "id": "Q095",
+    "source_id": "C070",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Khoản 1 Điều 51 Luật An toàn thông tin mạng 86/2015/QH13 quy định nội dung quản lý nhà nước về an toàn thông tin mạng gồm những gì, và Luật số 35/2018/QH14 đã bổ sung thêm nội dung nào vào khoản này?",
+    "markers": [
+      "Xây dựng chiến lược, quy hoạch, kế hoạch và chính sách trong lĩnh vực an toàn thông tin mạng",
+      "xây dựng và chỉ đạo thực hiện chương trình quốc gia về an toàn thông tin mạng",
+      "tổ chức lập phương án phát triển hạ tầng bảo đảm an toàn thông tin mạng trong quy hoạch hạ tầng thông tin và truyền thông"
+    ],
+    "notes": "Gold cũ lấy tiêu đề mục, không phải nội dung khoản. Chữ cũ là Điều 51 khoản 1 Luật 86/2015. Luật 35/2018 Điều 18 khoản 1 sửa khoản đó: bỏ từ quy hoạch khỏi cụm chiến lược, kế hoạch và thêm việc lập phương án phát triển hạ tầng. Cụm khoản 1 Điều 51 còn ở điều khác của luật 35; ghim Điều 18.",
+    "evidence": [
+      {
+        "document_id": "86/2015/QH13",
+        "article": "51",
+        "clause": "1",
+        "point": null,
+        "text": "1. Xây dựng chiến lược, quy hoạch, kế hoạch và chính sách trong lĩnh vực an toàn thông tin mạng; xây dựng và chỉ đạo thực hiện chương trình quốc gia về an toàn thông tin mạng."
+      },
+      {
+        "document_id": "35/2018/QH14",
+        "article": "18",
+        "clause": null,
+        "point": null,
+        "text": "“1. Xây dựng chiến lược, kế hoạch và chính sách trong lĩnh vực an toàn thông tin mạng; xây dựng và chỉ đạo thực hiện chương trình quốc gia về an toàn thông tin mạng; tổ chức lập phương án phát triển hạ tầng bảo đảm an toàn thông tin mạng trong quy hoạch hạ tầng thông tin và truyền thông, quy hoạch khác có liên quan theo quy định của pháp luật về quy hoạch.”."
+      }
+    ]
+  },
+  {
+    "id": "Q110",
+    "source_id": "N025",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Điều 27 của Luật số 35/2018/QH14 sửa đổi, bổ sung khoản nào của luật nào?",
+    "markers": [
+      "Sửa đổi, bổ sung",
+      "khoản 2 Điều 4",
+      "Luật Quảng cáo"
+    ],
+    "notes": "Tiêu đề Điều 27 Luật 35/2018/QH14 gọi tên Luật Quảng cáo và khoản 2 Điều 4. Thân điều chỉ nói sửa khoản 2 Điều 4, không nhắc tên luật, nên gold lấy tiêu đề. Không lấy số khoản nằm trong đoạn trích.",
+    "evidence": [
+      {
+        "document_id": "35/2018/QH14",
+        "article": "27",
+        "clause": null,
+        "point": null,
+        "text": "Điều 27. Sửa đổi, bổ sung khoản 2 Điều 4 của Luật Quảng cáo"
+      }
+    ]
+  }
+]

@@ -1,0 +1,167 @@
+[
+  {
+    "id": "Q008",
+    "source_id": "C060",
+    "category": "definition",
+    "answerable": true,
+    "question": "Luật An toàn thông tin mạng 86/2015/QH13 hiểu thế nào là hệ thống thông tin quan trọng quốc gia?",
+    "markers": [
+      "hệ thống thông tin mà khi bị phá hoại",
+      "tổn hại đặc biệt nghiêm trọng tới quốc phòng, an ninh quốc gia"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "86/2015/QH13",
+        "article": "3",
+        "clause": "4",
+        "point": null,
+        "text": "4. Hệ thống thông tin quan trọng quốc gia là hệ thống thông tin mà khi bị phá hoại sẽ làm tổn hại đặc biệt nghiêm trọng tới quốc phòng, an ninh quốc gia."
+      }
+    ]
+  },
+  {
+    "id": "Q009",
+    "source_id": "C061",
+    "category": "definition",
+    "answerable": true,
+    "question": "Phần mềm độc hại được Luật An toàn thông tin mạng 86/2015/QH13 giải thích như thế nào?",
+    "markers": [
+      "Phần mềm độc hại là phần mềm có khả năng",
+      "gây ra hoạt động không bình thường cho một phần hay toàn bộ hệ thống thông tin",
+      "xóa bỏ trái phép thông tin lưu trữ trong hệ thống thông tin"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "86/2015/QH13",
+        "article": "3",
+        "clause": "11",
+        "point": null,
+        "text": "11. Phần mềm độc hại là phần mềm có khả năng gây ra hoạt động không bình thường cho một phần hay toàn bộ hệ thống thông tin hoặc thực hiện sao chép, sửa đổi, xóa bỏ trái phép thông tin lưu trữ trong hệ thống thông tin."
+      }
+    ]
+  },
+  {
+    "id": "Q032",
+    "source_id": "C062",
+    "category": "obligation",
+    "answerable": true,
+    "question": "Luật An toàn thông tin mạng 86/2015/QH13 nghiêm cấm những hành vi nào liên quan đến thông tin cá nhân của người khác?",
+    "markers": [
+      "Thu thập, sử dụng, phát tán, kinh doanh trái pháp luật thông tin cá nhân của người khác",
+      "lợi dụng sơ hở, điểm yếu của hệ thống thông tin để thu thập, khai thác thông tin cá nhân"
+    ],
+    "notes": "Trong Điều 7 chỉ khoản 5 cấm hành vi đối với thông tin cá nhân của người khác; cả hai vế nằm trong một câu. Các khoản còn lại không nói thông tin cá nhân. Gold cũ là mảnh cắt và tiêu đề điều; thay bằng cả đoạn khoản 5.",
+    "evidence": [
+      {
+        "document_id": "86/2015/QH13",
+        "article": "7",
+        "clause": "5",
+        "point": null,
+        "text": "5. Thu thập, sử dụng, phát tán, kinh doanh trái pháp luật thông tin cá nhân của người khác; lợi dụng sơ hở, điểm yếu của hệ thống thông tin để thu thập, khai thác thông tin cá nhân."
+      }
+    ]
+  },
+  {
+    "id": "Q067",
+    "source_id": "N009",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Kể từ ngày nhận đủ hồ sơ, Ban Cơ yếu Chính phủ có bao nhiêu ngày để thẩm định và cấp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự?",
+    "markers": [
+      "30 ngày",
+      "Ban Cơ yếu Chính phủ",
+      "Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự"
+    ],
+    "notes": "Điều 32 khoản 3 Luật 86/2015/QH13. Hạn xử lý hồ sơ cấp phép, không phải thời hạn hiệu lực của giấy phép.",
+    "evidence": [
+      {
+        "document_id": "86/2015/QH13",
+        "article": "32",
+        "clause": "3",
+        "point": null,
+        "text": "3. Trong thời hạn 30 ngày kể từ ngày nhận đủ hồ sơ, Ban Cơ yếu Chính phủ thẩm định và cấp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự; trường hợp từ chối cấp thì phải thông báo bằng văn bản và nêu rõ lý do."
+      }
+    ]
+  },
+  {
+    "id": "Q087",
+    "source_id": "N014",
+    "category": "effectiveness_metadata",
+    "answerable": true,
+    "question": "Luật An toàn thông tin mạng số 86/2015/QH13 có hiệu lực thi hành từ ngày nào?",
+    "markers": [
+      "01 tháng 7 năm 2016"
+    ],
+    "notes": "Điều 53 Luật 86/2015/QH13. Ngày luật này bắt đầu có hiệu lực, không phải ngày Luật An ninh mạng 2025 thay thế luật này.",
+    "evidence": [
+      {
+        "document_id": "86/2015/QH13",
+        "article": "53",
+        "clause": null,
+        "point": null,
+        "text": "Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2016."
+      }
+    ]
+  },
+  {
+    "id": "Q095",
+    "source_id": "C070",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Khoản 1 Điều 51 Luật An toàn thông tin mạng 86/2015/QH13 quy định nội dung quản lý nhà nước về an toàn thông tin mạng gồm những gì, và Luật số 35/2018/QH14 đã bổ sung thêm nội dung nào vào khoản này?",
+    "markers": [
+      "Xây dựng chiến lược, quy hoạch, kế hoạch và chính sách trong lĩnh vực an toàn thông tin mạng",
+      "xây dựng và chỉ đạo thực hiện chương trình quốc gia về an toàn thông tin mạng",
+      "tổ chức lập phương án phát triển hạ tầng bảo đảm an toàn thông tin mạng trong quy hoạch hạ tầng thông tin và truyền thông"
+    ],
+    "notes": "Gold cũ lấy tiêu đề mục, không phải nội dung khoản. Chữ cũ là Điều 51 khoản 1 Luật 86/2015. Luật 35/2018 Điều 18 khoản 1 sửa khoản đó: bỏ từ quy hoạch khỏi cụm chiến lược, kế hoạch và thêm việc lập phương án phát triển hạ tầng. Cụm khoản 1 Điều 51 còn ở điều khác của luật 35; ghim Điều 18.",
+    "evidence": [
+      {
+        "document_id": "86/2015/QH13",
+        "article": "51",
+        "clause": "1",
+        "point": null,
+        "text": "1. Xây dựng chiến lược, quy hoạch, kế hoạch và chính sách trong lĩnh vực an toàn thông tin mạng; xây dựng và chỉ đạo thực hiện chương trình quốc gia về an toàn thông tin mạng."
+      },
+      {
+        "document_id": "35/2018/QH14",
+        "article": "18",
+        "clause": null,
+        "point": null,
+        "text": "“1. Xây dựng chiến lược, kế hoạch và chính sách trong lĩnh vực an toàn thông tin mạng; xây dựng và chỉ đạo thực hiện chương trình quốc gia về an toàn thông tin mạng; tổ chức lập phương án phát triển hạ tầng bảo đảm an toàn thông tin mạng trong quy hoạch hạ tầng thông tin và truyền thông, quy hoạch khác có liên quan theo quy định của pháp luật về quy hoạch.”."
+      }
+    ]
+  },
+  {
+    "id": "Q122",
+    "source_id": "C065",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng theo Luật An toàn thông tin mạng 86/2015/QH13 có thời hạn bao nhiêu năm, được gia hạn mấy lần và hồ sơ gia hạn phải gửi chậm nhất bao lâu trước khi giấy phép hết hạn?",
+    "markers": [
+      "Thời hạn của Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng là 10 năm",
+      "được gia hạn Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng một lần",
+      "thời gian gia hạn không quá 01 năm",
+      "chậm nhất là 60 ngày trước ngày Giấy phép hết hạn"
+    ],
+    "notes": "10 năm là Điều 40 khoản 2, không phải giấy phép mật mã dân sự. Gia hạn một lần, không quá 01 năm, hồ sơ chậm nhất 60 ngày là Điều 45 khoản 3; mốc 60 ngày còn ở giấy phép mật mã nên ghim Điều 45.\nevidence A: Điều 40 khoản 2 — thời hạn giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng là 10 năm.\nevidence B: Điều 45 khoản 3 — gia hạn một lần, không quá 01 năm, hồ sơ gửi Bộ Thông tin và Truyền thông chậm nhất 60 ngày trước khi hết hạn.\nvì sao một evidence không đủ: thời hạn giấy phép và quy định gia hạn nằm ở hai điều; một điều không đủ ba vế của câu hỏi.",
+    "evidence": [
+      {
+        "document_id": "86/2015/QH13",
+        "article": "40",
+        "clause": "2",
+        "point": null,
+        "text": "2. Doanh nghiệp kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng quy định tại Điều 41 của Luật này phải có Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng do cơ quan nhà nước có thẩm quyền cấp. Thời hạn của Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng là 10 năm."
+      },
+      {
+        "document_id": "86/2015/QH13",
+        "article": "45",
+        "clause": "3",
+        "point": null,
+        "text": "3. Doanh nghiệp không vi phạm quy định của pháp luật về kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng được gia hạn Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng một lần với thời gian gia hạn không quá 01 năm. Hồ sơ đề nghị gia hạn Giấy phép phải được gửi tới Bộ Thông tin và Truyền thông chậm nhất là 60 ngày trước ngày Giấy phép hết hạn. Hồ sơ đề nghị gia hạn Giấy phép được lập thành hai bộ, gồm:"
+      }
+    ]
+  }
+]

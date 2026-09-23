@@ -1,0 +1,317 @@
+[
+  {
+    "id": "Q007",
+    "source_id": "C049",
+    "category": "definition",
+    "answerable": true,
+    "question": "Nghị định 13/2023/NĐ-CP định nghĩa dữ liệu cá nhân nhạy cảm là gì và nêu những loại nào?",
+    "markers": [
+      "Dữ liệu cá nhân nhạy cảm là dữ liệu cá nhân gắn liền với quyền riêng tư của cá nhân",
+      "Quan điểm chính trị, quan điểm tôn giáo",
+      "Tình trạng sức khỏe và đời tư được ghi trong hồ sơ bệnh án",
+      "Thông tin liên quan đến nguồn gốc chủng tộc, nguồn gốc dân tộc",
+      "Thông tin về đặc điểm di truyền được thừa hưởng hoặc có được của cá nhân",
+      "Thông tin về thuộc tính vật lý, đặc điểm sinh học riêng của cá nhân",
+      "Thông tin về đời sống tình dục, xu hướng tình dục của cá nhân",
+      "Dữ liệu về tội phạm, hành vi phạm tội được thu thập, lưu trữ bởi các cơ quan thực thi pháp luật",
+      "Thông tin khách hàng của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài, tổ chức cung ứng dịch vụ trung gian thanh toán, các tổ chức được phép khác",
+      "Dữ liệu về vị trí của cá nhân được xác định qua dịch vụ định vị",
+      "Dữ liệu cá nhân khác được pháp luật quy định là đặc thù và cần có biện pháp bảo mật cần thiết"
+    ],
+    "notes": "Câu mở về các loại dữ liệu cá nhân nhạy cảm. Gold cũ chỉ vài loại trong Điều 2 khoản 4. Lấy đủ câu định nghĩa và các điểm a, b, c, d, đ, e, g, h, i, k.",
+    "evidence": [
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": null,
+        "text": "4. Dữ liệu cá nhân nhạy cảm là dữ liệu cá nhân gắn liền với quyền riêng tư của cá nhân mà khi bị xâm phạm sẽ gây ảnh hưởng trực tiếp tới quyền và lợi ích hợp pháp của cá nhân gồm:"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "a",
+        "text": "a) Quan điểm chính trị, quan điểm tôn giáo;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "b",
+        "text": "b) Tình trạng sức khỏe và đời tư được ghi trong hồ sơ bệnh án, không bao gồm thông tin về nhóm máu;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "c",
+        "text": "c) Thông tin liên quan đến nguồn gốc chủng tộc, nguồn gốc dân tộc;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "d",
+        "text": "d) Thông tin về đặc điểm di truyền được thừa hưởng hoặc có được của cá nhân;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "đ",
+        "text": "đ) Thông tin về thuộc tính vật lý, đặc điểm sinh học riêng của cá nhân;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "e",
+        "text": "e) Thông tin về đời sống tình dục, xu hướng tình dục của cá nhân;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "g",
+        "text": "g) Dữ liệu về tội phạm, hành vi phạm tội được thu thập, lưu trữ bởi các cơ quan thực thi pháp luật;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "h",
+        "text": "h) Thông tin khách hàng của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài, tổ chức cung ứng dịch vụ trung gian thanh toán, các tổ chức được phép khác, gồm: thông tin định danh khách hàng theo quy định của pháp luật, thông tin về tài khoản, thông tin về tiền gửi, thông tin về tài sản gửi, thông tin về giao dịch, thông tin về tổ chức, cá nhân là bên bảo đảm tại tổ chức tín dụng, chi nhánh ngân hàng, tổ chức cung ứng dịch vụ trung gian thanh toán;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "i",
+        "text": "i) Dữ liệu về vị trí của cá nhân được xác định qua dịch vụ định vị;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "4",
+        "point": "k",
+        "text": "k) Dữ liệu cá nhân khác được pháp luật quy định là đặc thù và cần có biện pháp bảo mật cần thiết."
+      }
+    ]
+  },
+  {
+    "id": "Q068",
+    "source_id": "N010",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Theo Nghị định 13/2023/NĐ-CP, doanh nghiệp siêu nhỏ, doanh nghiệp nhỏ, doanh nghiệp vừa và doanh nghiệp khởi nghiệp được miễn chỉ định cá nhân và bộ phận bảo vệ dữ liệu cá nhân trong bao lâu kể từ khi thành lập?",
+    "markers": [
+      "02 năm đầu",
+      "kể từ khi thành lập doanh nghiệp",
+      "miễn trừ",
+      "cá nhân và bộ phận bảo vệ dữ liệu cá nhân"
+    ],
+    "notes": "Điều 43 khoản 2 Nghị định 13/2023/NĐ-CP. Câu hỏi gọi đúng nghị định đang có mặt trong corpus, không kết luận nghị định này hiện còn hiệu lực. Khác mức 05 năm tại Luật 91.",
+    "evidence": [
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "43",
+        "clause": "2",
+        "point": null,
+        "text": "2. Các doanh nghiệp siêu nhỏ, doanh nghiệp nhỏ, doanh nghiệp vừa, doanh nghiệp khởi nghiệp được quyền lựa chọn miễn trừ quy định về chỉ định cá nhân và bộ phận bảo vệ dữ liệu cá nhân trong thời gian 02 năm đầu kể từ khi thành lập doanh nghiệp."
+      }
+    ]
+  },
+  {
+    "id": "Q116",
+    "source_id": "C046",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Theo Nghị định 13/2023/NĐ-CP, trong bao lâu kể từ khi có yêu cầu thì bên kiểm soát dữ liệu phải thực hiện việc hạn chế xử lý và việc xóa dữ liệu cá nhân của chủ thể dữ liệu?",
+    "markers": [
+      "Việc hạn chế xử lý dữ liệu được thực hiện trong 72 giờ sau khi có yêu cầu của chủ thể dữ liệu",
+      "Việc xóa dữ liệu được thực hiện trong 72 giờ sau khi có yêu cầu của chủ thể dữ liệu"
+    ],
+    "notes": "Bỏ marker giữa: Điều 9 khoản 8 điểm b là quyền phản đối xử lý, không phải hạn chế xử lý hay xóa dữ liệu.\nevidence A: Điều 9 khoản 6 điểm b — hạn chế xử lý dữ liệu trong 72 giờ sau yêu cầu của chủ thể dữ liệu.\nevidence B: Điều 16 khoản 5 — xóa dữ liệu trong 72 giờ sau yêu cầu của chủ thể dữ liệu.\nvì sao một evidence không đủ: hai việc nằm ở hai điều; một điều không trả lời cả hạn chế xử lý lẫn xóa dữ liệu.",
+    "evidence": [
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "6",
+        "point": "b",
+        "text": "b) Việc hạn chế xử lý dữ liệu được thực hiện trong 72 giờ sau khi có yêu cầu của chủ thể dữ liệu, với toàn bộ dữ liệu cá nhân mà chủ thể dữ liệu yêu cầu hạn chế, trừ trường hợp luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "16",
+        "clause": "5",
+        "point": null,
+        "text": "5. Việc xóa dữ liệu được thực hiện trong 72 giờ sau khi có yêu cầu của chủ thể dữ liệu với toàn bộ dữ liệu cá nhân mà Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân thu thập được, trừ trường hợp pháp luật có quy định khác."
+      }
+    ]
+  },
+  {
+    "id": "Q117",
+    "source_id": "C051",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Chủ thể dữ liệu được hiểu là ai, và theo Nghị định 13/2023/NĐ-CP thì chủ thể dữ liệu có những quyền gì?",
+    "markers": [
+      "Chủ thể dữ liệu là cá nhân được dữ liệu cá nhân phản ánh",
+      "Quyền được biết",
+      "Quyền đồng ý",
+      "Quyền truy cập",
+      "Quyền rút lại sự đồng ý",
+      "Quyền xóa dữ liệu",
+      "Quyền hạn chế xử lý dữ liệu",
+      "Quyền cung cấp dữ liệu",
+      "Quyền phản đối xử lý dữ liệu",
+      "Quyền khiếu nại, tố cáo, khởi kiện",
+      "Quyền yêu cầu bồi thường thiệt hại",
+      "Quyền tự bảo vệ"
+    ],
+    "notes": "Định nghĩa chủ thể dữ liệu là Điều 2 khoản 6, không phải Điều 9. Câu mở về quyền nên lấy đủ 11 quyền Điều 9, không chỉ được biết và xóa.\nevidence A: Điều 2 khoản 6 — chủ thể dữ liệu là cá nhân được dữ liệu cá nhân phản ánh.\nevidence B: Điều 9 — đủ các quyền từ được biết đến tự bảo vệ.\nvì sao một evidence không đủ: định nghĩa và danh mục quyền nằm ở hai điều; thiếu một vế thì không trả lời hết câu.",
+    "evidence": [
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "2",
+        "clause": "6",
+        "point": null,
+        "text": "6. Chủ thể dữ liệu là cá nhân được dữ liệu cá nhân phản ánh."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "1",
+        "point": null,
+        "text": "1. Quyền được biết Chủ thể dữ liệu được biết về hoạt động xử lý dữ liệu cá nhân của mình, trừ trường hợp luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "2",
+        "point": null,
+        "text": "2. Quyền đồng ý Chủ thể dữ liệu được đồng ý hoặc không đồng ý cho phép xử lý dữ liệu cá nhân của mình, trừ trường hợp quy định tại Điều 17 Nghị định này."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "3",
+        "point": null,
+        "text": "3. Quyền truy cập Chủ thể dữ liệu được truy cập để xem, chỉnh sửa hoặc yêu cầu chỉnh sửa dữ liệu cá nhân của mình, trừ trường hợp luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "4",
+        "point": null,
+        "text": "4. Quyền rút lại sự đồng ý Chủ thể dữ liệu được quyền rút lại sự đồng ý của mình, trừ trường hợp luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "5",
+        "point": null,
+        "text": "5. Quyền xóa dữ liệu Chủ thể dữ liệu được xóa hoặc yêu cầu xóa dữ liệu cá nhân của mình, trừ trường hợp luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "6",
+        "point": null,
+        "text": "6. Quyền hạn chế xử lý dữ liệu"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "6",
+        "point": "a",
+        "text": "a) Chủ thể dữ liệu được yêu cầu hạn chế xử lý dữ liệu cá nhân của mình, trừ trường hợp luật có quy định khác;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "6",
+        "point": "b",
+        "text": "b) Việc hạn chế xử lý dữ liệu được thực hiện trong 72 giờ sau khi có yêu cầu của chủ thể dữ liệu, với toàn bộ dữ liệu cá nhân mà chủ thể dữ liệu yêu cầu hạn chế, trừ trường hợp luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "7",
+        "point": null,
+        "text": "7. Quyền cung cấp dữ liệu Chủ thể dữ liệu được yêu cầu Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân cung cấp cho bản thân dữ liệu cá nhân của mình, trừ trường hợp luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "8",
+        "point": null,
+        "text": "8. Quyền phản đối xử lý dữ liệu"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "8",
+        "point": "a",
+        "text": "a) Chủ thể dữ liệu được phản đối Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân xử lý dữ liệu cá nhân của mình nhằm ngăn chặn hoặc hạn chế tiết lộ dữ liệu cá nhân hoặc sử dụng cho mục đích quảng cáo, tiếp thị, trừ trường hợp luật có quy định khác;"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "8",
+        "point": "b",
+        "text": "b) Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân thực hiện yêu cầu của chủ thể dữ liệu trong 72 giờ sau khi nhận được yêu cầu, trừ trường hợp luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "9",
+        "point": null,
+        "text": "9. Quyền khiếu nại, tố cáo, khởi kiện Chủ thể dữ liệu có quyền khiếu nại, tố cáo hoặc khởi kiện theo quy định của pháp luật."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "10",
+        "point": null,
+        "text": "10. Quyền yêu cầu bồi thường thiệt hại Chủ thể dữ liệu có quyền yêu cầu bồi thường thiệt hại theo quy định của pháp luật khi xảy ra vi phạm quy định về bảo vệ dữ liệu cá nhân của mình, trừ trường hợp các bên có thỏa thuận khác hoặc luật có quy định khác."
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": "11",
+        "point": null,
+        "text": "11. Quyền tự bảo vệ Chủ thể dữ liệu có quyền tự bảo vệ theo quy định của Bộ luật Dân sự, luật khác có liên quan và Nghị định này, hoặc yêu cầu cơ quan, tổ chức có thẩm quyền thực hiện các phương thức bảo vệ quyền dân sự theo quy định tại Điều 11 Bộ luật Dân sự."
+      }
+    ]
+  },
+  {
+    "id": "Q119",
+    "source_id": "C055",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Quyền của chủ thể dữ liệu và hành vi thu thập, chuyển giao, mua, bán trái phép dữ liệu cá nhân được quy định ở điều nào của Nghị định 13/2023/NĐ-CP?",
+    "markers": [
+      "Điều 9",
+      "Điều 22"
+    ],
+    "notes": "evidence A: 13/2023 Điều 9 (quyền chủ thể dữ liệu). evidence B: 13/2023 Điều 22 (thu thập, chuyển giao, mua, bán trái phép). vì sao một evidence không đủ: câu hỏi nơi quy định của hai chế định khác nhau, một điều không trả lời điều kia.",
+    "evidence": [
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "9",
+        "clause": null,
+        "point": null,
+        "text": "Điều 9. Quyền của chủ thể dữ liệu"
+      },
+      {
+        "document_id": "13/2023/NĐ-CP",
+        "article": "22",
+        "clause": null,
+        "point": null,
+        "text": "Điều 22. Thu thập, chuyển giao, mua, bán trái phép dữ liệu cá nhân"
+      }
+    ]
+  }
+]

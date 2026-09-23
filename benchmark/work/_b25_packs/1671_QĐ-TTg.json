@@ -1,0 +1,51 @@
+[
+  {
+    "id": "Q078",
+    "source_id": "C039",
+    "category": "effectiveness_metadata",
+    "answerable": true,
+    "question": "Quyết định 1671/QĐ-TTg có hiệu lực thi hành từ khi nào?",
+    "markers": [
+      "kể từ ngày ký ban hành"
+    ],
+    "notes": "Chỉ Điều 3 khoản 1: hiệu lực kể từ ngày ký ban hành. Dòng ngày 28 tháng 8 năm 2026 và Thủ tướng nằm ở tiêu đề Phụ lục I, parser nuốt vào span Điều 3, không dùng làm gold.",
+    "evidence": [
+      {
+        "document_id": "1671/QĐ-TTg",
+        "article": "3",
+        "clause": "1",
+        "point": null,
+        "text": "1. Quyết định này có hiệu lực thi hành kể từ ngày ký ban hành."
+      }
+    ]
+  },
+  {
+    "id": "Q101",
+    "source_id": "C142",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Quyết định 1671/QĐ-TTg có quan hệ thế nào với Quyết định 127/QĐ-TTg về chiến lược trí tuệ nhân tạo?",
+    "markers": [
+      "thay thế Quyết định số 127/QĐ-TTg",
+      "Chiến lược quốc gia về nghiên cứu, phát triển và ứng dụng Trí tuệ nhân tạo đến năm 2030",
+      "tiếp tục được thực hiện cho đến khi hoàn thành hoặc được điều chỉnh, tích hợp theo Chiến lược này"
+    ],
+    "notes": "Khoản 2 là thay thế 127, kèm tên chiến lược cũ. Khoản 3 là nhiệm vụ đang làm theo 127 được tiếp tục đến khi hoàn thành hoặc được điều chỉnh, tích hợp. Bỏ marker hết hiệu lực: chữ đó không có trong 1671. Không lấy header file 127.",
+    "evidence": [
+      {
+        "document_id": "1671/QĐ-TTg",
+        "article": "3",
+        "clause": "2",
+        "point": null,
+        "text": "2. Quyết định này thay thế Quyết định số 127/QĐ-TTg ngày 26 tháng 01 năm 2021 của Thủ tướng Chính phủ ban hành Chiến lược quốc gia về nghiên cứu, phát triển và ứng dụng Trí tuệ nhân tạo đến năm 2030."
+      },
+      {
+        "document_id": "1671/QĐ-TTg",
+        "article": "3",
+        "clause": "3",
+        "point": null,
+        "text": "3. Các nhiệm vụ, chương trình, đề án, dự án đang triển khai theo Quyết định số 127/QĐ-TTg ngày 26 tháng 01 năm 2021 tiếp tục được thực hiện cho đến khi hoàn thành hoặc được điều chỉnh, tích hợp theo Chiến lược này. Các cơ quan có trách nhiệm rà soát, điều chỉnh các nội dung không còn phù hợp, bảo đảm thống nhất với Quyết định này."
+      }
+    ]
+  }
+]

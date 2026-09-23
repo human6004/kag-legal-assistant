@@ -1,0 +1,155 @@
+[
+  {
+    "id": "Q045",
+    "source_id": "C147",
+    "category": "obligation",
+    "answerable": true,
+    "question": "Theo Kế hoạch 367/QĐ-TTg, việc xây dựng các văn bản quy định chi tiết thi hành Luật Trí tuệ nhân tạo giao cho cơ quan nào chủ trì và gồm những sản phẩm nào?",
+    "markers": [
+      "Bộ Khoa học và Công nghệ",
+      "Nghị định quy định chi tiết một số điều và biện pháp thi hành Luật Trí tuệ nhân tạo",
+      "Nghị định quy định về Quỹ Phát triển trí tuệ nhân tạo quốc gia",
+      "Danh mục bộ dữ liệu phục vụ phát triển trí tuệ nhân tạo trong các lĩnh vực thiết yếu",
+      "Danh mục hệ thống trí tuệ nhân tạo có rủi ro cao",
+      "Thông tư của Bộ trưởng Bộ Khoa học và Công nghệ ban hành Khung đạo đức trí tuệ nhân tạo quốc gia"
+    ],
+    "notes": "evidence A: năm dòng sản phẩm trong mục xây dựng văn bản quy phạm pháp luật quy định chi tiết và hướng dẫn thi hành Luật.\nevidence B: năm dòng cơ quan chủ trì, đều là Bộ Khoa học và Công nghệ.\nvì sao một evidence không đủ: dòng sản phẩm không ghi cơ quan chủ trì; dòng chủ trì không liệt kê sản phẩm.\nGold cũ lẫn việc ngoài mục này: thành lập quỹ, chương trình nhân lực do Bộ Giáo dục chủ trì, cổng thông tin. Danh sách khép của mục xây dựng văn bản là năm sản phẩm điểm a đến đ, chủ trì đều Bộ Khoa học và Công nghệ. Kế hoạch nằm sau chữ ký; parser gộp vào span Điều 3 vì Điều 1 chỉ ban hành kèm kế hoạch và không còn mốc điều sau Điều 3. Cùng một điều, không tính multi_hop.",
+    "evidence": [
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": "3",
+        "point": null,
+        "text": "3. Xây dựng văn bản quy phạm pháp luật quy định chi tiết và hướng dẫn thi hành Luật"
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Cơ quan chủ trì: Bộ Khoa học và Công nghệ."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Sản phẩm: Nghị định quy định chi tiết một số điều và biện pháp thi hành Luật Trí tuệ nhân tạo."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Cơ quan chủ trì: Bộ Khoa học và Công nghệ."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Sản phẩm: Nghị định quy định về Quỹ Phát triển trí tuệ nhân tạo quốc gia"
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Cơ quan chủ trì: Bộ Khoa học và Công nghệ."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Sản phẩm: Quyết định của Thủ tướng Chính phủ ban hành Danh mục bộ dữ liệu phục vụ phát triển trí tuệ nhân tạo trong các lĩnh vực thiết yếu."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Cơ quan chủ trì: Bộ Khoa học và Công nghệ."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Sản phẩm: Quyết định của Thủ tướng Chính phủ quy định Danh mục hệ thống trí tuệ nhân tạo có rủi ro cao."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Cơ quan chủ trì: Bộ Khoa học và Công nghệ."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "- Sản phẩm: Thông tư của Bộ trưởng Bộ Khoa học và Công nghệ ban hành Khung đạo đức trí tuệ nhân tạo quốc gia."
+      }
+    ]
+  },
+  {
+    "id": "Q102",
+    "source_id": "C146",
+    "category": "inter_document",
+    "answerable": true,
+    "question": "Kế hoạch ban hành kèm theo Quyết định 367/QĐ-TTg triển khai thi hành luật nào, luật đó được thông qua khi nào và có hiệu lực từ ngày nào?",
+    "markers": [
+      "triển khai thi hành Luật Trí tuệ nhân tạo",
+      "Luật Trí tuệ nhân tạo số 134/2025/QH15",
+      "kỳ họp thứ 10 thông qua ngày 10 tháng 12 năm 2025",
+      "có hiệu lực thi hành từ ngày 01 tháng 3 năm 2026"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "KẾ HOẠCH Triển khai thi hành Luật Trí tuệ nhân tạo"
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "Luật Trí tuệ nhân tạo số 134/2025/QH15 (sau đây gọi tắt là Luật) được Quốc hội khóa XV, kỳ họp thứ 10 thông qua ngày 10 tháng 12 năm 2025, có hiệu lực thi hành từ ngày 01 tháng 3 năm 2026."
+      }
+    ]
+  },
+  {
+    "id": "Q135",
+    "source_id": "C148",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Điều 2 và Điều 3 của Quyết định 367/QĐ-TTg quy định những gì?",
+    "markers": [
+      "có hiệu lực thi hành kể từ ngày ký ban hành",
+      "chịu trách nhiệm thi hành Quyết định này"
+    ],
+    "notes": "evidence A: 367/QĐ-TTg Điều 2 (hiệu lực từ ngày ký). evidence B: 367/QĐ-TTg Điều 3 (các bộ, UBND chịu trách nhiệm thi hành). vì sao một evidence không đủ: câu hỏi nêu cả hai điều, mỗi điều một việc.",
+    "evidence": [
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "2",
+        "clause": null,
+        "point": null,
+        "text": "Điều 2. Quyết định này có hiệu lực thi hành kể từ ngày ký ban hành."
+      },
+      {
+        "document_id": "367/QĐ-TTg",
+        "article": "3",
+        "clause": null,
+        "point": null,
+        "text": "Điều 3. Các Bộ trưởng, Thủ trưởng cơ quan ngang bộ, Thủ trưởng cơ quan thuộc Chính phủ, Chủ tịch Ủy ban nhân dân các tỉnh, thành phố trực thuộc trung ương và các cơ quan, tổ chức có liên quan chịu trách nhiệm thi hành Quyết định này."
+      }
+    ]
+  }
+]

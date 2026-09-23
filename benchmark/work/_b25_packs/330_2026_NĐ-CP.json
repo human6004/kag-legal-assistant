@@ -1,0 +1,414 @@
+[
+  {
+    "id": "Q046",
+    "source_id": "C002",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Một công ty mua bán trái phép dữ liệu cá nhân nhạy cảm của 300 người nhưng không thu được khoản tiền nào từ hành vi này thì bị phạt tiền bao nhiêu, quy định tại điều nào?",
+    "markers": [
+      "không có khoản thu",
+      "100.000.000 đồng đến 300.000.000 đồng",
+      "dữ liệu cá nhân nhạy cảm của từ 200 đến dưới 400 chủ thể dữ liệu",
+      "Điều 53"
+    ],
+    "notes": "evidence A: Điều 53 khoản 3, mức khi không có khoản thu.\nevidence B: điểm b khoản 3, dữ liệu nhạy cảm từ 200 đến dưới 400 chủ thể, phạt 100 đến 300 triệu đồng.\nvì sao một evidence không đủ: điểm b không nói điều kiện không có khoản thu; câu dẫn khoản 3 không có khung tiền.\n300 người nằm trong khoảng 200 đến dưới 400. Điều 53 thuộc Mục 6 Chương II nên mức ghi sẵn là mức tổ chức, không lấy một phần hai theo Điều 7. Cùng một điều, không tính multi_hop.",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "53",
+        "clause": "3",
+        "point": null,
+        "text": "3. Trường hợp không có khoản thu từ hành vi vi phạm quy định tại khoản 1 Điều này thì mức phạt tiền được xác định như sau:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "53",
+        "clause": "3",
+        "point": "b",
+        "text": "b) Phạt tiền từ 100.000.000 đồng đến 300.000.000 đồng đối với hành vi mua, bán dữ liệu cá nhân cơ bản của từ 1.000 đến dưới 2.000 chủ thể dữ liệu hoặc mua bán dữ liệu cá nhân nhạy cảm của từ 200 đến dưới 400 chủ thể dữ liệu;"
+      }
+    ]
+  },
+  {
+    "id": "Q049",
+    "source_id": "C087",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Dùng AI, Deepfake để giả mạo khuôn mặt, giọng nói nhằm xác thực tài khoản số trái phép thì bị phạt bao nhiêu tiền, theo điều nào của nghị định?",
+    "markers": [
+      "từ 30.000.000 đồng đến 50.000.000 đồng",
+      "giả mạo dữ liệu sinh trắc học",
+      "Điều 34"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "34",
+        "clause": "2",
+        "point": null,
+        "text": "2. Phạt tiền từ 30.000.000 đồng đến 50.000.000 đồng đối với một trong các hành vi sau đây:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "34",
+        "clause": "2",
+        "point": "c",
+        "text": "c) Sử dụng công nghệ trí tuệ nhân tạo (AI), Deepfake hoặc các biện pháp kỹ thuật công nghệ cao để giả mạo dữ liệu sinh trắc học (khuôn mặt, giọng nói) nhằm xác thực tài khoản trái phép."
+      }
+    ]
+  },
+  {
+    "id": "Q050",
+    "source_id": "C088",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Mua, bán trái phép dữ liệu cá nhân trong trường hợp không có khoản thu từ hành vi vi phạm thì mức phạt tiền được xác định thế nào? Cụ thể, mua, bán dữ liệu cá nhân cơ bản của từ 10.000 chủ thể dữ liệu trở lên bị phạt bao nhiêu tiền?",
+    "markers": [
+      "Trường hợp không có khoản thu từ hành vi vi phạm quy định tại khoản 1 Điều này thì mức phạt tiền được xác định như sau",
+      "Phạt tiền từ 500.000.000 đồng đến 1.000.000.000 đồng",
+      "mua, bán dữ liệu cá nhân cơ bản của từ 10.000 chủ thể dữ liệu trở lên"
+    ],
+    "notes": "Sửa cụm không xác định được khoản thu thành không có khoản thu cho khớp Điều 53 khoản 3. Bậc từ 10.000 chủ thể dữ liệu cơ bản là điểm d khoản đó, phạt từ 500 triệu đến 1 tỷ đồng. Không lấy khoản 2 vì đó là trần 3 tỷ khi không có khoản thu và mười lần khoản thu thấp hơn 3 tỷ, không phải bậc số lượng được hỏi.",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "53",
+        "clause": "3",
+        "point": null,
+        "text": "3. Trường hợp không có khoản thu từ hành vi vi phạm quy định tại khoản 1 Điều này thì mức phạt tiền được xác định như sau:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "53",
+        "clause": "3",
+        "point": "d",
+        "text": "d) Phạt tiền từ 500.000.000 đồng đến 1.000.000.000 đồng đối với hành vi mua, bán dữ liệu cá nhân cơ bản của từ 10.000 chủ thể dữ liệu trở lên, dữ liệu cá nhân nhạy cảm của từ 2.000 chủ thể dữ liệu trở lên;"
+      }
+    ]
+  },
+  {
+    "id": "Q051",
+    "source_id": "C089",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Đăng lên mạng xã hội thông tin sai sự thật về chủ quyền quốc gia, an ninh, quốc phòng mà chưa đến mức bị truy cứu trách nhiệm hình sự thì bị phạt bao nhiêu tiền và theo điều nào?",
+    "markers": [
+      "từ 10.000.000 đồng đến 20.000.000 đồng",
+      "sai sự thật về chủ quyền quốc gia, an ninh, quốc phòng",
+      "Điều 9"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "9",
+        "clause": "2",
+        "point": null,
+        "text": "2. Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng đối với các hành vi sau đây mà chưa đến mức truy cứu trách nhiệm hình sự:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "9",
+        "clause": "2",
+        "point": "a",
+        "text": "a) Cung cấp, chia sẻ thông tin có nội dung sai sự thật về chủ quyền quốc gia, an ninh, quốc phòng, gây ảnh hưởng đến an ninh, trật tự;"
+      }
+    ]
+  },
+  {
+    "id": "Q052",
+    "source_id": "C090",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Đưa hệ thống thông tin cấp độ 3 đến cấp độ 5 vào vận hành khi chưa được phê duyệt cấp độ an ninh mạng thì bị xử phạt bao nhiêu tiền?",
+    "markers": [
+      "từ 20.000.000 đồng đến 30.000.000 đồng",
+      "Đưa hệ thống thông tin vào vận hành khi chưa được phê duyệt cấp độ an ninh mạng"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "23",
+        "clause": "1",
+        "point": null,
+        "text": "1. Phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng đối với hành vi sau:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "23",
+        "clause": "1",
+        "point": "c",
+        "text": "c) Đưa hệ thống thông tin vào vận hành khi chưa được phê duyệt cấp độ an ninh mạng đối với cấp độ 3 đến cấp độ 5;"
+      }
+    ]
+  },
+  {
+    "id": "Q053",
+    "source_id": "C091",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Khung phạt tiền của khoản 3 Điều 37 Nghị định 330/2026/NĐ-CP đối với việc gửi tin nhắn quảng cáo ngoài khoảng thời gian từ 07 giờ đến 22 giờ mỗi ngày là bao nhiêu, và điểm o khoản 3 ghi khoảng thời gian đó thế nào?",
+    "markers": [
+      "Phạt tiền từ 30.000.000 đồng đến 50.000.000 đồng",
+      "Gửi tin nhắn quảng cáo ngoài khoảng thời gian từ 07 giờ đến 22 giờ mỗi ngày"
+    ],
+    "notes": "Bỏ vế gọi điện. Tin nhắn lúc 23 giờ nằm ngoài khung 07–22 giờ, phạt theo chapeau khoản 3 từ 30 triệu đến 50 triệu đồng. Không đóng băng cách đọc chữ ngoài với khung gọi 08–17 giờ trong cùng điểm o; khung gọi không đưa vào marker. Bỏ tình tiết 23 giờ và không có thỏa thuận: mệnh đề thỏa thuận đứng cuối điểm o, không đóng băng là điều kiện của riêng tin nhắn.",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "37",
+        "clause": "3",
+        "point": null,
+        "text": "3. Phạt tiền từ 30.000.000 đồng đến 50.000.000 đồng đối với một trong các hành vi sau:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "37",
+        "clause": "3",
+        "point": "o",
+        "text": "o) Gửi tin nhắn quảng cáo ngoài khoảng thời gian từ 07 giờ đến 22 giờ mỗi ngày hoặc gọi điện thoại quảng cáo từ 08 giờ đến 17 giờ mỗi ngày mà không có thỏa thuận với người sử dụng;"
+      }
+    ]
+  },
+  {
+    "id": "Q054",
+    "source_id": "C092",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Nhập khẩu sản phẩm an ninh mạng thuộc Danh mục nhập khẩu theo giấy phép mà không có giấy phép thì bị xử phạt thế nào, ngoài phạt tiền còn bị tước giấy phép không?",
+    "markers": [
+      "từ 75.000.000 đồng đến 100.000.000 đồng",
+      "Tước quyền sử dụng Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng"
+    ],
+    "notes": "Mức 75–100 triệu ở Điều 35 là kinh doanh không giấy phép. Nhập khẩu không giấy phép là Điều 36 khoản 1 điểm a; tước giấy phép là khoản 2 (01–03 tháng).",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "36",
+        "clause": "1",
+        "point": null,
+        "text": "1. Phạt tiền từ 75.000.000 đồng đến 100.000.000 đồng đối với một trong các hành vi sau:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "36",
+        "clause": "1",
+        "point": "a",
+        "text": "a) Nhập khẩu sản phẩm an ninh mạng thuộc Danh mục nhập khẩu theo giấy phép mà không có giấy phép;"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "36",
+        "clause": "2",
+        "point": null,
+        "text": "2. Hình thức xử phạt bổ sung: Tước quyền sử dụng Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng có thời hạn từ 01 tháng đến 03 tháng đối với hành vi tại khoản 1 Điều này."
+      }
+    ]
+  },
+  {
+    "id": "Q055",
+    "source_id": "C093",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Ngoài cảnh cáo và phạt tiền, Nghị định 330/2026/NĐ-CP còn cho phép áp dụng những hình thức xử phạt bổ sung nào?",
+    "markers": [
+      "Tước quyền sử dụng giấy phép, chứng chỉ hành nghề có thời hạn từ 01 tháng đến 24 tháng",
+      "Đình chỉ hoạt động có thời hạn từ 01 tháng đến 24 tháng",
+      "Tịch thu tang vật vi phạm hành chính, phương tiện được sử dụng để vi phạm hành chính",
+      "Trục xuất đối với người nước ngoài có hành vi vi phạm hành chính"
+    ],
+    "notes": "Hình thức xử phạt bổ sung tại Điều 4 khoản 2 đủ bốn điểm a–d.",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "4",
+        "clause": "2",
+        "point": "a",
+        "text": "a) Tước quyền sử dụng giấy phép, chứng chỉ hành nghề có thời hạn từ 01 tháng đến 24 tháng, bao gồm: Giấy phép cung cấp dịch vụ mạng xã hội; Giấy phép thiết lập trang thông tin điện tử tổng hợp; Giấy phép kinh doanh sản phẩm, dịch vụ an ninh mạng; Giấy chứng nhận đủ điều kiện kinh doanh dịch vụ xử lý dữ liệu cá nhân; giấy phép kinh doanh, chứng chỉ hành nghề đối với ngành, nghề có vi phạm quy định về xử lý dữ liệu cá nhân;"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "4",
+        "clause": "2",
+        "point": "b",
+        "text": "b) Đình chỉ hoạt động có thời hạn từ 01 tháng đến 24 tháng;"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "4",
+        "clause": "2",
+        "point": "c",
+        "text": "c) Tịch thu tang vật vi phạm hành chính, phương tiện được sử dụng để vi phạm hành chính (sau đây gọi chung là tang vật, phương tiện vi phạm hành chính);"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "4",
+        "clause": "2",
+        "point": "d",
+        "text": "d) Trục xuất đối với người nước ngoài có hành vi vi phạm hành chính."
+      }
+    ]
+  },
+  {
+    "id": "Q059",
+    "source_id": "N001",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Hành vi bán, cho thuê, cho mượn hoặc tặng cho thông tin tài khoản số của mình bị phạt tiền trong khoảng nào?",
+    "markers": [
+      "5.000.000 đồng đến 10.000.000 đồng",
+      "bán, cho thuê, cho mượn, tặng cho thông tin tài khoản số của mình"
+    ],
+    "notes": "Điều 14 khoản 1 Nghị định 330/2026/NĐ-CP. Một khoản, vừa hành vi vừa khung tiền. Khác Điều 53 (mua bán dữ liệu cá nhân).",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "14",
+        "clause": "1",
+        "point": null,
+        "text": "1. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với hành vi: bán, cho thuê, cho mượn, tặng cho thông tin tài khoản số của mình, gồm: tài khoản ngân hàng, thẻ ngân hàng, tài khoản ví điện tử, tài khoản tiền di động, tài khoản chứng khoán, tài khoản giao dịch, tài khoản bảo hiểm, tài khoản thuế và tài khoản số khác có chức năng giao dịch tài chính."
+      }
+    ]
+  },
+  {
+    "id": "Q060",
+    "source_id": "N002",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Trường hợp dùng biện pháp công nghệ, kỹ thuật để thu thập dữ liệu cá nhân trái quy định, thu thập dữ liệu cá nhân cơ bản của dưới 500 chủ thể hoặc dữ liệu cá nhân nhạy cảm của dưới 100 chủ thể thì bị phạt tiền bao nhiêu?",
+    "markers": [
+      "biện pháp công nghệ, kỹ thuật",
+      "100.000.000 đồng đến 200.000.000 đồng",
+      "dưới 500 chủ thể dữ liệu",
+      "dưới 100 chủ thể dữ liệu"
+    ],
+    "notes": "Câu dẫn khoản 3 Điều 48 mang điều kiện biện pháp công nghệ, kỹ thuật. Điểm a mang khung tiền và ngưỡng chủ thể. Một điều, không phải multi_hop. Khác các bậc mua bán tại Điều 53.",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "48",
+        "clause": "3",
+        "point": null,
+        "text": "3. Trường hợp áp dụng các biện pháp công nghệ, kỹ thuật để thu thập dữ liệu cá nhân trái quy định của pháp luật thì mức phạt tiền được xác định như sau:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "48",
+        "clause": "3",
+        "point": "a",
+        "text": "a) Phạt tiền từ 100.000.000 đồng đến 200.000.000 đồng đối với hành vi thu thập dữ liệu cá nhân cơ bản của dưới 500 chủ thể dữ liệu hoặc thu thập dữ liệu cá nhân nhạy cảm của dưới 100 chủ thể dữ liệu;"
+      }
+    ]
+  },
+  {
+    "id": "Q061",
+    "source_id": "N003",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Tổ chức chuyển dữ liệu cá nhân xuyên biên giới làm lộ, mất dữ liệu của từ 10.000 đến dưới 100.000 chủ thể là công dân Việt Nam thì bị phạt theo tỷ lệ doanh thu nào?",
+    "markers": [
+      "chuyển dữ liệu cá nhân xuyên biên giới",
+      "1% đến 2% doanh thu",
+      "từ 10.000 đến dưới 100.000 chủ thể dữ liệu cá nhân là công dân Việt Nam"
+    ],
+    "notes": "Câu dẫn khoản 3 Điều 56 gắn tỷ lệ doanh thu với chuyển dữ liệu xuyên biên giới. Điểm a là bậc 1% đến 2% và ngưỡng chủ thể. Khác trần 5% tại Luật 91.",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "56",
+        "clause": "3",
+        "point": null,
+        "text": "3. Phạt tiền theo tỷ lệ phần trăm tổng doanh thu năm tài chính liền trước tại thị trường Việt Nam đối với tổ chức thực hiện chuyển dữ liệu cá nhân xuyên biên giới mà không lập hồ sơ đánh giá tác động, che giấu hoặc khai báo sai về dòng dữ liệu dẫn đến lộ, mất dữ liệu cá nhân, hoặc tiếp tục chuyển dữ liệu sau khi có quyết định yêu cầu ngừng của cơ quan chuyên trách bảo vệ dữ liệu cá nhân, cụ thể như sau:"
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "56",
+        "clause": "3",
+        "point": "a",
+        "text": "a) Phạt tiền từ 1% đến 2% doanh thu đối với hành vi dẫn đến lộ, mất dữ liệu cá nhân của từ 10.000 đến dưới 100.000 chủ thể dữ liệu cá nhân là công dân Việt Nam;"
+      }
+    ]
+  },
+  {
+    "id": "Q062",
+    "source_id": "N004",
+    "category": "sanction_numeric",
+    "answerable": true,
+    "question": "Không xóa, hủy tới mức không thể khôi phục dữ liệu cá nhân của trẻ em khi xử lý sai mục đích, đã hoàn thành mục đích, hoặc cha mẹ hay người giám hộ rút lại sự đồng ý thì bị phạt tiền bao nhiêu?",
+    "markers": [
+      "100.000.000 đồng đến 200.000.000 đồng",
+      "không thể khôi phục",
+      "dữ liệu cá nhân của trẻ em"
+    ],
+    "notes": "Điều 60 khoản 3 Nghị định 330/2026/NĐ-CP. Khung tiền và điều kiện xóa dữ liệu trẻ em nằm cùng một khoản.",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "60",
+        "clause": "3",
+        "point": null,
+        "text": "3. Phạt tiền từ 100.000.000 đồng đến 200.000.000 đồng đối với hành vi không thực hiện xóa, hủy tới mức không thể khôi phục dữ liệu cá nhân của trẻ em trong các trường hợp: xử lý dữ liệu không đúng mục đích hoặc đã hoàn thành mục đích xử lý; cha mẹ hoặc người giám hộ rút lại sự đồng ý; theo yêu cầu của cơ quan có thẩm quyền."
+      }
+    ]
+  },
+  {
+    "id": "Q082",
+    "source_id": "C094",
+    "category": "effectiveness_metadata",
+    "answerable": true,
+    "question": "Nghị định 330/2026/NĐ-CP quy định phạm vi điều chỉnh gồm những nội dung gì? Nghị định có điều chỉnh cả hành vi vi phạm đã kết thúc không?",
+    "markers": [
+      "hành vi vi phạm hành chính đã kết thúc và hành vi vi phạm hành chính đang thực hiện",
+      "hình thức xử phạt, mức xử phạt, biện pháp khắc phục hậu quả đối với từng hành vi vi phạm hành chính",
+      "thẩm quyền xử phạt, mức phạt tiền cụ thể theo từng chức danh và thẩm quyền lập biên bản"
+    ],
+    "notes": "",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "1",
+        "clause": "1",
+        "point": null,
+        "text": "1. Nghị định này quy định về hành vi vi phạm hành chính; hành vi vi phạm hành chính đã kết thúc và hành vi vi phạm hành chính đang thực hiện; hình thức xử phạt, mức xử phạt, biện pháp khắc phục hậu quả đối với từng hành vi vi phạm hành chính; đối tượng bị xử phạt; thẩm quyền xử phạt, mức phạt tiền cụ thể theo từng chức danh và thẩm quyền lập biên bản đối với vi phạm hành chính; việc thi hành các hình thức xử phạt vi phạm hành chính, các biện pháp khắc phục hậu quả trong từng lĩnh vực an ninh mạng và bảo vệ dữ liệu cá nhân."
+      }
+    ]
+  },
+  {
+    "id": "Q112",
+    "source_id": "C003",
+    "category": "multi_hop",
+    "answerable": true,
+    "question": "Hành vi thiết lập, quản trị nhóm trên mạng xã hội để đăng tải, hướng dẫn thực hiện các hành vi tại khoản 1 và khoản 2 Điều 11 Nghị định 330/2026/NĐ-CP bị niêm yết phạt tiền bao nhiêu, tổ chức có cùng hành vi bị phạt thế nào so với cá nhân, và doanh nghiệp vi phạm khoản 3 có bị đình chỉ hoạt động không?",
+    "markers": [
+      "20.000.000 đồng đến 30.000.000 đồng",
+      "hai lần mức phạt tiền áp dụng đối với cá nhân",
+      "Đình chỉ hoạt động từ 01 tháng đến 03 tháng"
+    ],
+    "notes": "evidence A: Điều 11 khoản 3 khung 20-30 triệu đồng và khoản 5 điểm b đình chỉ doanh nghiệp từ 01 tháng đến 03 tháng.\nevidence B: Điều 7 khoản 1, Mục 1 đến Mục 5 mức niêm yết là mức cá nhân, tổ chức bằng hai lần.\nvì sao một evidence không đủ: Điều 11 đứng một mình ra đúng 20-30 triệu nhưng đó là mức cá nhân; doanh nghiệp là tổ chức và Điều 11 nằm ở Mục 1. Chỉ Điều 7 thì không có khung tiền và thời hạn đình chỉ.\nAudit ghi 20-30 triệu là số trong Điều 11. Corpus Điều 7 khoản 1 mâu thuẫn nếu coi đó là số doanh nghiệp phải nộp. Tin corpus: doanh nghiệp nộp hai lần mức đó, và vẫn bị đình chỉ 01 đến 03 tháng. Đình chỉ không nhân đôi. Đổi câu: 20-30 triệu là mức niêm yết cho cá nhân; doanh nghiệp là tổ chức nên nhân hai theo Điều 7, số 40-60 triệu không có sẵn trong điều.",
+    "evidence": [
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "11",
+        "clause": "3",
+        "point": null,
+        "text": "3. Phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng đối với hành vi thiết lập, quản trị các trang thông tin điện tử, mạng xã hội hoặc tài khoản, hội, nhóm, chuyên trang trên mạng xã hội, diễn đàn điện tử để đăng tải, hướng dẫn thực hiện các hành vi tại khoản 1, 2 Điều này."
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "11",
+        "clause": "5",
+        "point": "b",
+        "text": "b) Đình chỉ hoạt động từ 01 tháng đến 03 tháng đối với doanh nghiệp thực hiện hành vi vi phạm quy định tại khoản 3 Điều này."
+      },
+      {
+        "document_id": "330/2026/NĐ-CP",
+        "article": "7",
+        "clause": "1",
+        "point": null,
+        "text": "1. Từ Mục 1 đến Mục 5 Chương II Nghị định này quy định về mức phạt tiền được áp dụng đối với hành vi vi phạm hành chính trong lĩnh vực an ninh mạng do cá nhân thực hiện. Trường hợp tổ chức có cùng hành vi vi phạm, mức phạt tiền được áp dụng với tổ chức bằng hai lần mức phạt tiền áp dụng đối với cá nhân."
+      }
+    ]
+  }
+]
