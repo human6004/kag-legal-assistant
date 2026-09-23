@@ -26,7 +26,7 @@ Không viết thêm definition, obligation, multi_hop.
 |---|---|
 | 330/2026/NĐ-CP | 14, 48, 56, 60 |
 | 341/2026/NĐ-CP | 1, 9, 17 |
-| 331/2026/NĐ-CP | 1, 23 |
+| 331/2026/NĐ-CP | 23 |
 | 333/2026/NĐ-CP | 24 |
 | 142/2026/NĐ-CP | 21, 26 |
 | 86/2015/QH13 | 32, 53 |
@@ -34,7 +34,7 @@ Không viết thêm definition, obligation, multi_hop.
 | 53/2022/NĐ-CP | 1, 5, 29 |
 | 356/2025/NĐ-CP | 5, 42 |
 | 329/2026/NĐ-CP | 20 |
-| 116/2025/QH15 | 45 |
+| 116/2025/QH15 | 43, 45 |
 | 71/2025/QH15 | 49 |
 | 91/2025/QH15 | 39 |
 | 35/2018/QH14 | 27 |
@@ -54,7 +54,8 @@ Các cặp gần, đã tách bằng kết luận khác:
 - N012, 02 ngày làm việc / 20 ngày / 30 ngày của Nghị định 356, khác mốc 72 giờ của Nghị định 13.
 - N014, Luật 86 có hiệu lực 01/7/2016, khác ngày Luật 116 thay luật này.
 - N017, giấy phép cũ còn đến hết hạn ghi trên giấy, khác hạn 12 tháng của hệ thống đã phân loại.
-- N018 và N019, hai danh sách "quy định chi tiết" khác nhau. Marker giữ phần riêng: điểm i khoản 1 Điều 5 và khoản 5 Điều 36 cho Nghị định 53; khoản 2 Điều 8 và khoản 5 Điều 9 cho Nghị định 331.
+- N018, đủ bảy thành phần của danh sách quy định chi tiết tại Điều 1 Nghị định 53, cộng động từ quan hệ. Không còn cắt marker để chỉ phân biệt với nghị định khác.
+- N019, Luật 116 bãi bỏ khoản 3 Điều 49 của Luật Thư viện số 46/2019/QH14, tại Điều 43 khoản 17. Không dùng Điều 1 Nghị định 331: tiêu đề Điều 1 lặp trong mẫu, còn evaluator chỉ chấm văn bản và điều. Không trùng kết luận bãi bỏ Luật 71 hay Luật 67.
 - N021, sửa khoản 2 Điều 16 Nghị định 165, khác khoản hiệu lực và khoản hết hiệu lực của Nghị định 13 trong cùng Điều 42.
 - N024, Nghị định 341 còn điểm a khoản 1 và điểm c khoản 2, phạm vi mật mã dân sự, không chỉ hai khoản mà nghị định khác đã dẫn.
 
