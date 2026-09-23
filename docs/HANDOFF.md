@@ -154,7 +154,7 @@ quote compatibility = PASS
 graph write         = KHÔNG (fingerprint identical trước/sau)
 ```
 
-Bộ 8 câu (smoke, KHÔNG phải benchmark — benchmark 166 câu không được chạy):
+Bộ 8 câu (smoke, KHÔNG phải benchmark — bộ chuẩn hiện tại có 150 câu):
 
 | id | loại | mục tiêu | kết quả |
 |---|---|---|---|
@@ -390,10 +390,10 @@ graph → điều tra ngay, đừng bỏ qua.
 
 ### 10.6 Ba cái bẫy KHÔNG được sập
 
-- **Đừng dùng `kag/solver/eval.py`.** Nó hardcode `upper_limit=166` → thành benchmark bị cấm;
-  `load_data()` bỏ qua tham số `file_path` nên không chèn được câu control; và `EvalQa` có
-  diskcache `legal_ckpt` key theo **text câu hỏi**, sẽ replay đáp án project 1 mà vẫn trông như
-  đang test project 4. Dùng driver gọi pipeline trực tiếp.
+- **Đừng dùng `kag/solver/eval.py` để so sánh ba hệ thống.** Script này nay đọc
+  bộ 150 câu chuẩn nhưng vẫn dùng metric và diskcache riêng của `EvalQa`.
+  Diskcache `legal_ckpt` key theo **text câu hỏi**, có thể replay đáp án cũ.
+  Dùng runner và evaluator chung trong `benchmark/` để lấy số liệu so sánh.
 - **Prompt collision.** `import_modules_from_path` key theo tên thư mục CUỐI, nên
   `kag/solver/prompt` và `kag/builder/prompt` đụng nhau qua `sys.modules["prompt"]`. Lần gọi thứ
   hai bị nuốt im lặng, prompt `legal_*` không register, rơi về prompt tiếng Anh mặc định và **chỉ
@@ -426,7 +426,7 @@ không có `__init__.py` — đó là script, không phải package.
 ```text
 [ ] cutover production         chưa đổi kag/kag_config.yaml (vẫn id 1 / Legal)
 [ ] xoá graph cũ               legal / legalc3test / legalfullcand giữ nguyên để rollback
-[ ] benchmark 166 câu          không chạy trong phase này
+[ ] benchmark 150 câu          không chạy trong phase này
 [ ] xử lý C4 recall gap        cần sửa solver, ngoài phạm vi
 [ ] D2.3                       đã revert, giữ absent
 ```

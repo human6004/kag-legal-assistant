@@ -67,11 +67,9 @@ kag/
 │   ├── reader.py          giữ số Khoản/Điểm và thứ tự Markdown
 │   └── prompt/            prompt trích xuất: ner.py, std.py, triple.py
 └── solver/
-    ├── eval.py            chạy hỏi đáp và ghi benchmark.txt
-    ├── gold_chunks.py     tạo tập chunk vàng từ checkpoint
-    ├── recall_report.py   đánh giá truy xuất từ kết quả đã lưu
+    ├── eval.py            công cụ hỏi đáp nội bộ KAG, đọc bộ 150 câu chuẩn
     ├── prompt/            prompt suy luận và sinh câu trả lời
-    └── data/              questions.json, questions_mo_rong.json và gold_chunks*.json
+    └── data/              questions.json (4 câu thử cho luồng đánh giá cũ)
 ```
 
 Prompt tiếng Việt là phần đáng chú ý nhất trong `kag/`: cả `builder/prompt/` lẫn
@@ -129,9 +127,9 @@ từ entrypoint không có nghĩa module mồ côi. Test và `check_prompts.py` 
   `triple.py` đăng ký `legal_triple` trích xuất bộ ba. Config truyền cả ba cho
   extractor; không thay nội dung prompt trong bước A.
 - **Công cụ kiểm tra/đánh giá:** `tests/builder/*`, `schema/check_schema.py`,
-  `solver/eval.py`, `gold_chunks.py`, `recall_report.py`, `scripts/secret_scan.py`
-  đều giữ lại. Chúng được chạy bằng CLI; eval gọi model/server, gold_chunks ghi
-  tập vàng, recall_report đọc kết quả cũ. Không chạy chúng như ingestion.
+  `solver/eval.py`, `scripts/secret_scan.py` và `benchmark/` chạy riêng qua CLI.
+  `solver/eval.py` phục vụ thử KAG nội bộ; số liệu so sánh ba hệ thống lấy từ
+  `benchmark/evaluator/`. Không chạy chúng như ingestion.
 
 Config mẫu `kag/kag_config.example.yaml` được track; config local
 `kag/kag_config.yaml` bị ignore, không phải mặc định cho máy khác. Đối chiếu local
@@ -358,8 +356,10 @@ thái hiệu lực lẫn cạnh về chunk. Thấy hai node rời nhau nghĩa l�
 xem `canon_id.py` — hàm `canon_id` là quy tắc id duy nhất, `metadata_to_graph.py`
 và bản vá `SubGraph.add_node` trong `builder/__init__.py` cùng gọi nó.
 
-**7. Hỏi.** Bộ câu hỏi nằm ở `kag/solver/data/questions_mo_rong.json` (166 câu).
-`eval.py` trỏ vào file đó ở hàm `load_data`. Chạy trong thư mục `solver/`.
+**7. Hỏi.** Bộ câu hỏi chuẩn nằm ở `benchmark/work/final_150_corpus_verified.json`
+(150 câu). `eval.py` đọc file đó ở hàm `load_data`; kết quả của script này chỉ
+dùng để khảo sát KAG nội bộ. Để so sánh ba hệ thống, chạy runner và evaluator
+chung theo [benchmark/README.md](benchmark/README.md). Chạy `eval.py` trong `solver/`.
 
 ```bash
 python eval.py
@@ -374,7 +374,7 @@ Bốn file ra, trong thư mục `runs/`:
 | `legal_metrics_<timestamp>.json` | Cùng nội dung `benchmark.txt` nhưng ở dạng JSON |
 | `legal_ckpt/` | Sổ nhớ, khoá là nguyên văn câu hỏi. Hỏi lại y hệt thì trả bài cũ, không gọi mô hình. Muốn hỏi lại thật thì xoá thư mục này |
 
-`main()` hiện để `thread_num=8` và `upper_limit=166`, mặc định chạy cả bộ.
+`main()` hiện để `thread_num=8` và `upper_limit=150`, mặc định chạy cả bộ.
 Mốc 45 phút ở mục 12 là snapshot lịch sử, không phải thời gian bảo đảm.
 
 Log INFO trên stderr không tự làm tiến trình thất bại. Nếu exit code khác 0,
@@ -386,10 +386,8 @@ Muốn có log để xem lại thì dùng `Tee-Object` (chạy trần thì khôn
 ..\..\.venv\Scripts\python.exe -u eval.py 2>&1 | Tee-Object -FilePath ..\..\runs.log
 ```
 
-**Nếu hai câu bị loại khỏi kết quả** (`processNum` ra 164 thay vì 166) thì đó là
-timeout của `kg_fr_retriever`, không phải bug — câu hỏi về hiệu lực văn bản có thể
-mất hơn 150 giây cho PageRank. Cứ chạy lại, hai câu đó không nằm trong cache nên sẽ
-được thử lại. Chi tiết ở mục 12.
+Nếu `processNum` dưới 150, kiểm tra lỗi/timeout của câu tương ứng. Số liệu 164/166
+ở mục 12 là snapshot lịch sử, không áp dụng cho bộ câu hỏi hiện tại.
 
 **Lưu ý về cache:** `legal_ckpt` chỉ chặn được lời gọi sinh chữ, **không** chặn
 embedding. Chạy lại khi cache đã đầy vẫn tốn tiền, chỉ ít hơn. Xem mục 12.
@@ -405,39 +403,9 @@ khoảng trắng. **Bỏ ký tự markdown là bắt buộc**: mô hình in đ�
 giờ**` và ranh giới `**` rơi vào giữa mốc, không bỏ thì mốc trượt oan dù câu trả lời
 đúng hoàn toàn. Đã dính thật một lần, làm `hit_all` tụt từ 1,0 xuống 0,8.
 
-**8. Đo truy xuất và trích dẫn.** Hai script, **không gọi LLM, không tốn tiền**,
-chạy lại bao nhiêu lần cũng được. Đứng ở `solver/`:
-
-```bash
-python gold_chunks.py     # sinh tập chunk vàng, chạy một lần sau mỗi lần build
-python recall_report.py   # đọc runs/legal_res_*.json mới nhất rồi in báo cáo
-```
-
-`gold_chunks.py` đọc chunk đã cắt từ `kag/ckpt/LengthSplitter` (1.121 chunk trong snapshot lịch sử;
-không phải số đo lại trên corpus hiện tại), rồi tra ngược từng mốc trong `answers`
-ra chunk chứa nó. Ghi ra hai file:
-
-| File | Nghĩa |
-| --- | --- |
-| `data/gold_chunks.json` | Mọi chunk chứa bất kỳ mốc nào. Dùng cho `recall` |
-| `data/gold_chunks_hep.json` | Tối đa 3 chunk/câu, lấy từ mốc **đặc trưng nhất**. Dùng cho `hit@k` và trích dẫn |
-
-Bản hẹp cần thiết vì mốc là **cụm từ**, không phải định danh chunk: mốc `đánh giá sự
-phù hợp` xuất hiện ở 25 chunk, gộp hết lại thì mẫu số phồng lên và mọi chỉ số bị đo
-thấp giả tạo. Script tự bỏ mốc quá ngắn (tên mục lục như `Điều 45`) và quá chung
-(`Chính phủ` ở 310 chunk).
-
-`recall_report.py` in ra `hit@1/3/5/10/20`, `recall`, `MRR`, `nDCG@10`, và
-`citation precision` / `citation recall` — tức trong các nguồn câu trả lời dẫn ra,
-bao nhiêu thật sự chứa đáp án. Đây là chỗ làm sống lại `hit3`/`hit5`/`hitall` trong
-`benchmark.txt`: ba chỉ số đó luôn bằng 0 vì lớp cha `do_recall_eval` trả
-`{"recall": None}`, chứ không phải vì hệ thống hỏng.
-
-Nó còn in hai danh sách đáng đọc: **12 câu khó nhất** (chunk vàng hoàn toàn không
-được lấy về) và **12 câu dẫn sai nhiều nhất**. Mỗi dòng có nhãn nhóm câu hỏi
-(`A-che-tai`, `F-thuat-ngu`, `B-dieu-van-ban`, `GOC`) — nhìn nhãn sẽ thấy hệ thống
-hỏng **có hệ thống theo nhóm**, yếu ở câu hỏi định nghĩa và chế tài. Chi tiết ở mục 12.
-
+**8. Đo truy xuất và trích dẫn.** Dùng `benchmark/evaluator/` với bộ 150 câu chuẩn
+theo [benchmark/README.md](benchmark/README.md). Các file gold chunk theo ID nội
+bộ KAG đã được loại bỏ; số liệu lịch sử 166 câu ở mục 11–12 chỉ để tham khảo.
 
 **9. Bẫy trùng tên gói `prompt` (đã sửa).** `import_modules_from_path` trong
 `vendor/KAG/kag/common/registry/utils.py:44` lấy **tên thư mục cuối** làm tên module.
@@ -552,7 +520,7 @@ nguyên trạng: **166 câu đã chạy xong bằng bản tiếng Anh, và đó 
 báo cáo.** Đổi prompt bây giờ thì phải chạy lại 166 câu (45 phút, tốn tiền) mới so
 sánh được, mà lợi ích chưa chứng minh. Muốn đổi thì chạy lại trọn bộ rồi so.
 
-**Phân loại câu hỏi — chỗ này mới là phát hiện đáng dùng.** `recall_report.py` in ra
+**Phân loại câu hỏi trong báo cáo lịch sử.** `recall_report.py` khi đó in ra
 câu hỏi có nhãn nhóm, và mô hình **hỏng có hệ thống theo nhóm**, không ngẫu nhiên:
 
 | Nhóm | Nghĩa | Tình trạng |

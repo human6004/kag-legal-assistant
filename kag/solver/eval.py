@@ -55,7 +55,7 @@ class LegalEvaluator(EvalQa):
         pipeline = SolverPipelineABC.from_config(
             KAG_CONFIG.all_config[self.solver_pipeline_name]
         )
-        answer = await pipeline.ainvoke(query, reporter=reporter, gold=gold)
+        answer = await pipeline.ainvoke(query, reporter=reporter)
 
         logger.info(f"\n\nso the answer for '{query}' is: {answer}\n\n")
 
@@ -63,23 +63,25 @@ class LegalEvaluator(EvalQa):
         return answer, {"info": info.to_dict(), "status": status}
 
     def load_data(self, file_path):
-        import io
-        import os
         import json
+        from pathlib import Path
 
-        dir_path = os.path.dirname(os.path.abspath(__file__))
-        dir_path = os.path.join(dir_path, "data")
-        file_path = os.path.join(dir_path, "questions_mo_rong.json")
-        with io.open(file_path, "r", encoding="utf-8", newline="\n") as fin:
+        dataset = Path(__file__).resolve().parents[2] / "benchmark" / "work" / "final_150_corpus_verified.json"
+        with dataset.open(encoding="utf-8") as fin:
             questions = json.load(fin)
-        return questions
+        if len(questions) != 150:
+            raise ValueError(f"Expected 150 benchmark questions, got {len(questions)}")
+        return [
+            {"input": item["question"], "answers": item.get("gold_markers", []),
+             "nhom": item["category"], "nguon": item["id"]}
+            for item in questions
+        ]
 
     def do_metrics_eval(
         self, questionList: List[str], predictions: List[str], golds: List[str]
     ):
-        # hit3/hit5/hitall den tu do_recall_eval cua lop cha, lop cha tra
-        # {"recall": None} -> luon 0. Xem recall_report.py de biet cach dung
-        # lai chung tu gold chunk sinh ra boi gold_chunks.py.
+        # Chi so nay la marker-match noi bo KAG; benchmark chung cham bang
+        # benchmark.evaluator.evaluate tren gold_evidence trung lap kien truc.
         #
         # golds[0] la list cac moc phai xuat hien trong cau tra loi (so tien, so
         # dieu). So khop bang substring, bo dau cham/khoang trang cho "30.000.000"
@@ -168,7 +170,7 @@ def main():
     do_main(
         qa_file_path="",
         thread_num=8,
-        upper_limit=166,
+        upper_limit=150,
         collect_file="benchmark.txt",
         eval_obj=LegalEvaluator(),
     )

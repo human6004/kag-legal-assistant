@@ -300,7 +300,9 @@ cd kag
 ..\.venv\Scripts\python.exe solver\eval.py
 ```
 
-Kết quả ghi vào `kag\solver\runs\`. Bộ câu hỏi: `kag\solver\data\questions_mo_rong.json`.
+Kết quả ghi vào `kag\solver\runs\`. Script đọc 150 câu từ
+`benchmark/work/final_150_corpus_verified.json`; số liệu so sánh ba hệ thống
+phải chạy qua runner và evaluator chung trong `benchmark/`.
 
 `biz_scene: legal` quyết định prefix prompt `legal_*`. Đổi thành `default` là quay về
 prompt tiếng Anh của KAG, im lặng, không báo lỗi.
