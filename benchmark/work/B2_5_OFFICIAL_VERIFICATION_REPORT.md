@@ -126,10 +126,16 @@ the corpus answers it.
 | 35/2018/QH14 | Q092, Q093, Q094, Q095, Q110 | Official signed PDF is a scanned image (no text layer); no OCR available. |
 | 367/QĐ-TTg | Q045, Q102, Q135 | Official signed PDF is a scanned image (no text layer); no OCR available. |
 
-## Checkpoint instructions for next session
+## Status of this audit (closed)
+- This audit is **closed and supplementary**. The 15 non-OFFICIAL_VERIFIED records
+  (14 BLOCKER + 1 MINOR_REPAIR) were resolved in B2.5C; see
+  `B2_5_CORPUS_CLOSURE.json` / `B2_5_CORPUS_CLOSURE_REPORT.md`.
 - Audit file: `benchmark/work/B2_5_OFFICIAL_VERIFICATION.json` (append-only; do not wipe).
-- Official texts: `benchmark/work/_b25_src/official/*.txt` (each has a `.url` pointer).
-- Validate: `.venv\Scripts\python.exe -X utf8 benchmark/work/_b25_validate.py`
-- Regenerate this report: `.venv\Scripts\python.exe -X utf8 benchmark/work/_b25_report.py`
-- Packet for a question: `.venv\Scripts\python.exe -X utf8 benchmark/work/_b25_verify.py report Qxxx`
-- Resume: resolve the 15 non-OFFICIAL_VERIFIED records above.
+  Each record carries its own official-source provenance: portal URL, document id,
+  verified article/clause/point, and per-check verdicts.
+- The downloaded/extracted official texts (`_b25_src/`), the verification packets
+  (`_b25_packs/`) and the one-off `_b25_*.py` tooling were removed in the pre-B3
+  cleanup: they were disposable intermediates, and the provenance that matters is
+  already inside the two JSON audit files. Every source is re-fetchable from the
+  `url` field of each record.
+- Canonical dataset after closure: `benchmark/work/final_150_corpus_verified.json`.
