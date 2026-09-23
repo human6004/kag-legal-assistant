@@ -13,6 +13,7 @@ from .common import article_number, context, legal_code, main
 
 def adapt_contexts(reporter):
     out = []
+    seen = set()
     for report_id in dict.fromkeys(reporter.report_record):
         event = reporter.report_stream_data[report_id]
         if event["segment"] != "reference":
@@ -25,11 +26,14 @@ def adapt_contexts(reporter):
                     raw = json.loads(raw)
                 except ValueError:
                     pass
+            key = getattr(chunk, "chunk_id", None) or raw
+            if not raw or key in seen:
+                continue
+            seen.add(key)
             props = getattr(chunk, "properties", {}) or {}
             document_id = legal_code(props.get("sourceDocumentId") or props.get("doc_code"))
-            document_id = document_id or legal_code(getattr(chunk, "title", "")) or legal_code(raw)
+            document_id = document_id or legal_code(getattr(chunk, "title", ""))
             article = props.get("article_no") or article_number(getattr(chunk, "title", ""))
-            article = article or article_number(raw.split("\n", 1)[0])
             out.append(context(len(out) + 1, raw, document_id, str(article) if article else None,
                                str(props["clause_no"]) if props.get("clause_no") else None,
                                str(props["point_no"]) if props.get("point_no") else None,
@@ -47,6 +51,9 @@ def build_query():
     try:
         os.chdir(kag_root)  # KAG_CONFIG discovers kag_config.yaml from cwd.
         KAG_CONFIG = importlib.import_module("kag.common.conf").KAG_CONFIG
+        project = KAG_CONFIG.all_config["project"]
+        if str(project["id"]) != "4" or project["namespace"] != "LegalFinalCand":
+            raise ValueError("KAG benchmark requires project 4 / LegalFinalCand")
         import_modules_from_path = importlib.import_module("kag.common.registry").import_modules_from_path
         SolverPipelineABC = importlib.import_module("kag.interface").SolverPipelineABC
         TraceLogReporter = importlib.import_module("kag.solver.reporter.trace_log_reporter").TraceLogReporter

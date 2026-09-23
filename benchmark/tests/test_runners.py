@@ -51,6 +51,21 @@ def test_adapters_missing_metadata_and_failure():
     assert parse_system_outputs([failure])[0].failed
 
 
+def test_kag_contexts_keep_retrieval_order_without_duplicate_chunks_or_guessed_metadata():
+    first = SimpleNamespace(chunk_id="chunk-1", content="Điều 8 Nghị định 13/2023/NĐ-CP", title="",
+                            properties={}, score=0.8)
+    second = SimpleNamespace(chunk_id="chunk-2", content="Nội dung thứ hai", title="",
+                             properties={"article_no": 9}, score=0.5)
+    reporter = SimpleNamespace(report_record=["a", "other", "b", "a"], report_stream_data={
+        "a": {"segment": "reference", "content": SimpleNamespace(chunks=[first])},
+        "other": {"segment": "generator_reference", "content": [second]},
+        "b": {"segment": "reference", "content": SimpleNamespace(chunks=[first, second])},
+    })
+    contexts = kag_contexts(reporter)
+    assert [(c["rank"], c["text"], c["document_id"], c["article"]) for c in contexts] == [
+        (1, first.content, None, None), (2, second.content, None, "9")]
+
+
 def test_batch_cli_with_synthetic_question(tmp_path):
     dataset, out = tmp_path / "dataset.json", tmp_path / "output.json"
     dataset.write_text(json.dumps([{"id": "T3", "question": "Synthetic", "gold_claims": "SECRET"}]))

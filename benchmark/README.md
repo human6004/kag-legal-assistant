@@ -44,6 +44,15 @@ python -m pytest benchmark/tests -q
 
 ---
 
+## Cần chuẩn bị gì trước khi chạy benchmark?
+
+- Dataset 150 câu là bộ câu hỏi và gold để đánh giá, không phải knowledge base hay index.
+- Mỗi hệ thống cần code, corpus 23 văn bản, dependencies, cấu hình model/API và index của chính nó.
+- HybridRAG và NativeRAG cần chunk, embed và index corpus trước. KAG cần OpenSPG và graph `LegalFinalCand` đã build hoặc restore.
+- Chỉ chạy 150 câu sau khi smoke query của từng hệ thống thành công.
+
+---
+
 ## 2. Trạng thái canonical dataset
 
 | Mốc | Trạng thái |
