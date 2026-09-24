@@ -1,3 +1,4 @@
+import asyncio
 import json
 import sys
 from types import SimpleNamespace
@@ -6,7 +7,7 @@ from unittest.mock import patch
 from benchmark.evaluator.models import parse_system_outputs
 from benchmark.runners.common import load_questions, main, run_question
 from benchmark.runners.hybridrag_runner import adapt_contexts as hybrid_contexts
-from benchmark.runners.kag_runner import adapt_contexts as kag_contexts
+from benchmark.runners.kag_runner import KAGQuery, adapt_contexts as kag_contexts
 from benchmark.runners.nativerag_runner import adapt_contexts as native_contexts
 
 
@@ -80,3 +81,32 @@ def test_batch_cli_with_synthetic_question(tmp_path):
     assert outputs[0]["retrieved_contexts"][0]["article"] == "8"
     assert outputs[0]["citations"] == []
     assert parse_system_outputs(outputs)[0].question_id == "T3"
+
+
+def test_kag_batch_reuses_one_event_loop_and_closes_it(tmp_path):
+    loop_ids = []
+
+    class Pipeline:
+        async def ainvoke(self, question, reporter):
+            loop_ids.append(asyncio.get_running_loop())
+            return f"Answer: {question}"
+
+    class Reporter:
+        report_record = []
+        report_stream_data = {}
+
+    dataset, out = tmp_path / "dataset.json", tmp_path / "output.json"
+    dataset.write_text(json.dumps([
+        {"id": f"Q{i}", "question": f"Question {i}?"} for i in range(1, 4)
+    ]), encoding="utf-8")
+    query = KAGQuery(Pipeline(), Reporter)
+
+    with patch.object(sys, "argv", ["runner", "--dataset", str(dataset), "--out", str(out)]):
+        main("kag", lambda: query)
+
+    outputs = json.loads(out.read_text(encoding="utf-8"))
+    assert [row["question_id"] for row in outputs] == ["Q1", "Q2", "Q3"]
+    assert all(row["system"] == "kag" and row["error"] is None for row in outputs)
+    assert [record.question_id for record in parse_system_outputs(outputs)] == ["Q1", "Q2", "Q3"]
+    assert len(loop_ids) == 3 and all(loop is query.loop for loop in loop_ids)
+    assert query.loop.is_closed()

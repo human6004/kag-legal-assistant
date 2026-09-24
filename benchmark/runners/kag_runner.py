@@ -41,6 +41,29 @@ def adapt_contexts(reporter):
     return out
 
 
+class KAGQuery:
+    def __init__(self, pipeline, reporter_factory):
+        self.pipeline = pipeline
+        self.reporter_factory = reporter_factory
+        self.loop = asyncio.new_event_loop()
+
+    def __call__(self, question):
+        reporter = self.reporter_factory()
+        answer = self.loop.run_until_complete(
+            self.pipeline.ainvoke(question, reporter=reporter)
+        )
+        return answer, adapt_contexts(reporter)
+
+    def close(self):
+        if self.loop.is_closed():
+            return
+        try:
+            self.loop.run_until_complete(self.loop.shutdown_asyncgens())
+            self.loop.run_until_complete(self.loop.shutdown_default_executor())
+        finally:
+            self.loop.close()
+
+
 def build_query():
     root = Path(__file__).resolve().parents[2]
     kag_root = root / "kag"
@@ -67,12 +90,7 @@ def build_query():
     finally:
         os.chdir(previous)
 
-    def query(question):
-        reporter = TraceLogReporter()
-        answer = asyncio.run(pipeline.ainvoke(question, reporter=reporter))
-        return answer, adapt_contexts(reporter)
-
-    return query
+    return KAGQuery(pipeline, TraceLogReporter)
 
 
 if __name__ == "__main__":

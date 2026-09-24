@@ -77,7 +77,12 @@ def main(system, build_query):
     dataset, out = Path(args.dataset).resolve(), Path(args.out).resolve()
     questions = load_questions(dataset)
     query = build_query()  # Startup and index loading are outside latency.
-    outputs = [run_question(qid, question, system, query) for qid, question in questions]
+    try:
+        outputs = [run_question(qid, question, system, query) for qid, question in questions]
+    finally:
+        close_query = getattr(query, "close", None)
+        if callable(close_query):
+            close_query()
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(outputs, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {len(outputs)} outputs to {out}")
