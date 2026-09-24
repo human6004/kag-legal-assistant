@@ -1,9 +1,13 @@
 import asyncio
 import json
 import sys
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
+import pytest
+
+import benchmark.runners.common as runner_common
 from benchmark.evaluator.models import parse_system_outputs
 from benchmark.runners.common import load_questions, main, run_question
 from benchmark.runners.hybridrag_runner import adapt_contexts as hybrid_contexts
@@ -110,3 +114,124 @@ def test_kag_batch_reuses_one_event_loop_and_closes_it(tmp_path):
     assert [record.question_id for record in parse_system_outputs(outputs)] == ["Q1", "Q2", "Q3"]
     assert len(loop_ids) == 3 and all(loop is query.loop for loop in loop_ids)
     assert query.loop.is_closed()
+
+
+def test_batch_checkpoints_after_each_question_and_overwrites_without_resume(tmp_path):
+    dataset, out = tmp_path / "dataset.json", tmp_path / "output.json"
+    dataset.write_text(json.dumps([
+        {"id": f"Q{i}", "question": f"Question {i}?"} for i in range(1, 4)
+    ]), encoding="utf-8")
+    out.write_text("stale output", encoding="utf-8")
+    snapshots = []
+
+    def query(question):
+        if question == "Question 2?":
+            snapshots.append(json.loads(out.read_text(encoding="utf-8")))
+        elif question == "Question 3?":
+            snapshots.append(json.loads(out.read_text(encoding="utf-8")))
+        return f"Answer: {question}", []
+
+    with patch.object(sys, "argv", ["runner", "--dataset", str(dataset), "--out", str(out)]):
+        main("hybridrag", lambda: query)
+
+    assert [[row["question_id"] for row in rows] for rows in snapshots] == [["Q1"], ["Q1", "Q2"]]
+    assert [row["question_id"] for row in json.loads(out.read_text(encoding="utf-8"))] == ["Q1", "Q2", "Q3"]
+
+
+def test_resume_skips_existing_success_and_error_records_and_orders_dataset(tmp_path):
+    dataset, out = tmp_path / "dataset.json", tmp_path / "output.json"
+    dataset.write_text(json.dumps([
+        {"id": f"Q{i}", "question": f"Question {i}?"} for i in range(1, 5)
+    ]), encoding="utf-8")
+
+    def failed_query(_):
+        raise RuntimeError("previous failure")
+
+    existing = [
+        run_question("Q3", "Question 3?", "kag", lambda _: ("Old answer 3", [])),
+        run_question("Q1", "Question 1?", "kag", failed_query),
+    ]
+    out.write_text(json.dumps(existing), encoding="utf-8")
+    calls = []
+
+    def query(question):
+        calls.append(question)
+        return f"New answer: {question}", []
+
+    with patch.object(sys, "argv", ["runner", "--dataset", str(dataset), "--out", str(out), "--resume"]):
+        main("kag", lambda: query)
+
+    outputs = json.loads(out.read_text(encoding="utf-8"))
+    assert calls == ["Question 2?", "Question 4?"]
+    assert [row["question_id"] for row in outputs] == ["Q1", "Q2", "Q3", "Q4"]
+    assert outputs[0]["error"] == "RuntimeError: previous failure" and outputs[0]["answer"] is None
+    assert outputs[2]["answer"] == "Old answer 3"
+    assert [record.question_id for record in parse_system_outputs(outputs)] == ["Q1", "Q2", "Q3", "Q4"]
+
+
+@pytest.mark.parametrize("invalid", ["duplicate", "system", "unknown_question"])
+def test_resume_rejects_duplicate_mismatched_or_unknown_records(tmp_path, invalid):
+    dataset, out = tmp_path / "dataset.json", tmp_path / "output.json"
+    dataset.write_text(json.dumps([{"id": "Q1", "question": "Question?"}]), encoding="utf-8")
+    record = run_question("Q1", "Question?", "kag", lambda _: ("Answer", []))
+    records = {
+        "duplicate": [record, record],
+        "system": [run_question("Q1", "Question?", "nativerag", lambda _: ("Answer", []))],
+        "unknown_question": [run_question("OLD", "Old?", "kag", lambda _: ("Answer", []))],
+    }[invalid]
+    out.write_text(json.dumps(records), encoding="utf-8")
+    built = []
+
+    with patch.object(sys, "argv", ["runner", "--dataset", str(dataset), "--out", str(out), "--resume"]):
+        with pytest.raises(ValueError):
+            main("kag", lambda: built.append(True))
+
+    assert built == []
+
+
+def test_keyboard_interrupt_keeps_completed_checkpoint_and_closes_query(tmp_path):
+    dataset, out = tmp_path / "dataset.json", tmp_path / "output.json"
+    dataset.write_text(json.dumps([
+        {"id": f"Q{i}", "question": f"Question {i}?"} for i in range(1, 4)
+    ]), encoding="utf-8")
+
+    class Query:
+        closed = False
+
+        def __call__(self, question):
+            if question == "Question 2?":
+                raise KeyboardInterrupt
+            return "Answer", []
+
+        def close(self):
+            self.closed = True
+
+    query = Query()
+    with patch.object(sys, "argv", ["runner", "--dataset", str(dataset), "--out", str(out)]):
+        with pytest.raises(KeyboardInterrupt):
+            main("kag", lambda: query)
+
+    outputs = json.loads(out.read_text(encoding="utf-8"))
+    assert [row["question_id"] for row in outputs] == ["Q1"]
+    assert query.closed
+
+
+def test_failed_atomic_replace_preserves_previous_valid_checkpoint(tmp_path, monkeypatch):
+    dataset, out = tmp_path / "dataset.json", tmp_path / "output.json"
+    dataset.write_text(json.dumps([{"id": "Q1", "question": "Question?"}]), encoding="utf-8")
+    previous = json.dumps([run_question("OLD", "Old?", "kag", lambda _: ("Old answer", []))])
+    out.write_text(previous, encoding="utf-8")
+
+    def fail_replace(source, destination):
+        source, destination = Path(source), Path(destination)
+        assert source.parent == destination.parent
+        assert json.loads(source.read_text(encoding="utf-8"))[0]["question_id"] == "Q1"
+        raise OSError("replace failed")
+
+    monkeypatch.setattr(runner_common.os, "replace", fail_replace)
+    with patch.object(sys, "argv", ["runner", "--dataset", str(dataset), "--out", str(out)]):
+        with pytest.raises(OSError, match="replace failed"):
+            main("kag", lambda: lambda _: ("New answer", []))
+
+    assert out.read_text(encoding="utf-8") == previous
+    assert list(tmp_path.glob("*.tmp")) == []

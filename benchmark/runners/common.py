@@ -2,12 +2,14 @@
 
 import argparse
 import json
+import os
 import re
+import tempfile
 import time
 from pathlib import Path
 
 from benchmark.adapters.citation_parser import parse_citation_payloads
-from benchmark.evaluator.models import SystemOutput
+from benchmark.evaluator.models import SystemOutput, parse_system_outputs
 
 
 DOC_CODE = re.compile(r"\b\d{1,4}(?:/\d{4})?/[A-ZĐ][\wĐđ]*(?:-[A-ZĐ][\wĐđ]*)*\b", re.I)
@@ -69,20 +71,75 @@ def run_question(question_id, question, system, query):
     return output
 
 
+def _atomic_write_json(path, payload):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", newline="\n", dir=path.parent,
+            prefix=f".{path.name}.", suffix=".tmp", delete=False,
+        ) as temp:
+            temp_path = Path(temp.name)
+            json.dump(payload, temp, ensure_ascii=False, indent=2)
+            temp.write("\n")
+            temp.flush()
+            os.fsync(temp.fileno())
+        os.replace(temp_path, path)
+        temp_path = None
+    finally:
+        if temp_path is not None:
+            temp_path.unlink(missing_ok=True)
+
+
+def _load_resume_outputs(path, system, question_ids):
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, list):
+        raise ValueError("resume output must be a JSON list")
+    records = parse_system_outputs(payload)
+    seen = set()
+    for record in records:
+        if record.question_id in seen:
+            raise ValueError(f"duplicate question_id in resume output: {record.question_id}")
+        seen.add(record.question_id)
+        if record.system != system:
+            raise ValueError(
+                f"resume system mismatch for {record.question_id}: "
+                f"expected {system}, got {record.system}"
+            )
+        if record.question_id not in question_ids:
+            raise ValueError(f"resume question_id not in dataset: {record.question_id}")
+    return {row["question_id"]: row for row in payload}
+
+
 def main(system, build_query):
     parser = argparse.ArgumentParser(description=f"Run {system} on a benchmark dataset")
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--out", required=True)
+    parser.add_argument("--resume", action="store_true", help="resume from valid outputs in --out")
     args = parser.parse_args()
     dataset, out = Path(args.dataset).resolve(), Path(args.out).resolve()
     questions = load_questions(dataset)
+    question_ids = {qid for qid, _ in questions}
+    outputs_by_id = (
+        _load_resume_outputs(out, system, question_ids)
+        if args.resume and out.exists()
+        else {}
+    )
     query = build_query()  # Startup and index loading are outside latency.
     try:
-        outputs = [run_question(qid, question, system, query) for qid, question in questions]
+        for qid, question in questions:
+            if qid in outputs_by_id:
+                continue
+            outputs_by_id[qid] = run_question(qid, question, system, query)
+            _atomic_write_json(
+                out,
+                [outputs_by_id[question_id] for question_id, _ in questions
+                 if question_id in outputs_by_id],
+            )
     finally:
         close_query = getattr(query, "close", None)
         if callable(close_query):
             close_query()
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(outputs, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    outputs = [outputs_by_id[qid] for qid, _ in questions if qid in outputs_by_id]
+    _atomic_write_json(out, outputs)
     print(f"wrote {len(outputs)} outputs to {out}")
